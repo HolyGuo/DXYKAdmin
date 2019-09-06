@@ -15,8 +15,8 @@ using System.Threading.Tasks;
 namespace DXYK.Admin.API.Controllers
 {
     ///<summary>
-        /// 系统管理-群组信息表
-        ///</summary>
+    /// 系统管理-群组信息表
+    ///</summary>
     [ApiController]
     [Route("api/[controller]/[action]")]
     public class SysGroupController : Controller
@@ -46,7 +46,7 @@ namespace DXYK.Admin.API.Controllers
         [HttpPost]
         public ResponseMessageWrap<long> Insert([FromBody]SysGroup sysGroup)
         {
-            return new ResponseMessageWrap<long>{ data = SysGroupService.Insert(sysGroup) };
+            return new ResponseMessageWrap<long> { data = SysGroupService.Insert(sysGroup) };
         }
 
         ///<summary>
@@ -55,7 +55,7 @@ namespace DXYK.Admin.API.Controllers
         [HttpPost]
         public async Task<ResponseMessageWrap<long>> InsertAsync([FromBody]SysGroup sysGroup)
         {
-            return new ResponseMessageWrap<long>{ data = await SysGroupService.InsertAsync(sysGroup) };
+            return new ResponseMessageWrap<long> { data = await SysGroupService.InsertAsync(sysGroup) };
         }
 
         ///<summary>
@@ -64,7 +64,7 @@ namespace DXYK.Admin.API.Controllers
         [HttpDelete]
         public ResponseMessageWrap<int> DeleteById(long id)
         {
-            return new ResponseMessageWrap<int>{ data = SysGroupService.DeleteById(id) };
+            return new ResponseMessageWrap<int> { data = SysGroupService.DeleteById(id) };
         }
 
         ///<summary>
@@ -73,7 +73,7 @@ namespace DXYK.Admin.API.Controllers
         [HttpDelete]
         public async Task<ResponseMessageWrap<int>> DeleteByIdAsync(long id)
         {
-            return new ResponseMessageWrap<int>{ data = await SysGroupService.DeleteByIdAsync(id) };
+            return new ResponseMessageWrap<int> { data = await SysGroupService.DeleteByIdAsync(id) };
         }
 
         ///<summary>
@@ -82,7 +82,7 @@ namespace DXYK.Admin.API.Controllers
         [HttpPut]
         public ResponseMessageWrap<int> Update([FromBody]SysGroup sysGroup)
         {
-            return new ResponseMessageWrap<int>{ data = SysGroupService.Update(sysGroup) };
+            return new ResponseMessageWrap<int> { data = SysGroupService.Update(sysGroup) };
         }
 
         ///<summary>
@@ -91,7 +91,7 @@ namespace DXYK.Admin.API.Controllers
         [HttpPut]
         public async Task<ResponseMessageWrap<int>> UpdateAsync([FromBody]SysGroup sysGroup)
         {
-            return new ResponseMessageWrap<int>{ data =await SysGroupService.UpdateAsync(sysGroup) };
+            return new ResponseMessageWrap<int> { data = await SysGroupService.UpdateAsync(sysGroup) };
         }
 
         ///<summary>
@@ -101,7 +101,7 @@ namespace DXYK.Admin.API.Controllers
         public ResponseMessageWrap<SysGroup> GetById(long id)
         {
             var sysGroup = SysGroupService.GetById(id);
-            return new ResponseMessageWrap<SysGroup>{ data = sysGroup };
+            return new ResponseMessageWrap<SysGroup> { data = sysGroup };
         }
 
         ///<summary>
@@ -110,8 +110,8 @@ namespace DXYK.Admin.API.Controllers
         [HttpGet]
         public async Task<ResponseMessageWrap<SysGroup>> GetByIdAsync(long id)
         {
-            var sysGroup =await SysGroupService.GetByIdAsync(id);
-            return new ResponseMessageWrap<SysGroup>{data = sysGroup};
+            var sysGroup = await SysGroupService.GetByIdAsync(id);
+            return new ResponseMessageWrap<SysGroup> { data = sysGroup };
         }
 
         ///<summary>
@@ -130,7 +130,7 @@ namespace DXYK.Admin.API.Controllers
         [HttpPost]
         public async Task<ResponseMessageWrap<IList<SysGroup>>> QueryAsync([FromBody]QueryRequest reqMsg)
         {
-            var list =await SysGroupRepository.QueryAsync(reqMsg);
+            var list = await SysGroupRepository.QueryAsync(reqMsg);
             return new ResponseMessageWrap<IList<SysGroup>> { data = list };
         }
 
@@ -151,11 +151,11 @@ namespace DXYK.Admin.API.Controllers
         [HttpPost]
         public async Task<ResponseMessageWrap<IList<SysGroup>>> QueryByPageAsync([FromBody]QueryByPageRequest reqMsg)
         {
-            var total =await SysGroupRepository.GetRecordAsync(reqMsg);
-            var list =await SysGroupRepository.QueryByPageAsync(reqMsg);
+            var total = await SysGroupRepository.GetRecordAsync(reqMsg);
+            var list = await SysGroupRepository.QueryByPageAsync(reqMsg);
             return new ResponseMessageWrap<IList<SysGroup>>() { count = total, data = list };
         }
-        
+
         ///<summary>
         /// 根据分页查询系统管理-群组信息表(sys_group)
         ///</summary>
@@ -166,7 +166,7 @@ namespace DXYK.Admin.API.Controllers
             var list = SysGroupRepository.QueryByPage(reqMsg);
             return new ResponseMessageWrap<object> { count = total, data = list };
         }
-        
+
         ///<summary>
         /// 异步根据分页查询系统管理-群组信息表(sys_group)
         ///</summary>

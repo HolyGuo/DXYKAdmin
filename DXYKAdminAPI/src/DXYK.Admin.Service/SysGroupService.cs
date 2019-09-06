@@ -11,8 +11,8 @@ using DXYK.Admin.Repository;
 namespace DXYK.Admin.Service
 {
     ///<summary>
-        /// 系统管理-群组信息表
-        ///</summary>
+    /// 系统管理-群组信息表
+    ///</summary>
     public class SysGroupService
     {
 
@@ -24,7 +24,7 @@ namespace DXYK.Admin.Service
         ///<summary>
         ///SysGroupService 构造函数
         ///</summary>
-        public SysGroupService (ISysGroupRepository sysGroupRepository)
+        public SysGroupService(ISysGroupRepository sysGroupRepository)
         {
             SysGroupRepository = sysGroupRepository;
         }
@@ -40,7 +40,7 @@ namespace DXYK.Admin.Service
         ///<summary>
         ///异步新增
         ///</summary>
-        public  async Task<long> InsertAsync(SysGroup sysGroup)
+        public async Task<long> InsertAsync(SysGroup sysGroup)
         {
             return await SysGroupRepository.InsertAsync(sysGroup);
         }
@@ -56,7 +56,7 @@ namespace DXYK.Admin.Service
         ///<summary>
         ///异步删除
         ///</summary>
-        public  async Task<int> DeleteByIdAsync(long id)
+        public async Task<int> DeleteByIdAsync(long id)
         {
             return await SysGroupRepository.DeleteByIdAsync(id);
         }

@@ -10,8 +10,14 @@ using System.ComponentModel.DataAnnotations;
 
 namespace DXYK.Admin.API.Messages
 {
+    /// <summary>
+    /// QueryRequest
+    /// </summary>
     public class QueryRequest
     {
+        /// <summary>
+        /// µ¥Ò³ÐÐÊý
+        /// </summary>
         [Range(1, 100)]
         public int limit { get; set; }
     }

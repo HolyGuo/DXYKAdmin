@@ -31,7 +31,7 @@ namespace DXYK.Admin.API
         {
             Configuration = configuration;
         }
-        
+
         ///<summary>
         ///Configuration 应用配置
         ///</summary>
@@ -63,7 +63,7 @@ namespace DXYK.Admin.API
             services.AddSmartSql()
             .AddRepositoryFromAssembly(options =>
             {
-            options.AssemblyString = "DXYK.Admin.Repository";
+                options.AssemblyString = "DXYK.Admin.Repository";
             });
         }
 
@@ -130,8 +130,8 @@ namespace DXYK.Admin.API
                 c.SwaggerEndpoint("/swagger/v1/swagger.json", SERVICE_NAME);
             });
 
-            }
         }
+    }
 
 }
 

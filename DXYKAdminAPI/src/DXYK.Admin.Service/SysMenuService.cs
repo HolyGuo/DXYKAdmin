@@ -11,8 +11,8 @@ using DXYK.Admin.Repository;
 namespace DXYK.Admin.Service
 {
     ///<summary>
-        /// 系统管理-菜单信息表
-        ///</summary>
+    /// 系统管理-菜单信息表
+    ///</summary>
     public class SysMenuService
     {
 
@@ -24,7 +24,7 @@ namespace DXYK.Admin.Service
         ///<summary>
         ///SysMenuService 构造函数
         ///</summary>
-        public SysMenuService (ISysMenuRepository sysMenuRepository)
+        public SysMenuService(ISysMenuRepository sysMenuRepository)
         {
             SysMenuRepository = sysMenuRepository;
         }
@@ -40,7 +40,7 @@ namespace DXYK.Admin.Service
         ///<summary>
         ///异步新增
         ///</summary>
-        public  async Task<long> InsertAsync(SysMenu sysMenu)
+        public async Task<long> InsertAsync(SysMenu sysMenu)
         {
             return await SysMenuRepository.InsertAsync(sysMenu);
         }
@@ -56,7 +56,7 @@ namespace DXYK.Admin.Service
         ///<summary>
         ///异步删除
         ///</summary>
-        public  async Task<int> DeleteByIdAsync(long id)
+        public async Task<int> DeleteByIdAsync(long id)
         {
             return await SysMenuRepository.DeleteByIdAsync(id);
         }

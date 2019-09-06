@@ -11,8 +11,8 @@ using DXYK.Admin.Repository;
 namespace DXYK.Admin.Service
 {
     ///<summary>
-        /// 系统管理-单位信息表
-        ///</summary>
+    /// 系统管理-单位信息表
+    ///</summary>
     public class SysDeptService
     {
 
@@ -24,7 +24,7 @@ namespace DXYK.Admin.Service
         ///<summary>
         ///SysDeptService 构造函数
         ///</summary>
-        public SysDeptService (ISysDeptRepository sysDeptRepository)
+        public SysDeptService(ISysDeptRepository sysDeptRepository)
         {
             SysDeptRepository = sysDeptRepository;
         }
@@ -40,7 +40,7 @@ namespace DXYK.Admin.Service
         ///<summary>
         ///异步新增
         ///</summary>
-        public  async Task<long> InsertAsync(SysDept sysDept)
+        public async Task<long> InsertAsync(SysDept sysDept)
         {
             return await SysDeptRepository.InsertAsync(sysDept);
         }
@@ -56,7 +56,7 @@ namespace DXYK.Admin.Service
         ///<summary>
         ///异步删除
         ///</summary>
-        public  async Task<int> DeleteByIdAsync(long id)
+        public async Task<int> DeleteByIdAsync(long id)
         {
             return await SysDeptRepository.DeleteByIdAsync(id);
         }

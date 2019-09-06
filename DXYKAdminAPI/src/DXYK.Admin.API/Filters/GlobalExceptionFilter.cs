@@ -10,19 +10,38 @@ using DXYK.Admin.API.Exceptions;
 using DXYK.Admin.API.Messages;
 using System.Net;
 
-namespace  DXYK.Admin.API.Filters
+namespace DXYK.Admin.API.Filters
 {
+    /// <summary>
+    /// GlobalExceptionFilter
+    /// </summary>
     public class GlobalExceptionFilter : IExceptionFilter
     {
+        /// <summary>
+        /// IHostingEnvironment
+        /// </summary>
         private readonly IHostingEnvironment env;
+
+        /// <summary>
+        /// ILogger
+        /// </summary>
         private readonly ILogger<GlobalExceptionFilter> logger;
 
+        /// <summary>
+        /// GlobalExceptionFilter
+        /// </summary>
+        /// <param name="env"></param>
+        /// <param name="logger"></param>
         public GlobalExceptionFilter(IHostingEnvironment env, ILogger<GlobalExceptionFilter> logger)
         {
             this.env = env;
             this.logger = logger;
         }
 
+        /// <summary>
+        /// OnException
+        /// </summary>
+        /// <param name="context"></param>
         public void OnException(ExceptionContext context)
         {
             context.ExceptionHandled = true;

@@ -10,12 +10,26 @@ using System.ComponentModel.DataAnnotations;
 
 namespace DXYK.Admin.API.Messages
 {
+    /// <summary>
+    /// QueryByPageRequest
+    /// </summary>
     public class QueryByPageRequest
     {
+        /// <summary>
+        /// Ò³Âë
+        /// </summary>
         [Range(1, int.MaxValue)]
         public int page { get; set; } = 1;
+
+        /// <summary>
+        /// µ¥Ò³ÐÐÊý
+        /// </summary>
         [Range(1, 100)]
         public int limit { get; set; } = 10;
+
+        /// <summary>
+        /// ºöÂÔ
+        /// </summary>
         public int offset { get { return (page - 1) * limit; } }
     }
 }

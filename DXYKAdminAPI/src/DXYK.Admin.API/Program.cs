@@ -14,13 +14,25 @@ using Microsoft.Extensions.Logging;
 
 namespace DXYK.Admin.API
 {
+    /// <summary>
+    /// Program
+    /// </summary>
     public class Program
     {
+        /// <summary>
+        /// Mainº¯Êý
+        /// </summary>
+        /// <param name="args"></param>
         public static void Main(string[] args)
         {
             BuildWebHost(args).Run();
         }
 
+        /// <summary>
+        /// BuildWebHost
+        /// </summary>
+        /// <param name="args">args</param>
+        /// <returns></returns>
         public static IWebHost BuildWebHost(string[] args)
         {
             var config = new ConfigurationBuilder()
@@ -29,7 +41,7 @@ namespace DXYK.Admin.API
             return WebHost.CreateDefaultBuilder(args)
                   .UseConfiguration(config)
                   .UseStartup<Startup>().Build();
+        }
     }
-    }
-    }
+}
 

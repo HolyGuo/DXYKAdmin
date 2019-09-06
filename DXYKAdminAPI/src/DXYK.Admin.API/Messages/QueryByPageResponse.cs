@@ -10,8 +10,15 @@ using System.ComponentModel.DataAnnotations;
 
 namespace DXYK.Admin.API.Messages
 {
-    public class QueryByPageResponse<TItem>: QueryResponse<TItem>
+    /// <summary>
+    /// QueryByPageResponse
+    /// </summary>
+    /// <typeparam name="TItem"></typeparam>
+    public class QueryByPageResponse<TItem> : QueryResponse<TItem>
     {
+        /// <summary>
+        /// ×ÜÊý
+        /// </summary>
         public int count { get; set; }
     }
 }

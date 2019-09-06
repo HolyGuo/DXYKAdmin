@@ -11,8 +11,8 @@ using DXYK.Admin.Repository;
 namespace DXYK.Admin.Service
 {
     ///<summary>
-        /// 系统管理-用户信息表
-        ///</summary>
+    /// 系统管理-用户信息表
+    ///</summary>
     public class SysUserService
     {
 
@@ -24,7 +24,7 @@ namespace DXYK.Admin.Service
         ///<summary>
         ///SysUserService 构造函数
         ///</summary>
-        public SysUserService (ISysUserRepository sysUserRepository)
+        public SysUserService(ISysUserRepository sysUserRepository)
         {
             SysUserRepository = sysUserRepository;
         }
@@ -40,7 +40,7 @@ namespace DXYK.Admin.Service
         ///<summary>
         ///异步新增
         ///</summary>
-        public  async Task<long> InsertAsync(SysUser sysUser)
+        public async Task<long> InsertAsync(SysUser sysUser)
         {
             return await SysUserRepository.InsertAsync(sysUser);
         }
@@ -56,7 +56,7 @@ namespace DXYK.Admin.Service
         ///<summary>
         ///异步删除
         ///</summary>
-        public  async Task<int> DeleteByIdAsync(long id)
+        public async Task<int> DeleteByIdAsync(long id)
         {
             return await SysUserRepository.DeleteByIdAsync(id);
         }

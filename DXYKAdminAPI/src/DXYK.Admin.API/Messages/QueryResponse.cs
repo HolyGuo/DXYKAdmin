@@ -12,6 +12,9 @@ namespace DXYK.Admin.API.Messages
 {
     public class QueryResponse<TItem>
     {
+        /// <summary>
+        /// Êý¾ÝÐÐ
+        /// </summary>
         public IEnumerable<TItem> data { get; set; }
     }
 }

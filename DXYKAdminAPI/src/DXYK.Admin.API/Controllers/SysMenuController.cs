@@ -15,8 +15,8 @@ using System.Threading.Tasks;
 namespace DXYK.Admin.API.Controllers
 {
     ///<summary>
-        /// 系统管理-菜单信息表
-        ///</summary>
+    /// 系统管理-菜单信息表
+    ///</summary>
     [ApiController]
     [Route("api/[controller]/[action]")]
     public class SysMenuController : Controller
@@ -46,7 +46,7 @@ namespace DXYK.Admin.API.Controllers
         [HttpPost]
         public ResponseMessageWrap<long> Insert([FromBody]SysMenu sysMenu)
         {
-            return new ResponseMessageWrap<long>{ data = SysMenuService.Insert(sysMenu) };
+            return new ResponseMessageWrap<long> { data = SysMenuService.Insert(sysMenu) };
         }
 
         ///<summary>
@@ -55,7 +55,7 @@ namespace DXYK.Admin.API.Controllers
         [HttpPost]
         public async Task<ResponseMessageWrap<long>> InsertAsync([FromBody]SysMenu sysMenu)
         {
-            return new ResponseMessageWrap<long>{ data = await SysMenuService.InsertAsync(sysMenu) };
+            return new ResponseMessageWrap<long> { data = await SysMenuService.InsertAsync(sysMenu) };
         }
 
         ///<summary>
@@ -64,7 +64,7 @@ namespace DXYK.Admin.API.Controllers
         [HttpDelete]
         public ResponseMessageWrap<int> DeleteById(long id)
         {
-            return new ResponseMessageWrap<int>{ data = SysMenuService.DeleteById(id) };
+            return new ResponseMessageWrap<int> { data = SysMenuService.DeleteById(id) };
         }
 
         ///<summary>
@@ -73,7 +73,7 @@ namespace DXYK.Admin.API.Controllers
         [HttpDelete]
         public async Task<ResponseMessageWrap<int>> DeleteByIdAsync(long id)
         {
-            return new ResponseMessageWrap<int>{ data = await SysMenuService.DeleteByIdAsync(id) };
+            return new ResponseMessageWrap<int> { data = await SysMenuService.DeleteByIdAsync(id) };
         }
 
         ///<summary>
@@ -82,7 +82,7 @@ namespace DXYK.Admin.API.Controllers
         [HttpPut]
         public ResponseMessageWrap<int> Update([FromBody]SysMenu sysMenu)
         {
-            return new ResponseMessageWrap<int>{ data = SysMenuService.Update(sysMenu) };
+            return new ResponseMessageWrap<int> { data = SysMenuService.Update(sysMenu) };
         }
 
         ///<summary>
@@ -91,7 +91,7 @@ namespace DXYK.Admin.API.Controllers
         [HttpPut]
         public async Task<ResponseMessageWrap<int>> UpdateAsync([FromBody]SysMenu sysMenu)
         {
-            return new ResponseMessageWrap<int>{ data =await SysMenuService.UpdateAsync(sysMenu) };
+            return new ResponseMessageWrap<int> { data = await SysMenuService.UpdateAsync(sysMenu) };
         }
 
         ///<summary>
@@ -101,7 +101,7 @@ namespace DXYK.Admin.API.Controllers
         public ResponseMessageWrap<SysMenu> GetById(long id)
         {
             var sysMenu = SysMenuService.GetById(id);
-            return new ResponseMessageWrap<SysMenu>{ data = sysMenu };
+            return new ResponseMessageWrap<SysMenu> { data = sysMenu };
         }
 
         ///<summary>
@@ -110,8 +110,8 @@ namespace DXYK.Admin.API.Controllers
         [HttpGet]
         public async Task<ResponseMessageWrap<SysMenu>> GetByIdAsync(long id)
         {
-            var sysMenu =await SysMenuService.GetByIdAsync(id);
-            return new ResponseMessageWrap<SysMenu>{data = sysMenu};
+            var sysMenu = await SysMenuService.GetByIdAsync(id);
+            return new ResponseMessageWrap<SysMenu> { data = sysMenu };
         }
 
         ///<summary>
@@ -130,7 +130,7 @@ namespace DXYK.Admin.API.Controllers
         [HttpPost]
         public async Task<ResponseMessageWrap<IList<SysMenu>>> QueryAsync([FromBody]QueryRequest reqMsg)
         {
-            var list =await SysMenuRepository.QueryAsync(reqMsg);
+            var list = await SysMenuRepository.QueryAsync(reqMsg);
             return new ResponseMessageWrap<IList<SysMenu>> { data = list };
         }
 
@@ -151,11 +151,11 @@ namespace DXYK.Admin.API.Controllers
         [HttpPost]
         public async Task<ResponseMessageWrap<IList<SysMenu>>> QueryByPageAsync([FromBody]QueryByPageRequest reqMsg)
         {
-            var total =await SysMenuRepository.GetRecordAsync(reqMsg);
-            var list =await SysMenuRepository.QueryByPageAsync(reqMsg);
+            var total = await SysMenuRepository.GetRecordAsync(reqMsg);
+            var list = await SysMenuRepository.QueryByPageAsync(reqMsg);
             return new ResponseMessageWrap<IList<SysMenu>>() { count = total, data = list };
         }
-        
+
         ///<summary>
         /// 根据分页查询系统管理-菜单信息表(sys_menu)
         ///</summary>
@@ -166,7 +166,7 @@ namespace DXYK.Admin.API.Controllers
             var list = SysMenuRepository.QueryByPage(reqMsg);
             return new ResponseMessageWrap<object> { count = total, data = list };
         }
-        
+
         ///<summary>
         /// 异步根据分页查询系统管理-菜单信息表(sys_menu)
         ///</summary>

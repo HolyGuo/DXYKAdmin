@@ -36,7 +36,7 @@ namespace DXYK.Admin.API.Messages
         /// <summary>
         /// 消息
         /// </summary>
-        public String msg { get; set; } ="Ok";
+        public String msg { get; set; } = "Ok";
 
         /// <summary>
         /// 消息

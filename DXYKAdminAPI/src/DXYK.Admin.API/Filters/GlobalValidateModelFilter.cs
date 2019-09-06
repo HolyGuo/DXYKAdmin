@@ -13,21 +13,45 @@ using System.Text;
 
 namespace DXYK.Admin.API.Filters
 {
+    /// <summary>
+    /// GlobalValidateModelFilter
+    /// </summary>
     public class GlobalValidateModelFilter : IActionFilter
     {
+        /// <summary>
+        /// IHostingEnvironment
+        /// </summary>
         private readonly IHostingEnvironment _env;
+
+        /// <summary>
+        /// ILogger
+        /// </summary>
         private readonly ILogger<GlobalValidateModelFilter> _logger;
 
+        /// <summary>
+        /// GlobalValidateModelFilter
+        /// </summary>
+        /// <param name="env"></param>
+        /// <param name="logger"></param>
         public GlobalValidateModelFilter(IHostingEnvironment env, ILogger<GlobalValidateModelFilter> logger)
         {
             _env = env;
             _logger = logger;
         }
+
+        /// <summary>
+        /// OnActionExecuted
+        /// </summary>
+        /// <param name="context"></param>
         public void OnActionExecuted(ActionExecutedContext context)
         {
 
         }
 
+        /// <summary>
+        /// OnActionExecuting
+        /// </summary>
+        /// <param name="context"></param>
         public void OnActionExecuting(ActionExecutingContext context)
         {
             if (!context.ModelState.IsValid)
@@ -52,6 +76,6 @@ namespace DXYK.Admin.API.Filters
                 context.Result = result;
             }
         }
-     }
+    }
 }
 
