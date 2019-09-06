@@ -1,0 +1,13 @@
+
+<Project>
+    <Import Project="build\version.props" />
+    <PropertyGroup Label="Package">
+        <Product>DXYK.Admin</Product>
+        <Copyright>2019 DXYK.Admin, Inc.</Copyright>
+        <PackageId>$(AssemblyName)</PackageId>
+        <Authors>Holy Guo</Authors>
+        <Description>
+     
+        </Description> 
+    </PropertyGroup>
+</Project>

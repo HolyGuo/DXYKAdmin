@@ -1,0 +1,120 @@
+<title>用户管理</title>
+
+<div class="layui-fluid">
+  <div class="layui-row layui-col-space15">
+    <div class="layui-col-md12">
+      <div class="layui-card">
+        <div class="layui-card-body">
+          <div class="test-table-reload-btn" style="margin-bottom: 10px;">
+            <div class="layui-inline">
+              <input class="layui-input" id="keyWords" autocomplete="off" placeholder="请输入关键字查询">
+            </div>
+            <button class="layui-btn" data-type="reload"><i class="layui-icon layui-icon-search"></i>搜索</button>
+            <button class="layui-btn" data-type="reload"><i class="layui-icon layui-icon-add-1"></i>添加</button>
+          </div>
+
+          <table class="layui-hide" id="test-table-toolbar" lay-filter="test-table-toolbar"></table>
+
+          <script type="text/html" id="test-table-toolbar-toolbarDemo">
+              <div class="layui-btn-container">
+                <button class="layui-btn layui-btn-sm" lay-event="getCheckData">获取选中行数据</button>
+                <button class="layui-btn layui-btn-sm" lay-event="getCheckLength">获取选中数目</button>
+                <button class="layui-btn layui-btn-sm" lay-event="isAll">验证是否全选</button>
+              </div>
+            </script>
+
+          <script type="text/html" id="test-table-toolbar-barDemo">
+              <a class="layui-btn layui-btn-xs" lay-event="edit">编辑</a>
+              <a class="layui-btn layui-btn-danger layui-btn-xs" lay-event="del">删除</a>
+            </script>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+  layui.use(['admin', 'table'], function () {
+    var admin = layui.admin
+      , table = layui.table;
+    debugger;
+    table.render({
+      elem: '#test-table-toolbar',
+      url: apiUri + '/api/SysUser/QueryDataByPage',
+      method: 'post',
+      contentType: 'application/json',
+      toolbar: '#test-table-totalRow-toolbarDemo',
+      title: '用户数据表',
+      height: 'full-190',
+      // initSort: {
+      //   field: 'true_name'
+      //   , type: 'asc'
+      // },
+      cols: [[
+        // { field: 'id', title: 'ID', width: 80, fixed: 'left', hide: true },
+        { field: 'id', title: 'ID', width: 80, fixed: 'left' },
+        { field: 'true_name', title: '姓名', width: 120, sort: true },
+        { field: 'nick_name', title: '昵称', width: 120, sort: true },
+        { field: 'login_name', title: '登录名', width: 120, sort: true },
+        { field: 'sex', title: '性别', width: 120, sort: true },
+        //{ field: 'head_pic', title: '头像', width: 120, sort: true }, 
+        { field: 'telephone', title: '电话', width: 120, sort: true },
+        { field: 'mobile', title: '手机', width: 120, sort: true },
+        { field: 'email', title: '邮箱', width: 120, sort: true },
+        { field: 'summary', title: '描述', width: 120, sort: true },
+        { field: 'role_id', title: '角色id', width: 120, sort: true, hide: true },
+        { field: 'dept_id', title: '部门id', width: 120, sort: true, hide: true },
+        { field: 'dname', title: '部门', width: 120, sort: true },
+        { field: 'wx_id', title: '微信号', width: 120, sort: true },
+        { field: 'wx_name', title: '微信昵称', width: 120, sort: true },
+        { field: 'qq_id', title: 'QQ号', width: 120, sort: true },
+        { field: 'qq_name', title: 'QQ昵称', width: 120, sort: true },
+        // { field: 'sort', title: '排序', width: 120, sort: true },
+        { fixed: 'right', title: '操作', toolbar: '#test-table-toolbar-barDemo', width: 115, align: 'center' }
+      ]],
+      page: true,
+      limits: [10, 15, 20, 30, 40, 50],
+      limit:15
+    });
+
+    //头工具栏事件
+    table.on('toolbar(test-table-toolbar)', function (obj) {
+      var checkStatus = table.checkStatus(obj.config.id);
+      switch (obj.event) {
+        case 'getCheckData':
+          var data = checkStatus.data;
+          layer.alert(JSON.stringify(data));
+          break;
+        case 'getCheckLength':
+          var data = checkStatus.data;
+          layer.msg('选中了：' + data.length + ' 个');
+          break;
+        case 'isAll':
+          layer.msg(checkStatus.isAll ? '全选' : '未全选');
+          break;
+      };
+    });
+
+    //监听行工具事件
+    table.on('tool(test-table-toolbar)', function (obj) {
+      var data = obj.data;
+      if (obj.event === 'del') {
+        layer.confirm('真的删除行么', function (index) {
+          obj.del();
+          layer.close(index);
+        });
+      } else if (obj.event === 'edit') {
+        layer.prompt({
+          formType: 2
+          , value: data.email
+        }, function (value, index) {
+          obj.update({
+            email: value
+          });
+          layer.close(index);
+        });
+      }
+    });
+
+  });
+</script>

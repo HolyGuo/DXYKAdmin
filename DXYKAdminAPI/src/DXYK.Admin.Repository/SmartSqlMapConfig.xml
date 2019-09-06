@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!--
+//*******************************
+// Create By Holy Guo
+// Date 2019-09-06 21:34
+//*******************************-->
+<SmartSqlMapConfig xmlns="http://SmartSql.net/schemas/SmartSqlMapConfig.xsd">
+    <Settings IsCacheEnabled="true" EnablePropertyChangedTrack="false" />
+    <Properties>
+        <Property Name="ConnectionString" Value="Server=localhost;Port=5432;User Id=postgres;Password=123456; Database=dxyk_admin;" />
+        <Property Name="ScriptBuilder" Value="SmartSql.ScriptTag.ScriptBuilder,SmartSql.ScriptTag" />
+            <Property Name="JsonTypeHandler" Value="SmartSql.TypeHandler.PostgreSql.JsonTypeHandler`1,SmartSql.TypeHandler.PostgreSql" />
+    </Properties>
+    <Database>
+        <DbProvider Name="PostgreSql" />
+        <Write Name="dxyk_admin" ConnectionString="${ConnectionString}" />
+    </Database>
+    <TagBuilders>
+        <TagBuilder Name="Script" Type="${ScriptBuilder}" />
+    </TagBuilders>
+    <IdGenerators>
+        <IdGenerator Name="SnowflakeId" Type="SnowflakeId">
+            <Properties>
+                <Property Name="WorkerIdBits" Value="5" />
+                <Property Name="WorkerId" Value="1" />
+                <Property Name="Sequence" Value="0" />
+            </Properties>
+        </IdGenerator>
+    </IdGenerators>
+    <SmartSqlMaps>
+        <SmartSqlMap Path="Maps" Type="Directory"></SmartSqlMap>
+    </SmartSqlMaps>
+</SmartSqlMapConfig>
