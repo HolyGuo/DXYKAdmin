@@ -1,0 +1,613 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>DXYK.Admin.API</name>
+    </assembly>
+    <members>
+        <member name="T:DXYK.Admin.API.Controllers.SysDeptController">
+            <summary>
+             系统管理-单位信息表
+            </summary>
+        </member>
+        <member name="P:DXYK.Admin.API.Controllers.SysDeptController.SysDeptService">
+            <summary>
+             系统管理-单位信息表(sys_dept) Service
+            </summary>
+        </member>
+        <member name="P:DXYK.Admin.API.Controllers.SysDeptController.SysDeptRepository">
+            <summary>
+             系统管理-单位信息表(sys_dept) Repository
+            </summary>
+        </member>
+        <member name="M:DXYK.Admin.API.Controllers.SysDeptController.#ctor(DXYK.Admin.Service.SysDeptService,DXYK.Admin.Repository.ISysDeptRepository)">
+            <summary>
+             sys_deptController
+            </summary>
+        </member>
+        <member name="M:DXYK.Admin.API.Controllers.SysDeptController.Insert(DXYK.Admin.Entity.SysDept)">
+            <summary>
+             新增系统管理-单位信息表(sys_dept)
+            </summary>
+        </member>
+        <member name="M:DXYK.Admin.API.Controllers.SysDeptController.InsertAsync(DXYK.Admin.Entity.SysDept)">
+            <summary>
+             异步新增系统管理-单位信息表(sys_dept)
+            </summary>
+        </member>
+        <member name="M:DXYK.Admin.API.Controllers.SysDeptController.DeleteById(System.Int64)">
+            <summary>
+             删除系统管理-单位信息表(sys_dept)
+            </summary>
+        </member>
+        <member name="M:DXYK.Admin.API.Controllers.SysDeptController.DeleteByIdAsync(System.Int64)">
+            <summary>
+             异步删除系统管理-单位信息表(sys_dept)
+            </summary>
+        </member>
+        <member name="M:DXYK.Admin.API.Controllers.SysDeptController.Update(DXYK.Admin.Entity.SysDept)">
+            <summary>
+             更新系统管理-单位信息表(sys_dept)
+            </summary>
+        </member>
+        <member name="M:DXYK.Admin.API.Controllers.SysDeptController.UpdateAsync(DXYK.Admin.Entity.SysDept)">
+            <summary>
+             异步更新系统管理-单位信息表(sys_dept)
+            </summary>
+        </member>
+        <member name="M:DXYK.Admin.API.Controllers.SysDeptController.GetById(System.Int64)">
+            <summary>
+             根据Id查询系统管理-单位信息表(sys_dept)
+            </summary>
+        </member>
+        <member name="M:DXYK.Admin.API.Controllers.SysDeptController.GetByIdAsync(System.Int64)">
+            <summary>
+             根据Id查询系统管理-单位信息表(sys_dept)
+            </summary>
+        </member>
+        <member name="M:DXYK.Admin.API.Controllers.SysDeptController.Query(DXYK.Admin.API.Messages.QueryRequest)">
+            <summary>
+             根据条件查询系统管理-单位信息表(sys_dept)
+            </summary>
+        </member>
+        <member name="M:DXYK.Admin.API.Controllers.SysDeptController.QueryAsync(DXYK.Admin.API.Messages.QueryRequest)">
+            <summary>
+             异步根据条件查询系统管理-单位信息表(sys_dept)
+            </summary>
+        </member>
+        <member name="M:DXYK.Admin.API.Controllers.SysDeptController.QueryByPage(DXYK.Admin.API.Messages.QueryByPageRequest)">
+            <summary>
+             根据分页查询系统管理-单位信息表(sys_dept)
+            </summary>
+        </member>
+        <member name="M:DXYK.Admin.API.Controllers.SysDeptController.QueryByPageAsync(DXYK.Admin.API.Messages.QueryByPageRequest)">
+            <summary>
+             异步根据分页查询系统管理-单位信息表(sys_dept)
+            </summary>
+        </member>
+        <member name="M:DXYK.Admin.API.Controllers.SysDeptController.QueryDataByPage(DXYK.Admin.API.Messages.QueryByPageRequest)">
+            <summary>
+             根据分页查询系统管理-单位信息表(sys_dept)
+            </summary>
+        </member>
+        <member name="M:DXYK.Admin.API.Controllers.SysDeptController.QueryDataByPageAsync(DXYK.Admin.API.Messages.QueryByPageRequest)">
+            <summary>
+             异步根据分页查询系统管理-单位信息表(sys_dept)
+            </summary>
+        </member>
+        <member name="T:DXYK.Admin.API.Controllers.SysGroupController">
+            <summary>
+             系统管理-群组信息表
+            </summary>
+        </member>
+        <member name="P:DXYK.Admin.API.Controllers.SysGroupController.SysGroupService">
+            <summary>
+             系统管理-群组信息表(sys_group) Service
+            </summary>
+        </member>
+        <member name="P:DXYK.Admin.API.Controllers.SysGroupController.SysGroupRepository">
+            <summary>
+             系统管理-群组信息表(sys_group) Repository
+            </summary>
+        </member>
+        <member name="M:DXYK.Admin.API.Controllers.SysGroupController.#ctor(DXYK.Admin.Service.SysGroupService,DXYK.Admin.Repository.ISysGroupRepository)">
+            <summary>
+             sys_groupController
+            </summary>
+        </member>
+        <member name="M:DXYK.Admin.API.Controllers.SysGroupController.Insert(DXYK.Admin.Entity.SysGroup)">
+            <summary>
+             新增系统管理-群组信息表(sys_group)
+            </summary>
+        </member>
+        <member name="M:DXYK.Admin.API.Controllers.SysGroupController.InsertAsync(DXYK.Admin.Entity.SysGroup)">
+            <summary>
+             异步新增系统管理-群组信息表(sys_group)
+            </summary>
+        </member>
+        <member name="M:DXYK.Admin.API.Controllers.SysGroupController.DeleteById(System.Int64)">
+            <summary>
+             删除系统管理-群组信息表(sys_group)
+            </summary>
+        </member>
+        <member name="M:DXYK.Admin.API.Controllers.SysGroupController.DeleteByIdAsync(System.Int64)">
+            <summary>
+             异步删除系统管理-群组信息表(sys_group)
+            </summary>
+        </member>
+        <member name="M:DXYK.Admin.API.Controllers.SysGroupController.Update(DXYK.Admin.Entity.SysGroup)">
+            <summary>
+             更新系统管理-群组信息表(sys_group)
+            </summary>
+        </member>
+        <member name="M:DXYK.Admin.API.Controllers.SysGroupController.UpdateAsync(DXYK.Admin.Entity.SysGroup)">
+            <summary>
+             异步更新系统管理-群组信息表(sys_group)
+            </summary>
+        </member>
+        <member name="M:DXYK.Admin.API.Controllers.SysGroupController.GetById(System.Int64)">
+            <summary>
+             根据Id查询系统管理-群组信息表(sys_group)
+            </summary>
+        </member>
+        <member name="M:DXYK.Admin.API.Controllers.SysGroupController.GetByIdAsync(System.Int64)">
+            <summary>
+             根据Id查询系统管理-群组信息表(sys_group)
+            </summary>
+        </member>
+        <member name="M:DXYK.Admin.API.Controllers.SysGroupController.Query(DXYK.Admin.API.Messages.QueryRequest)">
+            <summary>
+             根据条件查询系统管理-群组信息表(sys_group)
+            </summary>
+        </member>
+        <member name="M:DXYK.Admin.API.Controllers.SysGroupController.QueryAsync(DXYK.Admin.API.Messages.QueryRequest)">
+            <summary>
+             异步根据条件查询系统管理-群组信息表(sys_group)
+            </summary>
+        </member>
+        <member name="M:DXYK.Admin.API.Controllers.SysGroupController.QueryByPage(DXYK.Admin.API.Messages.QueryByPageRequest)">
+            <summary>
+             根据分页查询系统管理-群组信息表(sys_group)
+            </summary>
+        </member>
+        <member name="M:DXYK.Admin.API.Controllers.SysGroupController.QueryByPageAsync(DXYK.Admin.API.Messages.QueryByPageRequest)">
+            <summary>
+             异步根据分页查询系统管理-群组信息表(sys_group)
+            </summary>
+        </member>
+        <member name="M:DXYK.Admin.API.Controllers.SysGroupController.QueryDataByPage(DXYK.Admin.API.Messages.QueryByPageRequest)">
+            <summary>
+             根据分页查询系统管理-群组信息表(sys_group)
+            </summary>
+        </member>
+        <member name="M:DXYK.Admin.API.Controllers.SysGroupController.QueryDataByPageAsync(DXYK.Admin.API.Messages.QueryByPageRequest)">
+            <summary>
+             异步根据分页查询系统管理-群组信息表(sys_group)
+            </summary>
+        </member>
+        <member name="T:DXYK.Admin.API.Controllers.SysMenuController">
+            <summary>
+             系统管理-菜单信息表
+            </summary>
+        </member>
+        <member name="P:DXYK.Admin.API.Controllers.SysMenuController.SysMenuService">
+            <summary>
+             系统管理-菜单信息表(sys_menu) Service
+            </summary>
+        </member>
+        <member name="P:DXYK.Admin.API.Controllers.SysMenuController.SysMenuRepository">
+            <summary>
+             系统管理-菜单信息表(sys_menu) Repository
+            </summary>
+        </member>
+        <member name="M:DXYK.Admin.API.Controllers.SysMenuController.#ctor(DXYK.Admin.Service.SysMenuService,DXYK.Admin.Repository.ISysMenuRepository)">
+            <summary>
+             sys_menuController
+            </summary>
+        </member>
+        <member name="M:DXYK.Admin.API.Controllers.SysMenuController.Insert(DXYK.Admin.Entity.SysMenu)">
+            <summary>
+             新增系统管理-菜单信息表(sys_menu)
+            </summary>
+        </member>
+        <member name="M:DXYK.Admin.API.Controllers.SysMenuController.InsertAsync(DXYK.Admin.Entity.SysMenu)">
+            <summary>
+             异步新增系统管理-菜单信息表(sys_menu)
+            </summary>
+        </member>
+        <member name="M:DXYK.Admin.API.Controllers.SysMenuController.DeleteById(System.Int64)">
+            <summary>
+             删除系统管理-菜单信息表(sys_menu)
+            </summary>
+        </member>
+        <member name="M:DXYK.Admin.API.Controllers.SysMenuController.DeleteByIdAsync(System.Int64)">
+            <summary>
+             异步删除系统管理-菜单信息表(sys_menu)
+            </summary>
+        </member>
+        <member name="M:DXYK.Admin.API.Controllers.SysMenuController.Update(DXYK.Admin.Entity.SysMenu)">
+            <summary>
+             更新系统管理-菜单信息表(sys_menu)
+            </summary>
+        </member>
+        <member name="M:DXYK.Admin.API.Controllers.SysMenuController.UpdateAsync(DXYK.Admin.Entity.SysMenu)">
+            <summary>
+             异步更新系统管理-菜单信息表(sys_menu)
+            </summary>
+        </member>
+        <member name="M:DXYK.Admin.API.Controllers.SysMenuController.GetById(System.Int64)">
+            <summary>
+             根据Id查询系统管理-菜单信息表(sys_menu)
+            </summary>
+        </member>
+        <member name="M:DXYK.Admin.API.Controllers.SysMenuController.GetByIdAsync(System.Int64)">
+            <summary>
+             根据Id查询系统管理-菜单信息表(sys_menu)
+            </summary>
+        </member>
+        <member name="M:DXYK.Admin.API.Controllers.SysMenuController.Query(DXYK.Admin.API.Messages.QueryRequest)">
+            <summary>
+             根据条件查询系统管理-菜单信息表(sys_menu)
+            </summary>
+        </member>
+        <member name="M:DXYK.Admin.API.Controllers.SysMenuController.QueryAsync(DXYK.Admin.API.Messages.QueryRequest)">
+            <summary>
+             异步根据条件查询系统管理-菜单信息表(sys_menu)
+            </summary>
+        </member>
+        <member name="M:DXYK.Admin.API.Controllers.SysMenuController.QueryByPage(DXYK.Admin.API.Messages.QueryByPageRequest)">
+            <summary>
+             根据分页查询系统管理-菜单信息表(sys_menu)
+            </summary>
+        </member>
+        <member name="M:DXYK.Admin.API.Controllers.SysMenuController.QueryByPageAsync(DXYK.Admin.API.Messages.QueryByPageRequest)">
+            <summary>
+             异步根据分页查询系统管理-菜单信息表(sys_menu)
+            </summary>
+        </member>
+        <member name="M:DXYK.Admin.API.Controllers.SysMenuController.QueryDataByPage(DXYK.Admin.API.Messages.QueryByPageRequest)">
+            <summary>
+             根据分页查询系统管理-菜单信息表(sys_menu)
+            </summary>
+        </member>
+        <member name="M:DXYK.Admin.API.Controllers.SysMenuController.QueryDataByPageAsync(DXYK.Admin.API.Messages.QueryByPageRequest)">
+            <summary>
+             异步根据分页查询系统管理-菜单信息表(sys_menu)
+            </summary>
+        </member>
+        <member name="T:DXYK.Admin.API.Controllers.SysUserController">
+            <summary>
+             系统管理-用户信息表
+            </summary>
+        </member>
+        <member name="P:DXYK.Admin.API.Controllers.SysUserController.SysUserService">
+            <summary>
+             系统管理-用户信息表(sys_user) Service
+            </summary>
+        </member>
+        <member name="P:DXYK.Admin.API.Controllers.SysUserController.SysUserRepository">
+            <summary>
+             系统管理-用户信息表(sys_user) Repository
+            </summary>
+        </member>
+        <member name="M:DXYK.Admin.API.Controllers.SysUserController.#ctor(DXYK.Admin.Service.SysUserService,DXYK.Admin.Repository.ISysUserRepository)">
+            <summary>
+             sys_userController
+            </summary>
+        </member>
+        <member name="M:DXYK.Admin.API.Controllers.SysUserController.Insert(DXYK.Admin.Entity.SysUser)">
+            <summary>
+             新增系统管理-用户信息表(sys_user)
+            </summary>
+        </member>
+        <member name="M:DXYK.Admin.API.Controllers.SysUserController.InsertAsync(DXYK.Admin.Entity.SysUser)">
+            <summary>
+             异步新增系统管理-用户信息表(sys_user)
+            </summary>
+        </member>
+        <member name="M:DXYK.Admin.API.Controllers.SysUserController.DeleteById(System.Int64)">
+            <summary>
+             删除系统管理-用户信息表(sys_user)
+            </summary>
+        </member>
+        <member name="M:DXYK.Admin.API.Controllers.SysUserController.DeleteByIdAsync(System.Int64)">
+            <summary>
+             异步删除系统管理-用户信息表(sys_user)
+            </summary>
+        </member>
+        <member name="M:DXYK.Admin.API.Controllers.SysUserController.Update(DXYK.Admin.Entity.SysUser)">
+            <summary>
+             更新系统管理-用户信息表(sys_user)
+            </summary>
+        </member>
+        <member name="M:DXYK.Admin.API.Controllers.SysUserController.UpdateAsync(DXYK.Admin.Entity.SysUser)">
+            <summary>
+             异步更新系统管理-用户信息表(sys_user)
+            </summary>
+        </member>
+        <member name="M:DXYK.Admin.API.Controllers.SysUserController.GetById(System.Int64)">
+            <summary>
+             根据Id查询系统管理-用户信息表(sys_user)
+            </summary>
+        </member>
+        <member name="M:DXYK.Admin.API.Controllers.SysUserController.GetByIdAsync(System.Int64)">
+            <summary>
+             根据Id查询系统管理-用户信息表(sys_user)
+            </summary>
+        </member>
+        <member name="M:DXYK.Admin.API.Controllers.SysUserController.Query(DXYK.Admin.API.Messages.QueryRequest)">
+            <summary>
+             根据条件查询系统管理-用户信息表(sys_user)
+            </summary>
+        </member>
+        <member name="M:DXYK.Admin.API.Controllers.SysUserController.QueryAsync(DXYK.Admin.API.Messages.QueryRequest)">
+            <summary>
+             异步根据条件查询系统管理-用户信息表(sys_user)
+            </summary>
+        </member>
+        <member name="M:DXYK.Admin.API.Controllers.SysUserController.QueryByPage(DXYK.Admin.API.Messages.QueryByPageRequest)">
+            <summary>
+             根据分页查询系统管理-用户信息表(sys_user)
+            </summary>
+        </member>
+        <member name="M:DXYK.Admin.API.Controllers.SysUserController.QueryByPageAsync(DXYK.Admin.API.Messages.QueryByPageRequest)">
+            <summary>
+             异步根据分页查询系统管理-用户信息表(sys_user)
+            </summary>
+        </member>
+        <member name="M:DXYK.Admin.API.Controllers.SysUserController.QueryDataByPage(DXYK.Admin.API.Messages.QueryByPageRequest)">
+            <summary>
+             根据分页查询系统管理-用户信息表(sys_user)
+            </summary>
+        </member>
+        <member name="M:DXYK.Admin.API.Controllers.SysUserController.QueryDataByPageAsync(DXYK.Admin.API.Messages.QueryByPageRequest)">
+            <summary>
+             异步根据分页查询系统管理-用户信息表(sys_user)
+            </summary>
+        </member>
+        <member name="T:DXYK.Admin.API.Exceptions.APIException">
+            <summary>
+            APIException
+            </summary>
+        </member>
+        <member name="M:DXYK.Admin.API.Exceptions.APIException.#ctor">
+            <summary>
+            APIException
+            </summary>
+        </member>
+        <member name="P:DXYK.Admin.API.Exceptions.APIException.code">
+            <summary>
+            code
+            </summary>
+        </member>
+        <member name="M:DXYK.Admin.API.Exceptions.APIException.#ctor(System.Int32)">
+            <summary>
+            APIException
+            </summary>
+            <param name="errorCode">错误代码</param>
+        </member>
+        <member name="M:DXYK.Admin.API.Exceptions.APIException.#ctor(System.Int32,System.String)">
+            <summary>
+            APIException
+            </summary>
+            <param name="errorCode">错误代码</param>
+            <param name="message">消息</param>
+        </member>
+        <member name="M:DXYK.Admin.API.Exceptions.APIException.#ctor(System.Int32,System.Runtime.Serialization.SerializationInfo,System.Runtime.Serialization.StreamingContext)">
+            <summary>
+            APIException
+            </summary>
+            <param name="errorCode">错误代码</param>
+            <param name="info">info</param>
+            <param name="context">context</param>
+        </member>
+        <member name="M:DXYK.Admin.API.Exceptions.APIException.#ctor(System.Int32,System.String,System.Exception)">
+            <summary>
+            APIException
+            </summary>
+            <param name="errorCode">错误代码</param>
+            <param name="message">消息</param>
+            <param name="innerException">innerException</param>
+        </member>
+        <member name="T:DXYK.Admin.API.Filters.GlobalExceptionFilter">
+            <summary>
+            GlobalExceptionFilter
+            </summary>
+        </member>
+        <member name="F:DXYK.Admin.API.Filters.GlobalExceptionFilter.env">
+            <summary>
+            IHostingEnvironment
+            </summary>
+        </member>
+        <member name="F:DXYK.Admin.API.Filters.GlobalExceptionFilter.logger">
+            <summary>
+            ILogger
+            </summary>
+        </member>
+        <member name="M:DXYK.Admin.API.Filters.GlobalExceptionFilter.#ctor(Microsoft.AspNetCore.Hosting.IHostingEnvironment,Microsoft.Extensions.Logging.ILogger{DXYK.Admin.API.Filters.GlobalExceptionFilter})">
+            <summary>
+            GlobalExceptionFilter
+            </summary>
+            <param name="env"></param>
+            <param name="logger"></param>
+        </member>
+        <member name="M:DXYK.Admin.API.Filters.GlobalExceptionFilter.OnException(Microsoft.AspNetCore.Mvc.Filters.ExceptionContext)">
+            <summary>
+            OnException
+            </summary>
+            <param name="context"></param>
+        </member>
+        <member name="T:DXYK.Admin.API.Filters.GlobalValidateModelFilter">
+            <summary>
+            GlobalValidateModelFilter
+            </summary>
+        </member>
+        <member name="F:DXYK.Admin.API.Filters.GlobalValidateModelFilter._env">
+            <summary>
+            IHostingEnvironment
+            </summary>
+        </member>
+        <member name="F:DXYK.Admin.API.Filters.GlobalValidateModelFilter._logger">
+            <summary>
+            ILogger
+            </summary>
+        </member>
+        <member name="M:DXYK.Admin.API.Filters.GlobalValidateModelFilter.#ctor(Microsoft.AspNetCore.Hosting.IHostingEnvironment,Microsoft.Extensions.Logging.ILogger{DXYK.Admin.API.Filters.GlobalValidateModelFilter})">
+            <summary>
+            GlobalValidateModelFilter
+            </summary>
+            <param name="env"></param>
+            <param name="logger"></param>
+        </member>
+        <member name="M:DXYK.Admin.API.Filters.GlobalValidateModelFilter.OnActionExecuted(Microsoft.AspNetCore.Mvc.Filters.ActionExecutedContext)">
+            <summary>
+            OnActionExecuted
+            </summary>
+            <param name="context"></param>
+        </member>
+        <member name="M:DXYK.Admin.API.Filters.GlobalValidateModelFilter.OnActionExecuting(Microsoft.AspNetCore.Mvc.Filters.ActionExecutingContext)">
+            <summary>
+            OnActionExecuting
+            </summary>
+            <param name="context"></param>
+        </member>
+        <member name="T:DXYK.Admin.API.Messages.QueryByPageRequest">
+            <summary>
+            QueryByPageRequest
+            </summary>
+        </member>
+        <member name="P:DXYK.Admin.API.Messages.QueryByPageRequest.page">
+            <summary>
+            页码
+            </summary>
+        </member>
+        <member name="P:DXYK.Admin.API.Messages.QueryByPageRequest.limit">
+            <summary>
+            单页行数
+            </summary>
+        </member>
+        <member name="P:DXYK.Admin.API.Messages.QueryByPageRequest.offset">
+            <summary>
+            忽略
+            </summary>
+        </member>
+        <member name="T:DXYK.Admin.API.Messages.QueryByPageResponse`1">
+            <summary>
+            QueryByPageResponse
+            </summary>
+            <typeparam name="TItem"></typeparam>
+        </member>
+        <member name="P:DXYK.Admin.API.Messages.QueryByPageResponse`1.count">
+            <summary>
+            总数
+            </summary>
+        </member>
+        <member name="T:DXYK.Admin.API.Messages.QueryRequest">
+            <summary>
+            QueryRequest
+            </summary>
+        </member>
+        <member name="P:DXYK.Admin.API.Messages.QueryRequest.limit">
+            <summary>
+            单页行数
+            </summary>
+        </member>
+        <member name="P:DXYK.Admin.API.Messages.QueryResponse`1.data">
+            <summary>
+            数据行
+            </summary>
+        </member>
+        <member name="T:DXYK.Admin.API.Messages.ResponseMessage">
+            <summary>
+            ResponseMessage 返回消息
+            </summary>
+        </member>
+        <member name="T:DXYK.Admin.API.Messages.ResponseMessageWrap`1">
+            <summary>
+            ResponseMessageWrap 返回消息
+            </summary>
+        </member>
+        <member name="P:DXYK.Admin.API.Messages.ResponseMessageWrap`1.success">
+            <summary>
+            是否成功返回，true 返回成功  false 返回失败，默认为true
+            </summary>
+        </member>
+        <member name="P:DXYK.Admin.API.Messages.ResponseMessageWrap`1.code">
+            <summary>
+            状态代码 默认 0
+            </summary>
+        </member>
+        <member name="P:DXYK.Admin.API.Messages.ResponseMessageWrap`1.msg">
+            <summary>
+            消息
+            </summary>
+        </member>
+        <member name="P:DXYK.Admin.API.Messages.ResponseMessageWrap`1.count">
+            <summary>
+            消息
+            </summary>
+        </member>
+        <member name="P:DXYK.Admin.API.Messages.ResponseMessageWrap`1.data">
+            <summary>
+            返回主体
+            </summary>
+        </member>
+        <member name="T:DXYK.Admin.API.Program">
+            <summary>
+            Program
+            </summary>
+        </member>
+        <member name="M:DXYK.Admin.API.Program.Main(System.String[])">
+            <summary>
+            Main函数
+            </summary>
+            <param name="args"></param>
+        </member>
+        <member name="M:DXYK.Admin.API.Program.BuildWebHost(System.String[])">
+            <summary>
+            BuildWebHost
+            </summary>
+            <param name="args">args</param>
+            <returns></returns>
+        </member>
+        <member name="F:DXYK.Admin.API.Startup.SERVICE_NAME">
+            <summary>
+            服务名称
+            </summary>
+        </member>
+        <member name="M:DXYK.Admin.API.Startup.#ctor(Microsoft.Extensions.Configuration.IConfiguration)">
+            <summary>
+            Startup程序启动
+            </summary>
+        </member>
+        <member name="P:DXYK.Admin.API.Startup.Configuration">
+            <summary>
+            Configuration 应用配置
+            </summary>
+        </member>
+        <member name="M:DXYK.Admin.API.Startup.RegisterRepository(Microsoft.Extensions.DependencyInjection.IServiceCollection)">
+            <summary>
+            Repository仓储注册
+            </summary>
+        </member>
+        <member name="M:DXYK.Admin.API.Startup.RegisterService(Microsoft.Extensions.DependencyInjection.IServiceCollection)">
+            <summary>
+            Service服务注册
+            </summary>
+        </member>
+        <member name="M:DXYK.Admin.API.Startup.RegisterSwagger(Microsoft.Extensions.DependencyInjection.IServiceCollection)">
+            <summary>
+            Swagger注册
+            </summary>
+        </member>
+        <member name="M:DXYK.Admin.API.Startup.Configure(Microsoft.AspNetCore.Builder.IApplicationBuilder,Microsoft.AspNetCore.Hosting.IHostingEnvironment)">
+            <summary>
+            Configure配置
+            </summary>
+        </member>
+        <member name="M:DXYK.Admin.API.Startup.ConfigureSwagger(Microsoft.AspNetCore.Builder.IApplicationBuilder)">
+            <summary>
+            Swagger配置
+            </summary>
+        </member>
+    </members>
+</doc>

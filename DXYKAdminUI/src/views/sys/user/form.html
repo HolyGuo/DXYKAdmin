@@ -1,0 +1,128 @@
+<div class="layui-card" style="margin-bottom:0px;">
+  <div class="layui-card-header">基本信息</div>
+  <div class="layui-card-body">
+      <div class="layui-form" lay-filter="component-form-element" id="layuiadmin-form-useradmin">
+          <div class="layui-row layui-col-space5 layui-form-item">
+              <div class="layui-col-xs6">
+                  <label class="layui-form-label">姓名：</label>
+                  <div class="layui-input-block">
+                      <input type="text" name="true_name" lay-verify="required" placeholder="请输入姓名" autocomplete="off" class="layui-input">
+                  </div>
+              </div>
+              <div class="layui-col-xs6">
+                  <label class="layui-form-label">性别：</label>
+                  <div class="layui-input-block">
+                      <input type="radio" name="Sex" value="男" title="男" checked>
+                      <input type="radio" name="Sex" value="女" title="女">
+                  </div>
+              </div>
+          </div>
+          <div class="layui-row layui-col-space5 layui-form-item">
+              <div class="layui-col-xs6">
+                  <label class="layui-form-label">登录名：</label>
+                  <div class="layui-input-block">
+                      <input type="text" name="login_name" lay-verify="required" placeholder="请设置登录账号" autocomplete="off" class="layui-input">
+                  </div>
+              </div>
+              <div class="layui-col-xs6">
+                  <label class="layui-form-label">密码：</label>
+                  <div class="layui-input-block">
+                      <input type="password" name="login_pwd" lay-verify="required" placeholder="请设置登录密码" autocomplete="off" class="layui-input" value="123456">
+                  </div>
+              </div>
+          </div>
+          <div class="layui-row layui-col-space5 layui-form-item">
+              <div class="layui-col-xs6">
+                  <label class="layui-form-label">所属单位：</label>
+                  <div class="layui-input-block">
+                      <input type="text" name="dept_id" lay-verify="required" placeholder="请选择" autocomplete="off" class="layui-input">
+                  </div>
+              </div>
+              <div class="layui-col-xs6">
+                  <label class="layui-form-label">角色：</label>
+                  <div class="layui-input-block">
+                      <input type="text" name="role_id" lay-verify="required" placeholder="请选择" autocomplete="off" class="layui-input">
+                  </div>
+              </div>
+          </div>
+          <div class="layui-row layui-col-space5 layui-form-item">
+              <div class="layui-col-xs6">
+                  <label class="layui-form-label">联系电话：</label>
+                  <div class="layui-input-block">
+                      <input type="text" name="telephone" lay-verify="required" placeholder="请输入联系电话" autocomplete="off" class="layui-input">
+                  </div>
+              </div>
+              <div class="layui-col-xs6">
+                  <label class="layui-form-label">手机：</label>
+                  <div class="layui-input-block">
+                      <input type="text" name="mobile" lay-verify="phone" placeholder="请输入手机号码" autocomplete="off" class="layui-input">
+                  </div>
+              </div>
+          </div>
+          <div class="layui-row layui-col-space5 layui-form-item">
+              <div class="layui-col-xs6">
+                  <label class="layui-form-label">邮箱：</label>
+                  <div class="layui-input-block">
+                      <input type="text" name="email" lay-verify="email" placeholder="请输入邮箱地址" autocomplete="off" class="layui-input">
+                  </div>
+              </div>
+              <div class="layui-col-xs6">
+                  <label class="layui-form-label">备注：</label>
+                  <div class="layui-input-block">
+                      <input type="text" name="summary" placeholder="请选择" autocomplete="off" class="layui-input">
+                  </div>
+              </div>
+          </div>
+          微信绑定信息
+          <hr>
+          <div class="layui-row layui-col-space5 layui-form-item">
+              <div class="layui-col-xs6">
+                  <label class="layui-form-label">OpenId：</label>
+                  <div class="layui-input-block">
+                      <input type="text" name="wx_openid" placeholder="用户未绑定" autocomplete="off" class="layui-input" disabled>
+                  </div>
+              </div>
+              <div class="layui-col-xs6">
+                  <label class="layui-form-label">微信号：</label>
+                  <div class="layui-input-block">
+                      <input type="text" name="wx_id" placeholder="用户未绑定" autocomplete="off" class="layui-input" disabled>
+                  </div>
+              </div>
+          </div>
+          <div class="layui-row layui-col-space5 layui-form-item">
+              <div class="layui-col-xs6">
+                  <label class="layui-form-label">微信昵称：</label>
+                  <div class="layui-input-block">
+                      <input type="text" name="wx_name" placeholder="用户未绑定" autocomplete="off" class="layui-input" disabled>
+                  </div>
+              </div>
+
+          </div>
+
+          <div class="layui-form-item layui-hide">
+              <input type="button" lay-submit lay-filter="LAY-user-front-submit" id="LAY-user-front-submit" value="确认">
+          </div>
+      </div>
+  </div>
+</div>
+
+<script>
+  layui.use(['index', 'form', 'upload'], function () {
+      var $ = layui.$
+          , form = layui.form
+          , element = layui.element
+          , upload = layui.upload;
+      //form.render(null, 'component-form-element');
+      upload.render({
+          elem: '#layuiadmin-upload-useradmin'
+          , url: layui.setter.base + 'json/upload/demo.js'
+          , accept: 'images'
+          , method: 'get'
+          , acceptMime: 'image/*'
+          , done: function (res) {
+              $(this.item).prev("div").children("input").val(res.data.src)
+          }
+      });
+
+  })
+</script>

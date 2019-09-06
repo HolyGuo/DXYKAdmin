@@ -10,7 +10,7 @@
               <input class="layui-input" id="keyWords" autocomplete="off" placeholder="请输入关键字查询">
             </div>
             <button class="layui-btn" data-type="reload"><i class="layui-icon layui-icon-search"></i>搜索</button>
-            <button class="layui-btn" data-type="reload"><i class="layui-icon layui-icon-add-1"></i>添加</button>
+            <button class="layui-btn" data-type="add"><i class="layui-icon layui-icon-add-1"></i>添加</button>
           </div>
 
           <table class="layui-hide" id="test-table-toolbar" lay-filter="test-table-toolbar"></table>
@@ -34,10 +34,99 @@
 </div>
 
 <script>
-  layui.use(['admin', 'table'], function () {
+  layui.use(['admin', 'table', 'jquery'], function () {
     var admin = layui.admin
       , table = layui.table;
+    var queryParam = { keyWords: "", field: "id", order: "asc" };
     debugger;
+    var $ = layui.$, active = {
+      reload: function () {
+        //执行重载
+        table.reload('test-table-toolbar', {
+          page: {
+            curr: 1 //重新从第 1 页开始
+          }
+          , where: queryParam
+        });
+      },
+      add: function () {
+        layer.open({
+          type: 2
+          , title: '添加用户'
+          , content: 'Form'
+          , maxmin: true
+          , area: ['680px', '560px']
+          , btn: ['确定', '取消']
+          , yes: function (index, layero) {
+            view(this.id).render('sys/user/form').done(function(){
+            form.render(null, 'layuiadmin-form-useradmin');
+            
+            //监听提交
+            form.on('submit(LAY-user-front-submit)', function(data){
+              var field = data.field; //获取提交的字段
+
+              //提交 Ajax 成功后，关闭当前弹层并重载表格
+              //$.ajax({});
+
+              layui.table.reload('LAY-user-manage'); //重载表格
+              layer.close(index); //执行关闭 
+            });
+          });
+
+
+            iframeWindow.layui.form.on('submit(' + submitID + ')', function (data) {
+              var field = data.field; //获取提交的字段
+              $.ajax('../api/SysUser/Insert', {
+                data: JSON.stringify(field),
+                dataType: 'json',
+                type: 'post',
+                timeout: 10 * 1000,
+                contentType: 'application/json',
+                success: function (res) {
+                  if (res.success === true) {
+                    layer.msg('添加成功！', {
+                      icon: 1,
+                      time: 2000 //2秒关闭（如果不配置，默认是3秒）
+                    }, function () {
+                      table.reload('test-table-toolbar');
+                    });
+                    layer.close(index); //关闭弹层
+                  } else {
+                    layer.msg('添加失败！', {
+                      icon: 1,
+                      time: 2000 //2秒关闭（如果不配置，默认是3秒）
+                    });
+                  }
+                },
+                error: function (xhr, type, errorThrown) {
+                  layer.msg('添加失败！', {
+                    icon: 5,
+                    time: 2000 //2秒关闭（如果不配置，默认是3秒）
+                  });
+                  console.log(xhr);
+                }
+              });//ajax end
+
+            });
+
+          }
+        });
+      }
+    };
+    //搜索
+    $('.test-table-reload-btn .layui-btn').on('click', function () {
+      queryParam.keyWords = $("#keyWords").val();
+      var type = $(this).data('type');
+      active[type] ? active[type].call(this) : '';
+    });
+
+    $(".test-table-reload-btn .layui-input").bind('keydown', function (e) {
+      if (e.keyCode == 13) {
+        e.preventDefault();
+        $(".test-table-reload-btn .layui-btn").click();
+      }
+    });
+
     table.render({
       elem: '#test-table-toolbar',
       url: apiUri + '/api/SysUser/QueryDataByPage',
@@ -46,10 +135,10 @@
       toolbar: '#test-table-totalRow-toolbarDemo',
       title: '用户数据表',
       height: 'full-190',
-      // initSort: {
-      //   field: 'true_name'
-      //   , type: 'asc'
-      // },
+      initSort: {
+        field: 'true_name'
+        , type: 'asc'
+      },
       cols: [[
         // { field: 'id', title: 'ID', width: 80, fixed: 'left', hide: true },
         { field: 'id', title: 'ID', width: 80, fixed: 'left' },
@@ -74,7 +163,7 @@
       ]],
       page: true,
       limits: [10, 15, 20, 30, 40, 50],
-      limit:15
+      limit: 15
     });
 
     //头工具栏事件
