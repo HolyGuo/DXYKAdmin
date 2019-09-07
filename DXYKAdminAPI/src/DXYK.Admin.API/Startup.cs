@@ -14,6 +14,7 @@ using Swashbuckle.AspNetCore.Swagger;
 using DXYK.Admin.Service;
 using DXYK.Admin.API.Filters;
 using Newtonsoft.Json.Serialization;
+using DXYK.Admin.API.Utils;
 
 namespace DXYK.Admin.API
 {
@@ -51,6 +52,8 @@ namespace DXYK.Admin.API
             services.AddMvc().AddJsonOptions(options =>
             {
                 options.SerializerSettings.ContractResolver = new DefaultContractResolver();
+                options.SerializerSettings.DateFormatString = "yyyy-MM-dd HH:mm:ss";
+                options.SerializerSettings.Converters.Add(new JsonLongConverter());
             });
             services.AddCors();
         }

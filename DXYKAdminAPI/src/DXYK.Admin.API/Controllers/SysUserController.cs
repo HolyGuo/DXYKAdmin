@@ -163,7 +163,7 @@ namespace DXYK.Admin.API.Controllers
         public ResponseMessageWrap<object> QueryDataByPage([FromBody]QueryByPageRequest reqMsg)
         {
             var total = SysUserRepository.QueryDataRecord(reqMsg);
-            var list = SysUserRepository.QueryByPage(reqMsg);
+            var list = SysUserRepository.QueryDataByPage(reqMsg);
             return new ResponseMessageWrap<object> { count = total, data = list };
         }
 

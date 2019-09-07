@@ -70,6 +70,7 @@
 
     <!--新增-->
     <Statement Id="Insert">
+      <IdGenerator Name="SnowflakeId" Id="id"/>
       INSERT INTO sys_dept
       (
       id,

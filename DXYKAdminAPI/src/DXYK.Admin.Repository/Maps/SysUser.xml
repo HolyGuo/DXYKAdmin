@@ -103,6 +103,7 @@
 
     <!--新增-->
     <Statement Id="Insert">
+      <IdGenerator Name="SnowflakeId" Id="id"/>
       INSERT INTO sys_user
       (
       id,
@@ -406,89 +407,50 @@
     <!---自定义  查询参数-->
     <Statement Id="QueryDataParams">
       <Where>
-        <IsNotEmpty Prepend="And" Property="id">
-          T.id = @id
-        </IsNotEmpty>
-        <IsNotEmpty Prepend="And" Property="true_name">
-          T.true_name = @true_name
-        </IsNotEmpty>
-        <IsNotEmpty Prepend="And" Property="nick_name">
-          T.nick_name = @nick_name
-        </IsNotEmpty>
-        <IsNotEmpty Prepend="And" Property="login_name">
-          T.login_name = @login_name
-        </IsNotEmpty>
-        <IsNotEmpty Prepend="And" Property="login_pwd">
-          T.login_pwd = @login_pwd
+        <IsNotEmpty Prepend="AND" Property="group_id">
+          T.group_id = @group_id
         </IsNotEmpty>
         <IsNotEmpty Prepend="And" Property="sex">
           T.sex = @sex
         </IsNotEmpty>
-        <IsNotEmpty Prepend="And" Property="head_pic">
-          T.head_pic = @head_pic
+        <IsNotEmpty Prepend="Or" Property="keyWords">
+          T.true_name Like Concat('%',@keyWords,'%')
         </IsNotEmpty>
-        <IsNotEmpty Prepend="And" Property="telephone">
-          T.telephone = @telephone
+        <IsNotEmpty Prepend="Or" Property="keyWords">
+          T.nick_name Like Concat('%',@keyWords,'%')
         </IsNotEmpty>
-        <IsNotEmpty Prepend="And" Property="mobile">
-          T.mobile = @mobile
+        <IsNotEmpty Prepend="Or" Property="keyWords">
+          T.login_name Like Concat('%',@keyWords,'%')
         </IsNotEmpty>
-        <IsNotEmpty Prepend="And" Property="email">
-          T.email = @email
+        <IsNotEmpty Prepend="Or" Property="keyWords">
+          T.telephone Like Concat('%',@keyWords,'%')
         </IsNotEmpty>
-        <IsNotEmpty Prepend="And" Property="summary">
-          T.summary = @summary
+        <IsNotEmpty Prepend="Or" Property="keyWords">
+          T.mobile Like Concat('%',@keyWords,'%')
         </IsNotEmpty>
-        <IsNotEmpty Prepend="And" Property="role_id">
-          T.role_id = @role_id
+        <IsNotEmpty Prepend="Or" Property="keyWords">
+          T.email Like Concat('%',@keyWords,'%')
         </IsNotEmpty>
-        <IsNotEmpty Prepend="And" Property="dept_id">
-          T.dept_id = @dept_id
+        <IsNotEmpty Prepend="Or" Property="keyWords">
+          T.summary Like Concat('%',@keyWords,'%')
         </IsNotEmpty>
-        <IsNotEmpty Prepend="And" Property="wx_openid">
-          T.wx_openid = @wx_openid
+        <IsNotEmpty Prepend="Or" Property="keyWords">
+          T.wx_openid Like Concat('%',@keyWords,'%')
         </IsNotEmpty>
-        <IsNotEmpty Prepend="And" Property="wx_id">
-          T.wx_id = @wx_id
+        <IsNotEmpty Prepend="Or" Property="keyWords">
+          T.wx_id Like Concat('%',@keyWords,'%')
         </IsNotEmpty>
-        <IsNotEmpty Prepend="And" Property="wx_name">
-          T.wx_name = @wx_name
+        <IsNotEmpty Prepend="Or" Property="keyWords">
+          T.wx_name Like Concat('%',@keyWords,'%')
         </IsNotEmpty>
-        <IsNotEmpty Prepend="And" Property="qq_openid">
-          T.qq_openid = @qq_openid
+        <IsNotEmpty Prepend="Or" Property="keyWords">
+          T.qq_openid Like Concat('%',@keyWords,'%')
         </IsNotEmpty>
-        <IsNotEmpty Prepend="And" Property="qq_id">
-          T.qq_id = @qq_id
+        <IsNotEmpty Prepend="Or" Property="keyWords">
+          T.qq_id Like Concat('%',@keyWords,'%')
         </IsNotEmpty>
-        <IsNotEmpty Prepend="And" Property="qq_name">
-          T.qq_name = @qq_name
-        </IsNotEmpty>
-        <IsNotEmpty Prepend="And" Property="sort">
-          T.sort = @sort
-        </IsNotEmpty>
-        <IsNotEmpty Prepend="And" Property="group_id">
-          T.group_id = @group_id
-        </IsNotEmpty>
-        <IsNotEmpty Prepend="And" Property="re_vision">
-          T.re_vision = @re_vision
-        </IsNotEmpty>
-        <IsNotEmpty Prepend="And" Property="created_by">
-          T.created_by = @created_by
-        </IsNotEmpty>
-        <IsNotEmpty Prepend="And" Property="created_time">
-          T.created_time = @created_time
-        </IsNotEmpty>
-        <IsNotEmpty Prepend="And" Property="updated_by">
-          T.updated_by = @updated_by
-        </IsNotEmpty>
-        <IsNotEmpty Prepend="And" Property="updated_time">
-          T.updated_time = @updated_time
-        </IsNotEmpty>
-        <IsNotEmpty Prepend="And" Property="deleted_by">
-          T.deleted_by = @deleted_by
-        </IsNotEmpty>
-        <IsNotEmpty Prepend="And" Property="deleted_time">
-          T.deleted_time = @deleted_time
+        <IsNotEmpty Prepend="Or" Property="keyWords">
+          T.qq_name Like Concat('%',@keyWords,'%')
         </IsNotEmpty>
       </Where>
     </Statement>
@@ -498,11 +460,9 @@
       Select T.*
       From sys_user As T
       <Include RefId="QueryDataParams" />
-      <Switch Prepend="Order By" Property="OrderBy">
-        <Default>
-          T.id Desc
-        </Default>
-      </Switch>
+      <IsNotEmpty Prepend="Order By" Property="OrderBy">
+      </IsNotEmpty>
+      <Placeholder Property="OrderBy"></Placeholder>
       Limit @limit Offset @offset
     </Statement>
 

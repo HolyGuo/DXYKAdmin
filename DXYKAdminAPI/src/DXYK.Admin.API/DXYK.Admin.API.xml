@@ -475,6 +475,11 @@
             QueryByPageRequest
             </summary>
         </member>
+        <member name="P:DXYK.Admin.API.Messages.QueryByPageRequest.keyWords">
+            <summary>
+            查询关键字
+            </summary>
+        </member>
         <member name="P:DXYK.Admin.API.Messages.QueryByPageRequest.page">
             <summary>
             页码
@@ -488,6 +493,21 @@
         <member name="P:DXYK.Admin.API.Messages.QueryByPageRequest.offset">
             <summary>
             忽略
+            </summary>
+        </member>
+        <member name="P:DXYK.Admin.API.Messages.QueryByPageRequest.field">
+            <summary>
+            排序字段
+            </summary>
+        </member>
+        <member name="P:DXYK.Admin.API.Messages.QueryByPageRequest.order">
+            <summary>
+            排序
+            </summary>
+        </member>
+        <member name="P:DXYK.Admin.API.Messages.QueryByPageRequest.OrderBy">
+            <summary>
+            拼接排序sortField + order (如： id Asc)
             </summary>
         </member>
         <member name="T:DXYK.Admin.API.Messages.QueryByPageResponse`1">
@@ -607,6 +627,26 @@
         <member name="M:DXYK.Admin.API.Startup.ConfigureSwagger(Microsoft.AspNetCore.Builder.IApplicationBuilder)">
             <summary>
             Swagger配置
+            </summary>
+        </member>
+        <member name="T:DXYK.Admin.API.Utils.JsonLongConverter">
+            <summary>
+            long 类型转为string
+            </summary>
+        </member>
+        <member name="M:DXYK.Admin.API.Utils.JsonLongConverter.ReadJson(Newtonsoft.Json.JsonReader,System.Type,System.Object,Newtonsoft.Json.JsonSerializer)">
+            <summary>
+            ReadJson
+            </summary>
+        </member>
+        <member name="M:DXYK.Admin.API.Utils.JsonLongConverter.CanConvert(System.Type)">
+            <summary>
+            CanConvert
+            </summary>
+        </member>
+        <member name="M:DXYK.Admin.API.Utils.JsonLongConverter.WriteJson(Newtonsoft.Json.JsonWriter,System.Object,Newtonsoft.Json.JsonSerializer)">
+            <summary>
+            WriteJson
             </summary>
         </member>
     </members>

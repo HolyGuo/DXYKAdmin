@@ -14,15 +14,6 @@
           </div>
 
           <table class="layui-hide" id="test-table-toolbar" lay-filter="test-table-toolbar"></table>
-
-          <script type="text/html" id="test-table-toolbar-toolbarDemo">
-              <div class="layui-btn-container">
-                <button class="layui-btn layui-btn-sm" lay-event="getCheckData">获取选中行数据</button>
-                <button class="layui-btn layui-btn-sm" lay-event="getCheckLength">获取选中数目</button>
-                <button class="layui-btn layui-btn-sm" lay-event="isAll">验证是否全选</button>
-              </div>
-            </script>
-
           <script type="text/html" id="test-table-toolbar-barDemo">
               <a class="layui-btn layui-btn-xs" lay-event="edit">编辑</a>
               <a class="layui-btn layui-btn-danger layui-btn-xs" lay-event="del">删除</a>
@@ -34,93 +25,53 @@
 </div>
 
 <script>
-  layui.use(['admin', 'table', 'jquery', 'form'], function () {
+  layui.use(['admin', 'table', 'jquery', 'form', 'common'], function () {
     var admin = layui.admin,
       view = layui.view,
       form = layui.form,
+      com = layui.common,
       table = layui.table;
-    var queryParam = { keyWords: "", field: "id", order: "asc" };
+
+    var queryParam = { keyWords: "", field: "id", order: "desc" };
 
     var $ = layui.$, active = {
-      reload: function () {
+      reload: function (initSort) {
         //执行重载
         table.reload('test-table-toolbar', {
           page: {
             curr: 1 //重新从第 1 页开始
-          }
-          , where: queryParam
+          },
+          initSort: initSort,
+          where: queryParam
         });
       },
       add: function () {
-        layer.open({
-          id: 'LAY-popup-user-add',
-          type: 1,
-          title: '添加用户',
-          maxmin: true,
-          area: ['680px', '560px'],
-          btn: ['确定', '取消'],
-          success: function (layero, index) {
-            view(this.id).render('sys/user/form').done(function () {
-              form.render(null, 'component-form-element');
-              //监听提交
-              form.on('submit(LAY-user-front-submit)', function (data) {
-                var field = data.field; //获取提交的字段
-                debugger;
-                //提交 Ajax 成功后，关闭当前弹层并重载表格
-                //$.ajax({});
-                //执行退出接口
-                // admin.req({
-                //   url: apiUri + '/api/SysUser/Insert',
-                //   type: 'post',
-                //   data: JSON.stringify(field),
-                //   headers: { "access_token": "c262e61cd13ad99fc650e6908c7e5e65b63d2f32185ecfed6b801ee3fbdd5c0a" },
-                //   done: function (res) { //这里要说明一下：done 是只有 response 的 code 正常才会执行。而 succese 则是只要 http 为 200 就会执行
-                //     //清空本地记录的 token，并跳转到登入页
-                //     debugger;
-                //     console.log(res);
-                //   }
-                // });
-                $.ajax({
-                  url: apiUri + '/api/SysUser/Insert',
-                  type: 'post',
-                  dataType: 'json',
-                  data: JSON.stringify(field),
-                  contentType: 'application/json',
-                  success: function (res) {
-                    debugger;
-                    if (res.success === true) {
-                      layer.msg('添加成功！', {
-                        icon: 1,
-                        time: 2000 //2秒关闭（如果不配置，默认是3秒）
-                      }, function () {
-                        table.reload('test-table-toolbar');
-                      });
-                      layer.close(index); //关闭弹层
-                    } else {
-                      layer.msg('添加失败！', {
-                        icon: 1,
-                        time: 2000 //2秒关闭（如果不配置，默认是3秒）
-                      });
-                    }
-                  },
-                  error: function (xhr, type, errorThrown) {
-                    layer.msg('添加失败！', {
-                      icon: 5,
-                      time: 2000 //2秒关闭（如果不配置，默认是3秒）
-                    });
-                    console.log(xhr);
-                  }
-                });
-
-                layui.table.reload('test-table-toolbar'); //重载表格
-                layer.close(index); //执行关闭 
-              });
-            });
-          },
-          yes: function (index, layero) {
-            $("#LAY-user-front-submit").click();
-
-          }
+        com.layerOpen("LAY-popup-user-add", "添加用户", true, 680, 560, function (layero, index) {
+          view("LAY-popup-user-add").render('sys/user/form').done(function () {
+            form.render(null, 'component-form-element');
+            //监听提交
+            form.on('submit(LAY-user-front-submit)', function (data) {
+              var field = data.field; //获取提交的字段
+              com.ajax(apiUri + '/api/SysUser/Insert', 'post', true, field, function (res) {
+                if (res.success === true) {
+                  layer.msg('添加成功！', {
+                    icon: 1,
+                    time: 2000 //2秒关闭（如果不配置，默认是3秒）
+                  }, function () {
+                    active.reload();//重载表格
+                    layer.close(index); //执行关闭 
+                  });
+                } else {
+                  layer.msg('添加失败！', {
+                    icon: 1,
+                    time: 2000 //2秒关闭（如果不配置，默认是3秒）
+                  });
+                }
+              });//ajax end
+            });//form end
+          });//view end
+        }, function (layero, index) {
+          $("#LAY-user-front-submit").click();
         });
       }
     };
@@ -128,13 +79,14 @@
     $('.test-table-reload-btn .layui-btn').on('click', function () {
       queryParam.keyWords = $("#keyWords").val();
       var type = $(this).data('type');
+      debugger;
       active[type] ? active[type].call(this) : '';
     });
 
     $(".test-table-reload-btn .layui-input").bind('keydown', function (e) {
       if (e.keyCode == 13) {
         e.preventDefault();
-        $(".test-table-reload-btn .layui-btn").click();
+        $(".test-table-reload-btn .layui-btn")[0].click();
       }
     });
 
@@ -143,16 +95,20 @@
       url: apiUri + '/api/SysUser/QueryDataByPage',
       method: 'post',
       contentType: 'application/json',
-      toolbar: '#test-table-totalRow-toolbarDemo',
       title: '用户数据表',
       height: 'full-190',
       initSort: {
-        field: 'true_name'
-        , type: 'asc'
+        field: 'id'
+        , type: 'desc'
       },
+      where: queryParam,
       cols: [[
         // { field: 'id', title: 'ID', width: 80, fixed: 'left', hide: true },
-        { field: 'id', title: 'ID', width: 80, fixed: 'left' },
+        {
+          field: 'id', title: 'ID', width: 80, fixed: 'left', templet: function (v) {
+            return "" + v.id;
+          }
+        },
         { field: 'true_name', title: '姓名', width: 120, sort: true },
         { field: 'nick_name', title: '昵称', width: 120, sort: true },
         { field: 'login_name', title: '登录名', width: 120, sort: true },
@@ -162,8 +118,8 @@
         { field: 'mobile', title: '手机', width: 120, sort: true },
         { field: 'email', title: '邮箱', width: 120, sort: true },
         { field: 'summary', title: '描述', width: 120, sort: true },
-        { field: 'role_id', title: '角色id', width: 120, sort: true, hide: true },
-        { field: 'dept_id', title: '部门id', width: 120, sort: true, hide: true },
+        // { field: 'role_id', title: '角色id', width: 120, sort: true, hide: true },
+        // { field: 'dept_id', title: '部门id', width: 120, sort: true, hide: true },
         { field: 'dname', title: '部门', width: 120, sort: true },
         { field: 'wx_id', title: '微信号', width: 120, sort: true },
         { field: 'wx_name', title: '微信昵称', width: 120, sort: true },
@@ -175,32 +131,38 @@
       page: true,
       limits: [10, 15, 20, 30, 40, 50],
       limit: 15
-    });
-
-    //头工具栏事件
-    table.on('toolbar(test-table-toolbar)', function (obj) {
-      var checkStatus = table.checkStatus(obj.config.id);
-      switch (obj.event) {
-        case 'getCheckData':
-          var data = checkStatus.data;
-          layer.alert(JSON.stringify(data));
-          break;
-        case 'getCheckLength':
-          var data = checkStatus.data;
-          layer.msg('选中了：' + data.length + ' 个');
-          break;
-        case 'isAll':
-          layer.msg(checkStatus.isAll ? '全选' : '未全选');
-          break;
-      };
+      // ,parseData: function (res) { //res 即为原始返回的数据
+      //   return {
+      //     "code": res.code, //解析接口状态
+      //     "msg": res.msg, //解析提示文本
+      //     "count": res.count, //解析数据长度
+      //     "data": jsonlint.parse(res.data) //解析数据列表
+      //   };
+      // }
     });
 
     //监听行工具事件
     table.on('tool(test-table-toolbar)', function (obj) {
       var data = obj.data;
+      data.id = data.id + "";
+      debugger;
       if (obj.event === 'del') {
-        layer.confirm('真的删除行么', function (index) {
-          obj.del();
+        layer.confirm('你确定要删除用户：' + data.true_name, function (index) {
+          com.ajax(apiUri + '/api/SysUser/DeleteById?id=' + data.id, 'delete', true, { id: data.id }, function (res) {
+            if (res.success === true && res.data > 1) {
+              layer.msg('删除成功！', {
+                icon: 1,
+                time: 2000 //2秒关闭（如果不配置，默认是3秒）
+              }, function () {
+                active.reload();//重载表格
+              });
+            } else {
+              layer.msg('删除失败！', {
+                icon: 2,
+                time: 2000 //2秒关闭（如果不配置，默认是3秒）
+              });
+            }
+          });//ajax end
           layer.close(index);
         });
       } else if (obj.event === 'edit') {
@@ -214,6 +176,13 @@
           layer.close(index);
         });
       }
+    });
+
+    //监听排序事件
+    table.on('sort(test-table-toolbar)', function (obj) { //注：tool是工具条事件名，test是table原始容器的属性 lay-filter="对应的值"
+      queryParam.field = obj.field; //排序字段
+      queryParam.order = obj.type; //排序方式
+      active.reload(obj);
     });
 
   });
