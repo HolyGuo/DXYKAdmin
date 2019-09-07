@@ -34,11 +34,13 @@
 </div>
 
 <script>
-  layui.use(['admin', 'table', 'jquery'], function () {
-    var admin = layui.admin
-      , table = layui.table;
+  layui.use(['admin', 'table', 'jquery', 'form'], function () {
+    var admin = layui.admin,
+      view = layui.view,
+      form = layui.form,
+      table = layui.table;
     var queryParam = { keyWords: "", field: "id", order: "asc" };
-    debugger;
+
     var $ = layui.$, active = {
       reload: function () {
         //执行重载
@@ -51,63 +53,72 @@
       },
       add: function () {
         layer.open({
-          type: 2
-          , title: '添加用户'
-          , content: 'Form'
-          , maxmin: true
-          , area: ['680px', '560px']
-          , btn: ['确定', '取消']
-          , yes: function (index, layero) {
-            view(this.id).render('sys/user/form').done(function(){
-            form.render(null, 'layuiadmin-form-useradmin');
-            
-            //监听提交
-            form.on('submit(LAY-user-front-submit)', function(data){
-              var field = data.field; //获取提交的字段
-
-              //提交 Ajax 成功后，关闭当前弹层并重载表格
-              //$.ajax({});
-
-              layui.table.reload('LAY-user-manage'); //重载表格
-              layer.close(index); //执行关闭 
-            });
-          });
-
-
-            iframeWindow.layui.form.on('submit(' + submitID + ')', function (data) {
-              var field = data.field; //获取提交的字段
-              $.ajax('../api/SysUser/Insert', {
-                data: JSON.stringify(field),
-                dataType: 'json',
-                type: 'post',
-                timeout: 10 * 1000,
-                contentType: 'application/json',
-                success: function (res) {
-                  if (res.success === true) {
-                    layer.msg('添加成功！', {
-                      icon: 1,
-                      time: 2000 //2秒关闭（如果不配置，默认是3秒）
-                    }, function () {
-                      table.reload('test-table-toolbar');
-                    });
-                    layer.close(index); //关闭弹层
-                  } else {
+          id: 'LAY-popup-user-add',
+          type: 1,
+          title: '添加用户',
+          maxmin: true,
+          area: ['680px', '560px'],
+          btn: ['确定', '取消'],
+          success: function (layero, index) {
+            view(this.id).render('sys/user/form').done(function () {
+              form.render(null, 'component-form-element');
+              //监听提交
+              form.on('submit(LAY-user-front-submit)', function (data) {
+                var field = data.field; //获取提交的字段
+                debugger;
+                //提交 Ajax 成功后，关闭当前弹层并重载表格
+                //$.ajax({});
+                //执行退出接口
+                // admin.req({
+                //   url: apiUri + '/api/SysUser/Insert',
+                //   type: 'post',
+                //   data: JSON.stringify(field),
+                //   headers: { "access_token": "c262e61cd13ad99fc650e6908c7e5e65b63d2f32185ecfed6b801ee3fbdd5c0a" },
+                //   done: function (res) { //这里要说明一下：done 是只有 response 的 code 正常才会执行。而 succese 则是只要 http 为 200 就会执行
+                //     //清空本地记录的 token，并跳转到登入页
+                //     debugger;
+                //     console.log(res);
+                //   }
+                // });
+                $.ajax({
+                  url: apiUri + '/api/SysUser/Insert',
+                  type: 'post',
+                  dataType: 'json',
+                  data: JSON.stringify(field),
+                  contentType: 'application/json',
+                  success: function (res) {
+                    debugger;
+                    if (res.success === true) {
+                      layer.msg('添加成功！', {
+                        icon: 1,
+                        time: 2000 //2秒关闭（如果不配置，默认是3秒）
+                      }, function () {
+                        table.reload('test-table-toolbar');
+                      });
+                      layer.close(index); //关闭弹层
+                    } else {
+                      layer.msg('添加失败！', {
+                        icon: 1,
+                        time: 2000 //2秒关闭（如果不配置，默认是3秒）
+                      });
+                    }
+                  },
+                  error: function (xhr, type, errorThrown) {
                     layer.msg('添加失败！', {
-                      icon: 1,
+                      icon: 5,
                       time: 2000 //2秒关闭（如果不配置，默认是3秒）
                     });
+                    console.log(xhr);
                   }
-                },
-                error: function (xhr, type, errorThrown) {
-                  layer.msg('添加失败！', {
-                    icon: 5,
-                    time: 2000 //2秒关闭（如果不配置，默认是3秒）
-                  });
-                  console.log(xhr);
-                }
-              });//ajax end
+                });
 
+                layui.table.reload('test-table-toolbar'); //重载表格
+                layer.close(index); //执行关闭 
+              });
             });
+          },
+          yes: function (index, layero) {
+            $("#LAY-user-front-submit").click();
 
           }
         });
