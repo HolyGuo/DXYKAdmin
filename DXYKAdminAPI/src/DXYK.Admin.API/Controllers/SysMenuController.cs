@@ -1,6 +1,6 @@
 //*******************************
 // Create By Holy Guo
-// Date 2019-09-08 14:52
+// Date 2019-09-08 16:47
 //*******************************
 using System;
 using System.Collections;
@@ -46,7 +46,7 @@ namespace DXYK.Admin.API.Controllers
         [HttpPost]
         public ResponseMessage<long> Insert([FromBody]SysMenu sysMenu)
         {
-            return new ResponseMessage<long> { data = SysMenuService.Insert(sysMenu) };
+            return new ResponseMessage<long> { success = true, code = 0, msg = "OK", data = SysMenuService.Insert(sysMenu) };
         }
 
         ///<summary>
@@ -55,7 +55,7 @@ namespace DXYK.Admin.API.Controllers
         [HttpPost]
         public async Task<ResponseMessage<long>> InsertAsync([FromBody]SysMenu sysMenu)
         {
-            return new ResponseMessage<long> { data = await SysMenuService.InsertAsync(sysMenu) };
+            return new ResponseMessage<long> { success = true, code = 0, msg = "OK", data = await SysMenuService.InsertAsync(sysMenu) };
         }
 
         ///<summary>
@@ -64,7 +64,7 @@ namespace DXYK.Admin.API.Controllers
         [HttpDelete]
         public ResponseMessage<int> DeleteById(long id)
         {
-            return new ResponseMessage<int> { data = SysMenuService.DeleteById(id) };
+            return new ResponseMessage<int> { success = true, code = 0, msg = "OK", data = SysMenuService.DeleteById(id) };
         }
 
         ///<summary>
@@ -73,7 +73,7 @@ namespace DXYK.Admin.API.Controllers
         [HttpDelete]
         public async Task<ResponseMessage<int>> DeleteByIdAsync(long id)
         {
-            return new ResponseMessage<int> { data = await SysMenuService.DeleteByIdAsync(id) };
+            return new ResponseMessage<int> { success = true, code = 0, msg = "OK", data = await SysMenuService.DeleteByIdAsync(id) };
         }
 
         ///<summary>
@@ -84,8 +84,8 @@ namespace DXYK.Admin.API.Controllers
         {
             //SysMenu entity = SysMenuService.GetById(sysMenu.id);
             //Utils.CommmonUtils.EntityToEntity(sysMenu, entity, null);
-            //return new ResponseMessage<int>{ data = SysMenuService.Update(entity) };
-            return new ResponseMessage<int> { data = SysMenuService.Update(sysMenu) };
+            //return new ResponseMessage<int>{ success = true, code = 0, msg = "OK",data = SysMenuService.Update(entity) };
+            return new ResponseMessage<int> { success = true, code = 0, msg = "OK", data = SysMenuService.Update(sysMenu) };
         }
 
         ///<summary>
@@ -96,8 +96,8 @@ namespace DXYK.Admin.API.Controllers
         {
             //SysMenu entity = await SysMenuService.GetByIdAsync(sysMenu.id);
             //Utils.CommmonUtils.EntityToEntity(sysMenu, entity, null);
-            //return new ResponseMessage<int>{ data = await SysMenuService.UpdateAsync(entity) };
-            return new ResponseMessage<int> { data = await SysMenuService.UpdateAsync(sysMenu) };
+            //return new ResponseMessage<int>{ success = true, code = 0, msg = "OK",data = await SysMenuService.UpdateAsync(entity) };
+            return new ResponseMessage<int> { success = true, code = 0, msg = "OK", data = await SysMenuService.UpdateAsync(sysMenu) };
         }
 
         ///<summary>
@@ -107,7 +107,7 @@ namespace DXYK.Admin.API.Controllers
         public ResponseMessage<SysMenu> GetById(long id)
         {
             var sysMenu = SysMenuService.GetById(id);
-            return new ResponseMessage<SysMenu> { data = sysMenu };
+            return new ResponseMessage<SysMenu> { success = true, code = 0, msg = "OK", data = sysMenu };
         }
 
         ///<summary>
@@ -117,7 +117,7 @@ namespace DXYK.Admin.API.Controllers
         public async Task<ResponseMessage<SysMenu>> GetByIdAsync(long id)
         {
             var sysMenu = await SysMenuService.GetByIdAsync(id);
-            return new ResponseMessage<SysMenu> { data = sysMenu };
+            return new ResponseMessage<SysMenu> { success = true, code = 0, msg = "OK", data = sysMenu };
         }
 
         ///<summary>
@@ -127,7 +127,7 @@ namespace DXYK.Admin.API.Controllers
         public ResponseMessage<IList<SysMenu>> Query([FromBody]QueryRequest reqMsg)
         {
             var list = SysMenuRepository.Query(reqMsg);
-            return new ResponseMessage<IList<SysMenu>> { data = list };
+            return new ResponseMessage<IList<SysMenu>> { success = true, code = 0, msg = "OK", data = list };
         }
 
         ///<summary>
@@ -137,7 +137,7 @@ namespace DXYK.Admin.API.Controllers
         public async Task<ResponseMessage<IList<SysMenu>>> QueryAsync([FromBody]QueryRequest reqMsg)
         {
             var list = await SysMenuRepository.QueryAsync(reqMsg);
-            return new ResponseMessage<IList<SysMenu>> { data = list };
+            return new ResponseMessage<IList<SysMenu>> { success = true, code = 0, msg = "OK", data = list };
         }
 
         ///<summary>
@@ -148,7 +148,7 @@ namespace DXYK.Admin.API.Controllers
         {
             var total = SysMenuRepository.GetRecord(reqMsg);
             var list = SysMenuRepository.QueryByPage(reqMsg);
-            return new ResponseMessageWrap<IList<SysMenu>>() { count = total, data = list };
+            return new ResponseMessageWrap<IList<SysMenu>>() { success = true, code = 0, msg = "OK", count = total, data = list };
         }
 
         ///<summary>
@@ -159,7 +159,7 @@ namespace DXYK.Admin.API.Controllers
         {
             var total = await SysMenuRepository.GetRecordAsync(reqMsg);
             var list = await SysMenuRepository.QueryByPageAsync(reqMsg);
-            return new ResponseMessageWrap<IList<SysMenu>>() { count = total, data = list };
+            return new ResponseMessageWrap<IList<SysMenu>>() { success = true, code = 0, msg = "OK", count = total, data = list };
         }
 
         ///<summary>
@@ -170,7 +170,7 @@ namespace DXYK.Admin.API.Controllers
         {
             var total = SysMenuService.QueryDataRecord(reqMsg);
             var list = SysMenuService.QueryDataByPage(reqMsg);
-            return new ResponseMessageWrap<object> { count = total, data = list };
+            return new ResponseMessageWrap<object> { success = true, code = 0, msg = "OK", count = total, data = list };
         }
 
         ///<summary>
@@ -181,7 +181,7 @@ namespace DXYK.Admin.API.Controllers
         {
             var total = await SysMenuService.QueryDataRecordAsync(reqMsg);
             var list = await SysMenuService.QueryDataByPageAsync(reqMsg);
-            return new ResponseMessageWrap<object> { count = total, data = list };
+            return new ResponseMessageWrap<object> { success = true, code = 0, msg = "OK", count = total, data = list };
         }
 
 

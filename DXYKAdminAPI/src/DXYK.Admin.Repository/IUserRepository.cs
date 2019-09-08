@@ -24,13 +24,13 @@ namespace DXYK.Admin.Repository
         /// 根据用户名密码登录
         ///</summary>
         [Statement(Id = "LoginIn")]
-        UserDto LoginIn([Param("id")]string loginname,[Param("loginpwd")]string loginpwd);
+        UserInfo LoginIn([Param("id")]string loginname,[Param("loginpwd")]string loginpwd);
 
         ///<summary>
         /// 根据用户名密码登录
         ///</summary>
         [Statement(Id = "LoginIn")]
-        Task<UserDto> LoginInAsync([Param("id")]string loginname, [Param("loginpwd")]string loginpwd);
+        Task<UserInfo> LoginInAsync([Param("id")]string loginname, [Param("loginpwd")]string loginpwd);
         
     }
 }

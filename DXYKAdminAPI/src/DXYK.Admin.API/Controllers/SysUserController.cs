@@ -46,7 +46,7 @@ namespace DXYK.Admin.API.Controllers
         [HttpPost]
         public ResponseMessage<long> Insert([FromBody]SysUser sysUser)
         {
-            return new ResponseMessage<long> { data = SysUserService.Insert(sysUser) };
+            return new ResponseMessage<long> { success = true, code = 0, msg = "OK", data = SysUserService.Insert(sysUser) };
         }
 
         ///<summary>
@@ -55,7 +55,7 @@ namespace DXYK.Admin.API.Controllers
         [HttpPost]
         public async Task<ResponseMessage<long>> InsertAsync([FromBody]SysUser sysUser)
         {
-            return new ResponseMessage<long> { data = await SysUserService.InsertAsync(sysUser) };
+            return new ResponseMessage<long> { success = true, code = 0, msg = "OK", data = await SysUserService.InsertAsync(sysUser) };
         }
 
         ///<summary>
@@ -64,7 +64,7 @@ namespace DXYK.Admin.API.Controllers
         [HttpDelete]
         public ResponseMessage<int> DeleteById(long id)
         {
-            return new ResponseMessage<int> { data = SysUserService.DeleteById(id) };
+            return new ResponseMessage<int> { success = true, code = 0, msg = "OK", data = SysUserService.DeleteById(id) };
         }
 
         ///<summary>
@@ -73,7 +73,7 @@ namespace DXYK.Admin.API.Controllers
         [HttpDelete]
         public async Task<ResponseMessage<int>> DeleteByIdAsync(long id)
         {
-            return new ResponseMessage<int> { data = await SysUserService.DeleteByIdAsync(id) };
+            return new ResponseMessage<int> { success = true, code = 0, msg = "OK", data = await SysUserService.DeleteByIdAsync(id) };
         }
 
         ///<summary>
@@ -85,7 +85,7 @@ namespace DXYK.Admin.API.Controllers
             //SysUser entity = SysUserService.GetById(sysUser.id);
             //Utils.CommmonUtils.EntityToEntity(sysUser, entity, null);
             //return new ResponseMessage<int>{ data = SysUserService.Update(entity) };
-            return new ResponseMessage<int> { data = SysUserService.Update(sysUser) };
+            return new ResponseMessage<int> { success = true, code = 0, msg = "OK", data = SysUserService.Update(sysUser) };
         }
 
         ///<summary>
@@ -97,7 +97,7 @@ namespace DXYK.Admin.API.Controllers
             //SysUser entity = await SysUserService.GetByIdAsync(sysUser.id);
             //Utils.CommmonUtils.EntityToEntity(sysUser, entity, null);
             //return new ResponseMessage<int>{ data = await SysUserService.UpdateAsync(entity) };
-            return new ResponseMessage<int> { data = await SysUserService.UpdateAsync(sysUser) };
+            return new ResponseMessage<int> { success = true, code = 0, msg = "OK", data = await SysUserService.UpdateAsync(sysUser) };
         }
 
         ///<summary>
@@ -107,7 +107,7 @@ namespace DXYK.Admin.API.Controllers
         public ResponseMessage<SysUser> GetById(long id)
         {
             var sysUser = SysUserService.GetById(id);
-            return new ResponseMessage<SysUser> { data = sysUser };
+            return new ResponseMessage<SysUser> { success = true, code = 0, msg = "OK", data = sysUser };
         }
 
         ///<summary>
@@ -117,7 +117,7 @@ namespace DXYK.Admin.API.Controllers
         public async Task<ResponseMessage<SysUser>> GetByIdAsync(long id)
         {
             var sysUser = await SysUserService.GetByIdAsync(id);
-            return new ResponseMessage<SysUser> { data = sysUser };
+            return new ResponseMessage<SysUser> { success = true, code = 0, msg = "OK", data = sysUser };
         }
 
         ///<summary>
@@ -127,7 +127,7 @@ namespace DXYK.Admin.API.Controllers
         public ResponseMessage<IList<SysUser>> Query([FromBody]QueryRequest reqMsg)
         {
             var list = SysUserRepository.Query(reqMsg);
-            return new ResponseMessage<IList<SysUser>> { data = list };
+            return new ResponseMessage<IList<SysUser>> { success = true, code = 0, msg = "OK", data = list };
         }
 
         ///<summary>
@@ -137,7 +137,7 @@ namespace DXYK.Admin.API.Controllers
         public async Task<ResponseMessage<IList<SysUser>>> QueryAsync([FromBody]QueryRequest reqMsg)
         {
             var list = await SysUserRepository.QueryAsync(reqMsg);
-            return new ResponseMessage<IList<SysUser>> { data = list };
+            return new ResponseMessage<IList<SysUser>> { success = true, code = 0, data = list };
         }
 
         ///<summary>
@@ -148,7 +148,7 @@ namespace DXYK.Admin.API.Controllers
         {
             var total = SysUserRepository.GetRecord(reqMsg);
             var list = SysUserRepository.QueryByPage(reqMsg);
-            return new ResponseMessageWrap<IList<SysUser>>() { count = total, data = list };
+            return new ResponseMessageWrap<IList<SysUser>>() { success = true, code = 0, count = total, data = list };
         }
 
         ///<summary>
@@ -159,7 +159,7 @@ namespace DXYK.Admin.API.Controllers
         {
             var total = await SysUserRepository.GetRecordAsync(reqMsg);
             var list = await SysUserRepository.QueryByPageAsync(reqMsg);
-            return new ResponseMessageWrap<IList<SysUser>>() { count = total, data = list };
+            return new ResponseMessageWrap<IList<SysUser>>() { success = true, code = 0, count = total, data = list };
         }
 
         ///<summary>
@@ -170,7 +170,7 @@ namespace DXYK.Admin.API.Controllers
         {
             var total = SysUserService.QueryDataRecord(reqMsg);
             var list = SysUserService.QueryDataByPage(reqMsg);
-            return new ResponseMessageWrap<object> { count = total, data = list };
+            return new ResponseMessageWrap<object> { success = true, code = 0, count = total, data = list };
         }
 
         ///<summary>
@@ -181,7 +181,7 @@ namespace DXYK.Admin.API.Controllers
         {
             var total = await SysUserService.QueryDataRecordAsync(reqMsg);
             var list = await SysUserService.QueryDataByPageAsync(reqMsg);
-            return new ResponseMessageWrap<object> { count = total, data = list };
+            return new ResponseMessageWrap<object> { success = true, code = 0, count = total, data = list };
         }
 
 

@@ -11,56 +11,56 @@ using DXYK.Admin.Repository;
 using DXYK.Admin.Service;
 using DXYK.Admin.API.Messages;
 using System.Threading.Tasks;
+using DXYK.Admin.Entity.Dto;
 
 namespace DXYK.Admin.API.Controllers
 {
     ///<summary>
-    /// 系统管理-用户信息表
+    /// 用户信息
     ///</summary>
     [ApiController]
     [Route("api/[controller]/[action]")]
-    public class LoginController : Controller
+    public class UserController : Controller
     {
         ///<summary>
-        /// 系统管理-用户信息表(sys_user) Service
+        /// 用户信息UserService
         ///</summary>
-        public SysUserService SysUserService { get; }
+        public UserService _userService { get; }
 
         ///<summary>
-        /// 系统管理-用户信息表(sys_user) Repository
+        /// 用户信息IUserRepository
         ///</summary>
-        public ISysUserRepository SysUserRepository { get; }
+        public IUserRepository _userRepository { get; }
 
         ///<summary>
         /// sys_userController
         ///</summary>
-        public LoginController(SysUserService sysUserService, ISysUserRepository sysUserRepository)
+        public UserController(UserService userService, IUserRepository userRepository)
         {
-            SysUserService = sysUserService;
-            SysUserRepository = sysUserRepository;
-        }
-
-
-        ///<summary>
-        /// 根据分页查询系统管理-用户信息表(sys_user)
-        ///</summary>
-        [HttpPost]
-        public ResponseMessageWrap<object> QueryDataByPage([FromBody]QueryByPageRequest reqMsg)
-        {
-            var total = SysUserRepository.QueryDataRecord(reqMsg);
-            var list = SysUserRepository.QueryDataByPage(reqMsg);
-            return new ResponseMessageWrap<object> { count = total, data = list };
+            _userService = userService;
+            _userRepository = userRepository;
         }
 
         ///<summary>
-        /// 异步根据分页查询系统管理-用户信息表(sys_user)
+        /// 用户名、密码登录
         ///</summary>
         [HttpPost]
-        public async Task<ResponseMessageWrap<object>> QueryDataByPageAsync([FromBody]QueryByPageRequest reqMsg)
+        public ResponseMessage<string> LoginIn([FromBody]UserLoginDto reqLogin)
         {
-            var total = await SysUserRepository.QueryDataRecordAsync(reqMsg);
-            var list = await SysUserRepository.QueryDataByPageAsync(reqMsg);
-            return new ResponseMessageWrap<object> { count = total, data = list };
+            UserInfo user = _userService.LoginIn(reqLogin.loginname, reqLogin.password);
+            var access_token = "";
+            return new ResponseMessage<string> { code = user == null ? 1 : 0, msg = user == null ? "用户名或密码错误" : "登录成功", data = access_token };
+        }
+
+        ///<summary>
+        /// 用户名、密码登录
+        ///</summary>
+        [HttpPost]
+        public async Task<ResponseMessage<string>> LoginInAsync([FromBody]UserLoginDto reqLogin)
+        {
+            UserInfo user = await _userService.LoginInAsync(reqLogin.loginname, reqLogin.password);
+            var access_token = "";
+            return new ResponseMessage<string> { data = access_token };
         }
 
 

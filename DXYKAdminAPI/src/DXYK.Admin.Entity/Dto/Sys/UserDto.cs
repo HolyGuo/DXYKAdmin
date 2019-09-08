@@ -14,7 +14,7 @@ namespace DXYK.Admin.Entity.Dto
         /// <summary>
         /// 授权菜单集合
         /// </summary>
-        public List<MenuDto> MenuList { get; set; }
+        public List<MenuDto> MenuList { get; set; } = null;
 
     }
 

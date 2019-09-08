@@ -4,36 +4,6 @@
         <name>DXYK.Admin.API</name>
     </assembly>
     <members>
-        <member name="T:DXYK.Admin.API.Controllers.LoginController">
-            <summary>
-             系统管理-用户信息表
-            </summary>
-        </member>
-        <member name="P:DXYK.Admin.API.Controllers.LoginController.SysUserService">
-            <summary>
-             系统管理-用户信息表(sys_user) Service
-            </summary>
-        </member>
-        <member name="P:DXYK.Admin.API.Controllers.LoginController.SysUserRepository">
-            <summary>
-             系统管理-用户信息表(sys_user) Repository
-            </summary>
-        </member>
-        <member name="M:DXYK.Admin.API.Controllers.LoginController.#ctor(DXYK.Admin.Service.SysUserService,DXYK.Admin.Repository.ISysUserRepository)">
-            <summary>
-             sys_userController
-            </summary>
-        </member>
-        <member name="M:DXYK.Admin.API.Controllers.LoginController.QueryDataByPage(DXYK.Admin.API.Messages.QueryByPageRequest)">
-            <summary>
-             根据分页查询系统管理-用户信息表(sys_user)
-            </summary>
-        </member>
-        <member name="M:DXYK.Admin.API.Controllers.LoginController.QueryDataByPageAsync(DXYK.Admin.API.Messages.QueryByPageRequest)">
-            <summary>
-             异步根据分页查询系统管理-用户信息表(sys_user)
-            </summary>
-        </member>
         <member name="T:DXYK.Admin.API.Controllers.SysDeptController">
             <summary>
              系统管理-单位信息表
@@ -392,6 +362,36 @@
         <member name="M:DXYK.Admin.API.Controllers.SysUserController.QueryDataByPageAsync(DXYK.Admin.API.Messages.QueryByPageRequest)">
             <summary>
              异步根据分页查询系统管理-用户信息表(sys_user)
+            </summary>
+        </member>
+        <member name="T:DXYK.Admin.API.Controllers.UserController">
+            <summary>
+             用户信息
+            </summary>
+        </member>
+        <member name="P:DXYK.Admin.API.Controllers.UserController._userService">
+            <summary>
+             用户信息UserService
+            </summary>
+        </member>
+        <member name="P:DXYK.Admin.API.Controllers.UserController._userRepository">
+            <summary>
+             用户信息IUserRepository
+            </summary>
+        </member>
+        <member name="M:DXYK.Admin.API.Controllers.UserController.#ctor(DXYK.Admin.Service.UserService,DXYK.Admin.Repository.IUserRepository)">
+            <summary>
+             sys_userController
+            </summary>
+        </member>
+        <member name="M:DXYK.Admin.API.Controllers.UserController.LoginIn(DXYK.Admin.Entity.Dto.UserLoginDto)">
+            <summary>
+             用户名、密码登录
+            </summary>
+        </member>
+        <member name="M:DXYK.Admin.API.Controllers.UserController.LoginInAsync(DXYK.Admin.Entity.Dto.UserLoginDto)">
+            <summary>
+             用户名、密码登录
             </summary>
         </member>
         <member name="T:DXYK.Admin.API.Exceptions.APIException">

@@ -18,7 +18,7 @@ namespace DXYK.Admin.API.Messages
         /// <summary>
         /// 是否成功返回，true 返回成功  false 返回失败，默认为true
         /// </summary>
-        public bool success { get; set; } = true;
+        public bool success { get; set; }
 
         /// <summary>
         /// 状态代码 默认 0
@@ -28,7 +28,7 @@ namespace DXYK.Admin.API.Messages
         /// <summary>
         /// 消息
         /// </summary>
-        public String msg { get; set; } = "Ok";
+        public String msg { get; set; }
 
         /// <summary>
         /// 返回主体

@@ -1,6 +1,6 @@
 //*******************************
 // Create By Holy Guo
-// Date 2019-09-08 14:52
+// Date 2019-09-08 16:47
 //*******************************
 using System;
 using System.Collections;
@@ -46,7 +46,7 @@ namespace DXYK.Admin.API.Controllers
         [HttpPost]
         public ResponseMessage<long> Insert([FromBody]SysGroup sysGroup)
         {
-            return new ResponseMessage<long> { data = SysGroupService.Insert(sysGroup) };
+            return new ResponseMessage<long> { success = true, code = 0, msg = "OK", data = SysGroupService.Insert(sysGroup) };
         }
 
         ///<summary>
@@ -55,7 +55,7 @@ namespace DXYK.Admin.API.Controllers
         [HttpPost]
         public async Task<ResponseMessage<long>> InsertAsync([FromBody]SysGroup sysGroup)
         {
-            return new ResponseMessage<long> { data = await SysGroupService.InsertAsync(sysGroup) };
+            return new ResponseMessage<long> { success = true, code = 0, msg = "OK", data = await SysGroupService.InsertAsync(sysGroup) };
         }
 
         ///<summary>
@@ -64,7 +64,7 @@ namespace DXYK.Admin.API.Controllers
         [HttpDelete]
         public ResponseMessage<int> DeleteById(long id)
         {
-            return new ResponseMessage<int> { data = SysGroupService.DeleteById(id) };
+            return new ResponseMessage<int> { success = true, code = 0, msg = "OK", data = SysGroupService.DeleteById(id) };
         }
 
         ///<summary>
@@ -73,7 +73,7 @@ namespace DXYK.Admin.API.Controllers
         [HttpDelete]
         public async Task<ResponseMessage<int>> DeleteByIdAsync(long id)
         {
-            return new ResponseMessage<int> { data = await SysGroupService.DeleteByIdAsync(id) };
+            return new ResponseMessage<int> { success = true, code = 0, msg = "OK", data = await SysGroupService.DeleteByIdAsync(id) };
         }
 
         ///<summary>
@@ -84,8 +84,8 @@ namespace DXYK.Admin.API.Controllers
         {
             //SysGroup entity = SysGroupService.GetById(sysGroup.id);
             //Utils.CommmonUtils.EntityToEntity(sysGroup, entity, null);
-            //return new ResponseMessage<int>{ data = SysGroupService.Update(entity) };
-            return new ResponseMessage<int> { data = SysGroupService.Update(sysGroup) };
+            //return new ResponseMessage<int>{ success = true, code = 0, msg = "OK",data = SysGroupService.Update(entity) };
+            return new ResponseMessage<int> { success = true, code = 0, msg = "OK", data = SysGroupService.Update(sysGroup) };
         }
 
         ///<summary>
@@ -96,8 +96,8 @@ namespace DXYK.Admin.API.Controllers
         {
             //SysGroup entity = await SysGroupService.GetByIdAsync(sysGroup.id);
             //Utils.CommmonUtils.EntityToEntity(sysGroup, entity, null);
-            //return new ResponseMessage<int>{ data = await SysGroupService.UpdateAsync(entity) };
-            return new ResponseMessage<int> { data = await SysGroupService.UpdateAsync(sysGroup) };
+            //return new ResponseMessage<int>{ success = true, code = 0, msg = "OK",data = await SysGroupService.UpdateAsync(entity) };
+            return new ResponseMessage<int> { success = true, code = 0, msg = "OK", data = await SysGroupService.UpdateAsync(sysGroup) };
         }
 
         ///<summary>
@@ -107,7 +107,7 @@ namespace DXYK.Admin.API.Controllers
         public ResponseMessage<SysGroup> GetById(long id)
         {
             var sysGroup = SysGroupService.GetById(id);
-            return new ResponseMessage<SysGroup> { data = sysGroup };
+            return new ResponseMessage<SysGroup> { success = true, code = 0, msg = "OK", data = sysGroup };
         }
 
         ///<summary>
@@ -117,7 +117,7 @@ namespace DXYK.Admin.API.Controllers
         public async Task<ResponseMessage<SysGroup>> GetByIdAsync(long id)
         {
             var sysGroup = await SysGroupService.GetByIdAsync(id);
-            return new ResponseMessage<SysGroup> { data = sysGroup };
+            return new ResponseMessage<SysGroup> { success = true, code = 0, msg = "OK", data = sysGroup };
         }
 
         ///<summary>
@@ -127,7 +127,7 @@ namespace DXYK.Admin.API.Controllers
         public ResponseMessage<IList<SysGroup>> Query([FromBody]QueryRequest reqMsg)
         {
             var list = SysGroupRepository.Query(reqMsg);
-            return new ResponseMessage<IList<SysGroup>> { data = list };
+            return new ResponseMessage<IList<SysGroup>> { success = true, code = 0, msg = "OK", data = list };
         }
 
         ///<summary>
@@ -137,7 +137,7 @@ namespace DXYK.Admin.API.Controllers
         public async Task<ResponseMessage<IList<SysGroup>>> QueryAsync([FromBody]QueryRequest reqMsg)
         {
             var list = await SysGroupRepository.QueryAsync(reqMsg);
-            return new ResponseMessage<IList<SysGroup>> { data = list };
+            return new ResponseMessage<IList<SysGroup>> { success = true, code = 0, msg = "OK", data = list };
         }
 
         ///<summary>
@@ -148,7 +148,7 @@ namespace DXYK.Admin.API.Controllers
         {
             var total = SysGroupRepository.GetRecord(reqMsg);
             var list = SysGroupRepository.QueryByPage(reqMsg);
-            return new ResponseMessageWrap<IList<SysGroup>>() { count = total, data = list };
+            return new ResponseMessageWrap<IList<SysGroup>>() { success = true, code = 0, msg = "OK", count = total, data = list };
         }
 
         ///<summary>
@@ -159,7 +159,7 @@ namespace DXYK.Admin.API.Controllers
         {
             var total = await SysGroupRepository.GetRecordAsync(reqMsg);
             var list = await SysGroupRepository.QueryByPageAsync(reqMsg);
-            return new ResponseMessageWrap<IList<SysGroup>>() { count = total, data = list };
+            return new ResponseMessageWrap<IList<SysGroup>>() { success = true, code = 0, msg = "OK", count = total, data = list };
         }
 
         ///<summary>
@@ -170,7 +170,7 @@ namespace DXYK.Admin.API.Controllers
         {
             var total = SysGroupService.QueryDataRecord(reqMsg);
             var list = SysGroupService.QueryDataByPage(reqMsg);
-            return new ResponseMessageWrap<object> { count = total, data = list };
+            return new ResponseMessageWrap<object> { success = true, code = 0, msg = "OK", count = total, data = list };
         }
 
         ///<summary>
@@ -181,7 +181,7 @@ namespace DXYK.Admin.API.Controllers
         {
             var total = await SysGroupService.QueryDataRecordAsync(reqMsg);
             var list = await SysGroupService.QueryDataByPageAsync(reqMsg);
-            return new ResponseMessageWrap<object> { count = total, data = list };
+            return new ResponseMessageWrap<object> { success = true, code = 0, msg = "OK", count = total, data = list };
         }
 
 

@@ -67,7 +67,7 @@ namespace DXYK.Admin.API.Filters
 
                 var resp = new ResponseMessage<object>
                 {
-                    code = 106,
+                    code = 1002,
                     msg = errStr.ToString().TrimEnd('|'),
                     success = false,
                     data = null

@@ -1,6 +1,6 @@
 //*******************************
 // Create By Holy Guo
-// Date 2019-09-08 14:52
+// Date 2019-09-08 16:47
 //*******************************
 using System;
 using System.Collections;
@@ -46,7 +46,7 @@ namespace DXYK.Admin.API.Controllers
         [HttpPost]
         public ResponseMessage<long> Insert([FromBody]SysDept sysDept)
         {
-            return new ResponseMessage<long> { data = SysDeptService.Insert(sysDept) };
+            return new ResponseMessage<long> { success = true, code = 0, msg = "OK", data = SysDeptService.Insert(sysDept) };
         }
 
         ///<summary>
@@ -55,7 +55,7 @@ namespace DXYK.Admin.API.Controllers
         [HttpPost]
         public async Task<ResponseMessage<long>> InsertAsync([FromBody]SysDept sysDept)
         {
-            return new ResponseMessage<long> { data = await SysDeptService.InsertAsync(sysDept) };
+            return new ResponseMessage<long> { success = true, code = 0, msg = "OK", data = await SysDeptService.InsertAsync(sysDept) };
         }
 
         ///<summary>
@@ -64,7 +64,7 @@ namespace DXYK.Admin.API.Controllers
         [HttpDelete]
         public ResponseMessage<int> DeleteById(long id)
         {
-            return new ResponseMessage<int> { data = SysDeptService.DeleteById(id) };
+            return new ResponseMessage<int> { success = true, code = 0, msg = "OK", data = SysDeptService.DeleteById(id) };
         }
 
         ///<summary>
@@ -73,7 +73,7 @@ namespace DXYK.Admin.API.Controllers
         [HttpDelete]
         public async Task<ResponseMessage<int>> DeleteByIdAsync(long id)
         {
-            return new ResponseMessage<int> { data = await SysDeptService.DeleteByIdAsync(id) };
+            return new ResponseMessage<int> { success = true, code = 0, msg = "OK", data = await SysDeptService.DeleteByIdAsync(id) };
         }
 
         ///<summary>
@@ -84,8 +84,8 @@ namespace DXYK.Admin.API.Controllers
         {
             //SysDept entity = SysDeptService.GetById(sysDept.id);
             //Utils.CommmonUtils.EntityToEntity(sysDept, entity, null);
-            //return new ResponseMessage<int>{ data = SysDeptService.Update(entity) };
-            return new ResponseMessage<int> { data = SysDeptService.Update(sysDept) };
+            //return new ResponseMessage<int>{ success = true, code = 0, msg = "OK",data = SysDeptService.Update(entity) };
+            return new ResponseMessage<int> { success = true, code = 0, msg = "OK", data = SysDeptService.Update(sysDept) };
         }
 
         ///<summary>
@@ -96,8 +96,8 @@ namespace DXYK.Admin.API.Controllers
         {
             //SysDept entity = await SysDeptService.GetByIdAsync(sysDept.id);
             //Utils.CommmonUtils.EntityToEntity(sysDept, entity, null);
-            //return new ResponseMessage<int>{ data = await SysDeptService.UpdateAsync(entity) };
-            return new ResponseMessage<int> { data = await SysDeptService.UpdateAsync(sysDept) };
+            //return new ResponseMessage<int>{ success = true, code = 0, msg = "OK",data = await SysDeptService.UpdateAsync(entity) };
+            return new ResponseMessage<int> { success = true, code = 0, msg = "OK", data = await SysDeptService.UpdateAsync(sysDept) };
         }
 
         ///<summary>
@@ -107,7 +107,7 @@ namespace DXYK.Admin.API.Controllers
         public ResponseMessage<SysDept> GetById(long id)
         {
             var sysDept = SysDeptService.GetById(id);
-            return new ResponseMessage<SysDept> { data = sysDept };
+            return new ResponseMessage<SysDept> { success = true, code = 0, msg = "OK", data = sysDept };
         }
 
         ///<summary>
@@ -117,7 +117,7 @@ namespace DXYK.Admin.API.Controllers
         public async Task<ResponseMessage<SysDept>> GetByIdAsync(long id)
         {
             var sysDept = await SysDeptService.GetByIdAsync(id);
-            return new ResponseMessage<SysDept> { data = sysDept };
+            return new ResponseMessage<SysDept> { success = true, code = 0, msg = "OK", data = sysDept };
         }
 
         ///<summary>
@@ -127,7 +127,7 @@ namespace DXYK.Admin.API.Controllers
         public ResponseMessage<IList<SysDept>> Query([FromBody]QueryRequest reqMsg)
         {
             var list = SysDeptRepository.Query(reqMsg);
-            return new ResponseMessage<IList<SysDept>> { data = list };
+            return new ResponseMessage<IList<SysDept>> { success = true, code = 0, msg = "OK", data = list };
         }
 
         ///<summary>
@@ -137,7 +137,7 @@ namespace DXYK.Admin.API.Controllers
         public async Task<ResponseMessage<IList<SysDept>>> QueryAsync([FromBody]QueryRequest reqMsg)
         {
             var list = await SysDeptRepository.QueryAsync(reqMsg);
-            return new ResponseMessage<IList<SysDept>> { data = list };
+            return new ResponseMessage<IList<SysDept>> { success = true, code = 0, msg = "OK", data = list };
         }
 
         ///<summary>
@@ -148,7 +148,7 @@ namespace DXYK.Admin.API.Controllers
         {
             var total = SysDeptRepository.GetRecord(reqMsg);
             var list = SysDeptRepository.QueryByPage(reqMsg);
-            return new ResponseMessageWrap<IList<SysDept>>() { count = total, data = list };
+            return new ResponseMessageWrap<IList<SysDept>>() { success = true, code = 0, msg = "OK", count = total, data = list };
         }
 
         ///<summary>
@@ -159,7 +159,7 @@ namespace DXYK.Admin.API.Controllers
         {
             var total = await SysDeptRepository.GetRecordAsync(reqMsg);
             var list = await SysDeptRepository.QueryByPageAsync(reqMsg);
-            return new ResponseMessageWrap<IList<SysDept>>() { count = total, data = list };
+            return new ResponseMessageWrap<IList<SysDept>>() { success = true, code = 0, msg = "OK", count = total, data = list };
         }
 
         ///<summary>
@@ -170,7 +170,7 @@ namespace DXYK.Admin.API.Controllers
         {
             var total = SysDeptService.QueryDataRecord(reqMsg);
             var list = SysDeptService.QueryDataByPage(reqMsg);
-            return new ResponseMessageWrap<object> { count = total, data = list };
+            return new ResponseMessageWrap<object> { success = true, code = 0, msg = "OK", count = total, data = list };
         }
 
         ///<summary>
@@ -181,7 +181,7 @@ namespace DXYK.Admin.API.Controllers
         {
             var total = await SysDeptService.QueryDataRecordAsync(reqMsg);
             var list = await SysDeptService.QueryDataByPageAsync(reqMsg);
-            return new ResponseMessageWrap<object> { count = total, data = list };
+            return new ResponseMessageWrap<object> { success = true, code = 0, msg = "OK", count = total, data = list };
         }
 
 

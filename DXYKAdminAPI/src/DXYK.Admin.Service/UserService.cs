@@ -19,7 +19,7 @@ namespace DXYK.Admin.Service
     {
 
         ///<summary>
-        ///SysUserService 仓储
+        ///UserService 仓储
         ///</summary>
         public IUserRepository _userRepository { get; }
 
@@ -37,7 +37,7 @@ namespace DXYK.Admin.Service
         /// <param name="loginname">用户名</param>
         /// <param name="loginpwd">密码</param>
         /// <returns></returns>
-        public UserDto LoginIn(string loginname, string loginpwd)
+        public UserInfo LoginIn(string loginname, string loginpwd)
         {
             return _userRepository.LoginIn(loginname, loginpwd);
         }
@@ -48,7 +48,7 @@ namespace DXYK.Admin.Service
         /// <param name="loginname">用户名</param>
         /// <param name="loginpwd">密码</param>
         /// <returns></returns>
-        public async Task<UserDto> LoginInAsync(string loginname, string loginpwd)
+        public async Task<UserInfo> LoginInAsync(string loginname, string loginpwd)
         {
             return await _userRepository.LoginInAsync(loginname, loginpwd);
         }

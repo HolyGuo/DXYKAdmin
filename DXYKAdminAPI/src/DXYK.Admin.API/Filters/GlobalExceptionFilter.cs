@@ -50,7 +50,7 @@ namespace DXYK.Admin.API.Filters
             new EventId(exception.HResult),
             exception,
             exception.Message);
-            int errorCode = 200;
+            int errorCode = 1001;
             if (exception is APIException) { errorCode = (exception as APIException).code; }
             var errorResp = new ResponseMessage<object>
             {
