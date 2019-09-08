@@ -51,7 +51,7 @@ layui.define(function (exports) {
       },//add end
       edit: function (id) {
         //查询当前条数据
-        com.ajax(apiUri + '/api/SysUser/GetById?id=' + id, 'get', true, null, function (res) {
+        com.ajax(layui.setter.apiUri + '/api/SysUser/GetById?id=' + id, 'get', true, null, function (res) {
           if (res.success === true && res.data != null) {
             com.layerOpen("LAY-popup-user-edit", "添加用户", true, 680, 560, function (layero, index) {
               view("LAY-popup-user-edit").render('sys/user/form').done(function () {
@@ -89,7 +89,7 @@ layui.define(function (exports) {
       },//edit end
       delete: function (id) {
         layer.confirm('你确定要删除用户：' + data.true_name, function (index) {
-          com.ajax(apiUri + '/api/SysUser/DeleteById?id=' + id, 'delete', true, null, function (res) {
+          com.ajax(layui.setter.apiUri + '/api/SysUser/DeleteById?id=' + id, 'delete', true, null, function (res) {
             if (res.success === true && res.data > 0) {
               layer.msg('删除成功！', {
                 icon: 1,
@@ -127,7 +127,7 @@ layui.define(function (exports) {
 
     table.render({
       elem: '#test-table-toolbar',
-      url: apiUri + '/api/SysUser/QueryDataByPage',
+      url: layui.setter.apiUri + '/api/SysUser/QueryDataByPage',
       method: 'post',
       contentType: 'application/json',
       title: '用户数据表',

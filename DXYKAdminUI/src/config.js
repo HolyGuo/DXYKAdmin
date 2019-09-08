@@ -9,7 +9,8 @@
  
 layui.define(['laytpl', 'layer', 'element', 'util'], function(exports){
   exports('setter', {
-    container: 'LAY_app' //容器ID
+    apiUri:'http://localhost:8088'
+    ,container: 'LAY_app' //容器ID
     ,base: layui.cache.base //记录layuiAdmin文件夹所在路径
     ,views: layui.cache.base + 'views/' //视图所在目录
     ,entry: 'index' //默认视图文件名
