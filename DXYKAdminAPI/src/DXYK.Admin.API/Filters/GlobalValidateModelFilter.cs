@@ -65,11 +65,12 @@ namespace DXYK.Admin.API.Filters
                     errStr.AppendFormat("{0} |", errorMsg);
                 }
 
-                var resp = new ResponseMessage
+                var resp = new ResponseMessage<object>
                 {
                     code = 106,
                     msg = errStr.ToString().TrimEnd('|'),
-                    success = false
+                    success = false,
+                    data = null
                 };
 
                 var result = new JsonResult(resp);

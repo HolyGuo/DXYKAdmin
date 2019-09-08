@@ -2,19 +2,17 @@
 // Create By Holy Guo
 // Date 2019-09-06 21:34
 //*******************************
-using System;
-using System.IO;
-using System.Reflection;
+using DXYK.Admin.API.Filters;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
-using Swashbuckle.AspNetCore.Swagger;
-using DXYK.Admin.Service;
-using DXYK.Admin.API.Filters;
 using Newtonsoft.Json.Serialization;
-using DXYK.Admin.API.Utils;
+using Swashbuckle.AspNetCore.Swagger;
+using System;
+using System.IO;
+using System.Reflection;
 
 namespace DXYK.Admin.API
 {
@@ -37,8 +35,10 @@ namespace DXYK.Admin.API
         ///Configuration 应用配置
         ///</summary>
         public IConfiguration Configuration { get; }
-
-        // This method gets called by the runtime. Use this method to add services to the container.
+        /// <summary>
+        /// This method gets called by the runtime. Use this method to add services to the container.
+        /// </summary>
+        /// <param name="services"></param>
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddMvc(options =>
@@ -53,7 +53,7 @@ namespace DXYK.Admin.API
             {
                 options.SerializerSettings.ContractResolver = new DefaultContractResolver();
                 options.SerializerSettings.DateFormatString = "yyyy-MM-dd HH:mm:ss";
-                options.SerializerSettings.Converters.Add(new JsonLongConverter());
+                options.SerializerSettings.Converters.Add(new Utils.JsonLongConverter());
             });
             services.AddCors();
         }

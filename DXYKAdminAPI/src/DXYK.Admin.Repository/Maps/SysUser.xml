@@ -2,7 +2,7 @@
 <!--
 //*******************************
 // Create By Holy Guo
-// Date 2019-09-06 21:34
+// Date 2019-09-08 14:52
 //*******************************-->
 
 <SmartSqlMap Scope="SysUser" xmlns="http://SmartSql.net/schemas/SmartSqlMap.xsd">
@@ -10,7 +10,7 @@
   <Statements>
 
     <Statement Id="AllCols">
-      T.id,T.true_name,T.nick_name,T.login_name,T.login_pwd,T.sex,T.head_pic,T.telephone,T.mobile,T.email,T.summary,T.role_id,T.dept_id,T.wx_openid,T.wx_id,T.wx_name,T.qq_openid,T.qq_id,T.qq_name,T.sort,T.group_id,T.re_vision,T.created_by,T.created_time,T.updated_by,T.updated_time,T.deleted_by,T.deleted_time
+      T.id,T.true_name,T.nick_name,T.login_name,T.login_pwd,T.is_enable,T.sex,T.head_pic,T.telephone,T.mobile,T.email,T.summary,T.role_id,T.dept_id,T.wx_openid,T.wx_id,T.wx_name,T.qq_openid,T.qq_id,T.qq_name,T.sort,T.group_id,T.re_vision,T.created_by,T.created_time,T.updated_by,T.updated_time,T.deleted_by,T.deleted_time
     </Statement>
     <Statement Id="QueryParams">
       <Where>
@@ -28,6 +28,9 @@
         </IsNotEmpty>
         <IsNotEmpty Prepend="And" Property="login_pwd">
           T.login_pwd = @login_pwd
+        </IsNotEmpty>
+        <IsNotEmpty Prepend="And" Property="is_enable">
+          T.is_enable = @is_enable
         </IsNotEmpty>
         <IsNotEmpty Prepend="And" Property="sex">
           T.sex = @sex
@@ -111,6 +114,7 @@
       nick_name,
       login_name,
       login_pwd,
+      is_enable,
       sex,
       head_pic,
       telephone,
@@ -142,6 +146,7 @@
       @nick_name,
       @login_name,
       @login_pwd,
+      @is_enable,
       @sex,
       @head_pic,
       @telephone,
@@ -188,6 +193,9 @@
         </IsProperty>
         <IsProperty Prepend="," Property="login_pwd">
           login_pwd = @login_pwd
+        </IsProperty>
+        <IsProperty Prepend="," Property="is_enable">
+          is_enable = @is_enable
         </IsProperty>
         <IsProperty Prepend="," Property="sex">
           sex = @sex
@@ -322,6 +330,9 @@
         <IsNotEmpty Prepend="And" Property="login_pwd">
           T.login_pwd= @login_pwd
         </IsNotEmpty>
+        <IsNotEmpty Prepend="And" Property="is_enable">
+          T.is_enable= @is_enable
+        </IsNotEmpty>
         <IsNotEmpty Prepend="And" Property="sex">
           T.sex= @sex
         </IsNotEmpty>
@@ -407,50 +418,92 @@
     <!---自定义  查询参数-->
     <Statement Id="QueryDataParams">
       <Where>
-        <IsNotEmpty Prepend="AND" Property="group_id">
-          T.group_id = @group_id
+        <IsNotEmpty Prepend="And" Property="id">
+          T.id = @id
+        </IsNotEmpty>
+        <IsNotEmpty Prepend="And" Property="true_name">
+          T.true_name = @true_name
+        </IsNotEmpty>
+        <IsNotEmpty Prepend="And" Property="nick_name">
+          T.nick_name = @nick_name
+        </IsNotEmpty>
+        <IsNotEmpty Prepend="And" Property="login_name">
+          T.login_name = @login_name
+        </IsNotEmpty>
+        <IsNotEmpty Prepend="And" Property="login_pwd">
+          T.login_pwd = @login_pwd
+        </IsNotEmpty>
+        <IsNotEmpty Prepend="And" Property="is_enable">
+          T.is_enable = @is_enable
         </IsNotEmpty>
         <IsNotEmpty Prepend="And" Property="sex">
           T.sex = @sex
         </IsNotEmpty>
-        <IsNotEmpty Prepend="Or" Property="keyWords">
-          T.true_name Like Concat('%',@keyWords,'%')
+        <IsNotEmpty Prepend="And" Property="head_pic">
+          T.head_pic = @head_pic
         </IsNotEmpty>
-        <IsNotEmpty Prepend="Or" Property="keyWords">
-          T.nick_name Like Concat('%',@keyWords,'%')
+        <IsNotEmpty Prepend="And" Property="telephone">
+          T.telephone = @telephone
         </IsNotEmpty>
-        <IsNotEmpty Prepend="Or" Property="keyWords">
-          T.login_name Like Concat('%',@keyWords,'%')
+        <IsNotEmpty Prepend="And" Property="mobile">
+          T.mobile = @mobile
         </IsNotEmpty>
-        <IsNotEmpty Prepend="Or" Property="keyWords">
-          T.telephone Like Concat('%',@keyWords,'%')
+        <IsNotEmpty Prepend="And" Property="email">
+          T.email = @email
         </IsNotEmpty>
-        <IsNotEmpty Prepend="Or" Property="keyWords">
-          T.mobile Like Concat('%',@keyWords,'%')
+        <IsNotEmpty Prepend="And" Property="summary">
+          T.summary = @summary
         </IsNotEmpty>
-        <IsNotEmpty Prepend="Or" Property="keyWords">
-          T.email Like Concat('%',@keyWords,'%')
+        <IsNotEmpty Prepend="And" Property="role_id">
+          T.role_id = @role_id
         </IsNotEmpty>
-        <IsNotEmpty Prepend="Or" Property="keyWords">
-          T.summary Like Concat('%',@keyWords,'%')
+        <IsNotEmpty Prepend="And" Property="dept_id">
+          T.dept_id = @dept_id
         </IsNotEmpty>
-        <IsNotEmpty Prepend="Or" Property="keyWords">
-          T.wx_openid Like Concat('%',@keyWords,'%')
+        <IsNotEmpty Prepend="And" Property="wx_openid">
+          T.wx_openid = @wx_openid
         </IsNotEmpty>
-        <IsNotEmpty Prepend="Or" Property="keyWords">
-          T.wx_id Like Concat('%',@keyWords,'%')
+        <IsNotEmpty Prepend="And" Property="wx_id">
+          T.wx_id = @wx_id
         </IsNotEmpty>
-        <IsNotEmpty Prepend="Or" Property="keyWords">
-          T.wx_name Like Concat('%',@keyWords,'%')
+        <IsNotEmpty Prepend="And" Property="wx_name">
+          T.wx_name = @wx_name
         </IsNotEmpty>
-        <IsNotEmpty Prepend="Or" Property="keyWords">
-          T.qq_openid Like Concat('%',@keyWords,'%')
+        <IsNotEmpty Prepend="And" Property="qq_openid">
+          T.qq_openid = @qq_openid
         </IsNotEmpty>
-        <IsNotEmpty Prepend="Or" Property="keyWords">
-          T.qq_id Like Concat('%',@keyWords,'%')
+        <IsNotEmpty Prepend="And" Property="qq_id">
+          T.qq_id = @qq_id
         </IsNotEmpty>
-        <IsNotEmpty Prepend="Or" Property="keyWords">
-          T.qq_name Like Concat('%',@keyWords,'%')
+        <IsNotEmpty Prepend="And" Property="qq_name">
+          T.qq_name = @qq_name
+        </IsNotEmpty>
+        <IsNotEmpty Prepend="And" Property="sort">
+          T.sort = @sort
+        </IsNotEmpty>
+        <IsNotEmpty Prepend="And" Property="group_id">
+          T.group_id = @group_id
+        </IsNotEmpty>
+        <IsNotEmpty Prepend="And" Property="re_vision">
+          T.re_vision = @re_vision
+        </IsNotEmpty>
+        <IsNotEmpty Prepend="And" Property="created_by">
+          T.created_by = @created_by
+        </IsNotEmpty>
+        <IsNotEmpty Prepend="And" Property="created_time">
+          T.created_time = @created_time
+        </IsNotEmpty>
+        <IsNotEmpty Prepend="And" Property="updated_by">
+          T.updated_by = @updated_by
+        </IsNotEmpty>
+        <IsNotEmpty Prepend="And" Property="updated_time">
+          T.updated_time = @updated_time
+        </IsNotEmpty>
+        <IsNotEmpty Prepend="And" Property="deleted_by">
+          T.deleted_by = @deleted_by
+        </IsNotEmpty>
+        <IsNotEmpty Prepend="And" Property="deleted_time">
+          T.deleted_time = @deleted_time
         </IsNotEmpty>
       </Where>
     </Statement>
@@ -460,9 +513,11 @@
       Select T.*
       From sys_user As T
       <Include RefId="QueryDataParams" />
-      <IsNotEmpty Prepend="Order By" Property="OrderBy">
-      </IsNotEmpty>
-      <Placeholder Property="OrderBy"></Placeholder>
+      <Switch Prepend="Order By" Property="OrderBy">
+        <Default>
+          T.id Desc
+        </Default>
+      </Switch>
       Limit @limit Offset @offset
     </Statement>
 

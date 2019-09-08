@@ -1,6 +1,6 @@
 //*******************************
 // Create By Holy Guo
-// Date 2019-09-06 21:34
+// Date 2019-09-08 14:52
 //*******************************
 using System;
 using System.Collections;
@@ -44,94 +44,100 @@ namespace DXYK.Admin.API.Controllers
         /// 新增系统管理-用户信息表(sys_user)
         ///</summary>
         [HttpPost]
-        public ResponseMessageWrap<long> Insert([FromBody]SysUser sysUser)
+        public ResponseMessage<long> Insert([FromBody]SysUser sysUser)
         {
-            return new ResponseMessageWrap<long> { data = SysUserService.Insert(sysUser) };
+            return new ResponseMessage<long> { data = SysUserService.Insert(sysUser) };
         }
 
         ///<summary>
         /// 异步新增系统管理-用户信息表(sys_user)
         ///</summary>
         [HttpPost]
-        public async Task<ResponseMessageWrap<long>> InsertAsync([FromBody]SysUser sysUser)
+        public async Task<ResponseMessage<long>> InsertAsync([FromBody]SysUser sysUser)
         {
-            return new ResponseMessageWrap<long> { data = await SysUserService.InsertAsync(sysUser) };
+            return new ResponseMessage<long> { data = await SysUserService.InsertAsync(sysUser) };
         }
 
         ///<summary>
         /// 删除系统管理-用户信息表(sys_user)
         ///</summary>
         [HttpDelete]
-        public ResponseMessageWrap<int> DeleteById(long id)
+        public ResponseMessage<int> DeleteById(long id)
         {
-            return new ResponseMessageWrap<int> { data = SysUserService.DeleteById(id) };
+            return new ResponseMessage<int> { data = SysUserService.DeleteById(id) };
         }
 
         ///<summary>
         /// 异步删除系统管理-用户信息表(sys_user)
         ///</summary>
         [HttpDelete]
-        public async Task<ResponseMessageWrap<int>> DeleteByIdAsync(long id)
+        public async Task<ResponseMessage<int>> DeleteByIdAsync(long id)
         {
-            return new ResponseMessageWrap<int> { data = await SysUserService.DeleteByIdAsync(id) };
+            return new ResponseMessage<int> { data = await SysUserService.DeleteByIdAsync(id) };
         }
 
         ///<summary>
         /// 更新系统管理-用户信息表(sys_user)
         ///</summary>
         [HttpPut]
-        public ResponseMessageWrap<int> Update([FromBody]SysUser sysUser)
+        public ResponseMessage<int> Update([FromBody]SysUser sysUser)
         {
-            return new ResponseMessageWrap<int> { data = SysUserService.Update(sysUser) };
+            //SysUser entity = SysUserService.GetById(sysUser.id);
+            //Utils.CommmonUtils.EntityToEntity(sysUser, entity, null);
+            //return new ResponseMessage<int>{ data = SysUserService.Update(entity) };
+            return new ResponseMessage<int> { data = SysUserService.Update(sysUser) };
         }
 
         ///<summary>
         /// 异步更新系统管理-用户信息表(sys_user)
         ///</summary>
         [HttpPut]
-        public async Task<ResponseMessageWrap<int>> UpdateAsync([FromBody]SysUser sysUser)
+        public async Task<ResponseMessage<int>> UpdateAsync([FromBody]SysUser sysUser)
         {
-            return new ResponseMessageWrap<int> { data = await SysUserService.UpdateAsync(sysUser) };
+            //SysUser entity = await SysUserService.GetByIdAsync(sysUser.id);
+            //Utils.CommmonUtils.EntityToEntity(sysUser, entity, null);
+            //return new ResponseMessage<int>{ data = await SysUserService.UpdateAsync(entity) };
+            return new ResponseMessage<int> { data = await SysUserService.UpdateAsync(sysUser) };
         }
 
         ///<summary>
         /// 根据Id查询系统管理-用户信息表(sys_user)
         ///</summary>
         [HttpGet]
-        public ResponseMessageWrap<SysUser> GetById(long id)
+        public ResponseMessage<SysUser> GetById(long id)
         {
             var sysUser = SysUserService.GetById(id);
-            return new ResponseMessageWrap<SysUser> { data = sysUser };
+            return new ResponseMessage<SysUser> { data = sysUser };
         }
 
         ///<summary>
         /// 根据Id查询系统管理-用户信息表(sys_user)
         ///</summary>
         [HttpGet]
-        public async Task<ResponseMessageWrap<SysUser>> GetByIdAsync(long id)
+        public async Task<ResponseMessage<SysUser>> GetByIdAsync(long id)
         {
             var sysUser = await SysUserService.GetByIdAsync(id);
-            return new ResponseMessageWrap<SysUser> { data = sysUser };
+            return new ResponseMessage<SysUser> { data = sysUser };
         }
 
         ///<summary>
         /// 根据条件查询系统管理-用户信息表(sys_user)
         ///</summary>
         [HttpPost]
-        public ResponseMessageWrap<IList<SysUser>> Query([FromBody]QueryRequest reqMsg)
+        public ResponseMessage<IList<SysUser>> Query([FromBody]QueryRequest reqMsg)
         {
             var list = SysUserRepository.Query(reqMsg);
-            return new ResponseMessageWrap<IList<SysUser>> { data = list };
+            return new ResponseMessage<IList<SysUser>> { data = list };
         }
 
         ///<summary>
         /// 异步根据条件查询系统管理-用户信息表(sys_user)
         ///</summary>
         [HttpPost]
-        public async Task<ResponseMessageWrap<IList<SysUser>>> QueryAsync([FromBody]QueryRequest reqMsg)
+        public async Task<ResponseMessage<IList<SysUser>>> QueryAsync([FromBody]QueryRequest reqMsg)
         {
             var list = await SysUserRepository.QueryAsync(reqMsg);
-            return new ResponseMessageWrap<IList<SysUser>> { data = list };
+            return new ResponseMessage<IList<SysUser>> { data = list };
         }
 
         ///<summary>
@@ -162,8 +168,8 @@ namespace DXYK.Admin.API.Controllers
         [HttpPost]
         public ResponseMessageWrap<object> QueryDataByPage([FromBody]QueryByPageRequest reqMsg)
         {
-            var total = SysUserRepository.QueryDataRecord(reqMsg);
-            var list = SysUserRepository.QueryDataByPage(reqMsg);
+            var total = SysUserService.QueryDataRecord(reqMsg);
+            var list = SysUserService.QueryDataByPage(reqMsg);
             return new ResponseMessageWrap<object> { count = total, data = list };
         }
 
@@ -173,8 +179,8 @@ namespace DXYK.Admin.API.Controllers
         [HttpPost]
         public async Task<ResponseMessageWrap<object>> QueryDataByPageAsync([FromBody]QueryByPageRequest reqMsg)
         {
-            var total = await SysUserRepository.QueryDataRecordAsync(reqMsg);
-            var list = await SysUserRepository.QueryDataByPageAsync(reqMsg);
+            var total = await SysUserService.QueryDataRecordAsync(reqMsg);
+            var list = await SysUserService.QueryDataByPageAsync(reqMsg);
             return new ResponseMessageWrap<object> { count = total, data = list };
         }
 

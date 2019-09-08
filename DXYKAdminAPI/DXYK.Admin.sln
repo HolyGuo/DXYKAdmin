@@ -1,7 +1,6 @@
-
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 15
-VisualStudioVersion = 15.0.27428.2037
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.29230.47
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DXYK.Admin.Entity", "src\DXYK.Admin.Entity\DXYK.Admin.Entity.csproj", "{88A185DB-0242-4843-9284-334850FF611C}"
 EndProject
@@ -14,17 +13,19 @@ EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "API", "API", "{20C12BB6-7202-46F4-9A92-3528FFC2B91B}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "build", "build", "{68E40CDE-0E75-4372-96C4-1507D50993CD}"
-ProjectSection(SolutionItems) = preProject
-Directory.Build.props = Directory.Build.props
-build\version.props = build\version.props
-build\SmartCode.yml = build\SmartCode.yml
-EndProjectSection
+	ProjectSection(SolutionItems) = preProject
+		Directory.Build.props = Directory.Build.props
+		build\SmartCode.yml = build\SmartCode.yml
+		build\version.props = build\version.props
+	EndProjectSection
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "docker", "docker", "{1666CC75-624D-4AE9-84D7-7F9F338658C5}"
-ProjectSection(SolutionItems) = preProject
-.dockerignore = .dockerignore
-Dockerfile = Dockerfile
-EndProjectSection
+	ProjectSection(SolutionItems) = preProject
+		.dockerignore = .dockerignore
+		Dockerfile = Dockerfile
+	EndProjectSection
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DXYK.Admin.Core", "src\DXYK.Admin.Core\DXYK.Admin.Core.csproj", "{4F7838E8-2827-411E-A6DA-BAAFD1081621}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -48,6 +49,10 @@ Global
 		{CEA52B07-9E7F-4A4D-AF6D-4C43E7255D0E}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{CEA52B07-9E7F-4A4D-AF6D-4C43E7255D0E}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{CEA52B07-9E7F-4A4D-AF6D-4C43E7255D0E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{4F7838E8-2827-411E-A6DA-BAAFD1081621}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{4F7838E8-2827-411E-A6DA-BAAFD1081621}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{4F7838E8-2827-411E-A6DA-BAAFD1081621}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{4F7838E8-2827-411E-A6DA-BAAFD1081621}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -55,5 +60,7 @@ Global
 	GlobalSection(NestedProjects) = preSolution
 		{CEA52B07-9E7F-4A4D-AF6D-4C43E7255D0E} = {20C12BB6-7202-46F4-9A92-3528FFC2B91B}
 	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {C1D73EF1-1FA6-4709-8A10-3B900EB98F6C}
+	EndGlobalSection
 EndGlobal
-

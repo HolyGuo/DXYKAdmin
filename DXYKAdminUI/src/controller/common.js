@@ -41,7 +41,13 @@ layui.define(function (exports) {
           'Authorization': access_token
         };
       }
-      data = (method === 'get') || (method === 'delete') ? data : JSON.stringify(data);
+      data = ((method === 'get') || (method === 'delete')) ? data : JSON.stringify(data);
+      // var tData = null;
+      // if (method === 'get') {
+      //   tData = data;
+      // } else {
+      //   tData = JSON.stringify(data);
+      // }
       // data = method === 'get' ? data : JSON.stringify(data);
       $.ajax({
         url: url,

@@ -1,6 +1,6 @@
 //*******************************
 // Create By Holy Guo
-// Date 2019-09-06 21:34
+// Date 2019-09-08 14:52
 //*******************************
 using System;
 using System.Collections;
@@ -44,94 +44,100 @@ namespace DXYK.Admin.API.Controllers
         /// 新增系统管理-群组信息表(sys_group)
         ///</summary>
         [HttpPost]
-        public ResponseMessageWrap<long> Insert([FromBody]SysGroup sysGroup)
+        public ResponseMessage<long> Insert([FromBody]SysGroup sysGroup)
         {
-            return new ResponseMessageWrap<long> { data = SysGroupService.Insert(sysGroup) };
+            return new ResponseMessage<long> { data = SysGroupService.Insert(sysGroup) };
         }
 
         ///<summary>
         /// 异步新增系统管理-群组信息表(sys_group)
         ///</summary>
         [HttpPost]
-        public async Task<ResponseMessageWrap<long>> InsertAsync([FromBody]SysGroup sysGroup)
+        public async Task<ResponseMessage<long>> InsertAsync([FromBody]SysGroup sysGroup)
         {
-            return new ResponseMessageWrap<long> { data = await SysGroupService.InsertAsync(sysGroup) };
+            return new ResponseMessage<long> { data = await SysGroupService.InsertAsync(sysGroup) };
         }
 
         ///<summary>
         /// 删除系统管理-群组信息表(sys_group)
         ///</summary>
         [HttpDelete]
-        public ResponseMessageWrap<int> DeleteById(long id)
+        public ResponseMessage<int> DeleteById(long id)
         {
-            return new ResponseMessageWrap<int> { data = SysGroupService.DeleteById(id) };
+            return new ResponseMessage<int> { data = SysGroupService.DeleteById(id) };
         }
 
         ///<summary>
         /// 异步删除系统管理-群组信息表(sys_group)
         ///</summary>
         [HttpDelete]
-        public async Task<ResponseMessageWrap<int>> DeleteByIdAsync(long id)
+        public async Task<ResponseMessage<int>> DeleteByIdAsync(long id)
         {
-            return new ResponseMessageWrap<int> { data = await SysGroupService.DeleteByIdAsync(id) };
+            return new ResponseMessage<int> { data = await SysGroupService.DeleteByIdAsync(id) };
         }
 
         ///<summary>
         /// 更新系统管理-群组信息表(sys_group)
         ///</summary>
         [HttpPut]
-        public ResponseMessageWrap<int> Update([FromBody]SysGroup sysGroup)
+        public ResponseMessage<int> Update([FromBody]SysGroup sysGroup)
         {
-            return new ResponseMessageWrap<int> { data = SysGroupService.Update(sysGroup) };
+            //SysGroup entity = SysGroupService.GetById(sysGroup.id);
+            //Utils.CommmonUtils.EntityToEntity(sysGroup, entity, null);
+            //return new ResponseMessage<int>{ data = SysGroupService.Update(entity) };
+            return new ResponseMessage<int> { data = SysGroupService.Update(sysGroup) };
         }
 
         ///<summary>
         /// 异步更新系统管理-群组信息表(sys_group)
         ///</summary>
         [HttpPut]
-        public async Task<ResponseMessageWrap<int>> UpdateAsync([FromBody]SysGroup sysGroup)
+        public async Task<ResponseMessage<int>> UpdateAsync([FromBody]SysGroup sysGroup)
         {
-            return new ResponseMessageWrap<int> { data = await SysGroupService.UpdateAsync(sysGroup) };
+            //SysGroup entity = await SysGroupService.GetByIdAsync(sysGroup.id);
+            //Utils.CommmonUtils.EntityToEntity(sysGroup, entity, null);
+            //return new ResponseMessage<int>{ data = await SysGroupService.UpdateAsync(entity) };
+            return new ResponseMessage<int> { data = await SysGroupService.UpdateAsync(sysGroup) };
         }
 
         ///<summary>
         /// 根据Id查询系统管理-群组信息表(sys_group)
         ///</summary>
         [HttpGet]
-        public ResponseMessageWrap<SysGroup> GetById(long id)
+        public ResponseMessage<SysGroup> GetById(long id)
         {
             var sysGroup = SysGroupService.GetById(id);
-            return new ResponseMessageWrap<SysGroup> { data = sysGroup };
+            return new ResponseMessage<SysGroup> { data = sysGroup };
         }
 
         ///<summary>
         /// 根据Id查询系统管理-群组信息表(sys_group)
         ///</summary>
         [HttpGet]
-        public async Task<ResponseMessageWrap<SysGroup>> GetByIdAsync(long id)
+        public async Task<ResponseMessage<SysGroup>> GetByIdAsync(long id)
         {
             var sysGroup = await SysGroupService.GetByIdAsync(id);
-            return new ResponseMessageWrap<SysGroup> { data = sysGroup };
+            return new ResponseMessage<SysGroup> { data = sysGroup };
         }
 
         ///<summary>
         /// 根据条件查询系统管理-群组信息表(sys_group)
         ///</summary>
         [HttpPost]
-        public ResponseMessageWrap<IList<SysGroup>> Query([FromBody]QueryRequest reqMsg)
+        public ResponseMessage<IList<SysGroup>> Query([FromBody]QueryRequest reqMsg)
         {
             var list = SysGroupRepository.Query(reqMsg);
-            return new ResponseMessageWrap<IList<SysGroup>> { data = list };
+            return new ResponseMessage<IList<SysGroup>> { data = list };
         }
 
         ///<summary>
         /// 异步根据条件查询系统管理-群组信息表(sys_group)
         ///</summary>
         [HttpPost]
-        public async Task<ResponseMessageWrap<IList<SysGroup>>> QueryAsync([FromBody]QueryRequest reqMsg)
+        public async Task<ResponseMessage<IList<SysGroup>>> QueryAsync([FromBody]QueryRequest reqMsg)
         {
             var list = await SysGroupRepository.QueryAsync(reqMsg);
-            return new ResponseMessageWrap<IList<SysGroup>> { data = list };
+            return new ResponseMessage<IList<SysGroup>> { data = list };
         }
 
         ///<summary>
@@ -162,8 +168,8 @@ namespace DXYK.Admin.API.Controllers
         [HttpPost]
         public ResponseMessageWrap<object> QueryDataByPage([FromBody]QueryByPageRequest reqMsg)
         {
-            var total = SysGroupRepository.QueryDataRecord(reqMsg);
-            var list = SysGroupRepository.QueryDataByPage(reqMsg);
+            var total = SysGroupService.QueryDataRecord(reqMsg);
+            var list = SysGroupService.QueryDataByPage(reqMsg);
             return new ResponseMessageWrap<object> { count = total, data = list };
         }
 
@@ -173,8 +179,8 @@ namespace DXYK.Admin.API.Controllers
         [HttpPost]
         public async Task<ResponseMessageWrap<object>> QueryDataByPageAsync([FromBody]QueryByPageRequest reqMsg)
         {
-            var total = await SysGroupRepository.QueryDataRecordAsync(reqMsg);
-            var list = await SysGroupRepository.QueryDataByPageAsync(reqMsg);
+            var total = await SysGroupService.QueryDataRecordAsync(reqMsg);
+            var list = await SysGroupService.QueryDataByPageAsync(reqMsg);
             return new ResponseMessageWrap<object> { count = total, data = list };
         }
 

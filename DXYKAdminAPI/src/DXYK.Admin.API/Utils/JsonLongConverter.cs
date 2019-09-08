@@ -10,6 +10,7 @@ namespace DXYK.Admin.API.Utils
 {
     /// <summary>
     /// long 类型转为string
+    /// 解决前端加载数据long类型精度丢失的问题
     /// </summary>
     public class JsonLongConverter : JsonConverter
     {
@@ -19,8 +20,18 @@ namespace DXYK.Admin.API.Utils
         public override object ReadJson(JsonReader reader, Type objectType, object existingValue, JsonSerializer serializer)
         {
             JToken jt = JValue.ReadFrom(reader);
-
-            return jt.Value<long>();
+            if (reader.Path.ToLower() == "id")
+            {
+                if (!string.IsNullOrEmpty(reader.Value.ToString()))
+                {
+                    return jt.Value<long>();
+                }
+                else
+                {
+                    return null;
+                }
+            }
+            return reader.Value;
         }
 
         /// <summary>
@@ -38,6 +49,6 @@ namespace DXYK.Admin.API.Utils
         {
             serializer.Serialize(writer, value.ToString());
         }
-        
+
     }
 }

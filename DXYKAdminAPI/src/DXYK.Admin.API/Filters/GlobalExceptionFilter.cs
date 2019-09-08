@@ -52,11 +52,12 @@ namespace DXYK.Admin.API.Filters
             exception.Message);
             int errorCode = 200;
             if (exception is APIException) { errorCode = (exception as APIException).code; }
-            var errorResp = new ResponseMessage
+            var errorResp = new ResponseMessage<object>
             {
                 msg = exception.Message,
                 code = errorCode,
-                success = false
+                success = false,
+                data = null
             };
             var result = new JsonResult(errorResp)
             {

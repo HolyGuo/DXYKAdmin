@@ -4,6 +4,36 @@
         <name>DXYK.Admin.API</name>
     </assembly>
     <members>
+        <member name="T:DXYK.Admin.API.Controllers.LoginController">
+            <summary>
+             系统管理-用户信息表
+            </summary>
+        </member>
+        <member name="P:DXYK.Admin.API.Controllers.LoginController.SysUserService">
+            <summary>
+             系统管理-用户信息表(sys_user) Service
+            </summary>
+        </member>
+        <member name="P:DXYK.Admin.API.Controllers.LoginController.SysUserRepository">
+            <summary>
+             系统管理-用户信息表(sys_user) Repository
+            </summary>
+        </member>
+        <member name="M:DXYK.Admin.API.Controllers.LoginController.#ctor(DXYK.Admin.Service.SysUserService,DXYK.Admin.Repository.ISysUserRepository)">
+            <summary>
+             sys_userController
+            </summary>
+        </member>
+        <member name="M:DXYK.Admin.API.Controllers.LoginController.QueryDataByPage(DXYK.Admin.API.Messages.QueryByPageRequest)">
+            <summary>
+             根据分页查询系统管理-用户信息表(sys_user)
+            </summary>
+        </member>
+        <member name="M:DXYK.Admin.API.Controllers.LoginController.QueryDataByPageAsync(DXYK.Admin.API.Messages.QueryByPageRequest)">
+            <summary>
+             异步根据分页查询系统管理-用户信息表(sys_user)
+            </summary>
+        </member>
         <member name="T:DXYK.Admin.API.Controllers.SysDeptController">
             <summary>
              系统管理-单位信息表
@@ -536,9 +566,29 @@
             数据行
             </summary>
         </member>
-        <member name="T:DXYK.Admin.API.Messages.ResponseMessage">
+        <member name="T:DXYK.Admin.API.Messages.ResponseMessage`1">
             <summary>
             ResponseMessage 返回消息
+            </summary>
+        </member>
+        <member name="P:DXYK.Admin.API.Messages.ResponseMessage`1.success">
+            <summary>
+            是否成功返回，true 返回成功  false 返回失败，默认为true
+            </summary>
+        </member>
+        <member name="P:DXYK.Admin.API.Messages.ResponseMessage`1.code">
+            <summary>
+            状态代码 默认 0
+            </summary>
+        </member>
+        <member name="P:DXYK.Admin.API.Messages.ResponseMessage`1.msg">
+            <summary>
+            消息
+            </summary>
+        </member>
+        <member name="P:DXYK.Admin.API.Messages.ResponseMessage`1.data">
+            <summary>
+            返回主体
             </summary>
         </member>
         <member name="T:DXYK.Admin.API.Messages.ResponseMessageWrap`1">
@@ -604,6 +654,12 @@
             Configuration 应用配置
             </summary>
         </member>
+        <member name="M:DXYK.Admin.API.Startup.ConfigureServices(Microsoft.Extensions.DependencyInjection.IServiceCollection)">
+            <summary>
+            This method gets called by the runtime. Use this method to add services to the container.
+            </summary>
+            <param name="services"></param>
+        </member>
         <member name="M:DXYK.Admin.API.Startup.RegisterRepository(Microsoft.Extensions.DependencyInjection.IServiceCollection)">
             <summary>
             Repository仓储注册
@@ -629,9 +685,23 @@
             Swagger配置
             </summary>
         </member>
+        <member name="T:DXYK.Admin.API.Utils.CommmonUtils">
+            <summary>
+            CommmonUtils工具集合
+            </summary>
+        </member>
+        <member name="M:DXYK.Admin.API.Utils.CommmonUtils.EntityToEntity(System.Object,System.Object,System.String[])">
+            <summary>
+            将一个实体类复制到另一个实体类
+            </summary>
+            <param name="objSrc">源实体类</param>
+            <param name="objDesc">复制到的实体类</param>
+            <param name="ignoreFields">不复制的属性</param>
+        </member>
         <member name="T:DXYK.Admin.API.Utils.JsonLongConverter">
             <summary>
             long 类型转为string
+            解决前端加载数据long类型精度丢失的问题
             </summary>
         </member>
         <member name="M:DXYK.Admin.API.Utils.JsonLongConverter.ReadJson(Newtonsoft.Json.JsonReader,System.Type,System.Object,Newtonsoft.Json.JsonSerializer)">

@@ -1,6 +1,6 @@
 //*******************************
 // Create By Holy Guo
-// Date 2019-09-06 21:34
+// Date 2019-09-08 14:52
 //*******************************
 
 using System;
@@ -32,6 +32,10 @@ namespace DXYK.Admin.Entity
         /// 登录密码
         ///</summary>
         public virtual string login_pwd { get; set; }
+        ///<summary>
+        /// 是否启用
+        ///</summary>
+        public virtual string is_enable { get; set; }
         ///<summary>
         /// 性别
         ///</summary>
