@@ -3,6 +3,7 @@
 // Date 2019-09-06 21:34
 //*******************************
 using DXYK.Admin.API.Filters;
+using DXYK.Admin.Common.Cache;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Mvc;
@@ -16,6 +17,9 @@ using System.Reflection;
 
 namespace DXYK.Admin.API
 {
+    /// <summary>
+    /// Startup
+    /// </summary>
     public class Startup
     {
         ///<summary>
@@ -24,23 +28,33 @@ namespace DXYK.Admin.API
         const string SERVICE_NAME = "DXYK.Admin.API";
 
         ///<summary>
-        ///Startup程序启动
-        ///</summary>
-        public Startup(IConfiguration configuration)
-        {
-            Configuration = configuration;
-        }
-
-        ///<summary>
         ///Configuration 应用配置
         ///</summary>
         public IConfiguration Configuration { get; }
+
+        ///<summary>
+        ///Startup程序启动
+        ///</summary>
+        public Startup(IConfiguration configuration, IHostingEnvironment env)
+        {
+            Configuration = configuration;
+            var builder = new ConfigurationBuilder()
+                .SetBasePath(env.ContentRootPath)
+                .AddJsonFile("appsettings.json", optional: true, reloadOnChange: true);
+            this.Configuration = builder.Build();
+        }
+
         /// <summary>
         /// This method gets called by the runtime. Use this method to add services to the container.
         /// </summary>
         /// <param name="services"></param>
         public void ConfigureServices(IServiceCollection services)
         {
+            services.AddSession(options =>
+            {
+                options.IdleTimeout = TimeSpan.FromMinutes(15);
+                options.Cookie.HttpOnly = true;
+            });
             services.AddMvc(options =>
             {
                 options.Filters.Add<GlobalExceptionFilter>();
@@ -56,6 +70,12 @@ namespace DXYK.Admin.API
                 options.SerializerSettings.Converters.Add(new Utils.JsonLongConverter());
             });
             services.AddCors();
+
+            #region 缓存配置
+            services.AddMemoryCache();
+            services.AddSingleton<ICacheService, MemoryCacheService>();
+            //RedisHelper.Initialization(new CSRedis.CSRedisClient(Configuration["Cache:Configuration"]));
+            #endregion
         }
 
         ///<summary>
@@ -114,7 +134,9 @@ namespace DXYK.Admin.API
             {
                 app.UseDeveloperExceptionPage();
             }
+            //跨域
             app.UseCors(builder => builder.AllowAnyOrigin().AllowAnyMethod().AllowAnyHeader().AllowCredentials());
+            app.UseSession();
             app.UseMvc();
             ConfigureSwagger(app);
         }

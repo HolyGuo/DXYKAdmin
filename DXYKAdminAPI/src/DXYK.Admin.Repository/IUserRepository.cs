@@ -2,15 +2,9 @@
 // Create By Holy Guo
 // Date 2019-09-08 14:52
 //*******************************
-using System;
-using System.Collections.Generic;
-using System.Data;
-using System.Text;
-using System.Threading.Tasks;
-using SmartSql.DyRepository;
-using SmartSql.DyRepository.Annotations;
-using DXYK.Admin.Entity;
 using DXYK.Admin.Entity.Dto;
+using SmartSql.DyRepository.Annotations;
+using System.Threading.Tasks;
 
 namespace DXYK.Admin.Repository
 {
@@ -24,13 +18,13 @@ namespace DXYK.Admin.Repository
         /// 根据用户名密码登录
         ///</summary>
         [Statement(Id = "LoginIn")]
-        UserInfo LoginIn([Param("id")]string loginname,[Param("loginpwd")]string loginpwd);
+        UserInfo LoginIn([Param("loginname")]string loginnamed);
 
-        ///<summary>
+        /////<summary>
         /// 根据用户名密码登录
         ///</summary>
         [Statement(Id = "LoginIn")]
-        Task<UserInfo> LoginInAsync([Param("id")]string loginname, [Param("loginpwd")]string loginpwd);
+        Task<UserInfo> LoginInAsync([Param("loginname")]string loginname);
         
     }
 }

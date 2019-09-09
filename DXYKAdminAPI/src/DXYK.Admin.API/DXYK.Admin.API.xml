@@ -384,7 +384,7 @@
              sys_userController
             </summary>
         </member>
-        <member name="M:DXYK.Admin.API.Controllers.UserController.LoginIn(DXYK.Admin.Entity.Dto.UserLoginDto)">
+        <member name="M:DXYK.Admin.API.Controllers.UserController.LoginIn(DXYK.Admin.Entity.Dto.UserLoginDto,System.String)">
             <summary>
              用户名、密码登录
             </summary>
@@ -393,6 +393,12 @@
             <summary>
              用户名、密码登录
             </summary>
+        </member>
+        <member name="M:DXYK.Admin.API.Controllers.UserController.GetCaptchaImage">
+            <summary>
+            验证码图片
+            </summary>
+            <returns></returns>
         </member>
         <member name="T:DXYK.Admin.API.Exceptions.APIException">
             <summary>
@@ -500,6 +506,79 @@
             </summary>
             <param name="context"></param>
         </member>
+        <member name="T:DXYK.Admin.API.Messages.ApiStatusEnum">
+            <summary>
+            Api返回状态类型
+            </summary>
+        </member>
+        <member name="F:DXYK.Admin.API.Messages.ApiStatusEnum.Status">
+            <summary>
+            请求(或处理)成功
+            </summary>
+        </member>
+        <member name="F:DXYK.Admin.API.Messages.ApiStatusEnum.Error">
+            <summary>
+            内部请求出错
+            </summary>
+        </member>
+        <member name="F:DXYK.Admin.API.Messages.ApiStatusEnum.Unauthorized">
+            <summary>
+            未授权标识
+            </summary>
+        </member>
+        <member name="F:DXYK.Admin.API.Messages.ApiStatusEnum.ParameterError">
+            <summary>
+            请求参数不完整或不正确
+            </summary>
+        </member>
+        <member name="F:DXYK.Admin.API.Messages.ApiStatusEnum.TokenInvalid">
+            <summary>
+            请求TOKEN失效
+            </summary>
+        </member>
+        <member name="F:DXYK.Admin.API.Messages.ApiStatusEnum.HttpMehtodError">
+            <summary>
+            HTTP请求类型不合法
+            </summary>
+        </member>
+        <member name="F:DXYK.Admin.API.Messages.ApiStatusEnum.HttpRequestError">
+            <summary>
+            HTTP请求不合法,请求参数可能被篡改
+            </summary>
+        </member>
+        <member name="F:DXYK.Admin.API.Messages.ApiStatusEnum.URLExpireError">
+            <summary>
+            该URL已经失效
+            </summary>
+        </member>
+        <member name="T:DXYK.Admin.API.Messages.EnumExtension">
+            <summary>
+            枚举扩展属性
+            </summary>
+        </member>
+        <member name="M:DXYK.Admin.API.Messages.EnumExtension.GetEnumText(System.Enum)">
+            <summary>
+            获得枚举提示文本
+            </summary>
+            <param name="en"></param>
+            <returns></returns>
+        </member>
+        <member name="T:DXYK.Admin.API.Messages.TextAttribute">
+            <summary>
+            Text属性扩展
+            </summary>
+        </member>
+        <member name="M:DXYK.Admin.API.Messages.TextAttribute.#ctor(System.String)">
+            <summary>
+            TextAttribute
+            </summary>
+            <param name="value"></param>
+        </member>
+        <member name="P:DXYK.Admin.API.Messages.TextAttribute.Value">
+            <summary>
+            Text对应的值
+            </summary>
+        </member>
         <member name="T:DXYK.Admin.API.Messages.QueryByPageRequest">
             <summary>
             QueryByPageRequest
@@ -561,6 +640,12 @@
             单页行数
             </summary>
         </member>
+        <member name="T:DXYK.Admin.API.Messages.QueryResponse`1">
+            <summary>
+            QueryResponse
+            </summary>
+            <typeparam name="TItem"></typeparam>
+        </member>
         <member name="P:DXYK.Admin.API.Messages.QueryResponse`1.data">
             <summary>
             数据行
@@ -578,7 +663,12 @@
         </member>
         <member name="P:DXYK.Admin.API.Messages.ResponseMessage`1.code">
             <summary>
-            状态代码 默认 0
+            数据返回状态 0 为成功
+            </summary>
+        </member>
+        <member name="P:DXYK.Admin.API.Messages.ResponseMessage`1.status">
+            <summary>
+            响应状态
             </summary>
         </member>
         <member name="P:DXYK.Admin.API.Messages.ResponseMessage`1.msg">
@@ -603,7 +693,12 @@
         </member>
         <member name="P:DXYK.Admin.API.Messages.ResponseMessageWrap`1.code">
             <summary>
-            状态代码 默认 0
+            数据返回状态 0 为成功
+            </summary>
+        </member>
+        <member name="P:DXYK.Admin.API.Messages.ResponseMessageWrap`1.status">
+            <summary>
+            响应状态
             </summary>
         </member>
         <member name="P:DXYK.Admin.API.Messages.ResponseMessageWrap`1.msg">
@@ -639,19 +734,24 @@
             <param name="args">args</param>
             <returns></returns>
         </member>
+        <member name="T:DXYK.Admin.API.Startup">
+            <summary>
+            Startup
+            </summary>
+        </member>
         <member name="F:DXYK.Admin.API.Startup.SERVICE_NAME">
             <summary>
             服务名称
             </summary>
         </member>
-        <member name="M:DXYK.Admin.API.Startup.#ctor(Microsoft.Extensions.Configuration.IConfiguration)">
-            <summary>
-            Startup程序启动
-            </summary>
-        </member>
         <member name="P:DXYK.Admin.API.Startup.Configuration">
             <summary>
             Configuration 应用配置
+            </summary>
+        </member>
+        <member name="M:DXYK.Admin.API.Startup.#ctor(Microsoft.Extensions.Configuration.IConfiguration,Microsoft.AspNetCore.Hosting.IHostingEnvironment)">
+            <summary>
+            Startup程序启动
             </summary>
         </member>
         <member name="M:DXYK.Admin.API.Startup.ConfigureServices(Microsoft.Extensions.DependencyInjection.IServiceCollection)">
@@ -683,6 +783,62 @@
         <member name="M:DXYK.Admin.API.Startup.ConfigureSwagger(Microsoft.AspNetCore.Builder.IApplicationBuilder)">
             <summary>
             Swagger配置
+            </summary>
+        </member>
+        <member name="T:DXYK.Admin.API.Utils.CaptchaHelper">
+            <summary>
+            验证码
+            </summary>
+        </member>
+        <member name="P:DXYK.Admin.API.Utils.CaptchaHelper.Letters">
+            <summary>
+            Letters
+            </summary>
+        </member>
+        <member name="P:DXYK.Admin.API.Utils.CaptchaHelper.CodeLength">
+            <summary>
+            CodeLength
+            </summary>
+        </member>
+        <member name="M:DXYK.Admin.API.Utils.CaptchaHelper.GenerateCaptchaCode">
+            <summary>
+            生成验证码
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:DXYK.Admin.API.Utils.CaptchaHelper.GetImage(System.Int32,System.Int32,System.String,System.Boolean)">
+            <summary>
+            获取图片
+            </summary>
+            <param name="width"></param>
+            <param name="height"></param>
+            <param name="captchaCode"></param>
+            <param name="drawBezier"></param>
+            <returns></returns>
+        </member>
+        <member name="T:DXYK.Admin.API.Utils.CaptchaResult">
+            <summary>
+            CaptchaResult
+            </summary>
+        </member>
+        <member name="P:DXYK.Admin.API.Utils.CaptchaResult.CaptchaCode">
+            <summary>
+            CaptchaCode
+            </summary>
+        </member>
+        <member name="P:DXYK.Admin.API.Utils.CaptchaResult.CaptchaByteData">
+            <summary>
+            CaptchaByteData
+            </summary>
+        </member>
+        <member name="P:DXYK.Admin.API.Utils.CaptchaResult.CaptchBase64Data">
+            <summary>
+            CaptchBase64Data
+            </summary>
+        </member>
+        <member name="P:DXYK.Admin.API.Utils.CaptchaResult.Timestamp">
+            <summary>
+            Timestamp
             </summary>
         </member>
         <member name="T:DXYK.Admin.API.Utils.CommmonUtils">

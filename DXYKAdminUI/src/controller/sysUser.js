@@ -63,7 +63,7 @@ layui.define(function (exports) {
                 //监听提交
                 form.on('submit(LAY-user-front-submit)', function (editData) {
                   var field = editData.field; //获取提交的字段
-                  com.ajax(apiUri + '/api/SysUser/Update', 'put', true, field, function (res) {
+                  com.ajax(layui.setter.apiUri + '/api/SysUser/Update', 'put', true, field, function (res) {
                     if (res.success === true) {
                       layer.msg('编辑成功！', {
                         icon: 1,

@@ -37,6 +37,10 @@ namespace DXYK.Admin.Entity.Dto
         ///</summary>
         public virtual string login_name { get; set; }
         ///<summary>
+        /// 登录密码
+        ///</summary>
+        public virtual string login_pwd { get; set; }
+        ///<summary>
         /// 性别
         ///</summary>
         public virtual string sex { get; set; }
@@ -52,6 +56,19 @@ namespace DXYK.Admin.Entity.Dto
         /// 创建时间
         ///</summary>
         public virtual DateTime? created_time { get; set; }
+        ///<summary>
+        /// 角色Id
+        ///</summary>
+        public virtual long? role_id { get; set; }
+        ///<summary>
+        /// 部门Id
+        ///</summary>
+        public virtual long? dept_id { get; set; }
+
+        ///<summary>
+        /// 最近一次登录时间
+        ///</summary>
+        public virtual DateTime? last_login_time { get; set; }
     }
 
     public class UserLoginDto
@@ -68,6 +85,13 @@ namespace DXYK.Admin.Entity.Dto
         /// 应用系统id
         /// </summary>
         public string appid { get; set; }
+        /// <summary>
+        /// 验证码
+        /// </summary>
+        public string vercode { get; set; }
+
+
+        
     }
 
     public class UserLoginConfigDto

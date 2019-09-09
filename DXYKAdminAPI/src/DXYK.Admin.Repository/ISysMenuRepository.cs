@@ -2,14 +2,11 @@
 // Create By Holy Guo
 // Date 2019-09-08 14:52
 //*******************************
-using System;
-using System.Collections.Generic;
-using System.Data;
-using System.Text;
-using System.Threading.Tasks;
+using DXYK.Admin.Entity;
 using SmartSql.DyRepository;
 using SmartSql.DyRepository.Annotations;
-using DXYK.Admin.Entity;
+using System.Collections.Generic;
+using System.Threading.Tasks;
 
 namespace DXYK.Admin.Repository
 {

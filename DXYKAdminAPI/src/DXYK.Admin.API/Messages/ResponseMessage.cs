@@ -1,12 +1,9 @@
-//*******************************
+//********
+//***********************
 // Create By Holy Guo
 // Date 2019-09-06 21:34
 //*******************************
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using System.ComponentModel.DataAnnotations;
 
 namespace DXYK.Admin.API.Messages
 {
@@ -21,14 +18,19 @@ namespace DXYK.Admin.API.Messages
         public bool success { get; set; }
 
         /// <summary>
-        /// 状态代码 默认 0
+        /// 数据返回状态 0 为成功
         /// </summary>
         public int code { get; set; } = 0;
 
         /// <summary>
+        /// 响应状态
+        /// </summary>
+        public int status { get; set; }
+
+        /// <summary>
         /// 消息
         /// </summary>
-        public String msg { get; set; }
+        public string msg { get; set; }
 
         /// <summary>
         /// 返回主体
@@ -47,14 +49,18 @@ namespace DXYK.Admin.API.Messages
         public bool success { get; set; } = true;
 
         /// <summary>
-        /// 状态代码 默认 0
+        /// 数据返回状态 0 为成功
         /// </summary>
         public int code { get; set; } = 0;
 
         /// <summary>
+        /// 响应状态
+        /// </summary>
+        public int status { get; set; }
+        /// <summary>
         /// 消息
         /// </summary>
-        public String msg { get; set; } = "Ok";
+        public string msg { get; set; } = "Ok";
 
         /// <summary>
         /// 消息

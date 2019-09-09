@@ -2,13 +2,9 @@
 // Create By Holy Guo
 // Date 2019-09-08 14:52
 //*******************************
-using System;
-using System.Linq;
-using System.Threading.Tasks;
-using System.Collections.Generic;
-using DXYK.Admin.Entity;
-using DXYK.Admin.Repository;
 using DXYK.Admin.Entity.Dto;
+using DXYK.Admin.Repository;
+using System.Threading.Tasks;
 
 namespace DXYK.Admin.Service
 {
@@ -37,9 +33,9 @@ namespace DXYK.Admin.Service
         /// <param name="loginname">用户名</param>
         /// <param name="loginpwd">密码</param>
         /// <returns></returns>
-        public UserInfo LoginIn(string loginname, string loginpwd)
+        public UserInfo LoginIn(string loginname)
         {
-            return _userRepository.LoginIn(loginname, loginpwd);
+            return _userRepository.LoginIn(loginname);
         }
 
         /// <summary>
@@ -48,9 +44,9 @@ namespace DXYK.Admin.Service
         /// <param name="loginname">用户名</param>
         /// <param name="loginpwd">密码</param>
         /// <returns></returns>
-        public async Task<UserInfo> LoginInAsync(string loginname, string loginpwd)
+        public async Task<UserInfo> LoginInAsync(string loginname)
         {
-            return await _userRepository.LoginInAsync(loginname, loginpwd);
+            return await _userRepository.LoginInAsync(loginname);
         }
 
 

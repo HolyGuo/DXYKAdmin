@@ -2,15 +2,9 @@
 // Create By Holy Guo
 // Date 2019-09-06 21:34
 //*******************************
-using System;
-using System.Collections.Generic;
-using System.IO;
-using System.Linq;
-using System.Threading.Tasks;
 using Microsoft.AspNetCore;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
-using Microsoft.Extensions.Logging;
 
 namespace DXYK.Admin.API
 {

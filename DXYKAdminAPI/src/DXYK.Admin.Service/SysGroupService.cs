@@ -2,12 +2,10 @@
 // Create By Holy Guo
 // Date 2019-09-08 14:52
 //*******************************
-using System;
-using System.Linq;
-using System.Threading.Tasks;
-using System.Collections.Generic;
 using DXYK.Admin.Entity;
 using DXYK.Admin.Repository;
+using System.Collections.Generic;
+using System.Threading.Tasks;
 
 namespace DXYK.Admin.Service
 {

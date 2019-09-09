@@ -96,6 +96,12 @@
               "chnname": "部门Id"
             },
             {
+              "name": "last_login_time",
+              "type": "DateTime",
+              "remark": "",
+              "chnname": "最近一次登录时间"
+            },
+            {
               "name": "wx_openid",
               "type": "ShortString",
               "remark": "",
@@ -693,6 +699,140 @@
           ],
           "chnname": "菜单信息表",
           "remark": "系统管理-菜单信息表"
+        },
+        {
+          "title": "sys_log",
+          "fields": [
+            {
+              "name": "id",
+              "type": "BigInt",
+              "remark": "",
+              "chnname": "唯一标识",
+              "pk": true,
+              "notNull": true
+            },
+            {
+              "name": "app",
+              "type": "VARCHAR_50",
+              "remark": "",
+              "chnname": "应用"
+            },
+            {
+              "name": "logged",
+              "type": "DateTime",
+              "remark": "",
+              "chnname": "日志时间"
+            },
+            {
+              "name": "level",
+              "type": "VARCHAR_10",
+              "remark": "",
+              "chnname": "日志级别"
+            },
+            {
+              "name": "msg",
+              "type": "LongText",
+              "remark": "",
+              "chnname": "日志内容"
+            },
+            {
+              "name": "status",
+              "type": "VARCHAR_50",
+              "remark": "",
+              "chnname": "状态"
+            },
+            {
+              "name": "call_url",
+              "type": "MiddleString",
+              "remark": "",
+              "chnname": "请求地址"
+            },
+            {
+              "name": "exception",
+              "type": "DefaultString",
+              "remark": "",
+              "chnname": "异常"
+            },
+            {
+              "name": "ip",
+              "type": "VARCHAR_50",
+              "remark": "",
+              "chnname": "IP"
+            },
+            {
+              "name": "user_id",
+              "type": "BigInt",
+              "remark": "",
+              "chnname": "用户ID"
+            },
+            {
+              "name": "login_name",
+              "type": "ShortString",
+              "remark": "",
+              "chnname": "登录账号"
+            },
+            {
+              "name": "true_name",
+              "type": "ShortString",
+              "remark": "",
+              "chnname": "姓名"
+            },
+            {
+              "name": "browser",
+              "type": "ShortString",
+              "remark": "",
+              "chnname": "浏览器"
+            }
+          ],
+          "indexs": [],
+          "headers": [
+            {
+              "fieldName": "chnname",
+              "relationNoShow": false
+            },
+            {
+              "fieldName": "name",
+              "relationNoShow": false
+            },
+            {
+              "fieldName": "type",
+              "relationNoShow": false
+            },
+            {
+              "fieldName": "dataType",
+              "relationNoShow": true
+            },
+            {
+              "fieldName": "remark",
+              "relationNoShow": true
+            },
+            {
+              "fieldName": "pk",
+              "relationNoShow": false
+            },
+            {
+              "fieldName": "notNull",
+              "relationNoShow": true
+            },
+            {
+              "fieldName": "autoIncrement",
+              "relationNoShow": true
+            },
+            {
+              "fieldName": "defaultValue",
+              "relationNoShow": true
+            },
+            {
+              "fieldName": "relationNoShow",
+              "relationNoShow": true
+            },
+            {
+              "fieldName": "uiHint",
+              "relationNoShow": true
+            }
+          ],
+          "chnname": "系统日志表",
+          "remark": "系统管理-系统日志表"
         }
       ],
       "graphCanvas": {
