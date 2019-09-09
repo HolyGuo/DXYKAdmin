@@ -2,27 +2,24 @@
 // Create By Holy Guo
 // Date 2019-09-06 21:34
 //*******************************
-using System;
-using System.Collections;
-using System.Collections.Generic;
-using Microsoft.AspNetCore.Mvc;
-using DXYK.Admin.Entity;
+using DXYK.Admin.API.Messages;
+using DXYK.Admin.API.Utils;
+using DXYK.Admin.Common;
+using DXYK.Admin.Common.Cache;
+using DXYK.Admin.Common.ConfigHelper;
+using DXYK.Admin.Entity.Dto;
+using DXYK.Admin.Extensions.JWT;
 using DXYK.Admin.Repository;
 using DXYK.Admin.Service;
-using DXYK.Admin.API.Messages;
-using System.Threading.Tasks;
-using DXYK.Admin.Entity.Dto;
-using System.Security.Claims;
-using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Authentication;
-using DXYK.Admin.Common.Cache;
-using DXYK.Admin.Common.CryptographyHelper;
-using DXYK.Admin.Common.ConfigHelper;
-using DXYK.Admin.Common;
-using DXYK.Admin.Extensions.JWT;
-using DXYK.Admin.API.Utils;
+using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Mvc;
+using System;
+using System.Collections.Generic;
 using System.IO;
+using System.Security.Claims;
+using System.Threading.Tasks;
 
 namespace DXYK.Admin.API.Controllers
 {
@@ -57,16 +54,15 @@ namespace DXYK.Admin.API.Controllers
         /// 用户名、密码登录
         ///</summary>
         [HttpPost]
-        public ResponseMessage<string> LoginIn([FromBody]UserLoginDto reqLogin, string t)
+        public ResponseMessage<string> LoginIn([FromBody]UserLoginDto reqLogin)
         {
             var access_token = "";
-            ResponseMessage<string> resp = new ResponseMessage<string>() { status = (int)ApiStatusEnum.Error };
+            ResponseMessage<string> resp = new ResponseMessage<string>() { success = false, status = (int)ApiStatusEnum.Error };
             try
             {
                 if (!ValidateCaptchaCode(reqLogin.vercode))
                 {
-                    //resp.status = ResultCodeAddMsgKeys.SignInCaptchaCodeErrorCode;
-                    MemoryCacheService.Default.RemoveCache(CaptchaCodeSessionName);
+                    //MemoryCacheService.Default.RemoveCache(CaptchaCodeSessionName);
                     resp.msg = "验证码输入错误";
                     return resp;
                 }
@@ -147,11 +143,11 @@ namespace DXYK.Admin.API.Controllers
                  new ClaimsIdentity(new[]
                      {
                               new Claim(ClaimTypes.Sid,user.id.ToString()),
-                              new Claim(ClaimTypes.Role,user.role_id.ToString()),
-                              new Claim(ClaimTypes.Thumbprint,user.head_pic),
+                              new Claim(ClaimTypes.Role,user.login_name.ToString()),
+                              new Claim(ClaimTypes.Thumbprint,user.login_name),
                               new Claim(ClaimTypes.Name,user.true_name),
                               new Claim(ClaimTypes.WindowsAccountName,user.login_name),
-                              new Claim(ClaimTypes.UserData,user.last_login_time.ToString())
+                              new Claim(ClaimTypes.UserData,user.login_name.ToString())
                      }, CookieAuthenticationDefaults.AuthenticationScheme)
                 );
                 //如果保存用户类型是Session，则默认设置cookie退出浏览器 清空
@@ -175,7 +171,7 @@ namespace DXYK.Admin.API.Controllers
                 }
                 //把权限存到缓存里
                 var menuSaveType = ConfigExtensions.Configuration[AppSettingKeyHelper.LOGINAUTHORIZE];
-                List<MenuDto> menu = new List<MenuDto>();
+                List<MenuDto> menu = new List<MenuDto>() { new MenuDto() { title = "title" } };
                 if (menuSaveType == "Redis")
                 {
                     RedisHelper.Set(AppSettingKeyHelper.ADMINMENU + "_" + user.id, menu);
@@ -235,6 +231,7 @@ namespace DXYK.Admin.API.Controllers
                 #endregion
             }
             resp.status = (int)ApiStatusEnum.Status;
+            resp.success = true;
             resp.data = access_token;
             return resp;
         }

@@ -1,6 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
+﻿using DXYK.Admin.Common.ConfigHelper;
+using System;
 
 namespace DXYK.Admin.Extensions.JWT.Config
 {
@@ -13,13 +12,13 @@ namespace DXYK.Admin.Extensions.JWT.Config
         {
             try
             {
-                JWTSecretKey = Configuration["JwtAuth:SecurityKey"];
-                WebExp = double.Parse(Configuration["JwtAuth:WebExp"]);
-                AppExp = double.Parse(Configuration["JwtAuth:AppExp"]);
-                WxExp = double.Parse(Configuration["JwtAuth:WxExp"]);
-                OtherExp = double.Parse(Configuration["JwtAuth:OtherExp"]);
-                Issuer = Configuration["JwtAuth:Issuer"];
-                Audience = Configuration["JwtAuth:Audience"];
+                JWTSecretKey = ConfigExtensions.Configuration["JwtAuth:SecurityKey"];
+                WebExp = double.Parse(ConfigExtensions.Configuration["JwtAuth:WebExp"]);
+                AppExp = double.Parse(ConfigExtensions.Configuration["JwtAuth:AppExp"]);
+                WxExp = double.Parse(ConfigExtensions.Configuration["JwtAuth:WxExp"]);
+                OtherExp = double.Parse(ConfigExtensions.Configuration["JwtAuth:OtherExp"]);
+                Issuer = ConfigExtensions.Configuration["JwtAuth:Issuer"];
+                Audience = ConfigExtensions.Configuration["JwtAuth:Audience"];
             }
             catch (Exception e)
             {

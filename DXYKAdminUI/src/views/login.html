@@ -90,58 +90,40 @@
     form.render();
     var vercodeUrl = layui.setter.apiUri + "/api/User/GetCaptchaImage?t=";
     //更换图形验证码
-    // $body.on('click', '#LAY-user-get-vercode', function () {
-    //   var othis = $(this);
-    //   this.src = vercodeUrl + new Date().getTime()
-    // });
     vercodeUrl = vercodeUrl + new Date().getTime();
     $("#LAY-user-get-vercode").attr("src", vercodeUrl);
     //点击图片  更换图形验证码
-    $("#LAY-user-get-vercode").click(function(){
+    $("#LAY-user-get-vercode").click(function () {
       var src = vercodeUrl + new Date().getTime()
       $("#LAY-user-get-vercode").attr("src", src);
     });
     //提交
     form.on('submit(LAY-user-login-submit)', function (obj) {
-      debugger;
       //请求登入接口
       com.ajax(layui.setter.apiUri + '/api/User/LoginIn', 'post', true, obj.field, function (res) {
+        debugger;
         if (res.success === true && res.data != null) {
           layui.data(setter.tableName, {
             key: setter.request.tokenName
             , value: res.data//access_token
           });
-          location.hash = search.redirect ? decodeURIComponent(search.redirect) : '/';
+          layer.msg('登入成功', {
+            offset: '15px'
+            , icon: 1
+            , time: 1000
+          }, function () {
+            location.hash = search.redirect ? decodeURIComponent(search.redirect) : '/';
+          });
         } else {
           layer.msg(res.msg, {
             offset: '15px',
             icon: 2,
             time: 2000 //2秒关闭（如果不配置，默认是3秒）
+          }, function () {
+            $("#LAY-user-get-vercode").click();
           });
         }
       });
-      //ajax end
-      // admin.req({
-      //   type: "post",
-      //   url: layui.setter.apiUri + '/api/User/LoginIn' //实际使用请改成服务端真实接口
-      //   , data: obj.field
-      //   , done: function (res) {
-      //     debugger;
-      //     //请求成功后，写入 access_token
-      //     layui.data(setter.tableName, {
-      //       key: setter.request.tokenName
-      //       , value: res.data.access_token
-      //     });
-      //     //登入成功的提示与跳转
-      //     layer.msg('登入成功', {
-      //       offset: '15px'
-      //       , icon: 1
-      //       , time: 1000
-      //     }, function () {
-      //       location.hash = search.redirect ? decodeURIComponent(search.redirect) : '/';
-      //     });
-      //   }
-      // });
 
     });
 

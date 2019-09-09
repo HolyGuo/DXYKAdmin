@@ -384,7 +384,7 @@
              sys_userController
             </summary>
         </member>
-        <member name="M:DXYK.Admin.API.Controllers.UserController.LoginIn(DXYK.Admin.Entity.Dto.UserLoginDto,System.String)">
+        <member name="M:DXYK.Admin.API.Controllers.UserController.LoginIn(DXYK.Admin.Entity.Dto.UserLoginDto)">
             <summary>
              用户名、密码登录
             </summary>
