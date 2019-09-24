@@ -2,12 +2,12 @@
 // Create By Holy Guo
 // Date 2019-09-06 21:34
 //*******************************
+using DXYK.Admin.API.Messages;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Filters;
 using Microsoft.Extensions.Logging;
 using Newtonsoft.Json;
-using DXYK.Admin.API.Messages;
 using System.Linq;
 using System.Text;
 
@@ -67,7 +67,7 @@ namespace DXYK.Admin.API.Filters
 
                 var resp = new ResponseMessage<object>
                 {
-                    code = 1002,
+                    code = 106,
                     msg = errStr.ToString().TrimEnd('|'),
                     success = false,
                     data = null
@@ -77,6 +77,7 @@ namespace DXYK.Admin.API.Filters
                 context.Result = result;
             }
         }
+
     }
 }
 

@@ -1,6 +1,6 @@
 //*******************************
 // Create By Holy Guo
-// Date 2019-09-08 14:52
+// Date 2019-09-12 18:29
 //*******************************
 
 using System;
@@ -8,7 +8,7 @@ namespace DXYK.Admin.Entity
 {
 
     ///<summary>
-    /// 系统管理-用户信息表
+    /// 用户信息表
     ///</summary>
     public class SysUser
     {
@@ -33,9 +33,13 @@ namespace DXYK.Admin.Entity
         ///</summary>
         public virtual string login_pwd { get; set; }
         ///<summary>
-        /// 是否启用
+        /// 状态
         ///</summary>
         public virtual string is_enable { get; set; }
+        ///<summary>
+        /// 人员类型
+        ///</summary>
+        public virtual string user_type { get; set; }
         ///<summary>
         /// 性别
         ///</summary>
@@ -61,13 +65,13 @@ namespace DXYK.Admin.Entity
         ///</summary>
         public virtual string summary { get; set; }
         ///<summary>
-        /// 角色Id
+        /// 组织机构Id
         ///</summary>
-        public virtual long? role_id { get; set; }
+        public virtual long? org_id { get; set; }
         ///<summary>
-        /// 部门Id
+        /// 最近一次登录时间
         ///</summary>
-        public virtual long? dept_id { get; set; }
+        public virtual DateTime? last_login_time { get; set; }
         ///<summary>
         /// 微信OpenId/UnionId
         ///</summary>

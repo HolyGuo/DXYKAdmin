@@ -2,7 +2,7 @@
 <!--
 //*******************************
 // Create By Holy Guo
-// Date 2019-09-08 14:52
+// Date 2019-09-12 15:48
 //*******************************-->
 
 <SmartSqlMap Scope="SysGroup" xmlns="http://SmartSql.net/schemas/SmartSqlMap.xsd">
@@ -10,7 +10,7 @@
   <Statements>
 
     <Statement Id="AllCols">
-      T.id,T.group_name,T.group_short_name,T.logo_pic,T.contact_user_name,T.contact_user_mobile,T.sort,T.group_id,T.re_vision,T.created_by,T.created_time,T.updated_by,T.updated_time,T.deleted_by,T.deleted_time
+      T.id,T.group_name,T.group_short_name,T.logo_pic,T.contact_user_name,T.contact_user_mobile,T.is_enable,T.sort,T.re_vision,T.created_by,T.created_time,T.updated_by,T.updated_time,T.deleted_by,T.deleted_time
     </Statement>
     <Statement Id="QueryParams">
       <Where>
@@ -32,11 +32,11 @@
         <IsNotEmpty Prepend="And" Property="contact_user_mobile">
           T.contact_user_mobile = @contact_user_mobile
         </IsNotEmpty>
+        <IsNotEmpty Prepend="And" Property="is_enable">
+          T.is_enable = @is_enable
+        </IsNotEmpty>
         <IsNotEmpty Prepend="And" Property="sort">
           T.sort = @sort
-        </IsNotEmpty>
-        <IsNotEmpty Prepend="And" Property="group_id">
-          T.group_id = @group_id
         </IsNotEmpty>
         <IsNotEmpty Prepend="And" Property="re_vision">
           T.re_vision = @re_vision
@@ -73,8 +73,8 @@
       logo_pic,
       contact_user_name,
       contact_user_mobile,
+      is_enable,
       sort,
-      group_id,
       re_vision,
       created_by,
       created_time,
@@ -91,8 +91,8 @@
       @logo_pic,
       @contact_user_name,
       @contact_user_mobile,
+      @is_enable,
       @sort,
-      @group_id,
       @re_vision,
       @created_by,
       @created_time,
@@ -127,11 +127,11 @@
         <IsProperty Prepend="," Property="contact_user_mobile">
           contact_user_mobile = @contact_user_mobile
         </IsProperty>
+        <IsProperty Prepend="," Property="is_enable">
+          is_enable = @is_enable
+        </IsProperty>
         <IsProperty Prepend="," Property="sort">
           sort = @sort
-        </IsProperty>
-        <IsProperty Prepend="," Property="group_id">
-          group_id = @group_id
         </IsProperty>
         <IsProperty Prepend="," Property="re_vision">
           re_vision = @re_vision
@@ -221,11 +221,11 @@
         <IsNotEmpty Prepend="And" Property="contact_user_mobile">
           T.contact_user_mobile= @contact_user_mobile
         </IsNotEmpty>
+        <IsNotEmpty Prepend="And" Property="is_enable">
+          T.is_enable= @is_enable
+        </IsNotEmpty>
         <IsNotEmpty Prepend="And" Property="sort">
           T.sort= @sort
-        </IsNotEmpty>
-        <IsNotEmpty Prepend="And" Property="group_id">
-          T.group_id= @group_id
         </IsNotEmpty>
         <IsNotEmpty Prepend="And" Property="re_vision">
           T.re_vision= @re_vision
@@ -282,11 +282,11 @@
         <IsNotEmpty Prepend="And" Property="contact_user_mobile">
           T.contact_user_mobile = @contact_user_mobile
         </IsNotEmpty>
+        <IsNotEmpty Prepend="And" Property="is_enable">
+          T.is_enable = @is_enable
+        </IsNotEmpty>
         <IsNotEmpty Prepend="And" Property="sort">
           T.sort = @sort
-        </IsNotEmpty>
-        <IsNotEmpty Prepend="And" Property="group_id">
-          T.group_id = @group_id
         </IsNotEmpty>
         <IsNotEmpty Prepend="And" Property="re_vision">
           T.re_vision = @re_vision

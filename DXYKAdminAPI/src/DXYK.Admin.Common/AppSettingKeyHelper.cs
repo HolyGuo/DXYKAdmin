@@ -17,7 +17,7 @@ namespace DXYK.Admin.Common
         /// <summary>
         /// 管理菜单
         /// </summary>
-        public static string ADMINMENU = "ADMINMENU";
+        public static string ADMINMENUACTION = "DXYKAdminMenuAction";
 
         /// <summary>
         /// Redis连接对象

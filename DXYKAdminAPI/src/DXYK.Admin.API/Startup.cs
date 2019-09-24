@@ -132,7 +132,7 @@ namespace DXYK.Admin.API
             });
             services.AddCors();
 
-            
+
         }
 
         ///<summary>

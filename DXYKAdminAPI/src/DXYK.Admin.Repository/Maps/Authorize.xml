@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!--
+//*******************************
+// Create By Holy Guo
+// Date 2019-09-08 14:52
+//*******************************-->
+
+<SmartSqlMap Scope="Authorize" xmlns="http://SmartSql.net/schemas/SmartSqlMap.xsd">
+  <Statements>
+    <!--返回列-->
+    <Statement Id="AllCols">
+      T.id,T.true_name,T.nick_name,T.login_name,T.login_pwd,T.sex,T.head_pic,T.org_id,T.last_login_time,T.group_id,T.created_time,T.updated_by,T.updated_time
+    </Statement>
+    
+    <!--登录验证-->
+    <Statement Id="LoginIn">
+      SELECT 
+      <Include RefId="AllCols" />
+      From sys_user T
+      <Where Min="1">
+        <IsNotEmpty Prepend="AND" Property="loginname">
+          T.login_name = @loginname 
+        </IsNotEmpty>
+      </Where>
+      Limit 1
+    </Statement>
+    
+
+  </Statements>
+</SmartSqlMap>

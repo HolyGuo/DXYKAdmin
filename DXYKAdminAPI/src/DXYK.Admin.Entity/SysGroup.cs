@@ -1,6 +1,6 @@
 //*******************************
 // Create By Holy Guo
-// Date 2019-09-08 14:52
+// Date 2019-09-12 15:48
 //*******************************
 
 using System;
@@ -8,7 +8,7 @@ namespace DXYK.Admin.Entity
 {
 
     ///<summary>
-    /// 系统管理-群组信息表
+    /// 群组信息表
     ///</summary>
     public class SysGroup
     {
@@ -37,13 +37,13 @@ namespace DXYK.Admin.Entity
         ///</summary>
         public virtual string contact_user_mobile { get; set; }
         ///<summary>
+        /// 状态
+        ///</summary>
+        public virtual string is_enable { get; set; }
+        ///<summary>
         /// 排序
         ///</summary>
         public virtual int? sort { get; set; }
-        ///<summary>
-        /// 公司Id
-        ///</summary>
-        public virtual long? group_id { get; set; }
         ///<summary>
         /// 乐观锁
         ///</summary>

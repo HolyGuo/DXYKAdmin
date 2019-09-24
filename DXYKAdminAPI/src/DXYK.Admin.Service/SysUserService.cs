@@ -1,16 +1,18 @@
 //*******************************
 // Create By Holy Guo
-// Date 2019-09-08 14:52
+// Date 2019-09-12 15:48
 //*******************************
+using System;
+using System.Linq;
+using System.Threading.Tasks;
+using System.Collections.Generic;
 using DXYK.Admin.Entity;
 using DXYK.Admin.Repository;
-using System.Collections.Generic;
-using System.Threading.Tasks;
 
 namespace DXYK.Admin.Service
 {
     ///<summary>
-    /// 系统管理-用户信息表
+    /// 用户信息表
     ///</summary>
     public class SysUserService
     {

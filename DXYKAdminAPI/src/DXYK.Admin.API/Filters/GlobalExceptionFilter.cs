@@ -46,17 +46,22 @@ namespace DXYK.Admin.API.Filters
         {
             context.ExceptionHandled = true;
             var exception = context.Exception;
+            //–¥»’÷æ
             logger.LogError(
-            new EventId(exception.HResult),
-            exception,
-            exception.Message);
-            int errorCode = 1001;
-            if (exception is APIException) { errorCode = (exception as APIException).code; }
+                new EventId(exception.HResult),
+                exception,
+                exception.Message
+            );
+            int errorCode = 1;
+            if (exception is APIException)
+            {
+                errorCode = (exception as APIException).code;
+            }
             var errorResp = new ResponseMessage<object>
             {
+                success = false,
                 msg = exception.Message,
                 code = errorCode,
-                success = false,
                 data = null
             };
             var result = new JsonResult(errorResp)

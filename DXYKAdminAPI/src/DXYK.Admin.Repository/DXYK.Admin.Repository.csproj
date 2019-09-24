@@ -11,6 +11,7 @@
         <PackageReference Include="SmartSql.DyRepository" Version="4.1.28" />
     </ItemGroup>
     <ItemGroup>
+        <ProjectReference Include="..\DXYK.Admin.Dto\DXYK.Admin.Dto.csproj" />
         <ProjectReference Include="..\DXYK.Admin.Entity\DXYK.Admin.Entity.csproj" />
     </ItemGroup>
     <ItemGroup>
