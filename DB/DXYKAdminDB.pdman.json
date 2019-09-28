@@ -51,7 +51,7 @@
               "name": "user_type",
               "type": "VARCHAR_10",
               "remark": "",
-              "chnname": "人员类型"
+              "chnname": "人员类型(用户/联系人)"
             },
             {
               "name": "sex",
@@ -1297,7 +1297,7 @@
           "remark": "角色信息表"
         },
         {
-          "title": "sys_app_role_menu",
+          "title": "sys_app_role_map",
           "fields": [
             {
               "name": "id",
@@ -1314,10 +1314,16 @@
               "chnname": "角色id"
             },
             {
-              "name": "menu_id",
+              "name": "type_code",
+              "type": "Integer",
+              "remark": "",
+              "chnname": "类型编码"
+            },
+            {
+              "name": "map_id",
               "type": "BigInt",
               "remark": "",
-              "chnname": "菜单id"
+              "chnname": "权限id"
             }
           ],
           "indexs": [],
@@ -1367,82 +1373,8 @@
               "relationNoShow": true
             }
           ],
-          "chnname": "角色授权菜单表",
-          "remark": "角色授权菜单表"
-        },
-        {
-          "title": "sys_app_role_menu_action",
-          "fields": [
-            {
-              "name": "id",
-              "type": "BigInt",
-              "remark": "",
-              "chnname": "唯一标识",
-              "pk": true,
-              "notNull": true
-            },
-            {
-              "name": "role_id",
-              "type": "BigInt",
-              "remark": "",
-              "chnname": "角色id"
-            },
-            {
-              "name": "menu_id",
-              "type": "BigInt",
-              "remark": "",
-              "chnname": "菜单id"
-            }
-          ],
-          "indexs": [],
-          "headers": [
-            {
-              "fieldName": "chnname",
-              "relationNoShow": false
-            },
-            {
-              "fieldName": "name",
-              "relationNoShow": false
-            },
-            {
-              "fieldName": "type",
-              "relationNoShow": false
-            },
-            {
-              "fieldName": "dataType",
-              "relationNoShow": true
-            },
-            {
-              "fieldName": "remark",
-              "relationNoShow": true
-            },
-            {
-              "fieldName": "pk",
-              "relationNoShow": false
-            },
-            {
-              "fieldName": "notNull",
-              "relationNoShow": true
-            },
-            {
-              "fieldName": "autoIncrement",
-              "relationNoShow": true
-            },
-            {
-              "fieldName": "defaultValue",
-              "relationNoShow": true
-            },
-            {
-              "fieldName": "relationNoShow",
-              "relationNoShow": true
-            },
-            {
-              "fieldName": "uiHint",
-              "relationNoShow": true
-            }
-          ],
-          "chnname": "角色授权功能表",
-          "remark": "角色授权功能表"
+          "chnname": "角色授权表",
+          "remark": "角色授权表"
         }
       ],
       "graphCanvas": {
