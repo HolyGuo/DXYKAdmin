@@ -109,10 +109,10 @@
     $("#wecharLogin").click(function () {
       $("#login-div").hide();
       $("#wechat-div").show();
-      com.ajax(layui.setter.apiUri + '/api/User/GetWeChatCode', 'get', true, null, function (res) {
+      com.ajax(layui.setter.apiUri + '/api/Login/GetWeChatCode', 'get', true, null, function (res) {
         if (res.success === true && res.data != null) {
           debugger;
-          var url = layui.setter.apiUri + '/api/User/LoginIn?qrcode=' + res.data
+          var url = layui.setter.apiUri + '/api/Login/LoginIn?qrcode=' + res.data
           qrcode.clear(); // 清除代码
           qrcode.makeCode(url); // 生成另外一个二维码
         } else {
@@ -131,7 +131,8 @@
     //提交 登录
     form.on('submit(LAY-user-login-submit)', function (obj) {
       //请求登入接口
-      com.ajax(layui.setter.apiUri + '/api/User/SignIn', 'post', obj.field, null, function (res) {
+      debugger;
+      com.ajax(layui.setter.apiUri + '/api/Login/SignIn', 'post', true, obj.field, function (res) {
         if (res.success === true && res.data != null) {
           layui.data(setter.tableName, {
             key: setter.request.tokenName
