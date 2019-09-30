@@ -5,6 +5,316 @@
       "chnname": "后台管理系统",
       "entities": [
         {
+          "title": "sys_group",
+          "fields": [
+            {
+              "name": "id",
+              "type": "BigInt",
+              "remark": "",
+              "chnname": "唯一标识",
+              "pk": true,
+              "notNull": true
+            },
+            {
+              "name": "group_name",
+              "type": "ShortString",
+              "remark": "",
+              "chnname": "群组名称"
+            },
+            {
+              "name": "group_short_name",
+              "type": "DefaultString",
+              "remark": "",
+              "chnname": "群组简称"
+            },
+            {
+              "name": "logo_pic",
+              "type": "MiddleString",
+              "remark": "",
+              "chnname": "logo"
+            },
+            {
+              "name": "contact_user_name",
+              "type": "ShortString",
+              "remark": "",
+              "chnname": "联系人"
+            },
+            {
+              "name": "contact_user_mobile",
+              "type": "DefaultString",
+              "remark": "",
+              "chnname": "联系人电话"
+            },
+            {
+              "name": "is_enable",
+              "type": "VARCHAR_10",
+              "remark": "",
+              "chnname": "状态"
+            },
+            {
+              "name": "sort",
+              "type": "Integer",
+              "remark": "",
+              "chnname": "排序"
+            },
+            {
+              "name": "re_vision",
+              "type": "Integer",
+              "remark": "",
+              "chnname": "乐观锁"
+            },
+            {
+              "name": "created_by",
+              "type": "BigInt",
+              "remark": "",
+              "chnname": "创建人"
+            },
+            {
+              "name": "created_time",
+              "type": "DateTime",
+              "remark": "",
+              "chnname": "创建时间"
+            },
+            {
+              "name": "updated_by",
+              "type": "BigInt",
+              "remark": "",
+              "chnname": "更新人"
+            },
+            {
+              "name": "updated_time",
+              "type": "DateTime",
+              "remark": "",
+              "chnname": "更新时间"
+            },
+            {
+              "name": "deleted_by",
+              "type": "BigInt",
+              "remark": "",
+              "chnname": "删除人"
+            },
+            {
+              "name": "deleted_time",
+              "type": "DateTime",
+              "remark": "",
+              "chnname": "删除时间"
+            }
+          ],
+          "indexs": [],
+          "headers": [
+            {
+              "fieldName": "chnname",
+              "relationNoShow": false
+            },
+            {
+              "fieldName": "name",
+              "relationNoShow": false
+            },
+            {
+              "fieldName": "type",
+              "relationNoShow": false
+            },
+            {
+              "fieldName": "dataType",
+              "relationNoShow": true
+            },
+            {
+              "fieldName": "remark",
+              "relationNoShow": true
+            },
+            {
+              "fieldName": "pk",
+              "relationNoShow": false
+            },
+            {
+              "fieldName": "notNull",
+              "relationNoShow": true
+            },
+            {
+              "fieldName": "autoIncrement",
+              "relationNoShow": true
+            },
+            {
+              "fieldName": "defaultValue",
+              "relationNoShow": true
+            },
+            {
+              "fieldName": "relationNoShow",
+              "relationNoShow": true
+            },
+            {
+              "fieldName": "uiHint",
+              "relationNoShow": true
+            }
+          ],
+          "chnname": "群组信息表",
+          "remark": "群组信息表"
+        },
+        {
+          "title": "sys_org",
+          "fields": [
+            {
+              "name": "id",
+              "type": "BigInt",
+              "remark": "",
+              "chnname": "唯一标识",
+              "pk": true,
+              "notNull": true
+            },
+            {
+              "name": "org_name",
+              "type": "ShortString",
+              "remark": "",
+              "chnname": "结构名称"
+            },
+            {
+              "name": "parent_id",
+              "type": "BigInt",
+              "remark": "",
+              "chnname": "上级id"
+            },
+            {
+              "name": "leader_id",
+              "type": "BigInt",
+              "remark": "对应sys_user表中的id",
+              "chnname": "负责人"
+            },
+            {
+              "name": "dept_type",
+              "type": "DefaultString",
+              "remark": "",
+              "chnname": "单位类型"
+            },
+            {
+              "name": "dept_address",
+              "type": "DefaultString",
+              "remark": "",
+              "chnname": "单位地址"
+            },
+            {
+              "name": "telphone",
+              "type": "DefaultString",
+              "remark": "",
+              "chnname": "联系电话"
+            },
+            {
+              "name": "email",
+              "type": "DefaultString",
+              "remark": "",
+              "chnname": "电子邮箱"
+            },
+            {
+              "name": "is_enable",
+              "type": "VARCHAR_10",
+              "remark": "",
+              "chnname": "状态"
+            },
+            {
+              "name": "sort",
+              "type": "Integer",
+              "remark": "",
+              "chnname": "排序"
+            },
+            {
+              "name": "group_id",
+              "type": "BigInt",
+              "remark": "",
+              "chnname": "群组id"
+            },
+            {
+              "name": "re_vision",
+              "type": "Integer",
+              "remark": "",
+              "chnname": "乐观锁"
+            },
+            {
+              "name": "created_by",
+              "type": "BigInt",
+              "remark": "",
+              "chnname": "创建人"
+            },
+            {
+              "name": "created_time",
+              "type": "DateTime",
+              "remark": "",
+              "chnname": "创建时间"
+            },
+            {
+              "name": "updated_by",
+              "type": "BigInt",
+              "remark": "",
+              "chnname": "更新人"
+            },
+            {
+              "name": "updated_time",
+              "type": "DateTime",
+              "remark": "",
+              "chnname": "更新时间"
+            },
+            {
+              "name": "deleted_by",
+              "type": "BigInt",
+              "remark": "",
+              "chnname": "删除人"
+            },
+            {
+              "name": "deleted_time",
+              "type": "DateTime",
+              "remark": "",
+              "chnname": "删除时间"
+            }
+          ],
+          "indexs": [],
+          "headers": [
+            {
+              "fieldName": "chnname",
+              "relationNoShow": false
+            },
+            {
+              "fieldName": "name",
+              "relationNoShow": false
+            },
+            {
+              "fieldName": "type",
+              "relationNoShow": false
+            },
+            {
+              "fieldName": "dataType",
+              "relationNoShow": true
+            },
+            {
+              "fieldName": "remark",
+              "relationNoShow": true
+            },
+            {
+              "fieldName": "pk",
+              "relationNoShow": false
+            },
+            {
+              "fieldName": "notNull",
+              "relationNoShow": true
+            },
+            {
+              "fieldName": "autoIncrement",
+              "relationNoShow": true
+            },
+            {
+              "fieldName": "defaultValue",
+              "relationNoShow": true
+            },
+            {
+              "fieldName": "relationNoShow",
+              "relationNoShow": true
+            },
+            {
+              "fieldName": "uiHint",
+              "relationNoShow": true
+            }
+          ],
+          "chnname": "组织机构信息表",
+          "remark": "单位信息表"
+        },
+        {
           "title": "sys_user",
           "fields": [
             {
@@ -251,7 +561,7 @@
           "remark": "用户信息表"
         },
         {
-          "title": "sys_org",
+          "title": "sys_job",
           "fields": [
             {
               "name": "id",
@@ -262,46 +572,16 @@
               "notNull": true
             },
             {
-              "name": "org_name",
-              "type": "ShortString",
-              "remark": "",
-              "chnname": "结构名称"
-            },
-            {
-              "name": "parent_id",
-              "type": "BigInt",
-              "remark": "",
-              "chnname": "上级id"
-            },
-            {
-              "name": "leader_id",
-              "type": "BigInt",
-              "remark": "对应sys_user表中的id",
-              "chnname": "负责人"
-            },
-            {
-              "name": "dept_type",
+              "name": "job_name",
               "type": "DefaultString",
               "remark": "",
-              "chnname": "单位类型"
+              "chnname": "岗位名称"
             },
             {
-              "name": "dept_address",
+              "name": "org_id",
               "type": "DefaultString",
               "remark": "",
-              "chnname": "单位地址"
-            },
-            {
-              "name": "telphone",
-              "type": "DefaultString",
-              "remark": "",
-              "chnname": "联系电话"
-            },
-            {
-              "name": "email",
-              "type": "DefaultString",
-              "remark": "",
-              "chnname": "电子邮箱"
+              "chnname": "部门id"
             },
             {
               "name": "is_enable",
@@ -411,154 +691,8 @@
               "relationNoShow": true
             }
           ],
-          "chnname": "组织机构信息表",
-          "remark": "单位信息表"
-        },
-        {
-          "title": "sys_group",
-          "fields": [
-            {
-              "name": "id",
-              "type": "BigInt",
-              "remark": "",
-              "chnname": "唯一标识",
-              "pk": true,
-              "notNull": true
-            },
-            {
-              "name": "group_name",
-              "type": "ShortString",
-              "remark": "",
-              "chnname": "群组名称"
-            },
-            {
-              "name": "group_short_name",
-              "type": "DefaultString",
-              "remark": "",
-              "chnname": "群组简称"
-            },
-            {
-              "name": "logo_pic",
-              "type": "MiddleString",
-              "remark": "",
-              "chnname": "logo"
-            },
-            {
-              "name": "contact_user_name",
-              "type": "ShortString",
-              "remark": "",
-              "chnname": "联系人"
-            },
-            {
-              "name": "contact_user_mobile",
-              "type": "DefaultString",
-              "remark": "",
-              "chnname": "联系人电话"
-            },
-            {
-              "name": "is_enable",
-              "type": "VARCHAR_10",
-              "remark": "",
-              "chnname": "状态"
-            },
-            {
-              "name": "sort",
-              "type": "Integer",
-              "remark": "",
-              "chnname": "排序"
-            },
-            {
-              "name": "re_vision",
-              "type": "Integer",
-              "remark": "",
-              "chnname": "乐观锁"
-            },
-            {
-              "name": "created_by",
-              "type": "BigInt",
-              "remark": "",
-              "chnname": "创建人"
-            },
-            {
-              "name": "created_time",
-              "type": "DateTime",
-              "remark": "",
-              "chnname": "创建时间"
-            },
-            {
-              "name": "updated_by",
-              "type": "BigInt",
-              "remark": "",
-              "chnname": "更新人"
-            },
-            {
-              "name": "updated_time",
-              "type": "DateTime",
-              "remark": "",
-              "chnname": "更新时间"
-            },
-            {
-              "name": "deleted_by",
-              "type": "BigInt",
-              "remark": "",
-              "chnname": "删除人"
-            },
-            {
-              "name": "deleted_time",
-              "type": "DateTime",
-              "remark": "",
-              "chnname": "删除时间"
-            }
-          ],
-          "indexs": [],
-          "headers": [
-            {
-              "fieldName": "chnname",
-              "relationNoShow": false
-            },
-            {
-              "fieldName": "name",
-              "relationNoShow": false
-            },
-            {
-              "fieldName": "type",
-              "relationNoShow": false
-            },
-            {
-              "fieldName": "dataType",
-              "relationNoShow": true
-            },
-            {
-              "fieldName": "remark",
-              "relationNoShow": true
-            },
-            {
-              "fieldName": "pk",
-              "relationNoShow": false
-            },
-            {
-              "fieldName": "notNull",
-              "relationNoShow": true
-            },
-            {
-              "fieldName": "autoIncrement",
-              "relationNoShow": true
-            },
-            {
-              "fieldName": "defaultValue",
-              "relationNoShow": true
-            },
-            {
-              "fieldName": "relationNoShow",
-              "relationNoShow": true
-            },
-            {
-              "fieldName": "uiHint",
-              "relationNoShow": true
-            }
-          ],
-          "chnname": "群组信息表",
-          "remark": "群组信息表"
+          "chnname": "岗位信息表",
+          "remark": "岗位信息表"
         },
         {
           "title": "sys_log",
@@ -1178,12 +1312,6 @@
               "type": "VARCHAR_50",
               "remark": "",
               "chnname": "应用id"
-            },
-            {
-              "name": "org_id",
-              "type": "BigInt",
-              "remark": "",
-              "chnname": "组织机构id"
             },
             {
               "name": "is_enable",
