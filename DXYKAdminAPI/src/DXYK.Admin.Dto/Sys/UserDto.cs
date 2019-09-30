@@ -7,6 +7,10 @@ namespace DXYK.Admin.Dto.Sys
     public class UserDto
     {
         /// <summary>
+        /// 应用Id
+        /// </summary>
+        public virtual string AppId { get; set; }
+        /// <summary>
         /// 用户信息
         /// </summary>
         public UserInfo User { get; set; }
@@ -25,6 +29,7 @@ namespace DXYK.Admin.Dto.Sys
 
     public class UserInfo
     {
+        
         ///<summary>
         /// 唯一标识
         ///</summary>

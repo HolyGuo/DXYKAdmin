@@ -149,11 +149,6 @@
             Stopwatch
             </summary>
         </member>
-        <member name="P:DXYK.Admin.API.Filters.ApiAuthorize.Uid">
-            <summary>
-            
-            </summary>
-        </member>
         <member name="M:DXYK.Admin.API.Filters.ApiAuthorize.OnActionExecuting(Microsoft.AspNetCore.Mvc.Filters.ActionExecutingContext)">
              <summary>
             OnActionExecuting
@@ -541,14 +536,14 @@
             WriteJson
             </summary>
         </member>
-        <member name="T:DXYK.Admin.API.Utils.RequestUser">
+        <member name="T:DXYK.Admin.API.Utils.GetCurrentUser">
             <summary>
             
             </summary>
         </member>
-        <member name="M:DXYK.Admin.API.Utils.RequestUser.GetUser">
+        <member name="M:DXYK.Admin.API.Utils.GetCurrentUser.GetUser(Microsoft.AspNetCore.Http.HttpContext)">
             <summary>
-            
+            获取当前用户信息
             </summary>
             <returns></returns>
         </member>

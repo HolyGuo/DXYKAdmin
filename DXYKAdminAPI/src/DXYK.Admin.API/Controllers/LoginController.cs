@@ -553,16 +553,18 @@ namespace DXYK.Admin.API.Controllers
                 //把权限存到缓存里
                 var menuSaveType = ConfigExtensions.Configuration[AppSettingKeyHelper.LOGINAUTHORIZE];
                 UserDto userDto = new UserDto();
+                userDto.AppId = reqLogin.appid;
                 user.login_pwd = null;//不暴露密码，此处设置密码为null
                 userDto.User = user;
                 userDto.MenuList = null;
                 if (menuSaveType == "Redis")
                 {
-                    RedisHelper.Set(AppSettingKeyHelper.ADMINMENUACTION + "_" + user.id, userDto);
+                    RedisHelper.Set(reqLogin.appid + "_" + user.id, userDto);
                 }
                 else
                 {
-                    MemoryCacheService.Default.SetCache(AppSettingKeyHelper.ADMINMENUACTION + "_" + user.id, userDto, 600);
+                    //保存权限时 格式为  appid_userid,UserDto
+                    MemoryCacheService.Default.SetCache(reqLogin.appid + "_" + user.id, userDto, 600);
                 }
                 access_token = JwtHelper.IssueJWT(new TokenModel()
                 {
