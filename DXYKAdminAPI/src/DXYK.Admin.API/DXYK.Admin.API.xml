@@ -149,6 +149,11 @@
             Stopwatch
             </summary>
         </member>
+        <member name="P:DXYK.Admin.API.Filters.ApiAuthorize.Uid">
+            <summary>
+            
+            </summary>
+        </member>
         <member name="M:DXYK.Admin.API.Filters.ApiAuthorize.OnActionExecuting(Microsoft.AspNetCore.Mvc.Filters.ActionExecutingContext)">
              <summary>
             OnActionExecuting
@@ -535,6 +540,17 @@
             <summary>
             WriteJson
             </summary>
+        </member>
+        <member name="T:DXYK.Admin.API.Utils.RequestUser">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:DXYK.Admin.API.Utils.RequestUser.GetUser">
+            <summary>
+            
+            </summary>
+            <returns></returns>
         </member>
     </members>
 </doc>
