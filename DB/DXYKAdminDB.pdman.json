@@ -1400,16 +1400,10 @@
               "chnname": "发布时间"
             },
             {
-              "name": "abstract",
+              "name": "content",
               "type": "MiddleString",
               "remark": "",
-              "chnname": "摘要"
-            },
-            {
-              "name": "sort",
-              "type": "Integer",
-              "remark": "",
-              "chnname": "排序"
+              "chnname": "内容"
             },
             {
               "name": "group_id",
@@ -1509,6 +1503,238 @@
           ],
           "chnname": "邮件信息表",
           "remark": "邮件信息表"
+        },
+        {
+          "title": "oa_mail_receiver",
+          "fields": [
+            {
+              "name": "id",
+              "type": "BigInt",
+              "remark": "",
+              "chnname": "唯一标识",
+              "pk": true,
+              "notNull": true
+            },
+            {
+              "name": "mail_id",
+              "type": "BigInt",
+              "remark": "",
+              "chnname": "邮件id"
+            },
+            {
+              "name": "user_id",
+              "type": "BigInt",
+              "remark": "",
+              "chnname": "用户id"
+            }
+          ],
+          "indexs": [],
+          "headers": [
+            {
+              "fieldName": "chnname",
+              "relationNoShow": false
+            },
+            {
+              "fieldName": "name",
+              "relationNoShow": false
+            },
+            {
+              "fieldName": "type",
+              "relationNoShow": false
+            },
+            {
+              "fieldName": "dataType",
+              "relationNoShow": true
+            },
+            {
+              "fieldName": "remark",
+              "relationNoShow": true
+            },
+            {
+              "fieldName": "pk",
+              "relationNoShow": false
+            },
+            {
+              "fieldName": "notNull",
+              "relationNoShow": true
+            },
+            {
+              "fieldName": "autoIncrement",
+              "relationNoShow": true
+            },
+            {
+              "fieldName": "defaultValue",
+              "relationNoShow": true
+            },
+            {
+              "fieldName": "relationNoShow",
+              "relationNoShow": true
+            },
+            {
+              "fieldName": "uiHint",
+              "relationNoShow": true
+            }
+          ],
+          "chnname": "收件人信息表",
+          "remark": "收件人信息表"
+        },
+        {
+          "title": "oa_attachment",
+          "fields": [
+            {
+              "name": "id",
+              "type": "BigInt",
+              "remark": "",
+              "chnname": "唯一标识",
+              "pk": true,
+              "notNull": true
+            },
+            {
+              "name": "hash_value",
+              "type": "DefaultString",
+              "remark": "",
+              "chnname": "文件唯一标识"
+            },
+            {
+              "name": "file_name",
+              "type": "DefaultString",
+              "remark": "",
+              "chnname": "文件名称"
+            },
+            {
+              "name": "file_ext",
+              "type": "DefaultString",
+              "remark": "",
+              "chnname": "文件扩展名"
+            },
+            {
+              "name": "file_type",
+              "type": "DefaultString",
+              "remark": "",
+              "chnname": "文件类型"
+            },
+            {
+              "name": "file_size",
+              "type": "DefaultString",
+              "remark": "",
+              "chnname": "文件大小"
+            },
+            {
+              "name": "server_name",
+              "type": "VARCHAR_50",
+              "remark": "",
+              "chnname": "服务器名称(IP或编号)"
+            },
+            {
+              "name": "upload_path",
+              "type": "VARCHAR_500",
+              "remark": "",
+              "chnname": "上传路径"
+            },
+            {
+              "name": "publish_path",
+              "type": "VARCHAR_500",
+              "remark": "",
+              "chnname": "发布路径"
+            },
+            {
+              "name": "group_id",
+              "type": "BigInt",
+              "remark": "",
+              "chnname": "群组id"
+            },
+            {
+              "name": "re_vision",
+              "type": "Integer",
+              "remark": "",
+              "chnname": "乐观锁"
+            },
+            {
+              "name": "created_by",
+              "type": "BigInt",
+              "remark": "",
+              "chnname": "创建人"
+            },
+            {
+              "name": "created_time",
+              "type": "DateTime",
+              "remark": "",
+              "chnname": "创建时间"
+            },
+            {
+              "name": "updated_by",
+              "type": "BigInt",
+              "remark": "",
+              "chnname": "更新人"
+            },
+            {
+              "name": "updated_time",
+              "type": "DateTime",
+              "remark": "",
+              "chnname": "更新时间"
+            },
+            {
+              "name": "deleted_by",
+              "type": "BigInt",
+              "remark": "",
+              "chnname": "删除人"
+            },
+            {
+              "name": "deleted_time",
+              "type": "DateTime",
+              "remark": "",
+              "chnname": "删除时间"
+            }
+          ],
+          "indexs": [],
+          "headers": [
+            {
+              "fieldName": "chnname",
+              "relationNoShow": false
+            },
+            {
+              "fieldName": "name",
+              "relationNoShow": false
+            },
+            {
+              "fieldName": "type",
+              "relationNoShow": false
+            },
+            {
+              "fieldName": "dataType",
+              "relationNoShow": true
+            },
+            {
+              "fieldName": "remark",
+              "relationNoShow": true
+            },
+            {
+              "fieldName": "pk",
+              "relationNoShow": false
+            },
+            {
+              "fieldName": "notNull",
+              "relationNoShow": true
+            },
+            {
+              "fieldName": "autoIncrement",
+              "relationNoShow": true
+            },
+            {
+              "fieldName": "defaultValue",
+              "relationNoShow": true
+            },
+            {
+              "fieldName": "relationNoShow",
+              "relationNoShow": true
+            },
+            {
+              "fieldName": "uiHint",
+              "relationNoShow": true
+            }
+          ],
+          "chnname": "附件信息表",
+          "remark": "附件信息表"
         }
       ],
       "graphCanvas": {
