@@ -50,7 +50,6 @@ namespace DXYK.Admin.API.Utils
         public static UserInfo GetUserInfo(HttpContext context)
         {
             UserDto user = new UserDto();
-
             TokenModel jwtToken = new TokenModel();
             string appId = string.Empty;
             string userId = string.Empty;
