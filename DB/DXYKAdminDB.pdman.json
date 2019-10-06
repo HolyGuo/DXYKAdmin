@@ -1231,7 +1231,7 @@
           "remark": "菜单信息表"
         },
         {
-          "title": "sys_app_menu_action",
+          "title": "sys_app_action",
           "fields": [
             {
               "name": "id",
@@ -1246,12 +1246,6 @@
               "type": "DefaultString",
               "remark": "",
               "chnname": "功能编码"
-            },
-            {
-              "name": "menu_id",
-              "type": "BigInt",
-              "remark": "",
-              "chnname": "菜单id"
             },
             {
               "name": "action_name",
