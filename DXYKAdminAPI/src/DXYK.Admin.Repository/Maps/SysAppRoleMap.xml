@@ -1,0 +1,210 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!--
+//*******************************
+// Create By Holy Guo
+// Date 2019-10-03 09:12
+//*******************************-->
+
+<SmartSqlMap Scope="SysAppRoleMap" xmlns="http://SmartSql.net/schemas/SmartSqlMap.xsd">
+
+  <Statements>
+
+    <Statement Id="AllCols">
+      T.id,T.role_id,T.type_code,T.map_id
+    </Statement>
+    <Statement Id="QueryParams">
+      <Where>
+        <IsNotEmpty Prepend="And" Property="id">
+          T.id = @id
+        </IsNotEmpty>
+        <IsNotEmpty Prepend="And" Property="role_id">
+          T.role_id = @role_id
+        </IsNotEmpty>
+        <IsNotEmpty Prepend="And" Property="type_code">
+          T.type_code = @type_code
+        </IsNotEmpty>
+        <IsNotEmpty Prepend="And" Property="map_id">
+          T.map_id = @map_id
+        </IsNotEmpty>
+      </Where>
+    </Statement>
+
+    <!--新增-->
+    <Statement Id="Insert">
+      <IdGenerator Name="SnowflakeId" Id="id"/>
+      INSERT INTO sys_app_role_map
+      (
+      id,
+      role_id,
+      type_code,
+      map_id
+      )
+      VALUES
+      (
+      @id,
+      @role_id,
+      @type_code,
+      @map_id
+      )
+    </Statement>
+
+    <!--删除-->
+    <Statement Id="Delete">
+      Delete From sys_app_role_map
+      Where id=@id
+    </Statement>
+    <!--更新-->
+    <Statement Id="Update">
+      UPDATE sys_app_role_map
+      <Set>
+        <IsProperty Prepend="," Property="role_id">
+          role_id = @role_id
+        </IsProperty>
+        <IsProperty Prepend="," Property="type_code">
+          type_code = @type_code
+        </IsProperty>
+        <IsProperty Prepend="," Property="map_id">
+          map_id = @map_id
+        </IsProperty>
+      </Set>
+      Where id=@id
+    </Statement>
+
+    <!--获取数据列-->
+    <Statement Id="Query" >
+      SELECT
+      <Include RefId="AllCols" />
+      From sys_app_role_map T
+      <Include RefId="QueryParams" />
+      <Switch Prepend="Order By" Property="OrderBy">
+        <Default>
+          T.id Desc
+        </Default>
+      </Switch>
+      <IsNotEmpty Prepend="Limit" Property="limit">@limit</IsNotEmpty>
+    </Statement>
+
+
+    <!--获取分页数据-->
+    <Statement Id="QueryByPage" >
+      Select
+      <Include RefId="AllCols" />
+      From sys_app_role_map As T
+      <Include RefId="QueryParams" />
+      <Switch Prepend="Order By" Property="OrderBy">
+        <Default>
+          T.id Desc
+        </Default>
+      </Switch>
+      Limit @limit Offset @offset
+    </Statement>
+
+
+
+
+    <!--获取记录数-->
+    <Statement Id="GetRecord">
+      Select Count(1) From sys_app_role_map T
+      <Include RefId="QueryParams" />
+    </Statement>
+
+
+    <!--获取表映射实体-->
+    <Statement Id="GetEntity" >
+      Select
+      <Include RefId="AllCols" />
+      From sys_app_role_map As T
+      <Where Min="1">
+        <IsNotEmpty Prepend="And" Property="id">
+          T.id= @id
+        </IsNotEmpty>
+        <IsNotEmpty Prepend="And" Property="role_id">
+          T.role_id= @role_id
+        </IsNotEmpty>
+        <IsNotEmpty Prepend="And" Property="type_code">
+          T.type_code= @type_code
+        </IsNotEmpty>
+        <IsNotEmpty Prepend="And" Property="map_id">
+          T.map_id= @map_id
+        </IsNotEmpty>
+      </Where>
+      Limit 1
+    </Statement>
+
+
+    <!--是否存在该记录-->
+    <Statement Id="IsExist">
+      Select Count(1) From sys_app_role_map T
+      <Include RefId="QueryParams" />
+    </Statement>
+
+
+    <!--************************************自定义SQL查询************************************-->
+    <!---自定义  查询参数-->
+    <Statement Id="QueryDataParams">
+      <Where>
+        <IsNotEmpty Prepend="And" Property="id">
+          T.id = @id
+        </IsNotEmpty>
+        <IsNotEmpty Prepend="And" Property="role_id">
+          T.role_id = @role_id
+        </IsNotEmpty>
+        <IsNotEmpty Prepend="And" Property="type_code">
+          T.type_code = @type_code
+        </IsNotEmpty>
+        <IsNotEmpty Prepend="And" Property="map_id">
+          T.map_id = @map_id
+        </IsNotEmpty>
+      </Where>
+    </Statement>
+
+    <!--自定义查询  分页数据-->
+    <Statement Id="QueryDataByPage">
+      Select T.*
+      From sys_app_role_map As T
+      <Include RefId="QueryDataParams" />
+      <Switch Prepend="Order By" Property="OrderBy">
+        <Default>
+          T.id Desc
+        </Default>
+      </Switch>
+      Limit @limit Offset @offset
+    </Statement>
+
+    <!--自定义查询  获取记录数-->
+    <Statement Id="GetDataRecord">
+      Select Count(1) From sys_user T
+      <Include RefId="QueryDataParams" />
+    </Statement>
+
+    <!--根据角色id查询-->
+    <Statement Id="QueryDataByRole">
+      Select T.* From sys_app_role_map T
+      <Where>
+        <IsNotEmpty Prepend="And" Property="role_id">
+          T.role_id = @role_id
+        </IsNotEmpty>
+        <IsNotEmpty Prepend="And" Property="type_code">
+          T.type_code = @type_code
+        </IsNotEmpty>
+      </Where>
+    </Statement>
+
+    <!--根据roleid,mapid,type查询-->
+    <Statement Id="GetByFilter">
+      Select T.* From sys_app_role_map T
+      <Where>
+        <IsNotEmpty Prepend="And" Property="role_id">
+          T.role_id = @role_id
+        </IsNotEmpty>
+        <IsNotEmpty Prepend="And" Property="type_code">
+          T.type_code = @type_code
+        </IsNotEmpty>
+        <IsNotEmpty Prepend="And" Property="map_id">
+          T.map_id = @map_id
+        </IsNotEmpty>
+      </Where>
+    </Statement>
+
+  </Statements>
+</SmartSqlMap>

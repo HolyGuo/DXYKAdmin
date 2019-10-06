@@ -70,49 +70,49 @@ namespace DXYK.Admin.API
                 options.Filters.Add<GlobalValidateModelFilter>();
             }).SetCompatibilityVersion(CompatibilityVersion.Latest);
             #region
-            services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme)
-             .AddCookie(CookieAuthenticationDefaults.AuthenticationScheme, options =>
-             {
-                 options.LoginPath = new PathString("/index.html");
-             })
-             .AddJwtBearer(JwtAuthorizeAttribute.JwtAuthenticationScheme, options =>
-             {
-                 var jwtConfig = new JwtAuthConfigModel();
-                 options.TokenValidationParameters = new TokenValidationParameters
-                 {
-                     ValidateIssuer = true,//是否验证Issuer
-                     ValidateAudience = true,//是否验证Audience
-                     ValidateIssuerSigningKey = true,//是否验证SecurityKey
-                     ValidateLifetime = true,//是否验证超时  当设置exp和nbf时有效 同时启用ClockSkew 
-                     ClockSkew = TimeSpan.FromSeconds(30),//注意这是缓冲过期时间，总的有效时间等于这个时间加上jwt的过期时间，如果不配置，默认是5分钟
-                     ValidAudience = jwtConfig.Audience,//Audience
-                     ValidIssuer = jwtConfig.Issuer,//Issuer，这两项和前面签发jwt的设置一致
-                     RequireExpirationTime = true,
-                     IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(Configuration["JwtAuth:SecurityKey"]))//拿到SecurityKey
-                 };
-                 options.Events = new JwtBearerEvents
-                 {
-                     OnAuthenticationFailed = context =>
-                     {
-                         // 如果过期，则把<是否过期>添加到，返回头信息中
-                         if (context.Exception.GetType() == typeof(SecurityTokenExpiredException))
-                         {
-                             context.Response.Headers.Add("Token-Expired", "true");
-                         }
-                         return Task.CompletedTask;
-                     }
-                 };
-             });
+            //services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme)
+            // .AddCookie(CookieAuthenticationDefaults.AuthenticationScheme, options =>
+            // {
+            //     options.LoginPath = new PathString("/index.html");
+            // })
+            // .AddJwtBearer(JwtAuthorizeAttribute.JwtAuthenticationScheme, options =>
+            // {
+            //     var jwtConfig = new JwtAuthConfigModel();
+            //     options.TokenValidationParameters = new TokenValidationParameters
+            //     {
+            //         ValidateIssuer = true,//是否验证Issuer
+            //         ValidateAudience = true,//是否验证Audience
+            //         ValidateIssuerSigningKey = true,//是否验证SecurityKey
+            //         ValidateLifetime = true,//是否验证超时  当设置exp和nbf时有效 同时启用ClockSkew 
+            //         ClockSkew = TimeSpan.FromSeconds(30),//注意这是缓冲过期时间，总的有效时间等于这个时间加上jwt的过期时间，如果不配置，默认是5分钟
+            //         ValidAudience = jwtConfig.Audience,//Audience
+            //         ValidIssuer = jwtConfig.Issuer,//Issuer，这两项和前面签发jwt的设置一致
+            //         RequireExpirationTime = true,
+            //         IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(Configuration["JwtAuth:SecurityKey"]))//拿到SecurityKey
+            //     };
+            //     options.Events = new JwtBearerEvents
+            //     {
+            //         OnAuthenticationFailed = context =>
+            //         {
+            //             // 如果过期，则把<是否过期>添加到，返回头信息中
+            //             if (context.Exception.GetType() == typeof(SecurityTokenExpiredException))
+            //             {
+            //                 context.Response.Headers.Add("Token-Expired", "true");
+            //             }
+            //             return Task.CompletedTask;
+            //         }
+            //     };
+            // });
 
             #endregion
 
             #region  授权
-            services.AddAuthorization(options =>
-            {
-                options.AddPolicy("User", policy => policy.RequireRole("App").Build());
-                options.AddPolicy("Admin", policy => policy.RequireRole("Admin").Build());
-                options.AddPolicy("AdminOrUser", policy => policy.RequireRole("Admin,User").Build());
-            });
+            //services.AddAuthorization(options =>
+            //{
+            //    options.AddPolicy("User", policy => policy.RequireRole("App").Build());
+            //    options.AddPolicy("Admin", policy => policy.RequireRole("Admin").Build());
+            //    options.AddPolicy("AdminOrUser", policy => policy.RequireRole("Admin,User").Build());
+            //});
             #endregion
 
             #region 缓存配置

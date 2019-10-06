@@ -28,8 +28,5 @@
     <ProjectReference Include="..\DXYK.Admin.Repository\DXYK.Admin.Repository.csproj" />
     <ProjectReference Include="..\DXYK.Admin.Service\DXYK.Admin.Service.csproj" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Controllers\Sys\" />
-  </ItemGroup>
 
 </Project>

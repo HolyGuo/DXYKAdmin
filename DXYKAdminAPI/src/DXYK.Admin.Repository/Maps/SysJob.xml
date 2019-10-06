@@ -1,0 +1,341 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!--
+//*******************************
+// Create By Holy Guo
+// Date 2019-10-03 09:12
+//*******************************-->
+
+<SmartSqlMap Scope="SysJob" xmlns="http://SmartSql.net/schemas/SmartSqlMap.xsd">
+
+  <Statements>
+
+    <Statement Id="AllCols">
+      T.id,T.job_name,T.org_id,T.is_enable,T.sort,T.group_id,T.re_vision,T.created_by,T.created_time,T.updated_by,T.updated_time,T.deleted_by,T.deleted_time
+    </Statement>
+    <Statement Id="QueryParams">
+      <Where>
+        <IsNotEmpty Prepend="And" Property="id">
+          T.id = @id
+        </IsNotEmpty>
+        <IsNotEmpty Prepend="And" Property="job_name">
+          T.job_name = @job_name
+        </IsNotEmpty>
+        <IsNotEmpty Prepend="And" Property="org_id">
+          T.org_id = @org_id
+        </IsNotEmpty>
+        <IsNotEmpty Prepend="And" Property="is_enable">
+          T.is_enable = @is_enable
+        </IsNotEmpty>
+        <IsNotEmpty Prepend="And" Property="sort">
+          T.sort = @sort
+        </IsNotEmpty>
+        <IsNotEmpty Prepend="And" Property="group_id">
+          T.group_id = @group_id
+        </IsNotEmpty>
+        <IsNotEmpty Prepend="And" Property="re_vision">
+          T.re_vision = @re_vision
+        </IsNotEmpty>
+        <IsNotEmpty Prepend="And" Property="created_by">
+          T.created_by = @created_by
+        </IsNotEmpty>
+        <IsNotEmpty Prepend="And" Property="created_time">
+          T.created_time = @created_time
+        </IsNotEmpty>
+        <IsNotEmpty Prepend="And" Property="updated_by">
+          T.updated_by = @updated_by
+        </IsNotEmpty>
+        <IsNotEmpty Prepend="And" Property="updated_time">
+          T.updated_time = @updated_time
+        </IsNotEmpty>
+        <IsNotEmpty Prepend="And" Property="deleted_by">
+          T.deleted_by = @deleted_by
+        </IsNotEmpty>
+        <IsNotEmpty Prepend="And" Property="deleted_time">
+          T.deleted_time = @deleted_time
+        </IsNotEmpty>
+      </Where>
+    </Statement>
+
+    <!--新增-->
+    <Statement Id="Insert">
+      <IdGenerator Name="SnowflakeId" Id="id"/>
+      INSERT INTO sys_job
+      (
+      id,
+      job_name,
+      org_id,
+      is_enable,
+      sort,
+      group_id,
+      re_vision,
+      created_by,
+      created_time,
+      updated_by,
+      updated_time,
+      deleted_by,
+      deleted_time
+      )
+      VALUES
+      (
+      @id,
+      @job_name,
+      @org_id,
+      @is_enable,
+      @sort,
+      @group_id,
+      @re_vision,
+      @created_by,
+      @created_time,
+      @updated_by,
+      @updated_time,
+      @deleted_by,
+      @deleted_time
+      )
+    </Statement>
+
+    <!--删除-->
+    <Statement Id="Delete">
+      Delete From sys_job
+      Where id=@id
+    </Statement>
+    <!--更新-->
+    <Statement Id="Update">
+      UPDATE sys_job
+      <Set>
+        <IsProperty Prepend="," Property="job_name">
+          job_name = @job_name
+        </IsProperty>
+        <IsProperty Prepend="," Property="org_id">
+          org_id = @org_id
+        </IsProperty>
+        <IsProperty Prepend="," Property="is_enable">
+          is_enable = @is_enable
+        </IsProperty>
+        <IsProperty Prepend="," Property="sort">
+          sort = @sort
+        </IsProperty>
+        <IsProperty Prepend="," Property="group_id">
+          group_id = @group_id
+        </IsProperty>
+        <IsProperty Prepend="," Property="re_vision">
+          re_vision = @re_vision
+        </IsProperty>
+        <IsProperty Prepend="," Property="created_by">
+          created_by = @created_by
+        </IsProperty>
+        <IsProperty Prepend="," Property="created_time">
+          created_time = @created_time
+        </IsProperty>
+        <IsProperty Prepend="," Property="updated_by">
+          updated_by = @updated_by
+        </IsProperty>
+        <IsProperty Prepend="," Property="updated_time">
+          updated_time = @updated_time
+        </IsProperty>
+        <IsProperty Prepend="," Property="deleted_by">
+          deleted_by = @deleted_by
+        </IsProperty>
+        <IsProperty Prepend="," Property="deleted_time">
+          deleted_time = @deleted_time
+        </IsProperty>
+      </Set>
+      Where id=@id
+    </Statement>
+
+    <!--获取数据列-->
+    <Statement Id="Query" >
+      SELECT
+      <Include RefId="AllCols" />
+      From sys_job T
+      <Include RefId="QueryParams" />
+      <Switch Prepend="Order By" Property="OrderBy">
+        <Default>
+          T.id Desc
+        </Default>
+      </Switch>
+      <IsNotEmpty Prepend="Limit" Property="limit">@limit</IsNotEmpty>
+    </Statement>
+
+
+    <!--获取分页数据-->
+    <Statement Id="QueryByPage" >
+      Select
+      <Include RefId="AllCols" />
+      From sys_job As T
+      <Include RefId="QueryParams" />
+      <Switch Prepend="Order By" Property="OrderBy">
+        <Default>
+          T.id Desc
+        </Default>
+      </Switch>
+      Limit @limit Offset @offset
+    </Statement>
+
+
+
+
+    <!--获取记录数-->
+    <Statement Id="GetRecord">
+      Select Count(1) From sys_job T
+      <Include RefId="QueryParams" />
+    </Statement>
+
+
+    <!--获取表映射实体-->
+    <Statement Id="GetEntity" >
+      Select
+      <Include RefId="AllCols" />
+      From sys_job As T
+      <Where Min="1">
+        <IsNotEmpty Prepend="And" Property="id">
+          T.id= @id
+        </IsNotEmpty>
+        <IsNotEmpty Prepend="And" Property="job_name">
+          T.job_name= @job_name
+        </IsNotEmpty>
+        <IsNotEmpty Prepend="And" Property="org_id">
+          T.org_id= @org_id
+        </IsNotEmpty>
+        <IsNotEmpty Prepend="And" Property="is_enable">
+          T.is_enable= @is_enable
+        </IsNotEmpty>
+        <IsNotEmpty Prepend="And" Property="sort">
+          T.sort= @sort
+        </IsNotEmpty>
+        <IsNotEmpty Prepend="And" Property="group_id">
+          T.group_id= @group_id
+        </IsNotEmpty>
+        <IsNotEmpty Prepend="And" Property="re_vision">
+          T.re_vision= @re_vision
+        </IsNotEmpty>
+        <IsNotEmpty Prepend="And" Property="created_by">
+          T.created_by= @created_by
+        </IsNotEmpty>
+        <IsNotEmpty Prepend="And" Property="created_time">
+          T.created_time= @created_time
+        </IsNotEmpty>
+        <IsNotEmpty Prepend="And" Property="updated_by">
+          T.updated_by= @updated_by
+        </IsNotEmpty>
+        <IsNotEmpty Prepend="And" Property="updated_time">
+          T.updated_time= @updated_time
+        </IsNotEmpty>
+        <IsNotEmpty Prepend="And" Property="deleted_by">
+          T.deleted_by= @deleted_by
+        </IsNotEmpty>
+        <IsNotEmpty Prepend="And" Property="deleted_time">
+          T.deleted_time= @deleted_time
+        </IsNotEmpty>
+      </Where>
+      Limit 1
+    </Statement>
+
+
+    <!--是否存在该记录-->
+    <Statement Id="IsExist">
+      Select Count(1) From sys_job T
+      <Include RefId="QueryParams" />
+    </Statement>
+
+
+    <!--************************************自定义SQL查询************************************-->
+    <!---自定义  查询参数-->
+    <Statement Id="QueryDataParams">
+      <Where>
+        <IsNotEmpty Prepend="And" Property="id">
+          T.id = @id
+        </IsNotEmpty>
+        <IsNotEmpty Prepend="And" Property="job_name">
+          T.job_name = @job_name
+        </IsNotEmpty>
+        <IsNotEmpty Prepend="And" Property="org_id">
+          T.org_id = @org_id
+        </IsNotEmpty>
+        <IsNotEmpty Prepend="And" Property="is_enable">
+          T.is_enable = @is_enable
+        </IsNotEmpty>
+        <IsNotEmpty Prepend="And" Property="sort">
+          T.sort = @sort
+        </IsNotEmpty>
+        <IsNotEmpty Prepend="And" Property="group_id">
+          T.group_id = @group_id
+        </IsNotEmpty>
+        <IsNotEmpty Prepend="And" Property="re_vision">
+          T.re_vision = @re_vision
+        </IsNotEmpty>
+        <IsNotEmpty Prepend="And" Property="created_by">
+          T.created_by = @created_by
+        </IsNotEmpty>
+        <IsNotEmpty Prepend="And" Property="created_time">
+          T.created_time = @created_time
+        </IsNotEmpty>
+        <IsNotEmpty Prepend="And" Property="updated_by">
+          T.updated_by = @updated_by
+        </IsNotEmpty>
+        <IsNotEmpty Prepend="And" Property="updated_time">
+          T.updated_time = @updated_time
+        </IsNotEmpty>
+        <IsNotEmpty Prepend="And" Property="deleted_by">
+          T.deleted_by = @deleted_by
+        </IsNotEmpty>
+        <IsNotEmpty Prepend="And" Property="deleted_time">
+          T.deleted_time = @deleted_time
+        </IsNotEmpty>
+      </Where>
+    </Statement>
+
+    <!--自定义查询  分页数据-->
+    <Statement Id="QueryDataByPage">
+      Select T.*
+      From sys_job As T
+      <Include RefId="QueryDataParams" />
+      <Switch Prepend="Order By" Property="OrderBy">
+        <Default>
+          T.id Desc
+        </Default>
+      </Switch>
+      Limit @limit Offset @offset
+    </Statement>
+
+    <!--自定义查询  获取记录数-->
+    <Statement Id="GetDataRecord">
+      Select Count(1) From sys_user T
+      <Include RefId="QueryDataParams" />
+    </Statement>
+
+    <!--根据名称和状态 分页获取-->
+    <Statement Id="QueryDataByNameAndTypeByPage">
+      Select T.*
+      From sys_job As T
+      <Where>
+        <IsNotEmpty Prepend="And" Property="job_name">
+          position(@job_name in T.job_name) != 0
+        </IsNotEmpty>
+        <IsNotEmpty Prepend="And" Property="is_enable">
+          position(@is_enable in T.is_enable) != 0
+        </IsNotEmpty>
+      </Where>
+      <Switch Prepend="Order By" Property="OrderBy">
+        <Default>
+          T.id Desc
+        </Default>
+      </Switch>
+      Limit @limit Offset @offset
+    </Statement>
+
+    <!--根据名称和状态获取总数-->
+    <Statement Id="QueryDataByNameAndType">
+      Select Count(1)
+      From sys_job As T
+      <Where>
+        <IsNotEmpty Prepend="And" Property="job_name">
+          T.job_name like Concat('%',@job_name,'%')
+        </IsNotEmpty>
+        <IsNotEmpty Prepend="And" Property="is_enable">
+          T.is_enable like Concat('%',@is_enable,'%')
+        </IsNotEmpty>
+      </Where>
+    </Statement>
+
+  </Statements>
+</SmartSqlMap>

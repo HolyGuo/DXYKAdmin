@@ -69,6 +69,10 @@ namespace DXYK.Admin.Entity
         ///</summary>
         public virtual long? org_id { get; set; }
         ///<summary>
+        /// 岗位id
+        ///</summary>
+        public virtual long? job_id { get; set; }
+        ///<summary>
         /// 最近一次登录时间
         ///</summary>
         public virtual DateTime? last_login_time { get; set; }
