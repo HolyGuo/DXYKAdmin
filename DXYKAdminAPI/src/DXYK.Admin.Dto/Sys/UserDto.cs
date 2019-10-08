@@ -129,7 +129,7 @@ namespace DXYK.Admin.Dto.Sys
         /// <summary>
         /// 应用系统id
         /// </summary>
-        public string appid { get; set; }
+        //public string appid { get; set; }
 
     }
 
