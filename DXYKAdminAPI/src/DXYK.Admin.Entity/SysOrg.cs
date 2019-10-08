@@ -23,7 +23,7 @@ namespace DXYK.Admin.Entity
         ///<summary>
         /// 上级id
         ///</summary>
-        public virtual long? parent_id { get; set; }
+        public virtual long parent_id { get; set; }
         ///<summary>
         /// 对应sys_user表中的id
         ///</summary>

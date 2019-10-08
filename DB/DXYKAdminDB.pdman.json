@@ -171,7 +171,8 @@
               "name": "parent_id",
               "type": "BigInt",
               "remark": "",
-              "chnname": "上级id"
+              "chnname": "上级id",
+              "notNull": true
             },
             {
               "name": "leader_id",
@@ -605,7 +606,7 @@
               "type": "VARCHAR_50",
               "remark": "用于全局数据划分",
               "chnname": "群组Id",
-              "notNull": false
+              "notNull": true
             }
           ],
           "indexs": [],
@@ -1107,7 +1108,8 @@
               "name": "parent_id",
               "type": "BigInt",
               "remark": "",
-              "chnname": "上级id"
+              "chnname": "上级id",
+              "notNull": true
             },
             {
               "name": "icon",
@@ -1290,7 +1292,8 @@
               "name": "parent_id",
               "type": "BigInt",
               "remark": "",
-              "chnname": "父级菜单"
+              "chnname": "父级菜单",
+              "notNull": true
             },
             {
               "name": "group_id",

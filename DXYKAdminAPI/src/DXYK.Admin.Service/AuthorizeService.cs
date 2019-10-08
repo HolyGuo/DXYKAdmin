@@ -121,6 +121,7 @@ namespace DXYK.Admin.Service
                     List<long> roles = sysUserAppRoleList.Where(s => s.app_id == appid).Select(s => s.role_id).ToList();
                     List<RoleMapDto> mapList = roleMapList.Where(s => roles.Contains((long)s.role_id)).ToList();
 
+
                     result.Add(p);
                 }
             }
