@@ -11,6 +11,8 @@ using DXYK.Admin.Repository;
 using DXYK.Admin.Service;
 using DXYK.Admin.API.Messages;
 using System.Threading.Tasks;
+using DXYK.Admin.API.Filters;
+using DXYK.Admin.Common.EnumHelper;
 
 namespace DXYK.Admin.API.Controllers
 {
@@ -49,7 +51,7 @@ namespace DXYK.Admin.API.Controllers
         ///<summary>
         /// 新增岗位信息表(sys_job)
         ///</summary>
-        [HttpPost]
+        [HttpPost,ApiAuthorize(ActionCode = "Sys_Job_Insert", LogType = LogEnum.ADD)]
         public ResponseMessage<long> Insert([FromBody]SysJob sysJob)
         {
             return new ResponseMessage<long> { data = _sysJobService.Insert(sysJob) }; 

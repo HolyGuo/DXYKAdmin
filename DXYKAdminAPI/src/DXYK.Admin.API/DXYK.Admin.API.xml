@@ -1212,14 +1212,9 @@
             Api鉴权
             </summary>
         </member>
-        <member name="P:DXYK.Admin.API.Filters.ApiAuthorize.Modules">
+        <member name="P:DXYK.Admin.API.Filters.ApiAuthorize.ActionCode">
             <summary>
-            模块别名，可配置更改
-            </summary>
-        </member>
-        <member name="P:DXYK.Admin.API.Filters.ApiAuthorize.Methods">
-            <summary>
-            权限动作
+            Action编码
             </summary>
         </member>
         <member name="P:DXYK.Admin.API.Filters.ApiAuthorize.Sign">
@@ -1247,6 +1242,11 @@
             Stopwatch
             </summary>
         </member>
+        <member name="P:DXYK.Admin.API.Filters.ApiAuthorize.AppId">
+            <summary>
+            应用id
+            </summary>
+        </member>
         <member name="M:DXYK.Admin.API.Filters.ApiAuthorize.OnActionExecuting(Microsoft.AspNetCore.Mvc.Filters.ActionExecutingContext)">
              <summary>
             OnActionExecuting
@@ -1258,7 +1258,7 @@
             返回API的信息
             </summary>
             <param name="context"></param>
-            <param name="mes"></param>
+            <param name="msg"></param>
         </member>
         <member name="M:DXYK.Admin.API.Filters.ApiAuthorize.OnActionExecuted(Microsoft.AspNetCore.Mvc.Filters.ActionExecutedContext)">
             <summary>

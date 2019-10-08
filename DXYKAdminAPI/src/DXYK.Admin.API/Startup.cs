@@ -184,15 +184,25 @@ namespace DXYK.Admin.API
                 var security = new Dictionary<string, IEnumerable<string>> { { "Bearer", new string[] { } }, };
                 //添加一个必须的全局安全信息，和AddSecurityDefinition方法指定的方案名称要一致，这里是Bearer。
                 options.AddSecurityRequirement(security);
-                options.AddSecurityDefinition("Bearer", new ApiKeyScheme
+                options.AddSecurityDefinition("Authorization", new ApiKeyScheme
                 {
-                    Description = "JWT授权(数据将在请求头中进行传输) 参数结构: \"Authorization: Bearer {token}\"",
+                    Description = "JWT授权(数据将在请求头中进行传输) 参数结构: \"Authorization:Bearer {token}\"",
                     //jwt默认的参数名称
                     Name = "Authorization",
                     //jwt默认存放Authorization信息的位置(请求头中)
                     In = "header",
                     Type = "apiKey"
                 });
+                //options.AddSecurityDefinition("AppId", new ApiKeyScheme
+                //{
+                //    Description = "应用Id参数结构: \"AppId:{AppId}\"",
+                //    //jwt默认的参数名称
+                //    Name = "AppId",
+                //    //jwt默认存放Authorization信息的位置(请求头中)
+                //    In = "header",
+                //    Type = "apiKey"
+                //});
+
             });
         }
 

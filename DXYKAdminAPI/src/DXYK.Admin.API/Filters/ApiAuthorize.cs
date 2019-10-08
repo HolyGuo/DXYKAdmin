@@ -25,12 +25,12 @@ namespace DXYK.Admin.API.Filters
         /// <summary>
         /// 模块别名，可配置更改
         /// </summary>
-        public string Modules { get; set; }
+        //public string Modules { get; set; }
 
         /// <summary>
-        /// 权限动作
+        /// Action编码
         /// </summary>
-        public string Methods { get; set; }
+        public string ActionCode { get; set; }
 
         /// <summary>
         /// 权限访问控制器参数
@@ -57,6 +57,11 @@ namespace DXYK.Admin.API.Filters
         /// </summary>
         private Stopwatch Stopwatch { get; set; }
 
+        /// <summary>
+        /// 应用id
+        /// </summary>
+        private string AppId { get; set; }
+
 
         #endregion
         /// <summary>
@@ -76,16 +81,53 @@ namespace DXYK.Admin.API.Filters
             if (context.HttpContext.Request.Headers.ContainsKey("Authorization"))
             {
                 var tokenHeader = context.HttpContext.Request.Headers["Authorization"];
-                tokenHeader = tokenHeader.ToString().Substring("Bearer ".Length).Trim();
+                //tokenHeader = tokenHeader.ToString().Substring("Bearer ".Length).Trim();
                 jwtToken = JwtHelper.SerializeJWT(tokenHeader);
+            }
+            else
+            {
+                ContextReturn(context, "未验证请求！");
+                return;
+            }
+            if (context.HttpContext.Request.Headers.ContainsKey("AppId"))
+            {
+                AppId = context.HttpContext.Request.Headers["AppId"];
+            }
+            else
+            {
+                ContextReturn(context, "AppId丢失！");
             }
             //获得权限
             //在缓存中 获得权限
-            var menuSaveType = ConfigExtensions.Configuration[AppSettingKeyHelper.LOGINAUTHORIZE];
-            UserDto userDto = menuSaveType == "Redis" ? RedisHelper.Get<UserDto>(jwtToken.Uid) : MemoryCacheService.Default.GetCache<UserDto>(jwtToken.Uid);
+            var cacheSaveType = ConfigExtensions.Configuration[AppSettingKeyHelper.LOGINAUTHORIZE];
+            UserDto userDto = cacheSaveType == "Redis" ? RedisHelper.Get<UserDto>(jwtToken.Uid) : MemoryCacheService.Default.GetCache<UserDto>(jwtToken.Uid);
             if (userDto == null)
             {
                 ContextReturn(context, "登录已过期，请退出重新登录！");
+                return;
+            }
+            if (userDto.Permissions != null && userDto.Permissions.Count > 0)
+            {
+                Permission p = userDto.Permissions.Find(s => s.AppId == AppId);
+                if (p == null)
+                {
+                    ContextReturn(context, "您没有操作权限，请联系系统管理员！");
+                    return;
+                }
+                //判断是否有功能权限
+                DXYK.Admin.Dto.Sys.Action action = p.Action.Find(s => s.action_code == ActionCode);
+                if (action == null)
+                {
+                    ContextReturn(context, "您没有操作权限，请联系系统管理员！");
+                    return;
+                }
+                //有功能权限  继续执行
+                base.OnActionExecuting(context);
+                return;
+            }
+            else
+            {
+                ContextReturn(context, "您没有操作权限，请联系系统管理员！");
                 return;
             }
             //如果是超管，不做权限控制处理
@@ -95,11 +137,11 @@ namespace DXYK.Admin.API.Filters
             //    return;
             //}
 
-            if (string.IsNullOrEmpty(Modules))
-            {
-                ContextReturn(context, "您没有操作权限，请联系系统管理员！");
-                return;
-            }
+            //if (string.IsNullOrEmpty(Modules))
+            //{
+            //    ContextReturn(context, "您没有操作权限，请联系系统管理员！");
+            //    return;
+            //}
 
             ////判断功能模块是否授权  即 menu授权
             //if (userDto.MenuList == null || userDto.MenuList.Count == 0)
@@ -131,15 +173,15 @@ namespace DXYK.Admin.API.Filters
         /// 返回API的信息
         /// </summary>
         /// <param name="context"></param>
-        /// <param name="mes"></param>
-        private static void ContextReturn(ActionExecutingContext context, string mes)
+        /// <param name="msg"></param>
+        private static void ContextReturn(ActionExecutingContext context, string msg)
         {
             var resp = new ResponseMessage<object>
             {
                 success = false,
                 code = 1,
                 status = (int)ApiStatusEnum.Unauthorized,
-                msg = "您没有操作权限，请联系系统管理员！",
+                msg = msg,
                 data = null
             };
             var result = new JsonResult(resp);
@@ -166,7 +208,7 @@ namespace DXYK.Admin.API.Filters
             if (context.HttpContext.Request.Headers.ContainsKey("Authorization"))
             {
                 var tokenHeader = context.HttpContext.Request.Headers["Authorization"];
-                tokenHeader = tokenHeader.ToString().Substring("Bearer ".Length).Trim();
+                //tokenHeader = tokenHeader.ToString().Substring("Bearer ".Length).Trim();
 
                 var tm = JwtHelper.SerializeJWT(tokenHeader);
                 user = tm.UserName;
