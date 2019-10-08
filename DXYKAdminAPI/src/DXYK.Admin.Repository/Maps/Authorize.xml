@@ -37,13 +37,18 @@
     </Statement>
 
     <Statement Id="QueryRoleMap">
-      SELECT T.id,T.role_id,T.type_code,T.map_id,T.group_id FROM sys_app_role_map T
+      SELECT T.id,T.role_id,T.type_code,T.map_id,T.group_id,
+      M.parent_id AS menuPid,M.icon AS menu_icon,M.title AS menu_title,
+      A.action_code,A.parent_id As action_pid,A.action_name
+      FROM sys_app_role_map T
+      LEFT JOIN sys_app_menu M ON T.map_id=M.id
+      LEFT JOIN sys_app_action A ON T.map_id=A.id
       <Where>
         <IsNotEmpty Prepend="And" Property="groupId">
           T.group_id = @groupId
         </IsNotEmpty>
         And T.role_id in(
-          <For Key="role" Open="" Close="" Property="rolelist" Separator="," >
+          <For Key="role" Open="" Close="" Property="roleIds" Separator="," >
             @role
           </For>
         )

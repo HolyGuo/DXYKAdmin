@@ -10,7 +10,7 @@
   <Statements>
 
     <Statement Id="AllCols">
-      T.id,T.action_code,T.action_name,T.url,T.description,T.sort,T.is_enable,T.group_id,T.re_vision,T.created_by,T.created_time,T.updated_by,T.updated_time,T.deleted_by,T.deleted_time
+      T.id,T.action_code,T.action_name,T.url,T.description,T.sort,T.is_enable,T.parent_id,T.group_id,T.re_vision,T.created_by,T.created_time,T.updated_by,T.updated_time,T.deleted_by,T.deleted_time
     </Statement>
     <Statement Id="QueryParams">
       <Where>
@@ -74,6 +74,7 @@
       description,
       sort,
       is_enable,
+      parent_id,
       group_id,
       re_vision,
       created_by,
@@ -92,6 +93,7 @@
       @description,
       @sort,
       @is_enable,
+      @parent_id,
       @group_id,
       @re_vision,
       @created_by,

@@ -25,10 +25,6 @@ namespace DXYK.Admin.Entity
         ///</summary>
         public virtual string action_name { get; set; }
         ///<summary>
-        /// 上级id
-        ///</summary>
-        public virtual long? parent_id { get; set; }
-        ///<summary>
         /// 地址
         ///</summary>
         public virtual string url { get; set; }
@@ -44,6 +40,10 @@ namespace DXYK.Admin.Entity
         /// 状态
         ///</summary>
         public virtual string is_enable { get; set; }
+        ///<summary>
+        /// 上级id
+        ///</summary>
+        public virtual long? parent_id { get; set; }
         ///<summary>
         /// 群组id
         ///</summary>

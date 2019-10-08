@@ -1287,6 +1287,12 @@
               "chnname": "状态"
             },
             {
+              "name": "parent_id",
+              "type": "BigInt",
+              "remark": "",
+              "chnname": "父级菜单"
+            },
+            {
               "name": "group_id",
               "type": "VARCHAR_50",
               "remark": "",

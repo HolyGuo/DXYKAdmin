@@ -107,22 +107,13 @@ namespace DXYK.Admin.Service
             List<SysUserAppRole> sysUserAppRoleList = _authorizeRepository.QueryUerAppRole(userId);
             if (sysUserAppRoleList != null && sysUserAppRoleList.Count > 0)
             {
-                var appIds = sysUserAppRoleList.Select(s =>s.app_id).ToList().Distinct().ToList();
-
-                result = new List<Permission>();
-                List<long> roleIds = new List<long>();
-                foreach (SysUserAppRole item in sysUserAppRoleList)
-                {
-                    Permission p = new Permission();
-                    if (result.FindIndex(s => s.AppId == item.app_id) < 0)
-                    {
-                        p.AppId = item.app_id;
-                    }
-                    roleIds.Add(item.role_id);
-                }
-
-
+                //获取已授权所有应用app
+                List<string> appIds = sysUserAppRoleList.Select(s =>s.app_id).ToList().Distinct().ToList();
+                //获取已授权所有role
+                List<long> roleIds = sysUserAppRoleList.Select(s => s.role_id).ToList();
+                //查询role对应的权限
                 List<SysAppRoleMap> roleMapList = _authorizeRepository.QueryRoleMap(groupId, roleIds);
+
             }
             return result;
         }
