@@ -38,8 +38,8 @@
 
     <Statement Id="QueryRoleMap">
       SELECT T.id,T.role_id,T.type_code,T.map_id,T.group_id,
-      M.parent_id AS menuPid,M.icon AS menu_icon,M.title AS menu_title,
-      A.action_code,A.parent_id As action_pid,A.action_name
+      M.parent_id AS menuPid,M.icon AS menu_icon,M.title AS menu_title,M.menu_type,M.jump AS menu_jump,M.is_enable AS menu_is_enable,
+      A.action_code,A.parent_id AS action_pid,A.is_enable AS action_is_enable,A.action_name
       FROM sys_app_role_map T
       LEFT JOIN sys_app_menu M ON T.map_id=M.id
       LEFT JOIN sys_app_action A ON T.map_id=A.id
@@ -52,6 +52,8 @@
             @role
           </For>
         )
+        AND (M.is_enable='启用' OR M.is_enable IS NULL) 
+        AND (A.is_enable='启用' OR A.is_enable IS NULL)
         ORDER BY T.role_id
       </Where>
     </Statement>

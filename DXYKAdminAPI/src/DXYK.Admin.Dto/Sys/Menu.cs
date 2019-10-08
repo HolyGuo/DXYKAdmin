@@ -10,22 +10,32 @@ namespace DXYK.Admin.Dto.Sys
         /// 唯一标识
         ///</summary>
         public virtual long id { get; set; }
+
         ///<summary>
-        /// 角色id
+        /// 菜单编码
         ///</summary>
-        public virtual long? role_id { get; set; }
+        public virtual string name { get; set; }
+
         ///<summary>
-        /// 类型编码
+        /// 上级菜单id
         ///</summary>
-        public virtual int? type_code { get; set; }
-        ///<summary>
-        /// 权限id
-        ///</summary>
-        public virtual long? map_id { get; set; }
-        ///<summary>
-        /// 群组id
-        ///</summary>
-        public virtual long? group_id { get; set; }
+        public virtual string pid { get; set; }
+
+        /// <summary>
+        /// 路径
+        /// </summary>
+        public virtual string path { get; set; }
+
+        /// <summary>
+        /// 菜单图标
+        /// </summary>
+        public virtual string icon { get; set; }
+
+        /// <summary>
+        /// 是否可见
+        /// </summary>
+        public virtual string hidden { get; set; } = "false";
+
 
 
     }

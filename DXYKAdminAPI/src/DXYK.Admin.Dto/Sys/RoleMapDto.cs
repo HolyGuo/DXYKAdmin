@@ -46,6 +46,14 @@ namespace DXYK.Admin.Dto.Sys
         /// </summary>
         public virtual string menu_title { get; set; }
         /// <summary>
+        /// 菜单类型
+        /// </summary>
+        public virtual string menu_type { get; set; }
+        /// <summary>
+        /// 跳转路径
+        /// </summary>
+        public virtual string menu_jump { get; set; }
+        /// <summary>
         /// 功能编码
         /// </summary>
         public virtual string action_code { get; set; }

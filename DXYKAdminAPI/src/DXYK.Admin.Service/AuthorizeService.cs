@@ -78,7 +78,7 @@ namespace DXYK.Admin.Service
         /// <param name="groupId">群组id</param>
         /// <param name="roleIds">角色id集合</param>
         /// <returns></returns>
-        public List<SysAppRoleMap> QueryRoleMap(string groupId, List<long> roleIds)
+        public List<RoleMapDto> QueryRoleMap(string groupId, List<long> roleIds)
         {
             return _authorizeRepository.QueryRoleMap(groupId, roleIds);
         }
@@ -89,7 +89,7 @@ namespace DXYK.Admin.Service
         /// <param name="groupId">群组id</param>
         /// <param name="roleIds">角色id集合</param>
         /// <returns></returns>
-        public async Task<List<SysAppRoleMap>> QueryRoleMapAsync(string groupId, List<long> roleIds)
+        public async Task<List<RoleMapDto>> QueryRoleMapAsync(string groupId, List<long> roleIds)
         {
             return await _authorizeRepository.QueryRoleMapAsync(groupId, roleIds);
         }
@@ -108,12 +108,21 @@ namespace DXYK.Admin.Service
             if (sysUserAppRoleList != null && sysUserAppRoleList.Count > 0)
             {
                 //获取已授权所有应用app
-                List<string> appIds = sysUserAppRoleList.Select(s =>s.app_id).ToList().Distinct().ToList();
+                List<string> appIds = sysUserAppRoleList.Select(s => s.app_id).ToList().Distinct().ToList();
                 //获取已授权所有role
                 List<long> roleIds = sysUserAppRoleList.Select(s => s.role_id).ToList();
                 //查询role对应的权限
-                List<SysAppRoleMap> roleMapList = _authorizeRepository.QueryRoleMap(groupId, roleIds);
+                List<RoleMapDto> roleMapList = _authorizeRepository.QueryRoleMap(groupId, roleIds);
+                result = new List<Permission>();
+                foreach (string appid in appIds)
+                {
+                    Permission p = new Permission();
+                    p.AppId = appid;
+                    List<long> roles = sysUserAppRoleList.Where(s => s.app_id == appid).Select(s => s.role_id).ToList();
+                    List<RoleMapDto> mapList = roleMapList.Where(s => roles.Contains((long)s.role_id)).ToList();
 
+                    result.Add(p);
+                }
             }
             return result;
         }

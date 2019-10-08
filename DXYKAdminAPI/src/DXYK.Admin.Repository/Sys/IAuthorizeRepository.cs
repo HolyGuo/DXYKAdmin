@@ -51,7 +51,7 @@ namespace DXYK.Admin.Repository
         /// <param name="roleIds">角色id</param>
         /// <returns></returns>
         [Statement(Id = "QueryRoleMap")]
-        List<SysAppRoleMap> QueryRoleMap(string groupId, List<long> roleIds);
+        List<RoleMapDto> QueryRoleMap(string groupId, List<long> roleIds);
 
         /// <summary>
         /// 查询角色对应的权限映射
@@ -60,7 +60,7 @@ namespace DXYK.Admin.Repository
         /// <param name="roleIds">角色id集合</param>
         /// <returns></returns>
         [Statement(Id = "QueryRoleMap")]
-        Task<List<SysAppRoleMap>> QueryRoleMapAsync(string groupId, List<long> roleIds);
+        Task<List<RoleMapDto>> QueryRoleMapAsync(string groupId, List<long> roleIds);
 
     }
 }

@@ -1131,7 +1131,7 @@
               "name": "is_enable",
               "type": "VARCHAR_10",
               "remark": "",
-              "chnname": "状态"
+              "chnname": "状态(启用/禁用)"
             },
             {
               "name": "sort",
