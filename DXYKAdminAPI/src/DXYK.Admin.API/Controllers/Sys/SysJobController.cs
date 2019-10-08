@@ -13,12 +13,14 @@ using DXYK.Admin.API.Messages;
 using System.Threading.Tasks;
 using DXYK.Admin.API.Filters;
 using DXYK.Admin.Common.EnumHelper;
+using DXYK.Admin.Dto.Sys;
+using DXYK.Admin.API.Utils;
 
 namespace DXYK.Admin.API.Controllers
 {
     ///<summary>
-        /// 岗位信息表
-        ///</summary>
+    /// 岗位信息表
+    ///</summary>
     [ApiController]
     [Route("api/[controller]/[action]")]
     public class SysJobController : Controller
@@ -51,17 +53,20 @@ namespace DXYK.Admin.API.Controllers
         ///<summary>
         /// 新增岗位信息表(sys_job)
         ///</summary>
-        [HttpPost,ApiAuthorize(ActionCode = "Sys_Job_Insert", LogType = LogEnum.ADD)]
+        [HttpPost, ApiAuthorize(ActionCode = "Sys_Job_Insert", LogType = LogEnum.ADD)]
         public ResponseMessage<long> Insert([FromBody]SysJob sysJob)
         {
-            return new ResponseMessage<long> { data = _sysJobService.Insert(sysJob) }; 
+            UserInfo user = GetCurrentUser.GetUserInfo(HttpContext);
+            sysJob.created_by = user.id;
+            sysJob.created_time = DateTime.Now;
+            return new ResponseMessage<long> { data = _sysJobService.Insert(sysJob) };
         }
 
         ///<summary>
         /// 异步新增岗位信息表(sys_job)
         ///</summary>
         [HttpPost]
-        public async Task<ResponseMessage<long>>InsertAsync([FromBody]SysJob sysJob)
+        public async Task<ResponseMessage<long>> InsertAsync([FromBody]SysJob sysJob)
         {
             return new ResponseMessage<long> { data = await _sysJobService.InsertAsync(sysJob) };
         }
@@ -72,7 +77,7 @@ namespace DXYK.Admin.API.Controllers
         [HttpDelete]
         public ResponseMessage<int> DeleteById(long id)
         {
-            return new ResponseMessage<int> { data =  _sysJobService.DeleteById(id) };
+            return new ResponseMessage<int> { data = _sysJobService.DeleteById(id) };
         }
 
         ///<summary>
@@ -112,7 +117,7 @@ namespace DXYK.Admin.API.Controllers
         public ResponseMessage<SysJob> GetById(long id)
         {
             var sysJob = _sysJobService.GetById(id);
-            return new ResponseMessage<SysJob> {  data = sysJob };
+            return new ResponseMessage<SysJob> { data = sysJob };
         }
 
         ///<summary>
@@ -121,8 +126,8 @@ namespace DXYK.Admin.API.Controllers
         [HttpGet]
         public async Task<ResponseMessage<SysJob>> GetByIdAsync(long id)
         {
-            var sysJob =await _sysJobService.GetByIdAsync(id);
-            return new ResponseMessage<SysJob>{ data = sysJob};
+            var sysJob = await _sysJobService.GetByIdAsync(id);
+            return new ResponseMessage<SysJob> { data = sysJob };
         }
 
         ///<summary>
@@ -141,7 +146,7 @@ namespace DXYK.Admin.API.Controllers
         [HttpPost]
         public async Task<ResponseMessage<IList<SysJob>>> QueryAsync([FromBody]QueryRequest reqMsg)
         {
-            var list =await _sysJobRepository.QueryAsync(reqMsg);
+            var list = await _sysJobRepository.QueryAsync(reqMsg);
             return new ResponseMessage<IList<SysJob>> { data = list };
         }
 
@@ -151,7 +156,7 @@ namespace DXYK.Admin.API.Controllers
         [HttpPost]
         public ResponseMessageWrap<IList<SysJob>> QueryByPage([FromBody]QueryByPageRequest reqMsg)
         {
-            
+
             var total = _sysJobRepository.GetRecord(reqMsg);
             var list = _sysJobRepository.QueryByPage(reqMsg);
             return new ResponseMessageWrap<IList<SysJob>>() { count = total, data = list };
@@ -163,11 +168,11 @@ namespace DXYK.Admin.API.Controllers
         [HttpPost]
         public async Task<ResponseMessageWrap<IList<SysJob>>> QueryByPageAsync([FromBody]QueryByPageRequest reqMsg)
         {
-            var total =await _sysJobRepository.GetRecordAsync(reqMsg);
-            var list =await _sysJobRepository.QueryByPageAsync(reqMsg);
+            var total = await _sysJobRepository.GetRecordAsync(reqMsg);
+            var list = await _sysJobRepository.QueryByPageAsync(reqMsg);
             return new ResponseMessageWrap<IList<SysJob>>() { count = total, data = list };
         }
-        
+
         ///<summary>
         /// 根据分页查询岗位信息表(sys_job)
         ///</summary>
@@ -176,9 +181,9 @@ namespace DXYK.Admin.API.Controllers
         {
             var total = _sysJobService.QueryDataRecord(reqMsg);
             var list = _sysJobService.QueryDataByPage(reqMsg);
-            return new ResponseMessageWrap<object> {count = total, data = list };
+            return new ResponseMessageWrap<object> { count = total, data = list };
         }
-        
+
         ///<summary>
         /// 异步根据分页查询岗位信息表(sys_job)
         ///</summary>

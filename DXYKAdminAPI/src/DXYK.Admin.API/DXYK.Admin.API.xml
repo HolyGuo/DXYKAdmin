@@ -1673,6 +1673,23 @@
             <param name="objDesc">复制到的实体类</param>
             <param name="ignoreFields">不复制的属性</param>
         </member>
+        <member name="T:DXYK.Admin.API.Utils.GetCurrentUser">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:DXYK.Admin.API.Utils.GetCurrentUser.GetUserDto(Microsoft.AspNetCore.Http.HttpContext)">
+            <summary>
+            获取当前用户信息(包括权限)
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:DXYK.Admin.API.Utils.GetCurrentUser.GetUserInfo(Microsoft.AspNetCore.Http.HttpContext)">
+            <summary>
+            获取当前用户信息
+            </summary>
+            <returns></returns>
+        </member>
         <member name="T:DXYK.Admin.API.Utils.JsonLongConverter">
             <summary>
             long 类型转为string
@@ -1693,23 +1710,6 @@
             <summary>
             WriteJson
             </summary>
-        </member>
-        <member name="T:DXYK.Admin.API.Utils.GetCurrentUser">
-            <summary>
-            
-            </summary>
-        </member>
-        <member name="M:DXYK.Admin.API.Utils.GetCurrentUser.GetUserDto(Microsoft.AspNetCore.Http.HttpContext)">
-            <summary>
-            获取当前用户信息(包括权限)
-            </summary>
-            <returns></returns>
-        </member>
-        <member name="M:DXYK.Admin.API.Utils.GetCurrentUser.GetUserInfo(Microsoft.AspNetCore.Http.HttpContext)">
-            <summary>
-            获取当前用户信息
-            </summary>
-            <returns></returns>
         </member>
     </members>
 </doc>

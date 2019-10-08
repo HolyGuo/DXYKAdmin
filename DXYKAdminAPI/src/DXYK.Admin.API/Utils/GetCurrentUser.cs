@@ -49,6 +49,7 @@ namespace DXYK.Admin.API.Utils
         /// <returns></returns>
         public static UserInfo GetUserInfo(HttpContext context)
         {
+            UserInfo result = new UserInfo();
             UserDto user = new UserDto();
             TokenModel jwtToken = new TokenModel();
             //string appId = string.Empty;
@@ -57,19 +58,18 @@ namespace DXYK.Admin.API.Utils
             if (context.Request.Headers.ContainsKey("Authorization"))
             {
                 var tokenHeader = context.Request.Headers["Authorization"];
-                tokenHeader = tokenHeader.ToString().Substring("Bearer ".Length).Trim();
+                //tokenHeader = tokenHeader.ToString().Substring("Bearer ".Length).Trim();
                 var tm = JwtHelper.SerializeJWT(tokenHeader);
                 //appId = tm.AppId;
                 userId = tm.Uid;
             }
             else
             {
-
+                result = null;
             }
-            UserInfo info = new UserInfo();
             user = MemoryCacheService.Default.GetCache<UserDto>(userId);
-            info = user.User;
-            return info;
+            result = user.User;
+            return result;
         }
     }
 
