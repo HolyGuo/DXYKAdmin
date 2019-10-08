@@ -39,7 +39,7 @@ namespace DXYK.Admin.API.Utils
             {
 
             }
-            user = MemoryCacheService.Default.GetCache<UserDto>(appId + "_" + userId);
+            user = MemoryCacheService.Default.GetCache<UserDto>(userId);
             return user;
         }
 
