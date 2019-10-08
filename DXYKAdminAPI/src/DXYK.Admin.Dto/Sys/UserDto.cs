@@ -7,18 +7,32 @@ namespace DXYK.Admin.Dto.Sys
     public class UserDto
     {
         /// <summary>
-        /// 应用Id
-        /// </summary>
-        public virtual string AppId { get; set; }
-        /// <summary>
         /// 用户信息
         /// </summary>
         public UserInfo User { get; set; }
 
         /// <summary>
+        /// 授权信息
+        /// 每一个App对应各自已授权，权限
+        /// </summary>
+        public List<Permission> Permissions { get; set; }
+
+    }
+
+    /// <summary>
+    /// 授权信息
+    /// </summary>
+    public class Permission
+    {
+        /// <summary>
+        /// 应用Id
+        /// </summary>
+        public virtual string AppId { get; set; }
+
+        /// <summary>
         /// 授权菜单集合
         /// </summary>
-        public List<MenuDto> MenuList { get; set; } = null;
+        public List<Menu> Menu { get; set; }
 
         /// <summary>
         /// 授权功能集合
@@ -65,7 +79,7 @@ namespace DXYK.Admin.Dto.Sys
         ///<summary>
         /// 用于全局数据划分
         ///</summary>
-        public virtual long? group_id { get; set; }
+        public virtual string group_id { get; set; }
         ///<summary>
         /// 创建时间
         ///</summary>

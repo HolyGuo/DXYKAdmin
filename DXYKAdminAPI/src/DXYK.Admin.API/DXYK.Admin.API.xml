@@ -34,11 +34,6 @@
              用户名、密码登录、 验证码登录
             </summary>
         </member>
-        <member name="M:DXYK.Admin.API.Controllers.LoginController.LoginInAsync(DXYK.Admin.Dto.Sys.UserLoginDto)">
-            <summary>
-             异步 用户名、密码登录、 验证码登录
-            </summary>
-        </member>
         <member name="M:DXYK.Admin.API.Controllers.LoginController.SignIn(DXYK.Admin.Dto.Sys.UserSingInDto)">
             <summary>
              用户名、密码登录
@@ -63,6 +58,12 @@
             </summary>
             <param name="userInputCaptcha">验证码内容</param>
             <param name="key">保存在缓存中对应的key</param>
+            <returns></returns>
+        </member>
+        <member name="M:DXYK.Admin.API.Controllers.LoginController.GetPermission">
+            <summary>
+            用户权限测试
+            </summary>
             <returns></returns>
         </member>
         <member name="T:DXYK.Admin.API.Controllers.SysAppActionController">
@@ -248,96 +249,6 @@
         <member name="M:DXYK.Admin.API.Controllers.SysAppController.QueryDataByPageAsync(DXYK.Admin.API.Messages.QueryByPageRequest)">
             <summary>
              异步根据分页查询应用信息表(sys_app)
-            </summary>
-        </member>
-        <member name="T:DXYK.Admin.API.Controllers.SysAppMenuActionController">
-            <summary>
-             功能信息表
-            </summary>
-        </member>
-        <member name="P:DXYK.Admin.API.Controllers.SysAppMenuActionController._sysAppMenuActionService">
-            <summary>
-             功能信息表(sys_app_menu_action) Service
-            </summary>
-        </member>
-        <member name="P:DXYK.Admin.API.Controllers.SysAppMenuActionController._sysAppMenuActionRepository">
-            <summary>
-             功能信息表(sys_app_menu_action) Repository
-            </summary>
-        </member>
-        <member name="M:DXYK.Admin.API.Controllers.SysAppMenuActionController.#ctor(DXYK.Admin.Service.SysAppMenuActionService,DXYK.Admin.Repository.ISysAppMenuActionRepository)">
-            <summary>
-             sys_app_menu_actionController
-            </summary>
-        </member>
-        <member name="M:DXYK.Admin.API.Controllers.SysAppMenuActionController.Insert(DXYK.Admin.Entity.SysAppMenuAction)">
-            <summary>
-             新增功能信息表(sys_app_menu_action)
-            </summary>
-        </member>
-        <member name="M:DXYK.Admin.API.Controllers.SysAppMenuActionController.InsertAsync(DXYK.Admin.Entity.SysAppMenuAction)">
-            <summary>
-             异步新增功能信息表(sys_app_menu_action)
-            </summary>
-        </member>
-        <member name="M:DXYK.Admin.API.Controllers.SysAppMenuActionController.DeleteById(System.Int64)">
-            <summary>
-             删除功能信息表(sys_app_menu_action)
-            </summary>
-        </member>
-        <member name="M:DXYK.Admin.API.Controllers.SysAppMenuActionController.DeleteByIdAsync(System.Int64)">
-            <summary>
-             异步删除功能信息表(sys_app_menu_action)
-            </summary>
-        </member>
-        <member name="M:DXYK.Admin.API.Controllers.SysAppMenuActionController.Update(DXYK.Admin.Entity.SysAppMenuAction)">
-            <summary>
-             更新功能信息表(sys_app_menu_action)
-            </summary>
-        </member>
-        <member name="M:DXYK.Admin.API.Controllers.SysAppMenuActionController.UpdateAsync(DXYK.Admin.Entity.SysAppMenuAction)">
-            <summary>
-             异步更新功能信息表(sys_app_menu_action)
-            </summary>
-        </member>
-        <member name="M:DXYK.Admin.API.Controllers.SysAppMenuActionController.GetById(System.Int64)">
-            <summary>
-             根据Id查询功能信息表(sys_app_menu_action)
-            </summary>
-        </member>
-        <member name="M:DXYK.Admin.API.Controllers.SysAppMenuActionController.GetByIdAsync(System.Int64)">
-            <summary>
-             根据Id查询功能信息表(sys_app_menu_action)
-            </summary>
-        </member>
-        <member name="M:DXYK.Admin.API.Controllers.SysAppMenuActionController.Query(DXYK.Admin.API.Messages.QueryRequest)">
-            <summary>
-             根据条件查询功能信息表(sys_app_menu_action)
-            </summary>
-        </member>
-        <member name="M:DXYK.Admin.API.Controllers.SysAppMenuActionController.QueryAsync(DXYK.Admin.API.Messages.QueryRequest)">
-            <summary>
-             异步根据条件查询功能信息表(sys_app_menu_action)
-            </summary>
-        </member>
-        <member name="M:DXYK.Admin.API.Controllers.SysAppMenuActionController.QueryByPage(DXYK.Admin.API.Messages.QueryByPageRequest)">
-            <summary>
-             根据分页查询功能信息表(sys_app_menu_action)
-            </summary>
-        </member>
-        <member name="M:DXYK.Admin.API.Controllers.SysAppMenuActionController.QueryByPageAsync(DXYK.Admin.API.Messages.QueryByPageRequest)">
-            <summary>
-             异步根据分页查询功能信息表(sys_app_menu_action)
-            </summary>
-        </member>
-        <member name="M:DXYK.Admin.API.Controllers.SysAppMenuActionController.QueryDataByPage(DXYK.Admin.API.Messages.QueryByPageRequest)">
-            <summary>
-             根据分页查询功能信息表(sys_app_menu_action)
-            </summary>
-        </member>
-        <member name="M:DXYK.Admin.API.Controllers.SysAppMenuActionController.QueryDataByPageAsync(DXYK.Admin.API.Messages.QueryByPageRequest)">
-            <summary>
-             异步根据分页查询功能信息表(sys_app_menu_action)
             </summary>
         </member>
         <member name="T:DXYK.Admin.API.Controllers.SysAppMenuController">
@@ -695,12 +606,12 @@
              异步新增群组信息表(sys_group)
             </summary>
         </member>
-        <member name="M:DXYK.Admin.API.Controllers.SysGroupController.DeleteById(System.Int64)">
+        <member name="M:DXYK.Admin.API.Controllers.SysGroupController.DeleteById(System.String)">
             <summary>
              删除群组信息表(sys_group)
             </summary>
         </member>
-        <member name="M:DXYK.Admin.API.Controllers.SysGroupController.DeleteByIdAsync(System.Int64)">
+        <member name="M:DXYK.Admin.API.Controllers.SysGroupController.DeleteByIdAsync(System.String)">
             <summary>
              异步删除群组信息表(sys_group)
             </summary>
@@ -715,12 +626,12 @@
              异步更新群组信息表(sys_group)
             </summary>
         </member>
-        <member name="M:DXYK.Admin.API.Controllers.SysGroupController.GetById(System.Int64)">
+        <member name="M:DXYK.Admin.API.Controllers.SysGroupController.GetById(System.String)">
             <summary>
              根据Id查询群组信息表(sys_group)
             </summary>
         </member>
-        <member name="M:DXYK.Admin.API.Controllers.SysGroupController.GetByIdAsync(System.Int64)">
+        <member name="M:DXYK.Admin.API.Controllers.SysGroupController.GetByIdAsync(System.String)">
             <summary>
              根据Id查询群组信息表(sys_group)
             </summary>

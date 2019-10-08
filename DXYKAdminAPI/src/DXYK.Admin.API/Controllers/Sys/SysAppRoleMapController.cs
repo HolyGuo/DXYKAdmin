@@ -203,7 +203,7 @@ namespace DXYK.Admin.API.Controllers
                         role_id = roleid,
                         map_id = mapid,
                         type_code = reqMsg.type,
-                        group_id = 1
+                        group_id = ""
                     };
                     _sysAppRoleMapService.Insert(enity);
                 }

@@ -19,19 +19,19 @@ namespace DXYK.Admin.Entity
         ///<summary>
         /// 用户id
         ///</summary>
-        public virtual string user_id { get; set; }
+        public virtual long user_id { get; set; }
         ///<summary>
         /// 应用id
         ///</summary>
-        public virtual long? app_id { get; set; }
+        public virtual string app_id { get; set; }
         ///<summary>
         /// 角色id
         ///</summary>
-        public virtual long? role_id { get; set; }
+        public virtual long role_id { get; set; }
         ///<summary>
         /// 用于全局数据划分
         ///</summary>
-        public virtual long? group_id { get; set; }
+        public virtual string group_id { get; set; }
     }
 }
 

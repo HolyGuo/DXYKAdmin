@@ -1,16 +1,10 @@
-//*******************************
-// Create By Holy Guo
-// Date 2019-10-03 09:12
-//*******************************
+﻿using System;
+using System.Collections.Generic;
+using System.Text;
 
-using System;
-namespace DXYK.Admin.Entity
+namespace DXYK.Admin.Dto.Sys
 {
-
-    ///<summary>
-    /// 角色授权表
-    ///</summary>
-    public class SysAppRoleMap
+    public class Menu
     {
         ///<summary>
         /// 唯一标识
@@ -31,7 +25,8 @@ namespace DXYK.Admin.Entity
         ///<summary>
         /// 群组id
         ///</summary>
-        public virtual string group_id { get; set; }
+        public virtual long? group_id { get; set; }
+
+
     }
 }
-

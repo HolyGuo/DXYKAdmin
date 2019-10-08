@@ -11,20 +11,44 @@
     <Statement Id="AllCols">
       T.id,T.true_name,T.nick_name,T.login_name,T.login_pwd,T.sex,T.head_pic,T.org_id,T.last_login_time,T.group_id,T.created_time,T.updated_by,T.updated_time
     </Statement>
-    
     <!--登录验证-->
     <Statement Id="LoginIn">
-      SELECT 
+      SELECT
       <Include RefId="AllCols" />
       From sys_user T
       <Where Min="1">
         <IsNotEmpty Prepend="AND" Property="loginname">
-          T.login_name = @loginname 
+          T.login_name = @loginname
         </IsNotEmpty>
       </Where>
       Limit 1
     </Statement>
-    
+    <!--查询用户拥有的App Role-->
+    <Statement Id="QueryUerAppRole">
+      SELECT T.id,T.user_id,T.app_id,T.role_id,T.group_id  FROM sys_user_app_role T
+      <Where>
+        <IsNotEmpty Prepend="And" Property="userId">
+          T.user_id = @userId
+        </IsNotEmpty>
+        <IsNotEmpty Prepend="And" Property="groupId">
+          T.group_id = @groupId
+        </IsNotEmpty>
+      </Where>
+    </Statement>
 
+    <Statement Id="QueryRoleMap">
+      SELECT T.id,T.role_id,T.type_code,T.map_id,T.group_id FROM sys_app_role_map T
+      <Where>
+        <IsNotEmpty Prepend="And" Property="groupId">
+          T.group_id = @groupId
+        </IsNotEmpty>
+        And T.role_id in(
+          <For Key="role" Open="" Close="" Property="rolelist" Separator="," >
+            @role
+          </For>
+        )
+        ORDER BY T.role_id
+      </Where>
+    </Statement>
   </Statements>
 </SmartSqlMap>

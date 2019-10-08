@@ -72,6 +72,7 @@ namespace DXYK.Admin.API.Filters
                 Stopwatch.Start();
             }
             TokenModel jwtToken = new TokenModel();
+            string appid = "";
             //检测是否包含'Authorization'请求头，如果不包含则直接放行
             if (context.HttpContext.Request.Headers.ContainsKey("Authorization"))
             {
@@ -82,7 +83,7 @@ namespace DXYK.Admin.API.Filters
             //获得权限
             //在缓存中 获得权限
             var menuSaveType = ConfigExtensions.Configuration[AppSettingKeyHelper.LOGINAUTHORIZE];
-            UserDto userDto = menuSaveType == "Redis" ? RedisHelper.Get<UserDto>(AppSettingKeyHelper.ADMINMENUACTION + "_" + jwtToken.Uid) : MemoryCacheService.Default.GetCache<UserDto>(AppSettingKeyHelper.ADMINMENUACTION + "_" + jwtToken.Uid);
+            UserDto userDto = menuSaveType == "Redis" ? RedisHelper.Get<UserDto>(jwtToken.Uid) : MemoryCacheService.Default.GetCache<UserDto>(jwtToken.Uid);
             if (userDto == null)
             {
                 ContextReturn(context, "登录已过期，请退出重新登录！");
@@ -100,29 +101,30 @@ namespace DXYK.Admin.API.Filters
                 ContextReturn(context, "您没有操作权限，请联系系统管理员！");
                 return;
             }
-            //判断功能模块是否授权  即 menu授权
-            if (userDto.MenuList == null || userDto.MenuList.Count == 0)
-            {
-                ContextReturn(context, "您没有操作权限，请联系系统管理员！");
-                return;
-            }
-            var menuModel = userDto.MenuList.Find(m => m.menu_code == Modules);
-            if (userDto.MenuList.All(m => m.menu_code != Modules))
-            {
-                ContextReturn(context, "您没有操作权限，请联系系统管理员！");
-                return;
-            }
-            //判断模块下面的功能权限是否授权 即 Action授权
-            if (userDto.ActionList == null || userDto.ActionList.Count == 0)
-            {
-                ContextReturn(context, "您没有操作权限，请联系系统管理员！");
-                return;
-            }
-            if (userDto.ActionList.All(m => m.action_code != Methods))
-            {
-                ContextReturn(context, "您没有操作权限，请联系系统管理员！");
-                return;
-            }
+
+            ////判断功能模块是否授权  即 menu授权
+            //if (userDto.MenuList == null || userDto.MenuList.Count == 0)
+            //{
+            //    ContextReturn(context, "您没有操作权限，请联系系统管理员！");
+            //    return;
+            //}
+            //var menuModel = userDto.MenuList.Find(m => m.menu_code == Modules);
+            //if (userDto.MenuList.All(m => m.menu_code != Modules))
+            //{
+            //    ContextReturn(context, "您没有操作权限，请联系系统管理员！");
+            //    return;
+            //}
+            ////判断模块下面的功能权限是否授权 即 Action授权
+            //if (userDto.ActionList == null || userDto.ActionList.Count == 0)
+            //{
+            //    ContextReturn(context, "您没有操作权限，请联系系统管理员！");
+            //    return;
+            //}
+            //if (userDto.ActionList.All(m => m.action_code != Methods))
+            //{
+            //    ContextReturn(context, "您没有操作权限，请联系系统管理员！");
+            //    return;
+            //}
             base.OnActionExecuting(context);
         }
 

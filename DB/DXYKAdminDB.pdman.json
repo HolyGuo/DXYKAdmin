@@ -9,7 +9,7 @@
           "fields": [
             {
               "name": "id",
-              "type": "BigInt",
+              "type": "VARCHAR_50",
               "remark": "",
               "chnname": "唯一标识",
               "pk": true,
@@ -217,9 +217,10 @@
             },
             {
               "name": "group_id",
-              "type": "BigInt",
+              "type": "VARCHAR_50",
               "remark": "",
-              "chnname": "群组id"
+              "chnname": "群组id",
+              "notNull": false
             },
             {
               "name": "re_vision",
@@ -461,9 +462,10 @@
             },
             {
               "name": "group_id",
-              "type": "BigInt",
+              "type": "VARCHAR_50",
               "remark": "用于全局数据划分",
-              "chnname": "群组Id"
+              "chnname": "群组Id",
+              "notNull": false
             },
             {
               "name": "re_vision",
@@ -579,27 +581,31 @@
             },
             {
               "name": "user_id",
-              "type": "DefaultString",
+              "type": "BigInt",
               "remark": "",
-              "chnname": "用户id"
+              "chnname": "用户id",
+              "notNull": true
             },
             {
               "name": "app_id",
-              "type": "BigInt",
+              "type": "VARCHAR_50",
               "remark": "",
-              "chnname": "应用id"
+              "chnname": "应用id",
+              "notNull": true
             },
             {
               "name": "role_id",
               "type": "BigInt",
               "remark": "",
-              "chnname": "角色id"
+              "chnname": "角色id",
+              "notNull": true
             },
             {
               "name": "group_id",
-              "type": "BigInt",
+              "type": "VARCHAR_50",
               "remark": "用于全局数据划分",
-              "chnname": "群组Id"
+              "chnname": "群组Id",
+              "notNull": false
             }
           ],
           "indexs": [],
@@ -689,9 +695,10 @@
             },
             {
               "name": "group_id",
-              "type": "BigInt",
+              "type": "VARCHAR_50",
               "remark": "",
-              "chnname": "群组id"
+              "chnname": "群组id",
+              "notNull": false
             },
             {
               "name": "re_vision",
@@ -969,9 +976,10 @@
             },
             {
               "name": "group_id",
-              "type": "BigInt",
+              "type": "VARCHAR_50",
               "remark": "",
-              "chnname": "群组id"
+              "chnname": "群组id",
+              "notNull": false
             },
             {
               "name": "re_vision",
@@ -1133,9 +1141,10 @@
             },
             {
               "name": "group_id",
-              "type": "BigInt",
+              "type": "VARCHAR_50",
               "remark": "",
-              "chnname": "群组id"
+              "chnname": "群组id",
+              "notNull": false
             },
             {
               "name": "re_vision",
@@ -1279,7 +1288,7 @@
             },
             {
               "name": "group_id",
-              "type": "BigInt",
+              "type": "VARCHAR_50",
               "remark": "",
               "chnname": "群组id"
             },
@@ -1413,7 +1422,7 @@
             },
             {
               "name": "group_id",
-              "type": "BigInt",
+              "type": "VARCHAR_50",
               "remark": "",
               "chnname": "群组id"
             },
@@ -1541,7 +1550,7 @@
             },
             {
               "name": "group_id",
-              "type": "BigInt",
+              "type": "VARCHAR_50",
               "remark": "用于全局数据划分",
               "chnname": "群组Id"
             }
@@ -1627,7 +1636,7 @@
             },
             {
               "name": "group_id",
-              "type": "BigInt",
+              "type": "VARCHAR_50",
               "remark": "",
               "chnname": "群组id"
             },
@@ -1859,7 +1868,7 @@
             },
             {
               "name": "group_id",
-              "type": "BigInt",
+              "type": "VARCHAR_50",
               "remark": "",
               "chnname": "群组id"
             },

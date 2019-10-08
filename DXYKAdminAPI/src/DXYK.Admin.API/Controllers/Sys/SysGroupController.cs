@@ -62,7 +62,7 @@ namespace DXYK.Admin.API.Controllers
         /// 删除群组信息表(sys_group)
         ///</summary>
         [HttpDelete]
-        public ResponseMessage<int> DeleteById(long id)
+        public ResponseMessage<int> DeleteById(string id)
         {
             return new ResponseMessage<int> { data =  _sysGroupService.DeleteById(id) };
         }
@@ -71,7 +71,7 @@ namespace DXYK.Admin.API.Controllers
         /// 异步删除群组信息表(sys_group)
         ///</summary>
         [HttpDelete]
-        public async Task<ResponseMessage<int>> DeleteByIdAsync(long id)
+        public async Task<ResponseMessage<int>> DeleteByIdAsync(string id)
         {
             return new ResponseMessage<int> { data = await _sysGroupService.DeleteByIdAsync(id) };
         }
@@ -101,7 +101,7 @@ namespace DXYK.Admin.API.Controllers
         /// 根据Id查询群组信息表(sys_group)
         ///</summary>
         [HttpGet]
-        public ResponseMessage<SysGroup> GetById(long id)
+        public ResponseMessage<SysGroup> GetById(string id)
         {
             var sysGroup = _sysGroupService.GetById(id);
             return new ResponseMessage<SysGroup> {  data = sysGroup };
@@ -111,7 +111,7 @@ namespace DXYK.Admin.API.Controllers
         /// 根据Id查询群组信息表(sys_group)
         ///</summary>
         [HttpGet]
-        public async Task<ResponseMessage<SysGroup>> GetByIdAsync(long id)
+        public async Task<ResponseMessage<SysGroup>> GetByIdAsync(string id)
         {
             var sysGroup =await _sysGroupService.GetByIdAsync(id);
             return new ResponseMessage<SysGroup>{ data = sysGroup};

@@ -47,7 +47,7 @@ namespace DXYK.Admin.Entity
         ///<summary>
         /// 群组id
         ///</summary>
-        public virtual long? group_id { get; set; }
+        public virtual string group_id { get; set; }
         ///<summary>
         /// 乐观锁
         ///</summary>
