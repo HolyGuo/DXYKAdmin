@@ -19,6 +19,18 @@ namespace DXYK.Admin.Dto.Sys
 
     }
 
+    public class UserAppPermission
+    {
+        /// <summary>
+        /// 用户信息
+        /// </summary>
+        public UserInfo User { get; set; }
+        /// <summary>
+        /// 授权信息
+        /// </summary>
+        public Permission Permission { get; set; }
+    }
+
     /// <summary>
     /// 授权信息
     /// </summary>
@@ -37,7 +49,8 @@ namespace DXYK.Admin.Dto.Sys
         /// <summary>
         /// 授权功能集合
         /// </summary>
-        public List<MenuActionDto> ActionList { get; set; }
+        public List<Action> Action { get; set; }
+
 
     }
 

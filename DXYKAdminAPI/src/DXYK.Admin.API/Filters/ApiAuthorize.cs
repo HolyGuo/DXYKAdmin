@@ -72,7 +72,6 @@ namespace DXYK.Admin.API.Filters
                 Stopwatch.Start();
             }
             TokenModel jwtToken = new TokenModel();
-            string appid = "";
             //检测是否包含'Authorization'请求头，如果不包含则直接放行
             if (context.HttpContext.Request.Headers.ContainsKey("Authorization"))
             {
@@ -90,11 +89,11 @@ namespace DXYK.Admin.API.Filters
                 return;
             }
             //如果是超管，不做权限控制处理
-            if (jwtToken.Role == "admin")
-            {
-                base.OnActionExecuting(context);
-                return;
-            }
+            //if (jwtToken.Role == "admin")
+            //{
+            //    base.OnActionExecuting(context);
+            //    return;
+            //}
 
             if (string.IsNullOrEmpty(Modules))
             {

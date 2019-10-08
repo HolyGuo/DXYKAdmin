@@ -4,6 +4,34 @@
         <name>DXYK.Admin.API</name>
     </assembly>
     <members>
+        <member name="T:DXYK.Admin.API.Controllers.AuthorizeController">
+            <summary>
+             用户信息
+            </summary>
+        </member>
+        <member name="P:DXYK.Admin.API.Controllers.AuthorizeController._authorizeService">
+            <summary>
+             用户信息UserService
+            </summary>
+        </member>
+        <member name="P:DXYK.Admin.API.Controllers.AuthorizeController._uthorizeRepository">
+            <summary>
+             用户信息IUserRepository
+            </summary>
+        </member>
+        <member name="M:DXYK.Admin.API.Controllers.AuthorizeController.#ctor(DXYK.Admin.Service.AuthorizeService,DXYK.Admin.Repository.IAuthorizeRepository)">
+            <summary>
+             sys_userController
+            </summary>
+        </member>
+        <member name="M:DXYK.Admin.API.Controllers.AuthorizeController.Authorize(System.String,System.String)">
+            <summary>
+            获取用户权限
+            </summary>
+            <param name="token"></param>
+            <param name="appId"></param>
+            <returns></returns>
+        </member>
         <member name="T:DXYK.Admin.API.Controllers.LoginController">
             <summary>
              用户信息
@@ -58,12 +86,6 @@
             </summary>
             <param name="userInputCaptcha">验证码内容</param>
             <param name="key">保存在缓存中对应的key</param>
-            <returns></returns>
-        </member>
-        <member name="M:DXYK.Admin.API.Controllers.LoginController.GetPermission">
-            <summary>
-            用户权限测试
-            </summary>
             <returns></returns>
         </member>
         <member name="T:DXYK.Admin.API.Controllers.SysAppActionController">

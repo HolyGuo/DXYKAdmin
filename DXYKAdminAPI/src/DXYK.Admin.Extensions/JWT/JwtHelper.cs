@@ -39,17 +39,18 @@ namespace DXYK.Admin.Extensions.JWT
                 {
                     new Claim(JwtRegisteredClaimNames.Jti, tokenModel.Uid),
                     new Claim("UserName", tokenModel.UserName.ToString()),//用户名
-                    new Claim("AppId", tokenModel.AppId.ToString()),//应用id
+                    //new Claim("AppId", tokenModel.AppId.ToString()),//应用id
                     //new Claim("AppName", tokenModel.AppName.ToString()),//应用名称
                     //new Claim("TokenType", tokenModel.TokenType.ToString()),//TokenType
-                    new Claim("Role", tokenModel.Role.ToString()),//角色
+                    //new Claim("Role", tokenModel.Role.ToString()),//角色
                     new Claim(JwtRegisteredClaimNames.Iat, $"{new DateTimeOffset(DateTime.Now).ToUnixTimeSeconds()}"),
                     new Claim(JwtRegisteredClaimNames.Nbf,$"{new DateTimeOffset(DateTime.Now).ToUnixTimeSeconds()}") , 
                     //这个就是过期时间，目前是过期100秒，可自定义，注意JWT有自己的缓冲过期时间
                     new Claim (JwtRegisteredClaimNames.Exp,$"{new DateTimeOffset(DateTime.Now.AddMinutes(exp)).ToUnixTimeSeconds()}"),
                     new Claim(JwtRegisteredClaimNames.Iss,jwtConfig.Issuer),
                     new Claim(JwtRegisteredClaimNames.Aud,jwtConfig.Audience),
-                    new Claim(ClaimTypes.Role,tokenModel.Role),
+                    //new Claim(ClaimTypes.Role,tokenModel.Role),
+                    new Claim("GroupId", tokenModel.GroupId),//群组id
                };
             //秘钥
             var key = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(jwtConfig.JWTSecretKey));
@@ -75,19 +76,22 @@ namespace DXYK.Admin.Extensions.JWT
         {
             var jwtHandler = new JwtSecurityTokenHandler();
             JwtSecurityToken jwtToken = jwtHandler.ReadJwtToken(jwtStr);
-            
+
             object userName = new object();
-            object appId = new object();
+            //object appId = new object();
             //object appName = new object();
-            object role = new object();
+            //object role = new object();
             //object tokenType = new object();
+            object groupId = new object();
             try
             {
                 jwtToken.Payload.TryGetValue("UserName", out userName);
-                jwtToken.Payload.TryGetValue("AppId", out appId);
+                //jwtToken.Payload.TryGetValue("AppId", out appId);
                 //jwtToken.Payload.TryGetValue("AppName", out appName);
-                jwtToken.Payload.TryGetValue("Role", out role);
+                //jwtToken.Payload.TryGetValue("Role", out role);
                 //jwtToken.Payload.TryGetValue("TokenType", out tokenType); 
+                jwtToken.Payload.TryGetValue("GroupId", out groupId);
+
             }
             catch (Exception e)
             {
@@ -98,11 +102,12 @@ namespace DXYK.Admin.Extensions.JWT
             {
                 Uid = jwtToken.Id,
                 UserName = userName.ToString(),
-                AppId = appId.ToString(),
+                //AppId = appId.ToString(),
                 //AppName = appName.ToString(),
                 //TokenType = tokenType.ToString()
-                Role = role.ToString()
-               
+                //Role = role.ToString()
+                GroupId = groupId.ToString()
+
             };
             return tm;
         }
@@ -123,19 +128,9 @@ namespace DXYK.Admin.Extensions.JWT
         public string UserName { get; set; }
 
         /// <summary>
-        /// 身份
+        /// 群组id
         /// </summary>
-        public string Role { get; set; }
-
-        /// <summary>
-        /// 应用名称
-        /// </summary>
-        public string AppName { get; set; }
-
-        /// <summary>
-        /// 应用IdT
-        /// </summary>
-        public string AppId { get; set; }
+        public string GroupId { get; set; }
 
         /// <summary>
         /// tokenType

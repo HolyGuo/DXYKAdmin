@@ -16,15 +16,15 @@ namespace DXYK.Admin.Dto.Sys
         ///<summary>
         /// 角色id
         ///</summary>
-        public virtual long? role_id { get; set; }
+        public virtual long role_id { get; set; }
         ///<summary>
         /// 类型编码
         ///</summary>
-        public virtual int? type_code { get; set; }
+        public virtual int type_code { get; set; }
         ///<summary>
         /// 权限id
         ///</summary>
-        public virtual long? map_id { get; set; }
+        public virtual long map_id { get; set; }
         ///<summary>
         /// 群组id
         ///</summary>
@@ -66,7 +66,10 @@ namespace DXYK.Admin.Dto.Sys
         /// </summary>
         public virtual string action_name { get; set; }
 
-
+        ///<summary>
+        /// 地址url
+        ///</summary>
+        public virtual string action_url { get; set; }
 
     }
 }

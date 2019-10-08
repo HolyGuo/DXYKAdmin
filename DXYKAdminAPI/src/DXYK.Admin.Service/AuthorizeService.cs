@@ -103,27 +103,60 @@ namespace DXYK.Admin.Service
         public List<Permission> GetPermission(string groupId, long userId)
         {
             List<Permission> result = null;
-            //查询用户授权的应用和对应的角色
-            List<SysUserAppRole> sysUserAppRoleList = _authorizeRepository.QueryUerAppRole(userId);
-            if (sysUserAppRoleList != null && sysUserAppRoleList.Count > 0)
+            try
             {
-                //获取已授权所有应用app
-                List<string> appIds = sysUserAppRoleList.Select(s => s.app_id).ToList().Distinct().ToList();
-                //获取已授权所有role
-                List<long> roleIds = sysUserAppRoleList.Select(s => s.role_id).ToList();
-                //查询role对应的权限
-                List<RoleMapDto> roleMapList = _authorizeRepository.QueryRoleMap(groupId, roleIds);
-                result = new List<Permission>();
-                foreach (string appid in appIds)
+                //查询用户授权的应用和对应的角色
+                List<SysUserAppRole> sysUserAppRoleList = _authorizeRepository.QueryUerAppRole(userId);
+                if (sysUserAppRoleList != null && sysUserAppRoleList.Count > 0)
                 {
-                    Permission p = new Permission();
-                    p.AppId = appid;
-                    List<long> roles = sysUserAppRoleList.Where(s => s.app_id == appid).Select(s => s.role_id).ToList();
-                    List<RoleMapDto> mapList = roleMapList.Where(s => roles.Contains((long)s.role_id)).ToList();
+                    //获取已授权所有应用app
+                    List<string> appIds = sysUserAppRoleList.Select(s => s.app_id).ToList().Distinct().ToList();
+                    //获取已授权所有role
+                    List<long> roleIds = sysUserAppRoleList.Select(s => s.role_id).ToList();
+                    //查询role对应的权限
+                    List<RoleMapDto> roleMapList = _authorizeRepository.QueryRoleMap(groupId, roleIds);
+                    result = new List<Permission>();
+                    foreach (string appid in appIds)
+                    {
+                        Permission p = new Permission();
+                        p.AppId = appid;
+                        List<long> roles = sysUserAppRoleList.Where(s => s.app_id == appid).Select(s => s.role_id).ToList();
+                        //查询授权菜单
+                        p.Menu = roleMapList.Where(s => roles.Contains(s.role_id) && s.type_code == 1).Select(s => new Menu
+                        {
+                            id = s.map_id,
+                            menu_code = s.menu_code,
+                            title = s.menu_title,
+                            parent_id = s.menu_pid,
+                            icon = s.menu_icon,
+                            menu_type = s.menu_type,
+                            jump = s.menu_jump
+                        }).ToList();
+                        if (p.Menu != null && p.Menu.Count == 0)
+                        {
+                            p.Menu = null;
+                        }
+                        //查询授权功能
+                        p.Action = roleMapList.Where(s => roles.Contains(s.role_id) && s.type_code == 2).Select(s => new Action
+                        {
+                            id = s.map_id,
+                            action_code = s.action_code,
+                            action_name = s.action_name,
+                            url = s.action_url,
+                            parent_id = s.action_pid
 
-
-                    result.Add(p);
+                        }).ToList();
+                        if (p.Action != null && p.Action.Count == 0)
+                        {
+                            p.Action = null;
+                        }
+                        result.Add(p);
+                    }
                 }
+            }
+            catch (System.Exception)
+            {
+                result = null;
             }
             return result;
         }

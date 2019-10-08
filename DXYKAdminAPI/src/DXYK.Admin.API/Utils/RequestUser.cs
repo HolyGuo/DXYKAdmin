@@ -32,7 +32,7 @@ namespace DXYK.Admin.API.Utils
                 var tm = JwtHelper.SerializeJWT(tokenHeader);
                 //user.User.id = Convert.ToInt64(tm.Uid);
                 //user.User.true_name = tm.UserName;
-                appId = tm.AppId;
+                //appId = tm.AppId;
                 userId = tm.Uid;
             }
             else
@@ -51,7 +51,7 @@ namespace DXYK.Admin.API.Utils
         {
             UserDto user = new UserDto();
             TokenModel jwtToken = new TokenModel();
-            string appId = string.Empty;
+            //string appId = string.Empty;
             string userId = string.Empty;
             //检测是否包含'Authorization'请求头，如果不包含则直接放行
             if (context.Request.Headers.ContainsKey("Authorization"))
@@ -59,7 +59,7 @@ namespace DXYK.Admin.API.Utils
                 var tokenHeader = context.Request.Headers["Authorization"];
                 tokenHeader = tokenHeader.ToString().Substring("Bearer ".Length).Trim();
                 var tm = JwtHelper.SerializeJWT(tokenHeader);
-                appId = tm.AppId;
+                //appId = tm.AppId;
                 userId = tm.Uid;
             }
             else
@@ -67,7 +67,7 @@ namespace DXYK.Admin.API.Utils
 
             }
             UserInfo info = new UserInfo();
-            user = MemoryCacheService.Default.GetCache<UserDto>(appId + "_" + userId);
+            user = MemoryCacheService.Default.GetCache<UserDto>(userId);
             info = user.User;
             return info;
         }
