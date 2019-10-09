@@ -53,7 +53,7 @@ namespace DXYK.Admin.API.Controllers
         ///<summary>
         /// 新增岗位信息表(sys_job)
         ///</summary>
-        [HttpPost, ApiAuthorize(ActionCode = "Sys_Job_Insert", LogType = LogEnum.ADD)]
+        [HttpPost, ApiAuthorize(ActionCode = "Admin,Sys_Job_All,Sys_Job_Insert", LogType = LogEnum.ADD)]
         public ResponseMessage<long> Insert([FromBody]SysJob sysJob)
         {
             UserInfo user = GetCurrentUser.GetUserInfo(HttpContext);
