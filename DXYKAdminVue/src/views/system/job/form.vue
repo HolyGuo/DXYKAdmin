@@ -22,8 +22,8 @@
 </template>
 
 <script>
-import { getDepts } from '@/api/dept'
-import { add, edit } from '@/api/job'
+import { getDepts } from '@/api/sys/dept'
+import { add, edit } from '@/api/sys/job'
 import Treeselect from '@riophae/vue-treeselect'
 import '@riophae/vue-treeselect/dist/vue-treeselect.css'
 export default {

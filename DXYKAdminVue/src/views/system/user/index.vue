@@ -96,8 +96,8 @@
 import checkPermission from '@/utils/permission'
 import initData from '@/mixins/initData'
 import initDict from '@/mixins/initDict'
-import { del, downloadUser } from '@/api/user'
-import { getDepts } from '@/api/dept'
+import { del, downloadUser } from '@/api/sys/user'
+import { getDepts } from '@/api/sys/dept'
 import { parseTime, downloadFile } from '@/utils/index'
 import eForm from './form'
 export default {

@@ -120,12 +120,11 @@
 <script>
 import checkPermission from '@/utils/permission'
 import initData from '@/mixins/initData'
-import { del } from '@/api/role'
-import { getPermissionTree } from '@/api/permission'
-import { getMenusTree } from '@/api/menu'
+import { del, editPermission, editMenu, get } from '@/api/sys/role'
+import { getPermissionTree } from '@/api/sys/permission'
+import { getMenusTree } from '@/api/sys/menu'
 import { parseTime } from '@/utils/index'
 import eForm from './form'
-import { editPermission, editMenu, get } from '@/api/role'
 export default {
   name: 'Role',
   components: { eForm },
@@ -248,7 +247,7 @@ export default {
       const role = { roleid: this.currentId, type: 1, objs: [] }
       // 得到半选的父节点数据，保存起来
       this.$refs.menu.getHalfCheckedNodes().forEach(function(data, index) {
-        const permission = { id: data.id }
+        // const permission = { id: data.id }
         // role.objs.push(permission)
       })
       // 得到已选中的 key 值

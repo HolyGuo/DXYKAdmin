@@ -45,10 +45,10 @@
 
 <script>
 
-import { add, edit } from '@/api/user'
-import { getDepts } from '@/api/dept'
-import { getAll, getLevel } from '@/api/role'
-import { getAllJob } from '@/api/job'
+import { add, edit } from '@/api/sys/user'
+import { getDepts } from '@/api/sys/dept'
+import { getAll, getLevel } from '@/api/sys/role'
+import { getAllJob } from '@/api/sys/job'
 import Treeselect from '@riophae/vue-treeselect'
 import '@riophae/vue-treeselect/dist/vue-treeselect.css'
 export default {

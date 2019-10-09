@@ -71,7 +71,7 @@
 import checkPermission from '@/utils/permission' // 权限判断函数
 import treeTable from '@/components/TreeTable'
 import initData from '@/mixins/initData'
-import { del } from '@/api/menu'
+import { del } from '@/api/sys/menu'
 import { parseTime } from '@/utils/index'
 import eForm from './form'
 export default {

@@ -1,4 +1,4 @@
-import { initData } from '@/api/data'
+import { initData } from '@/api/sys/data'
 
 export default {
   data() {

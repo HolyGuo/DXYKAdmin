@@ -59,7 +59,7 @@
 </template>
 
 <script>
-import { add, edit, getMenusTree } from '@/api/menu'
+import { add, edit, getMenusTree } from '@/api/sys/menu'
 import Treeselect from '@riophae/vue-treeselect'
 import IconSelect from '@/components/IconSelect'
 import '@riophae/vue-treeselect/dist/vue-treeselect.css'

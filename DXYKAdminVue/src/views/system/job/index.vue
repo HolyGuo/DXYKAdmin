@@ -75,7 +75,7 @@
 import checkPermission from '@/utils/permission'
 import initData from '@/mixins/initData'
 import initDict from '@/mixins/initDict'
-import { del } from '@/api/job'
+import { del } from '@/api/sys/job'
 import { parseTime } from '@/utils/index'
 import eForm from './form'
 export default {

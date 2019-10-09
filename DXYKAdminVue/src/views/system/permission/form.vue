@@ -19,7 +19,7 @@
 </template>
 
 <script>
-import { add, edit, getPermissionTree } from '@/api/permission'
+import { add, edit, getPermissionTree } from '@/api/sys/permission'
 import Treeselect from '@riophae/vue-treeselect'
 import '@riophae/vue-treeselect/dist/vue-treeselect.css'
 export default {

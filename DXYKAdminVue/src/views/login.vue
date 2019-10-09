@@ -32,7 +32,7 @@
 <script>
 import { encrypt } from '@/utils/rsaEncrypt'
 import Config from '@/config'
-import { getCodeImg } from '@/api/login'
+import { getCodeImg } from '@/api/sys/login'
 import Cookies from 'js-cookie'
 export default {
   name: 'Login',

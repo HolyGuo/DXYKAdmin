@@ -21,8 +21,11 @@ export function add(data) {
 
 export function del(id) {
   return request({
-    url: 'api/SysOrg/DeleteById?id=' + id,
-    method: 'delete'
+    url: 'api/SysOrg/DeleteById',
+    method: 'delete',
+    data: {
+      id: id
+    }
   })
 }
 

@@ -66,7 +66,7 @@ import treeTable from '@/components/TreeTable'
 import checkPermission from '@/utils/permission'
 import initData from '@/mixins/initData'
 import initDict from '@/mixins/initDict'
-import { del } from '@/api/dept'
+import { del } from '@/api/sys/dept'
 import { parseTime } from '@/utils/index'
 import eForm from './form'
 export default {
