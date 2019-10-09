@@ -32,7 +32,7 @@ export function getLevel() {
 
 export function del(id) {
   return request({
-    url: 'api/SysAppRole/DeleteById' + id,
+    url: 'api/SysAppRole/DeleteById?id=' + id,
     method: 'delete'
   })
 }

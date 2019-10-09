@@ -17,7 +17,7 @@ export function downloadUser() {
 
 export function del(id) {
   return request({
-    url: 'api/users/' + id,
+    url: 'api/users?id=' + id,
     method: 'delete'
   })
 }

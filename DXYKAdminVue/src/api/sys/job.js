@@ -23,7 +23,7 @@ export function add(data) {
 
 export function del(id) {
   return request({
-    url: 'api/SysJob/DeleteById' + id,
+    url: 'api/SysJob/DeleteById?id=' + id,
     method: 'delete'
   })
 }
