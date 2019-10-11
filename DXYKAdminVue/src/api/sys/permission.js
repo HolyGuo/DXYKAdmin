@@ -18,7 +18,7 @@ export function add(data) {
 
 export function del(id) {
   return request({
-    url: 'api/permissions/' + id,
+    url: 'api/permissions?id=' + id,
     method: 'delete'
   })
 }

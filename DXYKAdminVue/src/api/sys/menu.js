@@ -25,7 +25,7 @@ export function add(data) {
 
 export function del(id) {
   return request({
-    url: 'api/menus/' + id,
+    url: 'api/menus?id=' + id,
     method: 'delete'
   })
 }
