@@ -1083,7 +1083,27 @@
              用户信息表(sys_user) Repository
             </summary>
         </member>
-        <member name="M:DXYK.Admin.API.Controllers.SysUserController.#ctor(DXYK.Admin.Service.SysUserService,DXYK.Admin.Repository.ISysUserRepository)">
+        <member name="P:DXYK.Admin.API.Controllers.SysUserController._sysAppRoleService">
+            <summary>
+             角色信息表(sys_app_role) Service
+            </summary>
+        </member>
+        <member name="P:DXYK.Admin.API.Controllers.SysUserController._sysOrgService">
+            <summary>
+             单位信息表(sys_org) Service
+            </summary>
+        </member>
+        <member name="P:DXYK.Admin.API.Controllers.SysUserController._sysJobService">
+            <summary>
+             岗位信息表(sys_job) Service
+            </summary>
+        </member>
+        <member name="P:DXYK.Admin.API.Controllers.SysUserController._sysUserAppRoleService">
+            <summary>
+             用户应用角色授权表(sys_user_app_role) Service
+            </summary>
+        </member>
+        <member name="M:DXYK.Admin.API.Controllers.SysUserController.#ctor(DXYK.Admin.Service.SysUserService,DXYK.Admin.Repository.ISysUserRepository,DXYK.Admin.Service.SysAppRoleService,DXYK.Admin.Service.SysOrgService,DXYK.Admin.Service.SysJobService,DXYK.Admin.Service.SysUserAppRoleService)">
             <summary>
              sys_userController
             </summary>
@@ -1158,9 +1178,24 @@
              异步根据分页查询用户信息表(sys_user)
             </summary>
         </member>
-        <member name="M:DXYK.Admin.API.Controllers.SysUserController.QueryDataByDept(DXYK.Admin.API.Messages.QueryByDeptRequest)">
+        <member name="M:DXYK.Admin.API.Controllers.SysUserController.QueryDataByDept(DXYK.Admin.API.Controllers.SysUserController.QueryByFilterRequest)">
             <summary>
              根据部门、分页和名称状态查询岗位信息表(sys_job)
+            </summary>
+        </member>
+        <member name="T:DXYK.Admin.API.Controllers.SysUserController.QueryByFilterRequest">
+            <summary>
+            分页查询名称状态请求
+            </summary>
+        </member>
+        <member name="P:DXYK.Admin.API.Controllers.SysUserController.QueryByFilterRequest.app">
+            <summary>
+            应用字段
+            </summary>
+        </member>
+        <member name="P:DXYK.Admin.API.Controllers.SysUserController.QueryByFilterRequest.dept">
+            <summary>
+            部门字段
             </summary>
         </member>
         <member name="T:DXYK.Admin.API.Exceptions.APIException">

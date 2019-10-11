@@ -116,7 +116,7 @@ namespace DXYK.Admin.API.Controllers
         [HttpGet]
         public ResponseMessage<SysJob> GetById(long id)
         {
-            var sysJob = _sysJobService.GetById(id);
+            var sysJob = _sysJobService.GetById(id.ToString());
             return new ResponseMessage<SysJob> { data = sysJob };
         }
 

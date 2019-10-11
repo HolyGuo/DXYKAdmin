@@ -11,6 +11,7 @@ using DXYK.Admin.Repository;
 using DXYK.Admin.Service;
 using DXYK.Admin.API.Messages;
 using System.Threading.Tasks;
+using System.Linq;
 
 namespace DXYK.Admin.API.Controllers
 {
@@ -32,12 +33,37 @@ namespace DXYK.Admin.API.Controllers
         public ISysUserRepository _sysUserRepository { get; }
 
         ///<summary>
+        /// 角色信息表(sys_app_role) Service
+        ///</summary>
+        public SysAppRoleService _sysAppRoleService { get; }
+
+        ///<summary>
+        /// 单位信息表(sys_org) Service
+        ///</summary>
+        public SysOrgService _sysOrgService { get; }
+
+        ///<summary>
+        /// 岗位信息表(sys_job) Service
+        ///</summary>
+        public SysJobService _sysJobService { get; }
+
+        ///<summary>
+        /// 用户应用角色授权表(sys_user_app_role) Service
+        ///</summary>
+        public SysUserAppRoleService _sysUserAppRoleService { get; }
+
+        ///<summary>
         /// sys_userController
         ///</summary>
-        public SysUserController(SysUserService sysUserService, ISysUserRepository sysUserRepository)
+        public SysUserController(SysUserService sysUserService, ISysUserRepository sysUserRepository, SysAppRoleService sysAppRoleService, SysOrgService sysOrgService,
+            SysJobService sysJobService, SysUserAppRoleService sysUserAppRoleService)
         {
             _sysUserService = sysUserService;
             _sysUserRepository = sysUserRepository;
+            _sysAppRoleService = sysAppRoleService;
+            _sysOrgService = sysOrgService;
+            _sysJobService = sysJobService;
+            _sysUserAppRoleService = sysUserAppRoleService;
         }
 
         ///<summary>
@@ -187,38 +213,90 @@ namespace DXYK.Admin.API.Controllers
         /// 根据部门、分页和名称状态查询岗位信息表(sys_job)
         ///</summary>
         [HttpPost]
-        public ResponseMessage<object> QueryDataByDept([FromBody]QueryByDeptRequest reqMsg)
+        public ResponseMessage<object> QueryDataByDept([FromBody]QueryByFilterRequest reqMsg)
         {
             List<object> reslst = new List<object>();
-            //var total = _sysUserService.QueryDataByDept(reqMsg.name, reqMsg.enabled, reqMsg.dept);
-            //var list = _sysUserService.QueryDataByDeptByPage(reqMsg.name, reqMsg.enabled, reqMsg.dept, reqMsg.OrderBy, reqMsg.limit, reqMsg.offset);
-            //foreach (var item in list)
-            //{
-            //    var org = _sysUserService.GetById(long.Parse(item.org_id));
-            //    Object deptobj = new
-            //    {
-            //        id = org.id,
-            //        name = org.org_name,
-            //        enabled = org.dept_type,
-            //        pid = (long)org.parent_id,
-            //        createTime = org.created_time.ToString(),
-            //        label = org.org_name
-            //    };
-            //    Object obj = new
-            //    {
-            //        id = item.id,
-            //        sort = item.sort,
-            //        name = item.job_name,
-            //        enabled = item.is_enable,
-            //        dept = deptobj,
-            //        deptSuperiorName = org.org_name,
-            //        createTime = item.created_time.ToString()
-            //    };
-            //    reslst.Add(obj);
-            //}
+            var rolemaps = _sysUserAppRoleService.QueryDataByPage(new QueryByPageRequest()
+            {
+                limit = 10000,
+                page = 1
+            });
+            var roles = _sysAppRoleService.QueryDataByPage(new QueryByPageRequest() { 
+                limit = 10000,
+                page = 1
+            });
+            var total = _sysUserService.QueryDataRecord(new QueryByPageRequest()
+            {
+                limit = 10000,
+                page = 1
+            });
+            var list = _sysUserService.QueryDataByPage(new QueryByPageRequest()
+            {
+                limit = 10000,
+                page = 1
+            });
+            if(reqMsg.dept != null)
+            {
+                long dept = long.Parse(reqMsg.dept);
+                list = list.Where(t => t.org_id == dept).ToList();
+            }
+            foreach (var item in list)
+            {
+                var org = _sysOrgService.GetById((long)item.org_id);
+                Object deptobj = new
+                {
+                    id = org.id,
+                    name = org.org_name
+                };
+                var job = _sysJobService.GetById(item.job_id.ToString());
+                Object jobobj = new
+                {
+                    id = job.id,
+                    name = job.job_name
+                };
+                var approlemaps = rolemaps.Where(t => t.app_id == reqMsg.app && t.user_id == item.id).ToList();
+                List<object> roleobjs = new List<object>();
+                foreach (var rolemapitem in approlemaps)
+                {
+                    var rolename = roles.Where(t => t.id == rolemapitem.role_id).ToList()[0].role_code;
+                    Object roleobj = new
+                    {
+                        id = rolemapitem.role_id,
+                        name = rolename
+                    };
+                    roleobjs.Add(roleobj);
+                }
+                Object obj = new
+                {
+                    id = item.id,
+                    username = item.nick_name,
+                    email = item.email,
+                    phone = item.telephone,
+                    enabled = item.is_enable,
+                    createTime = item.created_time.ToString(),
+                    roles = roleobjs,
+                    job = jobobj,
+                    dept = deptobj
+                };
+                reslst.Add(obj);
+            }
             return new ResponseMessage<object> { data = new { content = reslst, totalElements = 1 } };
         }
 
+        /// <summary>
+        /// 分页查询名称状态请求
+        /// </summary>
+        public class QueryByFilterRequest : QueryNameByPageRequest
+        {
+            /// <summary>
+            /// 应用字段
+            /// </summary>
+            public string app { get; set; }
+            /// <summary>
+            /// 部门字段
+            /// </summary>
+            public string dept { get; set; }
+        }
     }
 }
 

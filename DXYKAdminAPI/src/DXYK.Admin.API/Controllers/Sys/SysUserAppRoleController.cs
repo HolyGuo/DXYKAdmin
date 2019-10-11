@@ -15,8 +15,8 @@ using System.Threading.Tasks;
 namespace DXYK.Admin.API.Controllers
 {
     ///<summary>
-        /// 用户应用角色授权表
-        ///</summary>
+    /// 用户应用角色授权表
+    ///</summary>
     [ApiController]
     [Route("api/[controller]/[action]")]
     public class SysUserAppRoleController : Controller
@@ -46,14 +46,14 @@ namespace DXYK.Admin.API.Controllers
         [HttpPost]
         public ResponseMessage<long> Insert([FromBody]SysUserAppRole sysUserAppRole)
         {
-            return new ResponseMessage<long> { data = _sysUserAppRoleService.Insert(sysUserAppRole) }; 
+            return new ResponseMessage<long> { data = _sysUserAppRoleService.Insert(sysUserAppRole) };
         }
 
         ///<summary>
         /// 异步新增用户应用角色授权表(sys_user_app_role)
         ///</summary>
         [HttpPost]
-        public async Task<ResponseMessage<long>>InsertAsync([FromBody]SysUserAppRole sysUserAppRole)
+        public async Task<ResponseMessage<long>> InsertAsync([FromBody]SysUserAppRole sysUserAppRole)
         {
             return new ResponseMessage<long> { data = await _sysUserAppRoleService.InsertAsync(sysUserAppRole) };
         }
@@ -64,7 +64,7 @@ namespace DXYK.Admin.API.Controllers
         [HttpDelete]
         public ResponseMessage<int> DeleteById(long id)
         {
-            return new ResponseMessage<int> { data =  _sysUserAppRoleService.DeleteById(id) };
+            return new ResponseMessage<int> { data = _sysUserAppRoleService.DeleteById(id) };
         }
 
         ///<summary>
@@ -104,7 +104,7 @@ namespace DXYK.Admin.API.Controllers
         public ResponseMessage<SysUserAppRole> GetById(long id)
         {
             var sysUserAppRole = _sysUserAppRoleService.GetById(id);
-            return new ResponseMessage<SysUserAppRole> {  data = sysUserAppRole };
+            return new ResponseMessage<SysUserAppRole> { data = sysUserAppRole };
         }
 
         ///<summary>
@@ -113,8 +113,8 @@ namespace DXYK.Admin.API.Controllers
         [HttpGet]
         public async Task<ResponseMessage<SysUserAppRole>> GetByIdAsync(long id)
         {
-            var sysUserAppRole =await _sysUserAppRoleService.GetByIdAsync(id);
-            return new ResponseMessage<SysUserAppRole>{ data = sysUserAppRole};
+            var sysUserAppRole = await _sysUserAppRoleService.GetByIdAsync(id);
+            return new ResponseMessage<SysUserAppRole> { data = sysUserAppRole };
         }
 
         ///<summary>
@@ -133,7 +133,7 @@ namespace DXYK.Admin.API.Controllers
         [HttpPost]
         public async Task<ResponseMessage<IList<SysUserAppRole>>> QueryAsync([FromBody]QueryRequest reqMsg)
         {
-            var list =await _sysUserAppRoleRepository.QueryAsync(reqMsg);
+            var list = await _sysUserAppRoleRepository.QueryAsync(reqMsg);
             return new ResponseMessage<IList<SysUserAppRole>> { data = list };
         }
 
@@ -143,7 +143,7 @@ namespace DXYK.Admin.API.Controllers
         [HttpPost]
         public ResponseMessageWrap<IList<SysUserAppRole>> QueryByPage([FromBody]QueryByPageRequest reqMsg)
         {
-            
+
             var total = _sysUserAppRoleRepository.GetRecord(reqMsg);
             var list = _sysUserAppRoleRepository.QueryByPage(reqMsg);
             return new ResponseMessageWrap<IList<SysUserAppRole>>() { count = total, data = list };
@@ -155,11 +155,11 @@ namespace DXYK.Admin.API.Controllers
         [HttpPost]
         public async Task<ResponseMessageWrap<IList<SysUserAppRole>>> QueryByPageAsync([FromBody]QueryByPageRequest reqMsg)
         {
-            var total =await _sysUserAppRoleRepository.GetRecordAsync(reqMsg);
-            var list =await _sysUserAppRoleRepository.QueryByPageAsync(reqMsg);
+            var total = await _sysUserAppRoleRepository.GetRecordAsync(reqMsg);
+            var list = await _sysUserAppRoleRepository.QueryByPageAsync(reqMsg);
             return new ResponseMessageWrap<IList<SysUserAppRole>>() { count = total, data = list };
         }
-        
+
         ///<summary>
         /// 根据分页查询用户应用角色授权表(sys_user_app_role)
         ///</summary>
@@ -168,9 +168,9 @@ namespace DXYK.Admin.API.Controllers
         {
             var total = _sysUserAppRoleService.QueryDataRecord(reqMsg);
             var list = _sysUserAppRoleService.QueryDataByPage(reqMsg);
-            return new ResponseMessageWrap<object> {count = total, data = list };
+            return new ResponseMessageWrap<object> { count = total, data = list };
         }
-        
+
         ///<summary>
         /// 异步根据分页查询用户应用角色授权表(sys_user_app_role)
         ///</summary>
@@ -181,8 +181,6 @@ namespace DXYK.Admin.API.Controllers
             var list = await _sysUserAppRoleService.QueryDataByPageAsync(reqMsg);
             return new ResponseMessageWrap<object> { count = total, data = list };
         }
-
-
     }
 }
 

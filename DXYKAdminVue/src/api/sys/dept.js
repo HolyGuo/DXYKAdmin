@@ -1,13 +1,10 @@
 import request from '@/utils/request'
 
-export function getDepts() {
+export function getDepts(data) {
   return request({
     url: 'api/SysOrg/QueryDataByNameAndType',
     method: 'post',
-    data: {
-      name: '',
-      enable: 'true'
-    }
+    data
   })
 }
 

@@ -81,7 +81,7 @@ namespace DXYK.Admin.Service
         /// <summary>
         /// 根据Id查询数据
         /// </summary>
-        public SysJob GetById(long id)
+        public SysJob GetById(string id)
         {
             return SysJobRepository.GetById(id);
         }

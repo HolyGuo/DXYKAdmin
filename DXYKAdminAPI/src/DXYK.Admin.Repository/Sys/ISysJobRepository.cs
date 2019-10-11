@@ -24,7 +24,7 @@ namespace DXYK.Admin.Repository
         /// 根据Id查询数据
         ///</summary>
         [Statement(Id = "GetEntity")]
-        new SysJob GetById([Param("id")]long id);
+        new SysJob GetById([Param("id")]string id);
         ///<summary>
         /// 异步根据Id查询数据
         ///</summary>
@@ -64,7 +64,7 @@ namespace DXYK.Admin.Repository
         /// 根据名称和状态获取数据列
         ///</summary>
         [Statement(Id = "QueryDataByNameAndTypeByPage")]
-        List<SysJob> QueryDataByNameAndTypeByPage([Param("job_name")]string job_name, [Param("is_enable")]string is_enable, [Param("OrderBy")]string OrderBy, 
+        List<SysJob> QueryDataByNameAndTypeByPage([Param("job_name")]string job_name, [Param("is_enable")]string is_enable, [Param("OrderBy")]string OrderBy,
             [Param("limit")]int limit, [Param("offset")]int offset);
         ///<summary>
         /// 根据名称和状态获取数据列

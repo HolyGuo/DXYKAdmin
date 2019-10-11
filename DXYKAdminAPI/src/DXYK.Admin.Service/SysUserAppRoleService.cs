@@ -114,7 +114,7 @@ namespace DXYK.Admin.Service
         /// <summary>
         /// 根据条件进行分页查询
         /// </summary>
-        public List<object> QueryDataByPage(object param)
+        public List<SysUserAppRole> QueryDataByPage(object param)
         {
             return SysUserAppRoleRepository.QueryDataByPage(param);
         }

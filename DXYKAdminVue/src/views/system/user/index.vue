@@ -30,7 +30,7 @@
               @click="add">新增</el-button>
           </div>
           <!-- 导出 -->
-          <div style="display: inline-block;">
+          <!-- <div style="display: inline-block;">
             <el-button
               :loading="downloadLoading"
               size="mini"
@@ -38,7 +38,7 @@
               type="warning"
               icon="el-icon-download"
               @click="download">导出</el-button>
-          </div>
+          </div> -->
         </div>
         <!--表格渲染-->
         <el-table v-loading="loading" :data="data" size="small" style="width: 100%;">
@@ -62,7 +62,7 @@
               <span>{{ parseTime(scope.row.createTime) }}</span>
             </template>
           </el-table-column>
-          <el-table-column v-if="checkPermission(['ADMIN','USER_ALL','USER_EDIT','USER_DELETE'])" label="操作" width="125" align="center" fixed="right">
+          <el-table-column label="操作" width="125" align="center" fixed="right">
             <template slot-scope="scope">
               <el-button size="mini" type="primary" icon="el-icon-edit" @click="edit(scope.row)"/>
               <el-popover
@@ -138,12 +138,12 @@ export default {
     parseTime,
     checkPermission,
     beforeInit() {
-      this.url = 'api/users'
+      this.url = 'api/SysUser/QueryDataByDept'
       const order = 'asc'
       const query = this.query
       const blurry = query.blurry
       const enabled = query.enabled
-      this.params = { page: this.page + 1, limit: this.size, order: order, deptId: this.deptId }
+      this.params = { page: this.page + 1, limit: this.size, order: order, dept: this.deptId, app: 'GXGHOA' }
       if (blurry) { this.params['name'] = blurry }
       if (enabled !== '' && enabled !== null) { this.params['enabled'] = enabled }
       return true
@@ -170,7 +170,7 @@ export default {
       const params = { name: '', enabled: '' }
       if (this.deptName) { params['name'] = this.deptName }
       getDepts(params).then(res => {
-        this.depts = res.content
+        this.depts = res.data.content
       })
     },
     handleNodeClick(data) {
