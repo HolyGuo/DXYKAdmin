@@ -5,6 +5,7 @@
 using DXYK.Admin.Dto.Sys;
 using DXYK.Admin.Entity;
 using DXYK.Admin.Repository;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
@@ -122,22 +123,34 @@ namespace DXYK.Admin.Service
                         p.AppId = appid;
                         List<long> roles = sysUserAppRoleList.Where(s => s.app_id == appid).Select(s => s.role_id).ToList();
                         //查询授权菜单
-                        p.Menu = roleMapList.Where(s => roles.Contains(s.role_id) && s.type_code == 1).Select(s => new Menu
+                        List<RoleMapDto> permenulst = roleMapList.Where(s => roles.Contains(s.role_id) && s.type_code == 1).ToList();
+                        List<MenuTree> MenuTree = new List<MenuTree>();
+                        //构建树结果
+                        foreach (RoleMapDto item in permenulst.Where(t => t.menu_pid == 0))
                         {
-                            id = s.map_id,
-                            menu_code = s.menu_code,
-                            title = s.menu_title,
-                            parent_id = s.menu_pid,
-                            icon = s.menu_icon,
-                            menu_type = s.menu_type,
-                            jump = s.menu_jump
-                        }).ToList();
-                        if (p.Menu != null && p.Menu.Count == 0)
-                        {
-                            p.Menu = null;
+                            if(MenuTree.Where(t=>t.id == item.map_id).Count() == 0)
+                            {
+                                MenuTree node = getNode(item, permenulst);
+                                MenuTree.Add(node);
+                            }
                         }
+                        p.MenuTree = MenuTree;
+                        //p.Menu = roleMapList.Where(s => roles.Contains(s.role_id) && s.type_code == 1).Select(s => new Menu
+                        //{
+                        //    id = s.map_id,
+                        //    menu_code = s.menu_code,
+                        //    title = s.menu_title,
+                        //    parent_id = s.menu_pid,
+                        //    icon = s.menu_icon,
+                        //    menu_type = s.menu_type,
+                        //    jump = s.menu_jump
+                        //}).ToList();
+                        //if (p.Menu != null && p.Menu.Count == 0)
+                        //{
+                        //    p.Menu = null;
+                        //}
                         //查询授权功能
-                        p.Action = roleMapList.Where(s => roles.Contains(s.role_id) && s.type_code == 2).Select(s => new Action
+                        p.Action = roleMapList.Where(s => roles.Contains(s.role_id) && s.type_code == 2).Select(s => new Dto.Sys.Action
                         {
                             id = s.map_id,
                             action_code = s.action_code,
@@ -159,6 +172,40 @@ namespace DXYK.Admin.Service
                 result = null;
             }
             return result;
+        }
+
+        private MenuTree getNode(RoleMapDto item, List<RoleMapDto> col3)
+        {
+            Object metaobj = new
+            {
+                title = item.menu_title,
+                icon = item.menu_icon,
+                noCache = true
+            };
+            MenuTree node = new MenuTree()
+            {
+                id = item.map_id,
+                name = item.menu_title,
+                path = item.menu_jump,
+                pid = (long)item.menu_pid,
+                meta = metaobj,
+                component = item.menu_pid == 0 ? "Layout" : string.Format("system/{0}/index", item.menu_jump)
+            };
+            List<RoleMapDto> childs = col3.Where(t => t.menu_pid == item.map_id).ToList();
+            if (childs.Count() > 0)
+            {
+                List<MenuTree> children = new List<MenuTree>();
+                foreach (var childitem in childs)
+                {
+                    MenuTree childnode = getNode(childitem, col3);
+                    if (children.Where(t => t.id == childnode.id).Count() == 0)
+                    {
+                        children.Add(childnode);
+                    }
+                }
+                node.children = children;
+            }
+            return node;
         }
 
     }

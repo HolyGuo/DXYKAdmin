@@ -12,12 +12,14 @@ using DXYK.Admin.Service;
 using DXYK.Admin.API.Messages;
 using System.Threading.Tasks;
 using System.Linq;
+using DXYK.Admin.API.Filters;
+using DXYK.Admin.Common.EnumHelper;
 
 namespace DXYK.Admin.API.Controllers
 {
     ///<summary>
-        /// 菜单信息表
-        ///</summary>
+    /// 菜单信息表
+    ///</summary>
     [ApiController]
     [Route("api/[controller]/[action]")]
     public class SysAppMenuController : Controller
@@ -44,17 +46,17 @@ namespace DXYK.Admin.API.Controllers
         ///<summary>
         /// 新增菜单信息表(sys_app_menu)
         ///</summary>
-        [HttpPost]
+        [HttpPost, ApiAuthorize(ActionCode = "Admin,Menu_Manage,Menu_Add", LogType = LogEnum.ADD)]
         public ResponseMessage<long> Insert([FromBody]SysAppMenu sysAppMenu)
         {
-            return new ResponseMessage<long> { data = _sysAppMenuService.Insert(sysAppMenu) }; 
+            return new ResponseMessage<long> { data = _sysAppMenuService.Insert(sysAppMenu) };
         }
 
         ///<summary>
         /// 异步新增菜单信息表(sys_app_menu)
         ///</summary>
         [HttpPost]
-        public async Task<ResponseMessage<long>>InsertAsync([FromBody]SysAppMenu sysAppMenu)
+        public async Task<ResponseMessage<long>> InsertAsync([FromBody]SysAppMenu sysAppMenu)
         {
             return new ResponseMessage<long> { data = await _sysAppMenuService.InsertAsync(sysAppMenu) };
         }
@@ -62,10 +64,10 @@ namespace DXYK.Admin.API.Controllers
         ///<summary>
         /// 删除菜单信息表(sys_app_menu)
         ///</summary>
-        [HttpDelete]
+        [HttpDelete, ApiAuthorize(ActionCode = "Admin,Menu_Manage,Menu_Delete", LogType = LogEnum.DELETE)]
         public ResponseMessage<int> DeleteById(long id)
         {
-            return new ResponseMessage<int> { data =  _sysAppMenuService.DeleteById(id) };
+            return new ResponseMessage<int> { data = _sysAppMenuService.DeleteById(id) };
         }
 
         ///<summary>
@@ -80,7 +82,7 @@ namespace DXYK.Admin.API.Controllers
         ///<summary>
         /// 更新菜单信息表(sys_app_menu)
         ///</summary>
-        [HttpPut]
+        [HttpPut, ApiAuthorize(ActionCode = "Admin,Menu_Manage,Menu_Update", LogType = LogEnum.UPDATE)]
         public ResponseMessage<int> Update([FromBody]SysAppMenu sysAppMenu)
         {
             return new ResponseMessage<int> { data = _sysAppMenuService.Update(sysAppMenu) };
@@ -105,7 +107,7 @@ namespace DXYK.Admin.API.Controllers
         public ResponseMessage<SysAppMenu> GetById(long id)
         {
             var sysAppMenu = _sysAppMenuService.GetById(id);
-            return new ResponseMessage<SysAppMenu> {  data = sysAppMenu };
+            return new ResponseMessage<SysAppMenu> { data = sysAppMenu };
         }
 
         ///<summary>
@@ -114,8 +116,8 @@ namespace DXYK.Admin.API.Controllers
         [HttpGet]
         public async Task<ResponseMessage<SysAppMenu>> GetByIdAsync(long id)
         {
-            var sysAppMenu =await _sysAppMenuService.GetByIdAsync(id);
-            return new ResponseMessage<SysAppMenu>{ data = sysAppMenu};
+            var sysAppMenu = await _sysAppMenuService.GetByIdAsync(id);
+            return new ResponseMessage<SysAppMenu> { data = sysAppMenu };
         }
 
         ///<summary>
@@ -134,7 +136,7 @@ namespace DXYK.Admin.API.Controllers
         [HttpPost]
         public async Task<ResponseMessage<IList<SysAppMenu>>> QueryAsync([FromBody]QueryRequest reqMsg)
         {
-            var list =await _sysAppMenuRepository.QueryAsync(reqMsg);
+            var list = await _sysAppMenuRepository.QueryAsync(reqMsg);
             return new ResponseMessage<IList<SysAppMenu>> { data = list };
         }
 
@@ -144,7 +146,7 @@ namespace DXYK.Admin.API.Controllers
         [HttpPost]
         public ResponseMessageWrap<IList<SysAppMenu>> QueryByPage([FromBody]QueryByPageRequest reqMsg)
         {
-            
+
             var total = _sysAppMenuRepository.GetRecord(reqMsg);
             var list = _sysAppMenuRepository.QueryByPage(reqMsg);
             return new ResponseMessageWrap<IList<SysAppMenu>>() { count = total, data = list };
@@ -156,11 +158,11 @@ namespace DXYK.Admin.API.Controllers
         [HttpPost]
         public async Task<ResponseMessageWrap<IList<SysAppMenu>>> QueryByPageAsync([FromBody]QueryByPageRequest reqMsg)
         {
-            var total =await _sysAppMenuRepository.GetRecordAsync(reqMsg);
-            var list =await _sysAppMenuRepository.QueryByPageAsync(reqMsg);
+            var total = await _sysAppMenuRepository.GetRecordAsync(reqMsg);
+            var list = await _sysAppMenuRepository.QueryByPageAsync(reqMsg);
             return new ResponseMessageWrap<IList<SysAppMenu>>() { count = total, data = list };
         }
-        
+
         ///<summary>
         /// 根据分页查询菜单信息表(sys_app_menu)
         ///</summary>
@@ -169,9 +171,9 @@ namespace DXYK.Admin.API.Controllers
         {
             var total = _sysAppMenuService.QueryDataRecord(reqMsg);
             var list = _sysAppMenuService.QueryDataByPage(reqMsg);
-            return new ResponseMessageWrap<object> {count = total, data = list };
+            return new ResponseMessageWrap<object> { count = total, data = list };
         }
-        
+
         ///<summary>
         /// 异步根据分页查询菜单信息表(sys_app_menu)
         ///</summary>

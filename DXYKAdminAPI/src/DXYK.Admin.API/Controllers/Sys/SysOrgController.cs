@@ -12,6 +12,8 @@ using DXYK.Admin.Service;
 using DXYK.Admin.API.Messages;
 using System.Threading.Tasks;
 using System.Linq;
+using DXYK.Admin.API.Filters;
+using DXYK.Admin.Common.EnumHelper;
 
 namespace DXYK.Admin.API.Controllers
 {
@@ -44,7 +46,7 @@ namespace DXYK.Admin.API.Controllers
         ///<summary>
         /// 新增单位信息表(sys_org)
         ///</summary>
-        [HttpPost]
+        [HttpPost, ApiAuthorize(ActionCode = "Admin,Org_Manage,Org_Add", LogType = LogEnum.ADD)]
         public ResponseMessage<long> Insert([FromBody]SysOrg sysOrg)
         {
             return new ResponseMessage<long> { data = _sysOrgService.Insert(sysOrg) }; 
@@ -62,7 +64,7 @@ namespace DXYK.Admin.API.Controllers
         ///<summary>
         /// 删除单位信息表(sys_org)
         ///</summary>
-        [HttpDelete]
+        [HttpDelete, ApiAuthorize(ActionCode = "Admin,Org_Manage,Org_Delete", LogType = LogEnum.DELETE)]
         public ResponseMessage<int> DeleteById(long id)
         {
             return new ResponseMessage<int> { data =  _sysOrgService.DeleteById(id) };
@@ -80,7 +82,7 @@ namespace DXYK.Admin.API.Controllers
         ///<summary>
         /// 更新单位信息表(sys_org)
         ///</summary>
-        [HttpPut]
+        [HttpPut, ApiAuthorize(ActionCode = "Admin,Org_Manage,Org_Update", LogType = LogEnum.UPDATE)]
         public ResponseMessage<int> Update([FromBody]SysOrg sysOrg)
         {
             return new ResponseMessage<int> { data = _sysOrgService.Update(sysOrg) };

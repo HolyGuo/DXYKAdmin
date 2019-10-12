@@ -118,7 +118,7 @@ namespace DXYK.Admin.API.Filters
                 //判断是否有功能权限
                 //DXYK.Admin.Dto.Sys.Action action = p.Action.Find(s => s.action_code == ActionCode);
                 List<DXYK.Admin.Dto.Sys.Action> action = p.Action.Where(s=> actions.Contains(s.action_code)).ToList();
-                if (action == null)
+                if (action == null || action.Count < 1)
                 {
                     ContextReturn(context, "您没有操作权限，请联系系统管理员！");
                     return;

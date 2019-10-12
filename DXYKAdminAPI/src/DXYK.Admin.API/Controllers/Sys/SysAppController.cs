@@ -15,8 +15,8 @@ using System.Threading.Tasks;
 namespace DXYK.Admin.API.Controllers
 {
     ///<summary>
-        /// 应用信息表
-        ///</summary>
+    /// 应用信息表
+    ///</summary>
     [ApiController]
     [Route("api/[controller]/[action]")]
     public class SysAppController : Controller
@@ -46,14 +46,14 @@ namespace DXYK.Admin.API.Controllers
         [HttpPost]
         public ResponseMessage<long> Insert([FromBody]SysApp sysApp)
         {
-            return new ResponseMessage<long> { data = _sysAppService.Insert(sysApp) }; 
+            return new ResponseMessage<long> { data = _sysAppService.Insert(sysApp) };
         }
 
         ///<summary>
         /// 异步新增应用信息表(sys_app)
         ///</summary>
         [HttpPost]
-        public async Task<ResponseMessage<long>>InsertAsync([FromBody]SysApp sysApp)
+        public async Task<ResponseMessage<long>> InsertAsync([FromBody]SysApp sysApp)
         {
             return new ResponseMessage<long> { data = await _sysAppService.InsertAsync(sysApp) };
         }
@@ -64,7 +64,7 @@ namespace DXYK.Admin.API.Controllers
         [HttpDelete]
         public ResponseMessage<int> DeleteById(string id)
         {
-            return new ResponseMessage<int> { data =  _sysAppService.DeleteById(id) };
+            return new ResponseMessage<int> { data = _sysAppService.DeleteById(id) };
         }
 
         ///<summary>
@@ -104,7 +104,7 @@ namespace DXYK.Admin.API.Controllers
         public ResponseMessage<SysApp> GetById(string id)
         {
             var sysApp = _sysAppService.GetById(id);
-            return new ResponseMessage<SysApp> {  data = sysApp };
+            return new ResponseMessage<SysApp> { data = sysApp };
         }
 
         ///<summary>
@@ -113,8 +113,8 @@ namespace DXYK.Admin.API.Controllers
         [HttpGet]
         public async Task<ResponseMessage<SysApp>> GetByIdAsync(string id)
         {
-            var sysApp =await _sysAppService.GetByIdAsync(id);
-            return new ResponseMessage<SysApp>{ data = sysApp};
+            var sysApp = await _sysAppService.GetByIdAsync(id);
+            return new ResponseMessage<SysApp> { data = sysApp };
         }
 
         ///<summary>
@@ -133,7 +133,7 @@ namespace DXYK.Admin.API.Controllers
         [HttpPost]
         public async Task<ResponseMessage<IList<SysApp>>> QueryAsync([FromBody]QueryRequest reqMsg)
         {
-            var list =await _sysAppRepository.QueryAsync(reqMsg);
+            var list = await _sysAppRepository.QueryAsync(reqMsg);
             return new ResponseMessage<IList<SysApp>> { data = list };
         }
 
@@ -143,7 +143,7 @@ namespace DXYK.Admin.API.Controllers
         [HttpPost]
         public ResponseMessageWrap<IList<SysApp>> QueryByPage([FromBody]QueryByPageRequest reqMsg)
         {
-            
+
             var total = _sysAppRepository.GetRecord(reqMsg);
             var list = _sysAppRepository.QueryByPage(reqMsg);
             return new ResponseMessageWrap<IList<SysApp>>() { count = total, data = list };
@@ -155,11 +155,11 @@ namespace DXYK.Admin.API.Controllers
         [HttpPost]
         public async Task<ResponseMessageWrap<IList<SysApp>>> QueryByPageAsync([FromBody]QueryByPageRequest reqMsg)
         {
-            var total =await _sysAppRepository.GetRecordAsync(reqMsg);
-            var list =await _sysAppRepository.QueryByPageAsync(reqMsg);
+            var total = await _sysAppRepository.GetRecordAsync(reqMsg);
+            var list = await _sysAppRepository.QueryByPageAsync(reqMsg);
             return new ResponseMessageWrap<IList<SysApp>>() { count = total, data = list };
         }
-        
+
         ///<summary>
         /// 根据分页查询应用信息表(sys_app)
         ///</summary>
@@ -168,9 +168,9 @@ namespace DXYK.Admin.API.Controllers
         {
             var total = _sysAppService.QueryDataRecord(reqMsg);
             var list = _sysAppService.QueryDataByPage(reqMsg);
-            return new ResponseMessageWrap<object> {count = total, data = list };
+            return new ResponseMessageWrap<object> { count = total, data = list };
         }
-        
+
         ///<summary>
         /// 异步根据分页查询应用信息表(sys_app)
         ///</summary>

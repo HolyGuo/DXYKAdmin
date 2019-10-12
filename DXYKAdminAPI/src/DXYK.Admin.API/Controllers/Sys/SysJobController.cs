@@ -53,7 +53,7 @@ namespace DXYK.Admin.API.Controllers
         ///<summary>
         /// 新增岗位信息表(sys_job)
         ///</summary>
-        [HttpPost, ApiAuthorize(ActionCode = "Admin,Sys_Job_All,Sys_Job_Insert", LogType = LogEnum.ADD)]
+        [HttpPost, ApiAuthorize(ActionCode = "Admin,Job_Manage,Job_Add", LogType = LogEnum.ADD)]
         public ResponseMessage<long> Insert([FromBody]SysJob sysJob)
         {
             UserInfo user = GetCurrentUser.GetUserInfo(HttpContext);
@@ -74,7 +74,7 @@ namespace DXYK.Admin.API.Controllers
         ///<summary>
         /// 删除岗位信息表(sys_job)
         ///</summary>
-        [HttpDelete]
+        [HttpDelete, ApiAuthorize(ActionCode = "Admin,Job_Manage,Job_Delete", LogType = LogEnum.DELETE)]
         public ResponseMessage<int> DeleteById(long id)
         {
             return new ResponseMessage<int> { data = _sysJobService.DeleteById(id) };
@@ -92,7 +92,7 @@ namespace DXYK.Admin.API.Controllers
         ///<summary>
         /// 更新岗位信息表(sys_job)
         ///</summary>
-        [HttpPut]
+        [HttpPut, ApiAuthorize(ActionCode = "Admin,Job_Manage,Job_Update", LogType = LogEnum.UPDATE)]
         public ResponseMessage<int> Update([FromBody]SysJob sysJob)
         {
             return new ResponseMessage<int> { data = _sysJobService.Update(sysJob) };

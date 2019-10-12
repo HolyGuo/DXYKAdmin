@@ -12,6 +12,13 @@ export function login(loginname, password, appid) {
   })
 }
 
+export function Authorize(token, appId) {
+  return request({
+    url: 'api/Authorize/Authorize?token=' + token + '&appId=' + appId,
+    method: 'get'
+  })
+}
+
 export function getInfo() {
   return request({
     url: 'auth/info',

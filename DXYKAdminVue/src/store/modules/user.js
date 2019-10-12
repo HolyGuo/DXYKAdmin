@@ -1,6 +1,10 @@
-import { login, getInfo } from '@/api/sys/login'
+import { login, getInfo, Authorize } from '@/api/sys/login'
 import { getToken, setToken, removeToken } from '@/utils/auth'
 import { decrypt } from '@/utils/rsaEncrypt'
+import Config from '@/config'
+import router from '@/router/routers'
+import store from '@/store'
+import { filterAsyncRouter } from '@/store/modules/permission'
 
 const user = {
   state: {
@@ -38,7 +42,19 @@ const user = {
         login(username, password, code).then(res => {
           setToken(res.data, rememberMe)
           commit('SET_TOKEN', res.data)
-          setUserInfo(res.data, commit)
+          // 通过appid和token获取授权
+          Authorize(res.data, Config.appid).then(res => {
+            setUserInfo(res.data.Permission.Action, commit)
+            // 加载路由
+            const asyncRouter = filterAsyncRouter(res.data.Permission.MenuTree)
+            asyncRouter.push({ path: '*', redirect: '/404', hidden: true })
+            store.dispatch('GenerateRoutes', asyncRouter).then(() => { // 存储路由
+              router.addRoutes(asyncRouter) // 动态添加可访问路由表
+            })
+            resolve()
+          }).catch(error => {
+            reject(error)
+          })
           // 第一次加载菜单时用到， 具体见 src 目录下的 permission.js
           commit('SET_LOAD_MENUS', true)
           resolve()

@@ -12,6 +12,8 @@ using DXYK.Admin.Service;
 using DXYK.Admin.API.Messages;
 using System.Threading.Tasks;
 using System.Linq;
+using DXYK.Admin.API.Filters;
+using DXYK.Admin.Common.EnumHelper;
 
 namespace DXYK.Admin.API.Controllers
 {
@@ -69,7 +71,7 @@ namespace DXYK.Admin.API.Controllers
         ///<summary>
         /// 新增用户信息表(sys_user)
         ///</summary>
-        [HttpPost]
+        [HttpPost, ApiAuthorize(ActionCode = "Admin,User_Manage,User_Add", LogType = LogEnum.ADD)]
         public ResponseMessage<long> Insert([FromBody]SysUser sysUser)
         {
             return new ResponseMessage<long> { data = _sysUserService.Insert(sysUser) }; 
@@ -87,7 +89,7 @@ namespace DXYK.Admin.API.Controllers
         ///<summary>
         /// 删除用户信息表(sys_user)
         ///</summary>
-        [HttpDelete]
+        [HttpDelete, ApiAuthorize(ActionCode = "Admin,User_Manage,User_Delete", LogType = LogEnum.DELETE)]
         public ResponseMessage<int> DeleteById(long id)
         {
             return new ResponseMessage<int> { data =  _sysUserService.DeleteById(id) };
@@ -105,7 +107,7 @@ namespace DXYK.Admin.API.Controllers
         ///<summary>
         /// 更新用户信息表(sys_user)
         ///</summary>
-        [HttpPut]
+        [HttpPut, ApiAuthorize(ActionCode = "Admin,User_Manage,User_Update", LogType = LogEnum.UPDATE)]
         public ResponseMessage<int> Update([FromBody]SysUser sysUser)
         {
             return new ResponseMessage<int> { data = _sysUserService.Update(sysUser) };

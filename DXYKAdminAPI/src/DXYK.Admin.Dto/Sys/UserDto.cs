@@ -44,7 +44,7 @@ namespace DXYK.Admin.Dto.Sys
         /// <summary>
         /// 授权菜单集合
         /// </summary>
-        public List<Menu> Menu { get; set; }
+        public List<MenuTree> MenuTree { get; set; }
 
         /// <summary>
         /// 授权功能集合

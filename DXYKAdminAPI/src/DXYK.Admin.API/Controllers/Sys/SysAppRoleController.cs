@@ -11,6 +11,8 @@ using DXYK.Admin.Repository;
 using DXYK.Admin.Service;
 using DXYK.Admin.API.Messages;
 using System.Threading.Tasks;
+using DXYK.Admin.API.Filters;
+using DXYK.Admin.Common.EnumHelper;
 
 namespace DXYK.Admin.API.Controllers
 {
@@ -62,7 +64,7 @@ namespace DXYK.Admin.API.Controllers
         ///<summary>
         /// 新增角色信息表(sys_app_role)
         ///</summary>
-        [HttpPost]
+        [HttpPost, ApiAuthorize(ActionCode = "Admin,Role_Manage,Role_Add", LogType = LogEnum.ADD)]
         public ResponseMessage<long> Insert([FromBody]SysAppRole sysAppRole)
         {
             sysAppRole.created_time = DateTime.Now;
@@ -81,7 +83,7 @@ namespace DXYK.Admin.API.Controllers
         ///<summary>
         /// 删除角色信息表(sys_app_role)
         ///</summary>
-        [HttpDelete]
+        [HttpDelete, ApiAuthorize(ActionCode = "Admin,Role_Manage,Role_Delete", LogType = LogEnum.DELETE)]
         public ResponseMessage<int> DeleteById(long id)
         {
             return new ResponseMessage<int> { data =  _sysAppRoleService.DeleteById(id) };
@@ -99,7 +101,7 @@ namespace DXYK.Admin.API.Controllers
         ///<summary>
         /// 更新角色信息表(sys_app_role)
         ///</summary>
-        [HttpPut]
+        [HttpPut, ApiAuthorize(ActionCode = "Admin,Role_Manage,Role_Update", LogType = LogEnum.UPDATE)]
         public ResponseMessage<int> Update([FromBody]SysAppRole sysAppRole)
         {
             sysAppRole.created_time = DateTime.Now;
