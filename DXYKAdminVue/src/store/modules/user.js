@@ -99,7 +99,11 @@ export const setUserInfo = (res, commit) => {
   if (res.length === 0) {
     commit('SET_ROLES', ['ROLE_SYSTEM_DEFAULT'])
   } else {
-    commit('SET_ROLES', res)
+    const roles = []
+    res.forEach(element => {
+      roles.push(element.action_code)
+    });
+    commit('SET_ROLES', roles)
   }
   commit('SET_USER', res)
 }

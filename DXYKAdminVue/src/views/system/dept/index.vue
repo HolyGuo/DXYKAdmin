@@ -9,7 +9,7 @@
       </el-select>
       <el-button class="filter-item" size="mini" type="success" icon="el-icon-search" @click="toQuery">搜索</el-button>
       <!-- 新增 -->
-      <div style="display: inline-block;margin: 0px 2px;">
+      <div v-if="checkPermission(['Admin','Org_Manage','Org_Add'])" style="display: inline-block;margin: 0px 2px;">
         <el-button
           class="filter-item"
           size="mini"
@@ -41,10 +41,11 @@
           <span>{{ parseTime(scope.row.createTime) }}</span>
         </template>
       </el-table-column>
-      <el-table-column label="操作" width="130px" align="center" fixed="right">
+      <el-table-column v-if="checkPermission(['Admin','Org_Manage','Org_Delete','Org_Update'])" label="操作" width="130px" align="center" fixed="right">
         <template slot-scope="scope">
-          <el-button size="mini" type="primary" icon="el-icon-edit" @click="edit(scope.row)"/>
+          <el-button v-if="checkPermission(['Admin','Org_Manage','Org_Update'])" size="mini" type="primary" icon="el-icon-edit" @click="edit(scope.row)"/>
           <el-popover
+            v-if="checkPermission(['Admin','Org_Manage','Org_Delete'])"
             :ref="scope.row.id"
             placement="top"
             width="180">

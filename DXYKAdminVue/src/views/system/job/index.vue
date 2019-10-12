@@ -11,6 +11,7 @@
       <!-- 新增 -->
       <div style="display: inline-block;margin: 0px 2px;">
         <el-button
+          v-if="checkPermission(['Admin','Job_Manage','Job_Add'])" 
           class="filter-item"
           size="mini"
           type="primary"
@@ -43,10 +44,11 @@
           <span>{{ parseTime(scope.row.createTime) }}</span>
         </template>
       </el-table-column>
-      <el-table-column label="操作" width="130px" align="center" fixed="right">
+      <el-table-column v-if="checkPermission(['Admin','Job_Manage','Job_Delete','Job_Update'])" label="操作" width="130px" align="center" fixed="right">
         <template slot-scope="scope">
-          <el-button size="mini" type="primary" icon="el-icon-edit" @click="edit(scope.row)"/>
+          <el-button v-if="checkPermission(['Admin','Job_Manage','Job_Update'])" size="mini" type="primary" icon="el-icon-edit" @click="edit(scope.row)"/>
           <el-popover
+            v-if="checkPermission(['Admin','Job_Manage','Job_Delete'])"
             :ref="scope.row.id"
             placement="top"
             width="180">

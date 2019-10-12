@@ -6,8 +6,7 @@
       <el-input v-model="query.value" clearable placeholder="模糊搜索" style="width: 200px;" class="filter-item" @keyup.enter.native="toQuery"/>
       <el-button class="filter-item" size="mini" type="success" icon="el-icon-search" @click="toQuery">搜索</el-button>
       <!-- 新增 -->
-      <!-- <div v-permission="['ADMIN','MENU_ALL','MENU_CREATE']" style="display: inline-block;margin: 0px 2px;"> -->
-      <div style="display: inline-block;margin: 0px 2px;">
+      <div v-if="checkPermission(['Admin','Menu_Manage','Menu_Add'])" style="display: inline-block;margin: 0px 2px;">
         <el-button
           class="filter-item"
           size="mini"
@@ -47,10 +46,11 @@
           <span>{{ parseTime(scope.row.createTime) }}</span>
         </template>
       </el-table-column>
-      <el-table-column label="操作" width="130px" align="center" fixed="right">
+      <el-table-column v-if="checkPermission(['Admin','Menu_Manage','Menu_Delete','Menu_Update'])" label="操作" width="130px" align="center" fixed="right">
         <template slot-scope="scope">
-          <el-button size="mini" type="primary" icon="el-icon-edit" @click="edit(scope.row)"/>
+          <el-button v-if="checkPermission(['Admin','Menu_Manage','Menu_Update'])" size="mini" type="primary" icon="el-icon-edit" @click="edit(scope.row)"/>
           <el-popover
+            v-if="checkPermission(['Admin','Menu_Manage','Menu_Delete'])"
             :ref="scope.row.id"
             placement="top"
             width="200">
