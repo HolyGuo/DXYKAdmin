@@ -1828,6 +1828,12 @@
               "notNull": true
             },
             {
+              "name": "obj_id",
+              "type": "BigInt",
+              "remark": "",
+              "chnname": "业务数据id"
+            },
+            {
               "name": "hash_value",
               "type": "DefaultString",
               "remark": "",
