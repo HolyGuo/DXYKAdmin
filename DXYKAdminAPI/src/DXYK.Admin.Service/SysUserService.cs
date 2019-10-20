@@ -33,7 +33,7 @@ namespace DXYK.Admin.Service
         ///<summary>
         ///新增
         ///</summary>
-        public long Insert(SysUser sysUser)
+        public string Insert(SysUser sysUser)
         {
             return SysUserRepository.Insert(sysUser);
         }
@@ -41,7 +41,7 @@ namespace DXYK.Admin.Service
         ///<summary>
         ///异步新增
         ///</summary>
-        public  async Task<long> InsertAsync(SysUser sysUser)
+        public  async Task<string> InsertAsync(SysUser sysUser)
         {
             return await SysUserRepository.InsertAsync(sysUser);
         }
@@ -127,7 +127,13 @@ namespace DXYK.Admin.Service
             return await SysUserRepository.QueryDataByPageAsync(param);
         }
 
-
+        /// <summary>
+        /// 查询所有
+        /// </summary>
+        public List<SysUser> GetAll()
+        {
+            return SysUserRepository.GetAll();
+        }
 
     }
 }

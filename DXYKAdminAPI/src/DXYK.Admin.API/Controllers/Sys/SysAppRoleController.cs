@@ -65,19 +65,19 @@ namespace DXYK.Admin.API.Controllers
         /// 新增角色信息表(sys_app_role)
         ///</summary>
         [HttpPost, ApiAuthorize(ActionCode = "Admin,Role_Manage,Role_Add", LogType = LogEnum.ADD)]
-        public ResponseMessage<long> Insert([FromBody]SysAppRole sysAppRole)
+        public ResponseMessage<string> Insert([FromBody]SysAppRole sysAppRole)
         {
             sysAppRole.created_time = DateTime.Now;
-            return new ResponseMessage<long> { data = _sysAppRoleService.Insert(sysAppRole) }; 
+            return new ResponseMessage<string> { data = _sysAppRoleService.Insert(sysAppRole) }; 
         }
 
         ///<summary>
         /// 异步新增角色信息表(sys_app_role)
         ///</summary>
         [HttpPost]
-        public async Task<ResponseMessage<long>>InsertAsync([FromBody]SysAppRole sysAppRole)
+        public async Task<ResponseMessage<string>>InsertAsync([FromBody]SysAppRole sysAppRole)
         {
-            return new ResponseMessage<long> { data = await _sysAppRoleService.InsertAsync(sysAppRole) };
+            return new ResponseMessage<string> { data = await _sysAppRoleService.InsertAsync(sysAppRole) };
         }
 
         ///<summary>

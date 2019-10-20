@@ -100,7 +100,8 @@
       @updated_time,
       @deleted_by,
       @deleted_time
-      )
+      );
+      Select @Id;
     </Statement>
 
     <!--删除-->

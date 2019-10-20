@@ -46,6 +46,7 @@
       @type_code,
       @map_id
       )
+      Select @Id;
     </Statement>
 
     <!--删除-->

@@ -33,7 +33,7 @@ namespace DXYK.Admin.Service
         ///<summary>
         ///新增
         ///</summary>
-        public long Insert(SysApp sysApp)
+        public string Insert(SysApp sysApp)
         {
             return SysAppRepository.Insert(sysApp);
         }
@@ -41,7 +41,7 @@ namespace DXYK.Admin.Service
         ///<summary>
         ///异步新增
         ///</summary>
-        public  async Task<long> InsertAsync(SysApp sysApp)
+        public  async Task<string> InsertAsync(SysApp sysApp)
         {
             return await SysAppRepository.InsertAsync(sysApp);
         }
@@ -126,7 +126,6 @@ namespace DXYK.Admin.Service
         {
             return await SysAppRepository.QueryDataByPageAsync(param);
         }
-
 
 
     }

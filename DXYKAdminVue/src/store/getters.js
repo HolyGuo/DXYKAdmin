@@ -16,6 +16,15 @@ const getters = {
   updateAvatarApi: state => state.api.updateAvatarApi,
   qiNiuUploadApi: state => state.api.qiNiuUploadApi,
   sqlApi: state => state.api.sqlApi,
-  swaggerApi: state => state.api.swaggerApi
+  swaggerApi: state => state.api.swaggerApi,
+  // mail
+  mailId: state => state.mail.mailId,
+  draftId: state => state.mail.draftId,
+  pageType: state => state.mail.pageType,
+  mailType: state => state.mail.mailType,
+  target: state => state.mail.target,
+  senderName: state => state.mail.senderName,
+  sendTime: state => state.mail.sendTime,
+  attachs: state => state.mail.attachs
 }
 export default getters

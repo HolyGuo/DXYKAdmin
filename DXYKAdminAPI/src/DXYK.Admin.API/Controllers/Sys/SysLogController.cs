@@ -44,18 +44,18 @@ namespace DXYK.Admin.API.Controllers
         /// 新增系统日志表(sys_log)
         ///</summary>
         [HttpPost]
-        public ResponseMessage<long> Insert([FromBody]SysLog sysLog)
+        public ResponseMessage<string> Insert([FromBody]SysLog sysLog)
         {
-            return new ResponseMessage<long> { data = _sysLogService.Insert(sysLog) }; 
+            return new ResponseMessage<string> { data = _sysLogService.Insert(sysLog) }; 
         }
 
         ///<summary>
         /// 异步新增系统日志表(sys_log)
         ///</summary>
         [HttpPost]
-        public async Task<ResponseMessage<long>>InsertAsync([FromBody]SysLog sysLog)
+        public async Task<ResponseMessage<string>>InsertAsync([FromBody]SysLog sysLog)
         {
-            return new ResponseMessage<long> { data = await _sysLogService.InsertAsync(sysLog) };
+            return new ResponseMessage<string> { data = await _sysLogService.InsertAsync(sysLog) };
         }
 
         ///<summary>

@@ -135,20 +135,6 @@ namespace DXYK.Admin.Service
                             }
                         }
                         p.MenuTree = MenuTree;
-                        //p.Menu = roleMapList.Where(s => roles.Contains(s.role_id) && s.type_code == 1).Select(s => new Menu
-                        //{
-                        //    id = s.map_id,
-                        //    menu_code = s.menu_code,
-                        //    title = s.menu_title,
-                        //    parent_id = s.menu_pid,
-                        //    icon = s.menu_icon,
-                        //    menu_type = s.menu_type,
-                        //    jump = s.menu_jump
-                        //}).ToList();
-                        //if (p.Menu != null && p.Menu.Count == 0)
-                        //{
-                        //    p.Menu = null;
-                        //}
                         //查询授权功能
                         p.Action = roleMapList.Where(s => roles.Contains(s.role_id) && s.type_code == 2).Select(s => new Dto.Sys.Action
                         {
@@ -189,7 +175,7 @@ namespace DXYK.Admin.Service
                 path = item.menu_jump,
                 pid = (long)item.menu_pid,
                 meta = metaobj,
-                component = item.menu_pid == 0 ? "Layout" : string.Format("system/{0}/index", item.menu_jump)
+                component = item.menu_pid == 0 ? "Layout" : string.Format("{0}/index", item.menu_jump)
             };
             List<RoleMapDto> childs = col3.Where(t => t.menu_pid == item.map_id).ToList();
             if (childs.Count() > 0)

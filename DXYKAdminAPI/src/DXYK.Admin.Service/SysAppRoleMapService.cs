@@ -33,7 +33,7 @@ namespace DXYK.Admin.Service
         ///<summary>
         ///新增
         ///</summary>
-        public long Insert(SysAppRoleMap sysAppRoleMap)
+        public string Insert(SysAppRoleMap sysAppRoleMap)
         {
             return SysAppRoleMapRepository.Insert(sysAppRoleMap);
         }
@@ -41,7 +41,7 @@ namespace DXYK.Admin.Service
         ///<summary>
         ///异步新增
         ///</summary>
-        public  async Task<long> InsertAsync(SysAppRoleMap sysAppRoleMap)
+        public  async Task<string> InsertAsync(SysAppRoleMap sysAppRoleMap)
         {
             return await SysAppRoleMapRepository.InsertAsync(sysAppRoleMap);
         }

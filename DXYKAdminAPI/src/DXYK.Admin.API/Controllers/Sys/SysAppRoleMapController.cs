@@ -45,18 +45,18 @@ namespace DXYK.Admin.API.Controllers
         /// 新增角色授权表(sys_app_role_map)
         ///</summary>
         [HttpPost]
-        public ResponseMessage<long> Insert([FromBody]SysAppRoleMap sysAppRoleMap)
+        public ResponseMessage<string> Insert([FromBody]SysAppRoleMap sysAppRoleMap)
         {
-            return new ResponseMessage<long> { data = _sysAppRoleMapService.Insert(sysAppRoleMap) };
+            return new ResponseMessage<string> { data = _sysAppRoleMapService.Insert(sysAppRoleMap) };
         }
 
         ///<summary>
         /// 异步新增角色授权表(sys_app_role_map)
         ///</summary>
         [HttpPost]
-        public async Task<ResponseMessage<long>> InsertAsync([FromBody]SysAppRoleMap sysAppRoleMap)
+        public async Task<ResponseMessage<string>> InsertAsync([FromBody]SysAppRoleMap sysAppRoleMap)
         {
-            return new ResponseMessage<long> { data = await _sysAppRoleMapService.InsertAsync(sysAppRoleMap) };
+            return new ResponseMessage<string> { data = await _sysAppRoleMapService.InsertAsync(sysAppRoleMap) };
         }
 
         ///<summary>

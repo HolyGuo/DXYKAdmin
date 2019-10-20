@@ -45,18 +45,18 @@ namespace DXYK.Admin.API.Controllers
         /// 新增功能信息表(sys_app_action)
         ///</summary>
         [HttpPost]
-        public ResponseMessage<long> Insert([FromBody]SysAppAction sysAppAction)
+        public ResponseMessage<string> Insert([FromBody]SysAppAction sysAppAction)
         {
-            return new ResponseMessage<long> { data = _sysAppActionService.Insert(sysAppAction) }; 
+            return new ResponseMessage<string> { data = _sysAppActionService.Insert(sysAppAction) }; 
         }
 
         ///<summary>
         /// 异步新增功能信息表(sys_app_action)
         ///</summary>
         [HttpPost]
-        public async Task<ResponseMessage<long>>InsertAsync([FromBody]SysAppAction sysAppAction)
+        public async Task<ResponseMessage<string>>InsertAsync([FromBody]SysAppAction sysAppAction)
         {
-            return new ResponseMessage<long> { data = await _sysAppActionService.InsertAsync(sysAppAction) };
+            return new ResponseMessage<string> { data = await _sysAppActionService.InsertAsync(sysAppAction) };
         }
 
         ///<summary>

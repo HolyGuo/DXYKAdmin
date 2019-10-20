@@ -33,7 +33,7 @@ namespace DXYK.Admin.Service
         ///<summary>
         ///新增
         ///</summary>
-        public long Insert(SysOrg sysOrg)
+        public string Insert(SysOrg sysOrg)
         {
             return SysOrgRepository.Insert(sysOrg);
         }
@@ -41,7 +41,7 @@ namespace DXYK.Admin.Service
         ///<summary>
         ///异步新增
         ///</summary>
-        public  async Task<long> InsertAsync(SysOrg sysOrg)
+        public  async Task<string> InsertAsync(SysOrg sysOrg)
         {
             return await SysOrgRepository.InsertAsync(sysOrg);
         }

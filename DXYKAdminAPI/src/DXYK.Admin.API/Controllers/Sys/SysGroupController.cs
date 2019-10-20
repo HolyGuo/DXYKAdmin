@@ -44,18 +44,18 @@ namespace DXYK.Admin.API.Controllers
         /// 新增群组信息表(sys_group)
         ///</summary>
         [HttpPost]
-        public ResponseMessage<long> Insert([FromBody]SysGroup sysGroup)
+        public ResponseMessage<string> Insert([FromBody]SysGroup sysGroup)
         {
-            return new ResponseMessage<long> { data = _sysGroupService.Insert(sysGroup) }; 
+            return new ResponseMessage<string> { data = _sysGroupService.Insert(sysGroup) }; 
         }
 
         ///<summary>
         /// 异步新增群组信息表(sys_group)
         ///</summary>
         [HttpPost]
-        public async Task<ResponseMessage<long>>InsertAsync([FromBody]SysGroup sysGroup)
+        public async Task<ResponseMessage<string>>InsertAsync([FromBody]SysGroup sysGroup)
         {
-            return new ResponseMessage<long> { data = await _sysGroupService.InsertAsync(sysGroup) };
+            return new ResponseMessage<string> { data = await _sysGroupService.InsertAsync(sysGroup) };
         }
 
         ///<summary>

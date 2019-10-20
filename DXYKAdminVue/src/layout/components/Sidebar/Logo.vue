@@ -4,7 +4,8 @@
     <svg-icon v-if="isCollapse" icon-class="run" />
     <!--正常状态下显示的，可以使用本地的logoImg-->
     <div class="logo-con">
-      <img src="https://aurora-1255840532.cos.ap-chengdu.myqcloud.com/logo.png">
+      <span>办公oa管理系统</span>
+      <!--<img src="https://aurora-1255840532.cos.ap-chengdu.myqcloud.com/logo.png">-->
       <!--<img :src="logoImg">-->
     </div>
   </el-menu-item>

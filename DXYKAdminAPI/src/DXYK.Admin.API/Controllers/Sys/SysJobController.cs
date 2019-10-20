@@ -54,21 +54,21 @@ namespace DXYK.Admin.API.Controllers
         /// 新增岗位信息表(sys_job)
         ///</summary>
         [HttpPost, ApiAuthorize(ActionCode = "Admin,Job_Manage,Job_Add", LogType = LogEnum.ADD)]
-        public ResponseMessage<long> Insert([FromBody]SysJob sysJob)
+        public ResponseMessage<string> Insert([FromBody]SysJob sysJob)
         {
             UserInfo user = GetCurrentUser.GetUserInfo(HttpContext);
             sysJob.created_by = user.id;
             sysJob.created_time = DateTime.Now;
-            return new ResponseMessage<long> { data = _sysJobService.Insert(sysJob) };
+            return new ResponseMessage<string> { data = _sysJobService.Insert(sysJob) };
         }
 
         ///<summary>
         /// 异步新增岗位信息表(sys_job)
         ///</summary>
         [HttpPost]
-        public async Task<ResponseMessage<long>> InsertAsync([FromBody]SysJob sysJob)
+        public async Task<ResponseMessage<string>> InsertAsync([FromBody]SysJob sysJob)
         {
-            return new ResponseMessage<long> { data = await _sysJobService.InsertAsync(sysJob) };
+            return new ResponseMessage<string> { data = await _sysJobService.InsertAsync(sysJob) };
         }
 
         ///<summary>
@@ -107,6 +107,7 @@ namespace DXYK.Admin.API.Controllers
             //SysJob entity = await _sysJobService.GetByIdAsync(sysJob.id);
             //Utils.CommmonUtils.EntityToEntity(sysJob, entity, null);
             //return new ResponseMessage<int> { data = await _sysJobService.UpdateAsync(entity) };
+
             return new ResponseMessage<int> { data = await _sysJobService.UpdateAsync(sysJob) };
         }
 

@@ -33,7 +33,7 @@ namespace DXYK.Admin.Service
         ///<summary>
         ///新增
         ///</summary>
-        public long Insert(SysUserAppRole sysUserAppRole)
+        public string Insert(SysUserAppRole sysUserAppRole)
         {
             return SysUserAppRoleRepository.Insert(sysUserAppRole);
         }
@@ -41,7 +41,7 @@ namespace DXYK.Admin.Service
         ///<summary>
         ///异步新增
         ///</summary>
-        public  async Task<long> InsertAsync(SysUserAppRole sysUserAppRole)
+        public  async Task<string> InsertAsync(SysUserAppRole sysUserAppRole)
         {
             return await SysUserAppRoleRepository.InsertAsync(sysUserAppRole);
         }

@@ -11,6 +11,8 @@ using DXYK.Admin.Repository;
 using DXYK.Admin.Service;
 using DXYK.Admin.API.Messages;
 using System.Threading.Tasks;
+using DXYK.Admin.Dto.Sys;
+using DXYK.Admin.API.Utils;
 
 namespace DXYK.Admin.API.Controllers
 {
@@ -44,18 +46,19 @@ namespace DXYK.Admin.API.Controllers
         /// 新增应用信息表(sys_app)
         ///</summary>
         [HttpPost]
-        public ResponseMessage<long> Insert([FromBody]SysApp sysApp)
+        public ResponseMessage<string> Insert([FromBody]SysApp sysApp)
         {
-            return new ResponseMessage<long> { data = _sysAppService.Insert(sysApp) };
+            UserInfo user = GetCurrentUser.GetUserInfo(Request.HttpContext);
+            return new ResponseMessage<string> { data = _sysAppService.Insert(sysApp) };
         }
 
         ///<summary>
         /// 异步新增应用信息表(sys_app)
         ///</summary>
         [HttpPost]
-        public async Task<ResponseMessage<long>> InsertAsync([FromBody]SysApp sysApp)
+        public async Task<ResponseMessage<string>> InsertAsync([FromBody]SysApp sysApp)
         {
-            return new ResponseMessage<long> { data = await _sysAppService.InsertAsync(sysApp) };
+            return new ResponseMessage<string> { data = await _sysAppService.InsertAsync(sysApp) };
         }
 
         ///<summary>

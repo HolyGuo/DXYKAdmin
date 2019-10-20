@@ -88,6 +88,323 @@
             <param name="key">保存在缓存中对应的key</param>
             <returns></returns>
         </member>
+        <member name="T:DXYK.Admin.API.Controllers.OaAttachmentController">
+            <summary>
+             附件信息表
+            </summary>
+        </member>
+        <member name="P:DXYK.Admin.API.Controllers.OaAttachmentController._oaAttachmentService">
+            <summary>
+             附件信息表(oa_attachment) Service
+            </summary>
+        </member>
+        <member name="P:DXYK.Admin.API.Controllers.OaAttachmentController._oaAttachmentRepository">
+            <summary>
+             附件信息表(oa_attachment) Repository
+            </summary>
+        </member>
+        <member name="M:DXYK.Admin.API.Controllers.OaAttachmentController.#ctor(DXYK.Admin.Service.OaAttachmentService,DXYK.Admin.Repository.IOaAttachmentRepository)">
+            <summary>
+             oa_attachmentController
+            </summary>
+        </member>
+        <member name="M:DXYK.Admin.API.Controllers.OaAttachmentController.Insert(DXYK.Admin.Entity.OaAttachment)">
+            <summary>
+             新增附件信息表(oa_attachment)
+            </summary>
+        </member>
+        <member name="M:DXYK.Admin.API.Controllers.OaAttachmentController.InsertAsync(DXYK.Admin.Entity.OaAttachment)">
+            <summary>
+             异步新增附件信息表(oa_attachment)
+            </summary>
+        </member>
+        <member name="M:DXYK.Admin.API.Controllers.OaAttachmentController.DeleteById(System.Int64)">
+            <summary>
+             删除附件信息表(oa_attachment)
+            </summary>
+        </member>
+        <member name="M:DXYK.Admin.API.Controllers.OaAttachmentController.DeleteByIdAsync(System.Int64)">
+            <summary>
+             异步删除附件信息表(oa_attachment)
+            </summary>
+        </member>
+        <member name="M:DXYK.Admin.API.Controllers.OaAttachmentController.Update(DXYK.Admin.Entity.OaAttachment)">
+            <summary>
+             更新附件信息表(oa_attachment)
+            </summary>
+        </member>
+        <member name="M:DXYK.Admin.API.Controllers.OaAttachmentController.UpdateAsync(DXYK.Admin.Entity.OaAttachment)">
+            <summary>
+             异步更新附件信息表(oa_attachment)
+            </summary>
+        </member>
+        <member name="M:DXYK.Admin.API.Controllers.OaAttachmentController.GetById(System.Int64)">
+            <summary>
+             根据Id查询附件信息表(oa_attachment)
+            </summary>
+        </member>
+        <member name="M:DXYK.Admin.API.Controllers.OaAttachmentController.GetByIdAsync(System.Int64)">
+            <summary>
+             根据Id查询附件信息表(oa_attachment)
+            </summary>
+        </member>
+        <member name="M:DXYK.Admin.API.Controllers.OaAttachmentController.Query(DXYK.Admin.API.Messages.QueryRequest)">
+            <summary>
+             根据条件查询附件信息表(oa_attachment)
+            </summary>
+        </member>
+        <member name="M:DXYK.Admin.API.Controllers.OaAttachmentController.QueryAsync(DXYK.Admin.API.Messages.QueryRequest)">
+            <summary>
+             异步根据条件查询附件信息表(oa_attachment)
+            </summary>
+        </member>
+        <member name="M:DXYK.Admin.API.Controllers.OaAttachmentController.QueryByPage(DXYK.Admin.API.Messages.QueryByPageRequest)">
+            <summary>
+             根据分页查询附件信息表(oa_attachment)
+            </summary>
+        </member>
+        <member name="M:DXYK.Admin.API.Controllers.OaAttachmentController.QueryByPageAsync(DXYK.Admin.API.Messages.QueryByPageRequest)">
+            <summary>
+             异步根据分页查询附件信息表(oa_attachment)
+            </summary>
+        </member>
+        <member name="M:DXYK.Admin.API.Controllers.OaAttachmentController.QueryDataByPage(DXYK.Admin.API.Messages.QueryByPageRequest)">
+            <summary>
+             根据分页查询附件信息表(oa_attachment)
+            </summary>
+        </member>
+        <member name="M:DXYK.Admin.API.Controllers.OaAttachmentController.QueryDataByPageAsync(DXYK.Admin.API.Messages.QueryByPageRequest)">
+            <summary>
+             异步根据分页查询附件信息表(oa_attachment)
+            </summary>
+        </member>
+        <member name="M:DXYK.Admin.API.Controllers.OaAttachmentController.UploadFile(Microsoft.AspNetCore.Http.IFormFile)">
+            <summary>
+            上传附件
+            </summary>
+            <param name="file"></param>
+            <returns></returns>
+        </member>
+        <member name="M:DXYK.Admin.API.Controllers.OaAttachmentController.QueryByIds(System.String)">
+            <summary>
+             根据Ids查询附件信息
+            </summary>
+        </member>
+        <member name="T:DXYK.Admin.API.Controllers.OaMailController">
+            <summary>
+             邮件信息表
+            </summary>
+        </member>
+        <member name="P:DXYK.Admin.API.Controllers.OaMailController._oaMailService">
+            <summary>
+             邮件信息表(oa_mail) Service
+            </summary>
+        </member>
+        <member name="P:DXYK.Admin.API.Controllers.OaMailController._oaMailRepository">
+            <summary>
+             邮件信息表(oa_mail) Repository
+            </summary>
+        </member>
+        <member name="P:DXYK.Admin.API.Controllers.OaMailController._oaAttachmentService">
+            <summary>
+             附件信息表(oa_attachment) Service
+            </summary>
+        </member>
+        <member name="P:DXYK.Admin.API.Controllers.OaMailController._oaMailReceiverService">
+            <summary>
+             收件人信息表(oa_mail_receiver) Service
+            </summary>
+        </member>
+        <member name="M:DXYK.Admin.API.Controllers.OaMailController.#ctor(DXYK.Admin.Service.OaMailService,DXYK.Admin.Repository.IOaMailRepository,DXYK.Admin.Service.OaAttachmentService,DXYK.Admin.Service.OaMailReceiverService)">
+            <summary>
+             oa_mailController
+            </summary>
+        </member>
+        <member name="M:DXYK.Admin.API.Controllers.OaMailController.Insert(DXYK.Admin.Entity.OaMail)">
+            <summary>
+             新增邮件信息表(oa_mail)
+            </summary>
+        </member>
+        <member name="M:DXYK.Admin.API.Controllers.OaMailController.InsertAsync(DXYK.Admin.Entity.OaMail)">
+            <summary>
+             异步新增邮件信息表(oa_mail)
+            </summary>
+        </member>
+        <member name="M:DXYK.Admin.API.Controllers.OaMailController.DeleteById(System.Int64)">
+            <summary>
+             删除邮件信息表(oa_mail)
+            </summary>
+        </member>
+        <member name="M:DXYK.Admin.API.Controllers.OaMailController.DeleteByIdAsync(System.Int64)">
+            <summary>
+             异步删除邮件信息表(oa_mail)
+            </summary>
+        </member>
+        <member name="M:DXYK.Admin.API.Controllers.OaMailController.Update(DXYK.Admin.Entity.OaMail)">
+            <summary>
+             更新邮件信息表(oa_mail)
+            </summary>
+        </member>
+        <member name="M:DXYK.Admin.API.Controllers.OaMailController.UpdateAsync(DXYK.Admin.Entity.OaMail)">
+            <summary>
+             异步更新邮件信息表(oa_mail)
+            </summary>
+        </member>
+        <member name="M:DXYK.Admin.API.Controllers.OaMailController.GetById(System.Int64)">
+            <summary>
+             根据Id查询邮件信息表(oa_mail)
+            </summary>
+        </member>
+        <member name="M:DXYK.Admin.API.Controllers.OaMailController.GetByIdAsync(System.Int64)">
+            <summary>
+             根据Id查询邮件信息表(oa_mail)
+            </summary>
+        </member>
+        <member name="M:DXYK.Admin.API.Controllers.OaMailController.Query(DXYK.Admin.API.Messages.QueryRequest)">
+            <summary>
+             根据条件查询邮件信息表(oa_mail)
+            </summary>
+        </member>
+        <member name="M:DXYK.Admin.API.Controllers.OaMailController.QueryAsync(DXYK.Admin.API.Messages.QueryRequest)">
+            <summary>
+             异步根据条件查询邮件信息表(oa_mail)
+            </summary>
+        </member>
+        <member name="M:DXYK.Admin.API.Controllers.OaMailController.QueryByPage(DXYK.Admin.API.Messages.QueryByPageRequest)">
+            <summary>
+             根据分页查询邮件信息表(oa_mail)
+            </summary>
+        </member>
+        <member name="M:DXYK.Admin.API.Controllers.OaMailController.QueryByPageAsync(DXYK.Admin.API.Messages.QueryByPageRequest)">
+            <summary>
+             异步根据分页查询邮件信息表(oa_mail)
+            </summary>
+        </member>
+        <member name="M:DXYK.Admin.API.Controllers.OaMailController.QueryDataByPage(DXYK.Admin.API.Messages.QueryByPageRequest)">
+            <summary>
+             根据分页查询邮件信息表(oa_mail)
+            </summary>
+        </member>
+        <member name="M:DXYK.Admin.API.Controllers.OaMailController.QueryDataByPageAsync(DXYK.Admin.API.Messages.QueryByPageRequest)">
+            <summary>
+             异步根据分页查询邮件信息表(oa_mail)
+            </summary>
+        </member>
+        <member name="M:DXYK.Admin.API.Controllers.OaMailController.SendMail(DXYK.Admin.API.Controllers.OaMailController.OwnQueryRequest)">
+            <summary>
+             新增邮件信息(oa_mail)
+            </summary>
+        </member>
+        <member name="T:DXYK.Admin.API.Controllers.OaMailController.OwnQueryRequest">
+            <summary>
+            私有查询请求
+            </summary>
+        </member>
+        <member name="T:DXYK.Admin.API.Controllers.OaMailReceiverController">
+            <summary>
+             收件人信息表
+            </summary>
+        </member>
+        <member name="P:DXYK.Admin.API.Controllers.OaMailReceiverController._oaMailReceiverService">
+            <summary>
+             收件人信息表(oa_mail_receiver) Service
+            </summary>
+        </member>
+        <member name="P:DXYK.Admin.API.Controllers.OaMailReceiverController._oaMailReceiverRepository">
+            <summary>
+             收件人信息表(oa_mail_receiver) Repository
+            </summary>
+        </member>
+        <member name="M:DXYK.Admin.API.Controllers.OaMailReceiverController.#ctor(DXYK.Admin.Service.OaMailReceiverService,DXYK.Admin.Repository.IOaMailReceiverRepository)">
+            <summary>
+             oa_mail_receiverController
+            </summary>
+        </member>
+        <member name="M:DXYK.Admin.API.Controllers.OaMailReceiverController.Insert(DXYK.Admin.Entity.OaMailReceiver)">
+            <summary>
+             新增收件人信息表(oa_mail_receiver)
+            </summary>
+        </member>
+        <member name="M:DXYK.Admin.API.Controllers.OaMailReceiverController.InsertAsync(DXYK.Admin.Entity.OaMailReceiver)">
+            <summary>
+             异步新增收件人信息表(oa_mail_receiver)
+            </summary>
+        </member>
+        <member name="M:DXYK.Admin.API.Controllers.OaMailReceiverController.DeleteById(System.Int64)">
+            <summary>
+             删除收件人信息表(oa_mail_receiver)
+            </summary>
+        </member>
+        <member name="M:DXYK.Admin.API.Controllers.OaMailReceiverController.DeleteByIdAsync(System.Int64)">
+            <summary>
+             异步删除收件人信息表(oa_mail_receiver)
+            </summary>
+        </member>
+        <member name="M:DXYK.Admin.API.Controllers.OaMailReceiverController.Update(DXYK.Admin.Entity.OaMailReceiver)">
+            <summary>
+             更新收件人信息表(oa_mail_receiver)
+            </summary>
+        </member>
+        <member name="M:DXYK.Admin.API.Controllers.OaMailReceiverController.UpdateAsync(DXYK.Admin.Entity.OaMailReceiver)">
+            <summary>
+             异步更新收件人信息表(oa_mail_receiver)
+            </summary>
+        </member>
+        <member name="M:DXYK.Admin.API.Controllers.OaMailReceiverController.GetById(System.Int64)">
+            <summary>
+             根据Id查询收件人信息表(oa_mail_receiver)
+            </summary>
+        </member>
+        <member name="M:DXYK.Admin.API.Controllers.OaMailReceiverController.GetByIdAsync(System.Int64)">
+            <summary>
+             根据Id查询收件人信息表(oa_mail_receiver)
+            </summary>
+        </member>
+        <member name="M:DXYK.Admin.API.Controllers.OaMailReceiverController.Query(DXYK.Admin.API.Messages.QueryRequest)">
+            <summary>
+             根据条件查询收件人信息表(oa_mail_receiver)
+            </summary>
+        </member>
+        <member name="M:DXYK.Admin.API.Controllers.OaMailReceiverController.QueryAsync(DXYK.Admin.API.Messages.QueryRequest)">
+            <summary>
+             异步根据条件查询收件人信息表(oa_mail_receiver)
+            </summary>
+        </member>
+        <member name="M:DXYK.Admin.API.Controllers.OaMailReceiverController.QueryByPage(DXYK.Admin.API.Messages.QueryByPageRequest)">
+            <summary>
+             根据分页查询收件人信息表(oa_mail_receiver)
+            </summary>
+        </member>
+        <member name="M:DXYK.Admin.API.Controllers.OaMailReceiverController.QueryByPageAsync(DXYK.Admin.API.Messages.QueryByPageRequest)">
+            <summary>
+             异步根据分页查询收件人信息表(oa_mail_receiver)
+            </summary>
+        </member>
+        <member name="M:DXYK.Admin.API.Controllers.OaMailReceiverController.QueryDataByPage(DXYK.Admin.API.Messages.QueryByPageRequest)">
+            <summary>
+             根据分页查询收件人信息表(oa_mail_receiver)
+            </summary>
+        </member>
+        <member name="M:DXYK.Admin.API.Controllers.OaMailReceiverController.QueryDataByPageAsync(DXYK.Admin.API.Messages.QueryByPageRequest)">
+            <summary>
+             异步根据分页查询收件人信息表(oa_mail_receiver)
+            </summary>
+        </member>
+        <member name="M:DXYK.Admin.API.Controllers.OaMailReceiverController.QueryInByFilter(DXYK.Admin.API.Controllers.OaMailReceiverController.OwnQueryByPageRequest)">
+            <summary>
+             根据条件查询收件信息
+            </summary>
+        </member>
+        <member name="T:DXYK.Admin.API.Controllers.OaMailReceiverController.OwnQueryByPageRequest">
+            <summary>
+            私人请求条件
+            </summary>
+        </member>
+        <member name="M:DXYK.Admin.API.Controllers.OaMailReceiverController.QueryByMailId(System.Int64)">
+            <summary>
+             根据邮件Id查询收件人信息
+            </summary>
+        </member>
         <member name="T:DXYK.Admin.API.Controllers.SysAppActionController">
             <summary>
              功能信息表
@@ -1183,6 +1500,11 @@
              根据部门、分页和名称状态查询岗位信息表(sys_job)
             </summary>
         </member>
+        <member name="M:DXYK.Admin.API.Controllers.SysUserController.QueryContacts">
+            <summary>
+             根据Id查询用户信息表(sys_user)
+            </summary>
+        </member>
         <member name="T:DXYK.Admin.API.Controllers.SysUserController.QueryByFilterRequest">
             <summary>
             分页查询名称状态请求
@@ -1397,6 +1719,11 @@
         <member name="P:DXYK.Admin.API.Messages.QueryByPageRequest.page">
             <summary>
             页码
+            </summary>
+        </member>
+        <member name="P:DXYK.Admin.API.Messages.QueryByPageRequest.status">
+            <summary>
+            状态
             </summary>
         </member>
         <member name="P:DXYK.Admin.API.Messages.QueryByPageRequest.offset">

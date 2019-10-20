@@ -33,7 +33,7 @@ namespace DXYK.Admin.Service
         ///<summary>
         ///新增
         ///</summary>
-        public long Insert(SysJob sysJob)
+        public string Insert(SysJob sysJob)
         {
             return SysJobRepository.Insert(sysJob);
         }
@@ -41,7 +41,7 @@ namespace DXYK.Admin.Service
         ///<summary>
         ///异步新增
         ///</summary>
-        public  async Task<long> InsertAsync(SysJob sysJob)
+        public  async Task<string> InsertAsync(SysJob sysJob)
         {
             return await SysJobRepository.InsertAsync(sysJob);
         }

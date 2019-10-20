@@ -17,9 +17,13 @@ import '@/icons' // icon
 import './router/index' // permission control
 // import Router from 'vue-router'
 
+import Multiselect from 'vue-multiselect';// 使用的一个多选框组件，element-ui的select不能满足所有需求
+import 'vue-multiselect/dist/vue-multiselect.min.css';// 多选框组件css
+
 Vue.use(mavonEditor)
 Vue.use(permission)
 Vue.use(ElementUI, { locale })
+Vue.component('multiselect', Multiselect);
 Vue.config.productionTip = false
 
 // const routerPush = Router.prototype.push
