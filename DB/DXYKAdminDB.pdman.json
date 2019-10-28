@@ -1619,7 +1619,7 @@
           "fields": [
             {
               "name": "id",
-              "type": "BigInt",
+              "type": "VARCHAR_30",
               "remark": "",
               "chnname": "唯一标识",
               "pk": true,
@@ -1657,7 +1657,7 @@
             },
             {
               "name": "created_by",
-              "type": "BigInt",
+              "type": "VARCHAR_30",
               "remark": "",
               "chnname": "创建人"
             },
@@ -1669,7 +1669,7 @@
             },
             {
               "name": "updated_by",
-              "type": "BigInt",
+              "type": "VARCHAR_30",
               "remark": "",
               "chnname": "更新人"
             },
@@ -1681,7 +1681,7 @@
             },
             {
               "name": "deleted_by",
-              "type": "BigInt",
+              "type": "VARCHAR_30",
               "remark": "",
               "chnname": "删除人"
             },
@@ -1747,7 +1747,7 @@
           "fields": [
             {
               "name": "id",
-              "type": "BigInt",
+              "type": "VARCHAR_30",
               "remark": "",
               "chnname": "唯一标识",
               "pk": true,
@@ -1755,13 +1755,13 @@
             },
             {
               "name": "mail_id",
-              "type": "BigInt",
+              "type": "VARCHAR_30",
               "remark": "",
               "chnname": "邮件id"
             },
             {
               "name": "user_id",
-              "type": "BigInt",
+              "type": "VARCHAR_30",
               "remark": "",
               "chnname": "用户id"
             }
@@ -1821,7 +1821,7 @@
           "fields": [
             {
               "name": "id",
-              "type": "BigInt",
+              "type": "VARCHAR_30",
               "remark": "",
               "chnname": "唯一标识",
               "pk": true,
@@ -1895,7 +1895,7 @@
             },
             {
               "name": "created_by",
-              "type": "BigInt",
+              "type": "VARCHAR_30",
               "remark": "",
               "chnname": "创建人"
             },
@@ -1907,7 +1907,7 @@
             },
             {
               "name": "updated_by",
-              "type": "BigInt",
+              "type": "VARCHAR_30",
               "remark": "",
               "chnname": "更新人"
             },
@@ -1919,7 +1919,7 @@
             },
             {
               "name": "deleted_by",
-              "type": "BigInt",
+              "type": "VARCHAR_30",
               "remark": "",
               "chnname": "删除人"
             },

@@ -31,7 +31,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DXYK.Admin.Common", "src\DX
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DXYK.Admin.Dto", "src\DXYK.Admin.Dto\DXYK.Admin.Dto.csproj", "{661922D0-CB3F-4AAF-8571-55B533A04062}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DXYK.Admin.MVC", "src\DXYK.Admin.MVC\DXYK.Admin.MVC.csproj", "{9EC09C0D-38DC-4612-B175-8B4B13A6AA55}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DXYK.Admin.MVC", "src\DXYK.Admin.MVC\DXYK.Admin.MVC.csproj", "{9EC09C0D-38DC-4612-B175-8B4B13A6AA55}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
