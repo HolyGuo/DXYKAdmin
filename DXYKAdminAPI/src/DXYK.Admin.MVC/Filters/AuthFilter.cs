@@ -16,7 +16,7 @@ using System.Linq;
 using System.Reflection;
 using System.Threading.Tasks;
 
-namespace DXYK.Admin.MVC.Models
+namespace DXYK.Admin.MVC.Filters
 {
     public class AuthFilter : IActionFilter
     {
@@ -51,6 +51,13 @@ namespace DXYK.Admin.MVC.Models
         /// <param name="context"></param>
         public void OnActionExecuted(ActionExecutedContext context)
         {
+            //如果是ajax请求的，跳过模块授权认证
+            var headers = context.HttpContext.Request.Headers;
+            var xreq = headers.ContainsKey("x-requested-with");
+            if (xreq && headers["x-requested-with"] == "XMLHttpRequest")
+            {
+                return;
+            }
             var description = (Microsoft.AspNetCore.Mvc.Controllers.ControllerActionDescriptor)context.ActionDescriptor;
             //添加有允许匿名的Action，可以不用登录访问，如Login/Index   [AllowAnonymous]
             var anonymous = description.MethodInfo.GetCustomAttribute(typeof(AllowAnonymousAttribute));
@@ -113,37 +120,6 @@ namespace DXYK.Admin.MVC.Models
             var Controllername = description.ControllerName.ToLower();
             var Actionname = description.ActionName.ToLower();
 
-
-            //List<string> actions = ActionCode.Split(',').ToList();
-            //if (userDto.Permissions != null && userDto.Permissions.Count > 0)
-            //{
-            //    Permission p = userDto.Permissions.Find(s => s.AppId == AppId);
-            //    if (p == null)
-            //    {
-            //        ContextReturn(context, "您没有操作权限，请联系系统管理员！");
-            //        return;
-            //    }
-            //    //判断是否有功能权限
-            //    //DXYK.Admin.Dto.Sys.Action action = p.Action.Find(s => s.action_code == ActionCode);
-            //    List<DXYK.Admin.Dto.Sys.Action> action = p.Action.Where(s => actions.Contains(s.action_code)).ToList();
-            //    if (action == null || action.Count < 1)
-            //    {
-            //        ContextReturn(context, "您没有操作权限，请联系系统管理员！");
-            //        return;
-            //    }
-            //    if (actions == null || actions.Count < 1)
-            //    {
-            //        ContextReturn(context, "您没有操作权限，请联系系统管理员！");
-            //        return;
-            //    }
-            //    //有功能权限  继续执行
-            //    return;
-            //}
-            //else
-            //{
-            //    ContextReturn(context, "您没有操作权限，请联系系统管理员！");
-            //    return;
-            //}
             return;
         }
 

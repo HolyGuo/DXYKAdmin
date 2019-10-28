@@ -81,7 +81,7 @@ namespace DXYK.Admin.MVC.Filters
             if (context.HttpContext.Request.Headers.ContainsKey("Authorization"))
             {
                 var tokenHeader = context.HttpContext.Request.Headers["Authorization"];
-                //tokenHeader = tokenHeader.ToString().Substring("Bearer ".Length).Trim();
+
                 jwtToken = JwtHelper.SerializeJWT(tokenHeader);
             }
             else if (!string.IsNullOrWhiteSpace(getCookie))

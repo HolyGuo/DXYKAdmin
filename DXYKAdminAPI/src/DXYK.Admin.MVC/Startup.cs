@@ -1,19 +1,13 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Reflection;
-using System.Threading.Tasks;
-using DXYK.Admin.Common.Cache;
-using DXYK.Admin.MVC.Models;
-using Microsoft.AspNetCore.Authentication.Cookies;
+﻿using DXYK.Admin.Common.Cache;
+using DXYK.Admin.MVC.Filters;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
-using Microsoft.AspNetCore.HttpsPolicy;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Newtonsoft.Json.Serialization;
+using System.Reflection;
 
 namespace DXYK.Admin.MVC
 {
@@ -46,7 +40,7 @@ namespace DXYK.Admin.MVC
             });
             services.AddMvc(option =>
             {
-                //option.Filters.Add<AuthFilter>();
+                option.Filters.Add<AuthFilter>();
             }).SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
             #region 缓存配置
             services.AddMemoryCache();

@@ -88,6 +88,7 @@
                         , value: res.data
                     });
                     cookie.set('Cookies', res.data);
+                    layui.setter.access_token = res.data;
                     //登入成功的提示与跳转
                     layer.msg('登入成功', {
                         offset: '15px'

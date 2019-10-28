@@ -60,10 +60,10 @@ layui.define(function (exports) {
                 //自动给 Request Headers 传入 token
                 _headers[setter.request.tokenName] = setter.request.tokenName in _headers
                     ? _headers[setter.request.tokenName]
-                    : (layui.data(setter.tableName)[setter.request.tokenName] || '');
+                    : (layui.data(setter.tableName)[setter.request.tokenName] || layui.setter.access_token);
                 //options.headers[request.tokenName] = layui.data(setter.tableName)[request.tokenName];
             }
-            _headers = JSON.stringify(_headers);
+            //_headers = JSON.stringify(_headers);
             data = ((method === 'get') || (method === 'delete')) ? data : JSON.stringify(data);
             // var tData = null;
             // if (method === 'get') {
