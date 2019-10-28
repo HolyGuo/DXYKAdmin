@@ -49,7 +49,7 @@ namespace DXYK.Admin.Service
         ///<summary>
         ///删除
         ///</summary>
-        public int DeleteById(long id)
+        public int DeleteById(string id)
         {
             return SysUserAppRoleRepository.DeleteById(id);
         }
@@ -57,7 +57,7 @@ namespace DXYK.Admin.Service
         ///<summary>
         ///异步删除
         ///</summary>
-        public  async Task<int> DeleteByIdAsync(long id)
+        public  async Task<int> DeleteByIdAsync(string id)
         {
             return await SysUserAppRoleRepository.DeleteByIdAsync(id);
         }
@@ -81,7 +81,7 @@ namespace DXYK.Admin.Service
         /// <summary>
         /// 根据Id查询数据
         /// </summary>
-        public SysUserAppRole GetById(long id)
+        public SysUserAppRole GetById(string id)
         {
             return SysUserAppRoleRepository.GetById(id);
         }
@@ -89,7 +89,7 @@ namespace DXYK.Admin.Service
         /// <summary>
         /// 根据Id查询数据
         /// </summary>
-        public async Task<SysUserAppRole> GetByIdAsync(long id)
+        public async Task<SysUserAppRole> GetByIdAsync(string id)
         {
             return await SysUserAppRoleRepository.GetByIdAsync(id);
         }

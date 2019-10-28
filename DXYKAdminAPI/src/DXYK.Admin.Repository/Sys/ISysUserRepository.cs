@@ -37,22 +37,22 @@ namespace DXYK.Admin.Repository
         /// 根据Id查询数据
         ///</summary>
         [Statement(Id = "GetEntity")]
-        SysUser GetById([Param("id")]long id);
+        new SysUser GetById([Param("id")]string id);
         ///<summary>
         /// 异步根据Id查询数据
         ///</summary>
         [Statement(Id = "GetEntity")]
-        Task<SysUser> GetByIdAsync([Param("id")]long id);
+        new Task<SysUser> GetByIdAsync([Param("id")]string id);
         ///<summary>
         /// 删除数据
         ///</summary>
         [Statement(Id = "Delete")]
-        int DeleteById([Param("id")]long id);
+        new int DeleteById([Param("id")]string id);
         ///<summary>
         /// 异步删除数据
         ///</summary>
         [Statement(Id = "Delete")]
-        Task<int> DeleteByIdAsync([Param("id")]long id);
+        new Task<int> DeleteByIdAsync([Param("id")]string id);
         ///<summary>
         /// 根据条件查询总数
         ///</summary>

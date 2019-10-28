@@ -63,7 +63,7 @@ namespace DXYK.Admin.API.Controllers
         /// 删除收件人信息表(oa_mail_receiver)
         ///</summary>
         [HttpDelete]
-        public ResponseMessage<int> DeleteById(long id)
+        public ResponseMessage<int> DeleteById(string id)
         {
             return new ResponseMessage<int> { data = _oaMailReceiverService.DeleteById(id) };
         }
@@ -72,7 +72,7 @@ namespace DXYK.Admin.API.Controllers
         /// 异步删除收件人信息表(oa_mail_receiver)
         ///</summary>
         [HttpDelete]
-        public async Task<ResponseMessage<int>> DeleteByIdAsync(long id)
+        public async Task<ResponseMessage<int>> DeleteByIdAsync(string id)
         {
             return new ResponseMessage<int> { data = await _oaMailReceiverService.DeleteByIdAsync(id) };
         }
@@ -102,7 +102,7 @@ namespace DXYK.Admin.API.Controllers
         /// 根据Id查询收件人信息表(oa_mail_receiver)
         ///</summary>
         [HttpGet]
-        public ResponseMessage<OaMailReceiver> GetById(long id)
+        public ResponseMessage<OaMailReceiver> GetById(string id)
         {
             var oaMailReceiver = _oaMailReceiverService.GetById(id);
             return new ResponseMessage<OaMailReceiver> { data = oaMailReceiver };
@@ -112,7 +112,7 @@ namespace DXYK.Admin.API.Controllers
         /// 根据Id查询收件人信息表(oa_mail_receiver)
         ///</summary>
         [HttpGet]
-        public async Task<ResponseMessage<OaMailReceiver>> GetByIdAsync(long id)
+        public async Task<ResponseMessage<OaMailReceiver>> GetByIdAsync(string id)
         {
             var oaMailReceiver = await _oaMailReceiverService.GetByIdAsync(id);
             return new ResponseMessage<OaMailReceiver> { data = oaMailReceiver };
@@ -202,7 +202,13 @@ namespace DXYK.Admin.API.Controllers
         /// </summary>
         public class OwnQueryByPageRequest: QueryByPageRequest
         {
+            /// <summary>
+            /// token
+            /// </summary>
             public string token { get; set; }
+            /// <summary>
+            /// userid
+            /// </summary>
             public long userid { get; set; }
         }
 

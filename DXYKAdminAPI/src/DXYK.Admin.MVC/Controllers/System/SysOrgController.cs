@@ -45,7 +45,7 @@ namespace DXYK.Admin.MVC.Controllers.System
         /// 删除单位信息表(sys_org)
         ///</summary>
         [HttpDelete]
-        public ResponseMessage<int> DeleteById(long id)
+        public ResponseMessage<int> DeleteById(string id)
         {
             return new ResponseMessage<int> { data = _sysOrgService.DeleteById(id) };
         }

@@ -16,8 +16,8 @@ namespace DXYK.Admin.Repository
     ///<summary>
     /// 收件人信息表
     ///</summary>
-    public interface IOaMailReceiverRepository : IRepository<OaMailReceiver, long>
-        , IRepositoryAsync<OaMailReceiver, long>
+    public interface IOaMailReceiverRepository : IRepository<OaMailReceiver, string>
+        , IRepositoryAsync<OaMailReceiver, string>
     {
         ///<summary>
         /// 新增
@@ -35,22 +35,22 @@ namespace DXYK.Admin.Repository
         /// 根据Id查询数据
         ///</summary>
         [Statement(Id = "GetEntity")]
-        new OaMailReceiver GetById([Param("id")]long id);
+        new OaMailReceiver GetById([Param("id")]string id);
         ///<summary>
         /// 异步根据Id查询数据
         ///</summary>
         [Statement(Id = "GetEntity")]
-        new Task<OaMailReceiver> GetByIdAsync([Param("id")]long id);
+        new Task<OaMailReceiver> GetByIdAsync([Param("id")]string id);
         ///<summary>
         /// 删除数据
         ///</summary>
         [Statement(Id = "Delete")]
-        new int DeleteById([Param("id")]long id);
+        new int DeleteById([Param("id")]string id);
         ///<summary>
         /// 异步删除数据
         ///</summary>
         [Statement(Id = "Delete")]
-        new Task<int> DeleteByIdAsync([Param("id")]long id);
+        new Task<int> DeleteByIdAsync([Param("id")]string id);
         ///<summary>
         /// 根据条件查询总数
         ///</summary>

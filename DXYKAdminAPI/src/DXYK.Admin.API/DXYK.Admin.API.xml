@@ -113,12 +113,12 @@
              异步新增附件信息表(oa_attachment)
             </summary>
         </member>
-        <member name="M:DXYK.Admin.API.Controllers.OaAttachmentController.DeleteById(System.Int64)">
+        <member name="M:DXYK.Admin.API.Controllers.OaAttachmentController.DeleteById(System.String)">
             <summary>
              删除附件信息表(oa_attachment)
             </summary>
         </member>
-        <member name="M:DXYK.Admin.API.Controllers.OaAttachmentController.DeleteByIdAsync(System.Int64)">
+        <member name="M:DXYK.Admin.API.Controllers.OaAttachmentController.DeleteByIdAsync(System.String)">
             <summary>
              异步删除附件信息表(oa_attachment)
             </summary>
@@ -133,12 +133,12 @@
              异步更新附件信息表(oa_attachment)
             </summary>
         </member>
-        <member name="M:DXYK.Admin.API.Controllers.OaAttachmentController.GetById(System.Int64)">
+        <member name="M:DXYK.Admin.API.Controllers.OaAttachmentController.GetById(System.String)">
             <summary>
              根据Id查询附件信息表(oa_attachment)
             </summary>
         </member>
-        <member name="M:DXYK.Admin.API.Controllers.OaAttachmentController.GetByIdAsync(System.Int64)">
+        <member name="M:DXYK.Admin.API.Controllers.OaAttachmentController.GetByIdAsync(System.String)">
             <summary>
              根据Id查询附件信息表(oa_attachment)
             </summary>
@@ -225,12 +225,12 @@
              异步新增邮件信息表(oa_mail)
             </summary>
         </member>
-        <member name="M:DXYK.Admin.API.Controllers.OaMailController.DeleteById(System.Int64)">
+        <member name="M:DXYK.Admin.API.Controllers.OaMailController.DeleteById(System.String)">
             <summary>
              删除邮件信息表(oa_mail)
             </summary>
         </member>
-        <member name="M:DXYK.Admin.API.Controllers.OaMailController.DeleteByIdAsync(System.Int64)">
+        <member name="M:DXYK.Admin.API.Controllers.OaMailController.DeleteByIdAsync(System.String)">
             <summary>
              异步删除邮件信息表(oa_mail)
             </summary>
@@ -245,12 +245,12 @@
              异步更新邮件信息表(oa_mail)
             </summary>
         </member>
-        <member name="M:DXYK.Admin.API.Controllers.OaMailController.GetById(System.Int64)">
+        <member name="M:DXYK.Admin.API.Controllers.OaMailController.GetById(System.String)">
             <summary>
              根据Id查询邮件信息表(oa_mail)
             </summary>
         </member>
-        <member name="M:DXYK.Admin.API.Controllers.OaMailController.GetByIdAsync(System.Int64)">
+        <member name="M:DXYK.Admin.API.Controllers.OaMailController.GetByIdAsync(System.String)">
             <summary>
              根据Id查询邮件信息表(oa_mail)
             </summary>
@@ -295,6 +295,31 @@
             私有查询请求
             </summary>
         </member>
+        <member name="P:DXYK.Admin.API.Controllers.OaMailController.OwnQueryRequest.title">
+            <summary>
+            title
+            </summary>
+        </member>
+        <member name="P:DXYK.Admin.API.Controllers.OaMailController.OwnQueryRequest.content">
+            <summary>
+            content
+            </summary>
+        </member>
+        <member name="P:DXYK.Admin.API.Controllers.OaMailController.OwnQueryRequest.reciervers">
+            <summary>
+            reciervers
+            </summary>
+        </member>
+        <member name="P:DXYK.Admin.API.Controllers.OaMailController.OwnQueryRequest.filenames">
+            <summary>
+            filenames
+            </summary>
+        </member>
+        <member name="P:DXYK.Admin.API.Controllers.OaMailController.OwnQueryRequest.token">
+            <summary>
+            token
+            </summary>
+        </member>
         <member name="T:DXYK.Admin.API.Controllers.OaMailReceiverController">
             <summary>
              收件人信息表
@@ -325,12 +350,12 @@
              异步新增收件人信息表(oa_mail_receiver)
             </summary>
         </member>
-        <member name="M:DXYK.Admin.API.Controllers.OaMailReceiverController.DeleteById(System.Int64)">
+        <member name="M:DXYK.Admin.API.Controllers.OaMailReceiverController.DeleteById(System.String)">
             <summary>
              删除收件人信息表(oa_mail_receiver)
             </summary>
         </member>
-        <member name="M:DXYK.Admin.API.Controllers.OaMailReceiverController.DeleteByIdAsync(System.Int64)">
+        <member name="M:DXYK.Admin.API.Controllers.OaMailReceiverController.DeleteByIdAsync(System.String)">
             <summary>
              异步删除收件人信息表(oa_mail_receiver)
             </summary>
@@ -345,12 +370,12 @@
              异步更新收件人信息表(oa_mail_receiver)
             </summary>
         </member>
-        <member name="M:DXYK.Admin.API.Controllers.OaMailReceiverController.GetById(System.Int64)">
+        <member name="M:DXYK.Admin.API.Controllers.OaMailReceiverController.GetById(System.String)">
             <summary>
              根据Id查询收件人信息表(oa_mail_receiver)
             </summary>
         </member>
-        <member name="M:DXYK.Admin.API.Controllers.OaMailReceiverController.GetByIdAsync(System.Int64)">
+        <member name="M:DXYK.Admin.API.Controllers.OaMailReceiverController.GetByIdAsync(System.String)">
             <summary>
              根据Id查询收件人信息表(oa_mail_receiver)
             </summary>
@@ -393,6 +418,16 @@
         <member name="T:DXYK.Admin.API.Controllers.OaMailReceiverController.OwnQueryByPageRequest">
             <summary>
             私人请求条件
+            </summary>
+        </member>
+        <member name="P:DXYK.Admin.API.Controllers.OaMailReceiverController.OwnQueryByPageRequest.token">
+            <summary>
+            token
+            </summary>
+        </member>
+        <member name="P:DXYK.Admin.API.Controllers.OaMailReceiverController.OwnQueryByPageRequest.userid">
+            <summary>
+            userid
             </summary>
         </member>
         <member name="M:DXYK.Admin.API.Controllers.OaMailReceiverController.QueryByMailId(System.Int64)">
@@ -690,6 +725,41 @@
              获取所有菜单信息表(sys_app_menu)
             </summary>
         </member>
+        <member name="F:DXYK.Admin.API.Controllers.SysAppMenuController.treedata.name">
+            <summary>
+            name
+            </summary>
+        </member>
+        <member name="F:DXYK.Admin.API.Controllers.SysAppMenuController.treedata.path">
+            <summary>
+            path
+            </summary>
+        </member>
+        <member name="F:DXYK.Admin.API.Controllers.SysAppMenuController.treedata.component">
+            <summary>
+            component
+            </summary>
+        </member>
+        <member name="F:DXYK.Admin.API.Controllers.SysAppMenuController.treedata.hidden">
+            <summary>
+            hidden
+            </summary>
+        </member>
+        <member name="F:DXYK.Admin.API.Controllers.SysAppMenuController.treedata.meta">
+            <summary>
+            meta
+            </summary>
+        </member>
+        <member name="F:DXYK.Admin.API.Controllers.SysAppMenuController.treedata.children">
+            <summary>
+            children
+            </summary>
+        </member>
+        <member name="T:DXYK.Admin.API.Controllers.SysAppMenuController.treedata1">
+            <summary>
+            treedata1
+            </summary>
+        </member>
         <member name="T:DXYK.Admin.API.Controllers.SysAppRoleController">
             <summary>
              角色信息表
@@ -735,12 +805,12 @@
              异步新增角色信息表(sys_app_role)
             </summary>
         </member>
-        <member name="M:DXYK.Admin.API.Controllers.SysAppRoleController.DeleteById(System.Int64)">
+        <member name="M:DXYK.Admin.API.Controllers.SysAppRoleController.DeleteById(System.String)">
             <summary>
              删除角色信息表(sys_app_role)
             </summary>
         </member>
-        <member name="M:DXYK.Admin.API.Controllers.SysAppRoleController.DeleteByIdAsync(System.Int64)">
+        <member name="M:DXYK.Admin.API.Controllers.SysAppRoleController.DeleteByIdAsync(System.String)">
             <summary>
              异步删除角色信息表(sys_app_role)
             </summary>
@@ -755,12 +825,12 @@
              异步更新角色信息表(sys_app_role)
             </summary>
         </member>
-        <member name="M:DXYK.Admin.API.Controllers.SysAppRoleController.GetById(System.Int64)">
+        <member name="M:DXYK.Admin.API.Controllers.SysAppRoleController.GetById(System.String)">
             <summary>
              根据Id查询角色信息表(sys_app_role)
             </summary>
         </member>
-        <member name="M:DXYK.Admin.API.Controllers.SysAppRoleController.GetByIdAsync(System.Int64)">
+        <member name="M:DXYK.Admin.API.Controllers.SysAppRoleController.GetByIdAsync(System.String)">
             <summary>
              根据Id查询角色信息表(sys_app_role)
             </summary>
@@ -830,12 +900,12 @@
              异步新增角色授权表(sys_app_role_map)
             </summary>
         </member>
-        <member name="M:DXYK.Admin.API.Controllers.SysAppRoleMapController.DeleteById(System.Int64)">
+        <member name="M:DXYK.Admin.API.Controllers.SysAppRoleMapController.DeleteById(System.String)">
             <summary>
              删除角色授权表(sys_app_role_map)
             </summary>
         </member>
-        <member name="M:DXYK.Admin.API.Controllers.SysAppRoleMapController.DeleteByIdAsync(System.Int64)">
+        <member name="M:DXYK.Admin.API.Controllers.SysAppRoleMapController.DeleteByIdAsync(System.String)">
             <summary>
              异步删除角色授权表(sys_app_role_map)
             </summary>
@@ -850,12 +920,12 @@
              异步更新角色授权表(sys_app_role_map)
             </summary>
         </member>
-        <member name="M:DXYK.Admin.API.Controllers.SysAppRoleMapController.GetById(System.Int64)">
+        <member name="M:DXYK.Admin.API.Controllers.SysAppRoleMapController.GetById(System.String)">
             <summary>
              根据Id查询角色授权表(sys_app_role_map)
             </summary>
         </member>
-        <member name="M:DXYK.Admin.API.Controllers.SysAppRoleMapController.GetByIdAsync(System.Int64)">
+        <member name="M:DXYK.Admin.API.Controllers.SysAppRoleMapController.GetByIdAsync(System.String)">
             <summary>
              根据Id查询角色授权表(sys_app_role_map)
             </summary>
@@ -1145,12 +1215,12 @@
              异步新增系统日志表(sys_log)
             </summary>
         </member>
-        <member name="M:DXYK.Admin.API.Controllers.SysLogController.DeleteById(System.Int64)">
+        <member name="M:DXYK.Admin.API.Controllers.SysLogController.DeleteById(System.String)">
             <summary>
              删除系统日志表(sys_log)
             </summary>
         </member>
-        <member name="M:DXYK.Admin.API.Controllers.SysLogController.DeleteByIdAsync(System.Int64)">
+        <member name="M:DXYK.Admin.API.Controllers.SysLogController.DeleteByIdAsync(System.String)">
             <summary>
              异步删除系统日志表(sys_log)
             </summary>
@@ -1165,12 +1235,12 @@
              异步更新系统日志表(sys_log)
             </summary>
         </member>
-        <member name="M:DXYK.Admin.API.Controllers.SysLogController.GetById(System.Int64)">
+        <member name="M:DXYK.Admin.API.Controllers.SysLogController.GetById(System.String)">
             <summary>
              根据Id查询系统日志表(sys_log)
             </summary>
         </member>
-        <member name="M:DXYK.Admin.API.Controllers.SysLogController.GetByIdAsync(System.Int64)">
+        <member name="M:DXYK.Admin.API.Controllers.SysLogController.GetByIdAsync(System.String)">
             <summary>
              根据Id查询系统日志表(sys_log)
             </summary>
@@ -1235,12 +1305,12 @@
              异步新增单位信息表(sys_org)
             </summary>
         </member>
-        <member name="M:DXYK.Admin.API.Controllers.SysOrgController.DeleteById(System.Int64)">
+        <member name="M:DXYK.Admin.API.Controllers.SysOrgController.DeleteById(System.String)">
             <summary>
              删除单位信息表(sys_org)
             </summary>
         </member>
-        <member name="M:DXYK.Admin.API.Controllers.SysOrgController.DeleteByIdAsync(System.Int64)">
+        <member name="M:DXYK.Admin.API.Controllers.SysOrgController.DeleteByIdAsync(System.String)">
             <summary>
              异步删除单位信息表(sys_org)
             </summary>
@@ -1260,7 +1330,7 @@
              根据Id查询单位信息表(sys_org)
             </summary>
         </member>
-        <member name="M:DXYK.Admin.API.Controllers.SysOrgController.GetByIdAsync(System.Int64)">
+        <member name="M:DXYK.Admin.API.Controllers.SysOrgController.GetByIdAsync(System.String)">
             <summary>
              根据Id查询单位信息表(sys_org)
             </summary>
@@ -1335,12 +1405,12 @@
              异步新增用户应用角色授权表(sys_user_app_role)
             </summary>
         </member>
-        <member name="M:DXYK.Admin.API.Controllers.SysUserAppRoleController.DeleteById(System.Int64)">
+        <member name="M:DXYK.Admin.API.Controllers.SysUserAppRoleController.DeleteById(System.String)">
             <summary>
              删除用户应用角色授权表(sys_user_app_role)
             </summary>
         </member>
-        <member name="M:DXYK.Admin.API.Controllers.SysUserAppRoleController.DeleteByIdAsync(System.Int64)">
+        <member name="M:DXYK.Admin.API.Controllers.SysUserAppRoleController.DeleteByIdAsync(System.String)">
             <summary>
              异步删除用户应用角色授权表(sys_user_app_role)
             </summary>
@@ -1355,12 +1425,12 @@
              异步更新用户应用角色授权表(sys_user_app_role)
             </summary>
         </member>
-        <member name="M:DXYK.Admin.API.Controllers.SysUserAppRoleController.GetById(System.Int64)">
+        <member name="M:DXYK.Admin.API.Controllers.SysUserAppRoleController.GetById(System.String)">
             <summary>
              根据Id查询用户应用角色授权表(sys_user_app_role)
             </summary>
         </member>
-        <member name="M:DXYK.Admin.API.Controllers.SysUserAppRoleController.GetByIdAsync(System.Int64)">
+        <member name="M:DXYK.Admin.API.Controllers.SysUserAppRoleController.GetByIdAsync(System.String)">
             <summary>
              根据Id查询用户应用角色授权表(sys_user_app_role)
             </summary>
@@ -1445,12 +1515,12 @@
              异步新增用户信息表(sys_user)
             </summary>
         </member>
-        <member name="M:DXYK.Admin.API.Controllers.SysUserController.DeleteById(System.Int64)">
+        <member name="M:DXYK.Admin.API.Controllers.SysUserController.DeleteById(System.String)">
             <summary>
              删除用户信息表(sys_user)
             </summary>
         </member>
-        <member name="M:DXYK.Admin.API.Controllers.SysUserController.DeleteByIdAsync(System.Int64)">
+        <member name="M:DXYK.Admin.API.Controllers.SysUserController.DeleteByIdAsync(System.String)">
             <summary>
              异步删除用户信息表(sys_user)
             </summary>
@@ -1465,12 +1535,12 @@
              异步更新用户信息表(sys_user)
             </summary>
         </member>
-        <member name="M:DXYK.Admin.API.Controllers.SysUserController.GetById(System.Int64)">
+        <member name="M:DXYK.Admin.API.Controllers.SysUserController.GetById(System.String)">
             <summary>
              根据Id查询用户信息表(sys_user)
             </summary>
         </member>
-        <member name="M:DXYK.Admin.API.Controllers.SysUserController.GetByIdAsync(System.Int64)">
+        <member name="M:DXYK.Admin.API.Controllers.SysUserController.GetByIdAsync(System.String)">
             <summary>
              根据Id查询用户信息表(sys_user)
             </summary>

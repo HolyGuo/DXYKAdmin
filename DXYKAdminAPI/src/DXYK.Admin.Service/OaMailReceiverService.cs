@@ -49,7 +49,7 @@ namespace DXYK.Admin.Service
         ///<summary>
         ///删除
         ///</summary>
-        public int DeleteById(long id)
+        public int DeleteById(string id)
         {
             return OaMailReceiverRepository.DeleteById(id);
         }
@@ -57,7 +57,7 @@ namespace DXYK.Admin.Service
         ///<summary>
         ///异步删除
         ///</summary>
-        public  async Task<int> DeleteByIdAsync(long id)
+        public  async Task<int> DeleteByIdAsync(string id)
         {
             return await OaMailReceiverRepository.DeleteByIdAsync(id);
         }
@@ -81,7 +81,7 @@ namespace DXYK.Admin.Service
         /// <summary>
         /// 根据Id查询数据
         /// </summary>
-        public OaMailReceiver GetById(long id)
+        public OaMailReceiver GetById(string id)
         {
             return OaMailReceiverRepository.GetById(id);
         }
@@ -89,7 +89,7 @@ namespace DXYK.Admin.Service
         /// <summary>
         /// 根据Id查询数据
         /// </summary>
-        public async Task<OaMailReceiver> GetByIdAsync(long id)
+        public async Task<OaMailReceiver> GetByIdAsync(string id)
         {
             return await OaMailReceiverRepository.GetByIdAsync(id);
         }

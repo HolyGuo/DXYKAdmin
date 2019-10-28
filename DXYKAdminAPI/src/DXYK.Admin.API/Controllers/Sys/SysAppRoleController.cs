@@ -84,7 +84,7 @@ namespace DXYK.Admin.API.Controllers
         /// 删除角色信息表(sys_app_role)
         ///</summary>
         [HttpDelete, ApiAuthorize(ActionCode = "Admin,Role_Manage,Role_Delete", LogType = LogEnum.DELETE)]
-        public ResponseMessage<int> DeleteById(long id)
+        public ResponseMessage<int> DeleteById(string id)
         {
             return new ResponseMessage<int> { data =  _sysAppRoleService.DeleteById(id) };
         }
@@ -93,7 +93,7 @@ namespace DXYK.Admin.API.Controllers
         /// 异步删除角色信息表(sys_app_role)
         ///</summary>
         [HttpDelete]
-        public async Task<ResponseMessage<int>> DeleteByIdAsync(long id)
+        public async Task<ResponseMessage<int>> DeleteByIdAsync(string id)
         {
             return new ResponseMessage<int> { data = await _sysAppRoleService.DeleteByIdAsync(id) };
         }
@@ -124,7 +124,7 @@ namespace DXYK.Admin.API.Controllers
         /// 根据Id查询角色信息表(sys_app_role)
         ///</summary>
         [HttpGet]
-        public ResponseMessage<SysAppRole> GetById(long id)
+        public ResponseMessage<SysAppRole> GetById(string id)
         {
             var sysAppRole = _sysAppRoleService.GetById(id);
             return new ResponseMessage<SysAppRole> {  data = sysAppRole };
@@ -134,7 +134,7 @@ namespace DXYK.Admin.API.Controllers
         /// 根据Id查询角色信息表(sys_app_role)
         ///</summary>
         [HttpGet]
-        public async Task<ResponseMessage<SysAppRole>> GetByIdAsync(long id)
+        public async Task<ResponseMessage<SysAppRole>> GetByIdAsync(string id)
         {
             var sysAppRole =await _sysAppRoleService.GetByIdAsync(id);
             return new ResponseMessage<SysAppRole>{ data = sysAppRole};

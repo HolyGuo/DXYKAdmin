@@ -63,7 +63,7 @@ namespace DXYK.Admin.API.Controllers
         /// 删除角色授权表(sys_app_role_map)
         ///</summary>
         [HttpDelete]
-        public ResponseMessage<int> DeleteById(long id)
+        public ResponseMessage<int> DeleteById(string id)
         {
             return new ResponseMessage<int> { data = _sysAppRoleMapService.DeleteById(id) };
         }
@@ -72,7 +72,7 @@ namespace DXYK.Admin.API.Controllers
         /// 异步删除角色授权表(sys_app_role_map)
         ///</summary>
         [HttpDelete]
-        public async Task<ResponseMessage<int>> DeleteByIdAsync(long id)
+        public async Task<ResponseMessage<int>> DeleteByIdAsync(string id)
         {
             return new ResponseMessage<int> { data = await _sysAppRoleMapService.DeleteByIdAsync(id) };
         }
@@ -102,7 +102,7 @@ namespace DXYK.Admin.API.Controllers
         /// 根据Id查询角色授权表(sys_app_role_map)
         ///</summary>
         [HttpGet]
-        public ResponseMessage<SysAppRoleMap> GetById(long id)
+        public ResponseMessage<SysAppRoleMap> GetById(string id)
         {
             var sysAppRoleMap = _sysAppRoleMapService.GetById(id);
             return new ResponseMessage<SysAppRoleMap> { data = sysAppRoleMap };
@@ -112,7 +112,7 @@ namespace DXYK.Admin.API.Controllers
         /// 根据Id查询角色授权表(sys_app_role_map)
         ///</summary>
         [HttpGet]
-        public async Task<ResponseMessage<SysAppRoleMap>> GetByIdAsync(long id)
+        public async Task<ResponseMessage<SysAppRoleMap>> GetByIdAsync(string id)
         {
             var sysAppRoleMap = await _sysAppRoleMapService.GetByIdAsync(id);
             return new ResponseMessage<SysAppRoleMap> { data = sysAppRoleMap };

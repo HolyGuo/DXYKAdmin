@@ -1,10 +1,10 @@
 layui.define(['jquery', 'form'],
-    function(exports) {
+    function (exports) {
         var $ = layui.jquery,
             form = layui.form,
             formObj,
             hint = layui.hint();
-        var FormTool = function(options) {
+        var FormTool = function (options) {
             this.options = options;
             formObj = $(options.elem);
         };
@@ -15,7 +15,7 @@ layui.define(['jquery', 'form'],
          * @param {Boolean} isOnSelect 是否触发选中事件
          * @returns {} 
          */
-        FormTool.prototype.setSelectVal = function(name, val, isOnSelect) {
+        FormTool.prototype.setSelectVal = function (name, val, isOnSelect) {
             if (name === undefined) {
                 throw "name no undefined";
             }
@@ -34,7 +34,7 @@ layui.define(['jquery', 'form'],
          * @param {String} val 对象值
          * @returns {} 
          */
-        FormTool.prototype.setRadioVal = function(name, val) {
+        FormTool.prototype.setRadioVal = function (name, val) {
             if (name === undefined) {
                 throw "name no undefined";
             }
@@ -47,7 +47,7 @@ layui.define(['jquery', 'form'],
          * @param {String} name 对象名称，指“name”
          * @returns {} 
          */
-        FormTool.prototype.setCheckboxVal = function(name) {
+        FormTool.prototype.setCheckboxVal = function (name) {
             if (name === undefined) {
                 throw "name no undefined";
             }
@@ -62,7 +62,7 @@ layui.define(['jquery', 'form'],
          * @param {String} val 值，radio元素需要用到
          * @returns {} 
          */
-        FormTool.prototype.setElemDisabled = function(type, name, val) {
+        FormTool.prototype.setElemDisabled = function (type, name, val) {
             switch (type) {
                 case "select":
                     formObj.find('select[name="' + name + '"]').prop("disabled", true);
@@ -89,46 +89,76 @@ layui.define(['jquery', 'form'],
          * @param {Object} data 
          * @returns {} 
          */
-        FormTool.prototype.filling = function(data) {
+        FormTool.prototype.filling = function (data) {
             if (typeof data !== "object") {
                 throw "data no object";
             }
-            for (var key in data) {
-                if (data.hasOwnProperty(key)) {
-                    var inputs = formObj.find('input[name = "' + key + '"]');
-                    if (inputs.length > 0) {
-                        var input = inputs[0];
-                        switch (input.type) {
-                            case "text":
-                                input.value = data[key];
-                                break;
-                            case "hidden":
-                                input.value = data[key];
-                                break;
-                            case "radio":
-                                this.setRadioVal(key, data[key]);
-                                break;
-                            case "checkbox":
-                                if (data[key] === true) {
-                                    this.setCheckboxVal(key, data[key]);
-                                }
-                                break;
-                        }
-                    } else {
-                        var select = formObj.find('select[name="' + key + '"]');
-                        if (select.length > 0) {
-                            this.setSelectVal(key, data[key], true);
+            if (data == null) {
+                var inputs = formObj.find('input');
+                for (var i = 0; i < inputs.length; i++) {
+                    var obj = inputs[i];
+                    var type = $(obj).attr('type');
+                    switch (type) {
+                        case "checkbox":
+                            $(obj).removeAttr("checked");
+                            break;
+                        case "radio":
+                            $(obj).removeAttr("checked");
+                            break;
+                        default:
+                            $(obj).val("");
+                            break;
+                    }
+                }
+                var selects = formObj.find("select");
+                for (var i = 0; i < selects.length; i++) {
+                    var obj = selects[i];
+                    $(obj).val("");
+                }
+                var areas = formObj.find("textarea");
+                for (var i = 0; i < areas.length; i++) {
+                    var obj = areas[i];
+                    $(obj).val("");
+                }
+            } else {
+                for (var key in data) {
+                    if (data.hasOwnProperty(key)) {
+                        var inputs = formObj.find('input[name = "' + key + '"]');
+                        if (inputs.length > 0) {
+                            var input = inputs[0];
+                            switch (input.type) {
+                                case "text":
+                                    input.value = data[key];
+                                    break;
+                                case "hidden":
+                                    input.value = data[key];
+                                    break;
+                                case "radio":
+                                    this.setRadioVal(key, data[key]);
+                                    break;
+                                case "checkbox":
+                                    if (data[key] === true) {
+                                        this.setCheckboxVal(key, data[key]);
+                                    }
+                                    break;
+                            }
+                        } else {
+                            var select = formObj.find('select[name="' + key + '"]');
+                            if (select.length > 0) {
+                                this.setSelectVal(key, data[key], true);
+                            }
                         }
                     }
                 }
             }
+
             return this;
         };
         /**
          * 接口输出
          */
         exports('formtool',
-            function(options) {
+            function (options) {
                 var formtool = new FormTool(options = options || {});
                 var elem = $(options.elem);
                 if (!elem[0]) {

@@ -1,6 +1,6 @@
-layui.define(function(exports) {
+layui.define(function (exports) {
 
-    layui.use(['admin', 'table', 'jquery', 'form', 'common', 'formtool'], function() {
+    layui.use(['admin', 'table', 'jquery', 'form', 'common', 'formtool'], function () {
         var admin = layui.admin,
             view = layui.view,
             form = layui.form,
@@ -10,7 +10,7 @@ layui.define(function(exports) {
 
         var queryParam = { keyWords: "", field: "id", order: "desc" };
         var $ = layui.$, active = {
-            reload: function(initSort) {
+            reload: function (initSort) {
                 //执行重载
                 table.reload('test-table-toolbar', {
                     page: {
@@ -20,79 +20,84 @@ layui.define(function(exports) {
                     where: queryParam
                 });
             },
-            add: function() {
-                com.layerOpen("LAY-popup-user-add", "from_user", "添加用户", true, 680, 560, function(layero, index) {
+            add: function () {
+                //清空表单
+                var formtool = new formTool({ elem: '#from_user' });//表单选择器
+                formtool.filling(null);
+                com.layerOpen("LAY-popup-user-add", "from_user", "添加用户", true, 680, 560, function (layero, index) {
                     form.render(null, 'from_user');
                     //监听提交
-                    form.on('submit(LAY-user-front-submit)', function(data) {
+                    form.on('submit(LAY-user-front-submit)', function (data) {
                         var field = data.field; //获取提交的字段
-                        com.ajax('../api/SysUser/Insert', 'post', true, field, function(res) {
+                        com.ajax('../api/SysUser/Insert', 'post', true, field, function (res) {
                             if (res.success === true) {
-                                layer.msg('添加成功！', {
+                                layer.msg('保存成功！', {
                                     icon: 1,
                                     time: 2000 //2秒关闭（如果不配置，默认是3秒）
-                                }, function() {
+                                }, function () {
                                     active.reload();//重载表格
                                     layer.close(index); //执行关闭 
                                 });
                             } else {
-                                layer.msg('添加失败！', {
+                                layer.msg('保存失败！', {
                                     icon: 2,
                                     time: 2000 //2秒关闭（如果不配置，默认是3秒）
                                 });
                             }
                         });//ajax end
                     });//form end
-                }, function(layero, index) {
+                }, function (layero, index) {
                     $("#LAY-user-front-submit").click();
                 });
             },//add end
-            edit: function(id) {
+            edit: function (id) {
                 //查询当前条数据
-                com.ajax(layui.setter.apiUri + '/api/SysUser/GetById?id=' + id, 'get', true, null, function(res) {
-                    if (res.success === true && res.data != null) {
-                        com.layerOpen("LAY-popup-user-edit", "添加用户", true, 680, 560, function(layero, index) {
-                            view("LAY-popup-user-edit").render('sys/user/form').done(function() {
-                                form.render(null, 'component-form-element');
-                                var formtool = new formTool({
-                                    elem: '#layuiadmin-form-useradmin' //表单选择器
-                                });
-                                formtool.filling(res.data);
-                                //监听提交
-                                form.on('submit(LAY-user-front-submit)', function(editData) {
-                                    var field = editData.field; //获取提交的字段
-                                    com.ajax(layui.setter.apiUri + '/api/SysUser/Update', 'put', true, field, function(res) {
-                                        if (res.success === true) {
-                                            layer.msg('编辑成功！', {
-                                                icon: 1,
-                                                time: 2000 //2秒关闭（如果不配置，默认是3秒）
-                                            }, function() {
-                                                active.reload();//重载表格
-                                                layer.close(index); //执行关闭 
-                                            });
-                                        } else {
-                                            layer.msg('编辑失败！', {
-                                                icon: 1,
-                                                time: 2000 //2秒关闭（如果不配置，默认是3秒）
-                                            });
-                                        }
-                                    });//ajax end
-                                });//form end
-                            });//view end
-                        }, function(layero, index) {
+                com.ajax('../api/SysUser/GetById', 'get', true, { id: id }, function (res) {
+                    if (res.success === true) {
+                        com.layerOpen("LAY-popup-user-add", "from_user", "添加用户", true, 680, 560, function (layero, index) {
+                            form.render(null, 'from_user');
+                            //清空表单
+                            var formtool = new formTool({ elem: '#from_user' });//表单选择器
+                            formtool.filling(res.data);
+                            //监听提交
+                            form.on('submit(LAY-user-front-submit)', function (data) {
+                                var field = data.field; //获取提交的字段
+                                com.ajax('../api/SysUser/Update', 'put', true, field, function (res) {
+                                    if (res.success === true) {
+                                        layer.msg('保存成功！', {
+                                            icon: 1,
+                                            time: 2000 //2秒关闭（如果不配置，默认是3秒）
+                                        }, function () {
+                                            active.reload();//重载表格
+                                            layer.close(index); //执行关闭 
+                                        });
+                                    } else {
+                                        layer.msg('保存失败！', {
+                                            icon: 2,
+                                            time: 2000 //2秒关闭（如果不配置，默认是3秒）
+                                        });
+                                    }
+                                });//ajax end
+                            });//form end
+                        }, function (layero, index) {
                             $("#LAY-user-front-submit").click();
                         });
+                    } else {
+                        layer.msg('保存失败！', {
+                            icon: 2,
+                            time: 2000 //2秒关闭（如果不配置，默认是3秒）
+                        });
                     }
-                });
+                });//ajax end
             },//edit end
-            delete: function(id) {
-                layer.confirm('你确定要删除用户：' + data.true_name, function(index) {
-                    com.ajax(layui.setter.apiUri + '/api/SysUser/DeleteById?id=' + id, 'delete', true, null, function(res) {
+            delete: function (id) {
+                layer.confirm('你确定要删除用户：' + data.true_name, function (index) {
+                    com.ajax(layui.setter.apiUri + '/api/SysUser/DeleteById?id=' + id, 'delete', true, null, function (res) {
                         if (res.success === true && res.data > 0) {
                             layer.msg('删除成功！', {
                                 icon: 1,
                                 time: 2000 //2秒关闭（如果不配置，默认是3秒）
-                            }, function() {
+                            }, function () {
                                 active.reload();//重载表格
                             });
                         } else {
@@ -109,13 +114,13 @@ layui.define(function(exports) {
         }//active end
 
         //搜索
-        $('.test-table-reload-btn .layui-btn').on('click', function() {
+        $('.test-table-reload-btn .layui-btn').on('click', function () {
             queryParam.keyWords = $("#keyWords").val();
             var type = $(this).data('type');
             active[type] ? active[type].call(this) : '';
         });
 
-        $(".test-table-reload-btn .layui-input").bind('keydown', function(e) {
+        $(".test-table-reload-btn .layui-input").bind('keydown', function (e) {
             if (e.keyCode == 13) {
                 e.preventDefault();
                 $(".test-table-reload-btn .layui-btn")[0].click();
@@ -136,11 +141,8 @@ layui.define(function(exports) {
             where: queryParam,
             cols: [[
                 // { field: 'id', title: 'ID', width: 80, fixed: 'left', hide: true },
-                {
-                    field: 'id', title: 'ID', width: 80, fixed: 'left', templet: function(v) {
-                        return "" + v.id;
-                    }
-                },
+                { type: 'numbers' },
+                //{ field: 'id', title: 'ID', width: 80, fixed: 'left' },
                 { field: 'true_name', title: '姓名', width: 120, sort: true },
                 // { field: 'nick_name', title: '昵称', width: 120, sort: true },
                 { field: 'login_name', title: '登录名', width: 150, sort: true },
@@ -167,7 +169,7 @@ layui.define(function(exports) {
         });
 
         //监听行工具事件
-        table.on('tool(test-table-toolbar)', function(obj) {
+        table.on('tool(test-table-toolbar)', function (obj) {
             var id = obj.data.id + "";
             if (obj.event === 'del') {
                 active.delete(id);
@@ -182,7 +184,7 @@ layui.define(function(exports) {
         });//table.on end
 
         //监听排序事件
-        table.on('sort(test-table-toolbar)', function(obj) { //注：tool是工具条事件名，test是table原始容器的属性 lay-filter="对应的值"
+        table.on('sort(test-table-toolbar)', function (obj) { //注：tool是工具条事件名，test是table原始容器的属性 lay-filter="对应的值"
             queryParam.field = obj.field; //排序字段
             queryParam.order = obj.type; //排序方式
             active.reload(obj);

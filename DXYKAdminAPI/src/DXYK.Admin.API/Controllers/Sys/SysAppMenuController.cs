@@ -358,14 +358,34 @@ namespace DXYK.Admin.API.Controllers
 
         private class treedata
         {
+            /// <summary>
+            /// name
+            /// </summary>
             public string name;
+            /// <summary>
+            /// path
+            /// </summary>
             public string path;
+            /// <summary>
+            /// component
+            /// </summary>
             public string component;
+            /// <summary>
+            /// hidden
+            /// </summary>
             public string hidden;
+            /// <summary>
+            /// meta
+            /// </summary>
             public object meta;
+            /// <summary>
+            /// children
+            /// </summary>
             public List<treedata> children;
         }
-
+        /// <summary>
+        /// treedata1
+        /// </summary>
         private class treedata1
         {
             public long id;

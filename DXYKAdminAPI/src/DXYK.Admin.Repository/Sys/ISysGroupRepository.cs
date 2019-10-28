@@ -16,8 +16,8 @@ namespace DXYK.Admin.Repository
     ///<summary>
     /// 群组信息表
     ///</summary>
-    public interface ISysGroupRepository : IRepository<SysGroup, long>
-        , IRepositoryAsync<SysGroup, long>
+    public interface ISysGroupRepository : IRepository<SysGroup, string>
+        , IRepositoryAsync<SysGroup, string>
     {
         ///<summary>
         /// 新增
@@ -35,22 +35,22 @@ namespace DXYK.Admin.Repository
         /// 根据Id查询数据
         ///</summary>
         [Statement(Id = "GetEntity")]
-        SysGroup GetById([Param("id")]string id);
+        new SysGroup GetById([Param("id")]string id);
         ///<summary>
         /// 异步根据Id查询数据
         ///</summary>
         [Statement(Id = "GetEntity")]
-        Task<SysGroup> GetByIdAsync([Param("id")]string id);
+        new Task<SysGroup> GetByIdAsync([Param("id")]string id);
         ///<summary>
         /// 删除数据
         ///</summary>
         [Statement(Id = "Delete")]
-        int DeleteById([Param("id")]string id);
+        new int DeleteById([Param("id")]string id);
         ///<summary>
         /// 异步删除数据
         ///</summary>
         [Statement(Id = "Delete")]
-        Task<int> DeleteByIdAsync([Param("id")]string id);
+        new Task<int> DeleteByIdAsync([Param("id")]string id);
         ///<summary>
         /// 根据条件查询总数
         ///</summary>

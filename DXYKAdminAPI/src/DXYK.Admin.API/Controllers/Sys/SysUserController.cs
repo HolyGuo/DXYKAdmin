@@ -90,7 +90,7 @@ namespace DXYK.Admin.API.Controllers
         /// 删除用户信息表(sys_user)
         ///</summary>
         [HttpDelete, ApiAuthorize(ActionCode = "Admin,User_Manage,User_Delete", LogType = LogEnum.DELETE)]
-        public ResponseMessage<int> DeleteById(long id)
+        public ResponseMessage<int> DeleteById(string id)
         {
             return new ResponseMessage<int> { data =  _sysUserService.DeleteById(id) };
         }
@@ -99,7 +99,7 @@ namespace DXYK.Admin.API.Controllers
         /// 异步删除用户信息表(sys_user)
         ///</summary>
         [HttpDelete]
-        public async Task<ResponseMessage<int>> DeleteByIdAsync(long id)
+        public async Task<ResponseMessage<int>> DeleteByIdAsync(string id)
         {
             return new ResponseMessage<int> { data = await _sysUserService.DeleteByIdAsync(id) };
         }
@@ -129,7 +129,7 @@ namespace DXYK.Admin.API.Controllers
         /// 根据Id查询用户信息表(sys_user)
         ///</summary>
         [HttpGet]
-        public ResponseMessage<SysUser> GetById(long id)
+        public ResponseMessage<SysUser> GetById(string id)
         {
             var sysUser = _sysUserService.GetById(id);
             return new ResponseMessage<SysUser> {  data = sysUser };
@@ -139,7 +139,7 @@ namespace DXYK.Admin.API.Controllers
         /// 根据Id查询用户信息表(sys_user)
         ///</summary>
         [HttpGet]
-        public async Task<ResponseMessage<SysUser>> GetByIdAsync(long id)
+        public async Task<ResponseMessage<SysUser>> GetByIdAsync(string id)
         {
             var sysUser =await _sysUserService.GetByIdAsync(id);
             return new ResponseMessage<SysUser>{ data = sysUser};

@@ -62,7 +62,7 @@ namespace DXYK.Admin.API.Controllers
         /// 删除系统日志表(sys_log)
         ///</summary>
         [HttpDelete]
-        public ResponseMessage<int> DeleteById(long id)
+        public ResponseMessage<int> DeleteById(string id)
         {
             return new ResponseMessage<int> { data =  _sysLogService.DeleteById(id) };
         }
@@ -71,7 +71,7 @@ namespace DXYK.Admin.API.Controllers
         /// 异步删除系统日志表(sys_log)
         ///</summary>
         [HttpDelete]
-        public async Task<ResponseMessage<int>> DeleteByIdAsync(long id)
+        public async Task<ResponseMessage<int>> DeleteByIdAsync(string id)
         {
             return new ResponseMessage<int> { data = await _sysLogService.DeleteByIdAsync(id) };
         }
@@ -101,7 +101,7 @@ namespace DXYK.Admin.API.Controllers
         /// 根据Id查询系统日志表(sys_log)
         ///</summary>
         [HttpGet]
-        public ResponseMessage<SysLog> GetById(long id)
+        public ResponseMessage<SysLog> GetById(string id)
         {
             var sysLog = _sysLogService.GetById(id);
             return new ResponseMessage<SysLog> {  data = sysLog };
@@ -111,7 +111,7 @@ namespace DXYK.Admin.API.Controllers
         /// 根据Id查询系统日志表(sys_log)
         ///</summary>
         [HttpGet]
-        public async Task<ResponseMessage<SysLog>> GetByIdAsync(long id)
+        public async Task<ResponseMessage<SysLog>> GetByIdAsync(string id)
         {
             var sysLog =await _sysLogService.GetByIdAsync(id);
             return new ResponseMessage<SysLog>{ data = sysLog};

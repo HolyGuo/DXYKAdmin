@@ -77,7 +77,7 @@ namespace DXYK.Admin.API.Controllers
         /// 删除邮件信息表(oa_mail)
         ///</summary>
         [HttpDelete]
-        public ResponseMessage<int> DeleteById(long id)
+        public ResponseMessage<int> DeleteById(string id)
         {
             return new ResponseMessage<int> { data =  _oaMailService.DeleteById(id) };
         }
@@ -86,7 +86,7 @@ namespace DXYK.Admin.API.Controllers
         /// 异步删除邮件信息表(oa_mail)
         ///</summary>
         [HttpDelete]
-        public async Task<ResponseMessage<int>> DeleteByIdAsync(long id)
+        public async Task<ResponseMessage<int>> DeleteByIdAsync(string id)
         {
             return new ResponseMessage<int> { data = await _oaMailService.DeleteByIdAsync(id) };
         }
@@ -116,7 +116,7 @@ namespace DXYK.Admin.API.Controllers
         /// 根据Id查询邮件信息表(oa_mail)
         ///</summary>
         [HttpGet]
-        public ResponseMessage<OaMail> GetById(long id)
+        public ResponseMessage<OaMail> GetById(string id)
         {
             var oaMail = _oaMailService.GetById(id);
             return new ResponseMessage<OaMail> {  data = oaMail };
@@ -126,7 +126,7 @@ namespace DXYK.Admin.API.Controllers
         /// 根据Id查询邮件信息表(oa_mail)
         ///</summary>
         [HttpGet]
-        public async Task<ResponseMessage<OaMail>> GetByIdAsync(long id)
+        public async Task<ResponseMessage<OaMail>> GetByIdAsync(string id)
         {
             var oaMail =await _oaMailService.GetByIdAsync(id);
             return new ResponseMessage<OaMail>{ data = oaMail};
@@ -251,10 +251,25 @@ namespace DXYK.Admin.API.Controllers
         /// </summary>
         public class OwnQueryRequest
         {
+            /// <summary>
+            /// title
+            /// </summary>
             public string title { get; set; }
+            /// <summary>
+            /// content
+            /// </summary>
             public string content { get; set; }
+            /// <summary>
+            /// reciervers
+            /// </summary>
             public string reciervers { get; set; }
+            /// <summary>
+            /// filenames
+            /// </summary>
             public string filenames { get; set; }
+            /// <summary>
+            /// token
+            /// </summary>
             public string token { get; set; }
         }
     }

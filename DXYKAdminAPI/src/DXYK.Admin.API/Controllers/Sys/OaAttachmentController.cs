@@ -64,7 +64,7 @@ namespace DXYK.Admin.API.Controllers
         /// 删除附件信息表(oa_attachment)
         ///</summary>
         [HttpDelete]
-        public ResponseMessage<int> DeleteById(long id)
+        public ResponseMessage<int> DeleteById(string id)
         {
             return new ResponseMessage<int> { data =  _oaAttachmentService.DeleteById(id) };
         }
@@ -73,7 +73,7 @@ namespace DXYK.Admin.API.Controllers
         /// 异步删除附件信息表(oa_attachment)
         ///</summary>
         [HttpDelete]
-        public async Task<ResponseMessage<int>> DeleteByIdAsync(long id)
+        public async Task<ResponseMessage<int>> DeleteByIdAsync(string id)
         {
             return new ResponseMessage<int> { data = await _oaAttachmentService.DeleteByIdAsync(id) };
         }
@@ -103,7 +103,7 @@ namespace DXYK.Admin.API.Controllers
         /// 根据Id查询附件信息表(oa_attachment)
         ///</summary>
         [HttpGet]
-        public ResponseMessage<OaAttachment> GetById(long id)
+        public ResponseMessage<OaAttachment> GetById(string id)
         {
             var oaAttachment = _oaAttachmentService.GetById(id);
             return new ResponseMessage<OaAttachment> {  data = oaAttachment };
@@ -113,7 +113,7 @@ namespace DXYK.Admin.API.Controllers
         /// 根据Id查询附件信息表(oa_attachment)
         ///</summary>
         [HttpGet]
-        public async Task<ResponseMessage<OaAttachment>> GetByIdAsync(long id)
+        public async Task<ResponseMessage<OaAttachment>> GetByIdAsync(string id)
         {
             var oaAttachment =await _oaAttachmentService.GetByIdAsync(id);
             return new ResponseMessage<OaAttachment>{ data = oaAttachment};
@@ -241,7 +241,7 @@ namespace DXYK.Admin.API.Controllers
                 var idarr = ids.Split(',');
                 foreach (var item in idarr)
                 {
-                    OaAttachment attach = _oaAttachmentService.GetById(long.Parse(item));
+                    OaAttachment attach = _oaAttachmentService.GetById(item);
                     res.Add(attach);
                 }
             }

@@ -49,7 +49,7 @@ namespace DXYK.Admin.Service
         ///<summary>
         ///删除
         ///</summary>
-        public int DeleteById(long id)
+        public int DeleteById(string id)
         {
             return SysUserRepository.DeleteById(id);
         }
@@ -57,7 +57,7 @@ namespace DXYK.Admin.Service
         ///<summary>
         ///异步删除
         ///</summary>
-        public async Task<int> DeleteByIdAsync(long id)
+        public async Task<int> DeleteByIdAsync(string id)
         {
             return await SysUserRepository.DeleteByIdAsync(id);
         }
@@ -81,7 +81,7 @@ namespace DXYK.Admin.Service
         /// <summary>
         /// 根据Id查询数据
         /// </summary>
-        public SysUser GetById(long id)
+        public SysUser GetById(string id)
         {
             return SysUserRepository.GetById(id);
         }
@@ -89,7 +89,7 @@ namespace DXYK.Admin.Service
         /// <summary>
         /// 根据Id查询数据
         /// </summary>
-        public async Task<SysUser> GetByIdAsync(long id)
+        public async Task<SysUser> GetByIdAsync(string id)
         {
             return await SysUserRepository.GetByIdAsync(id);
         }

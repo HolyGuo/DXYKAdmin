@@ -65,7 +65,7 @@ namespace DXYK.Admin.API.Controllers
         /// 删除单位信息表(sys_org)
         ///</summary>
         [HttpDelete, ApiAuthorize(ActionCode = "Admin,Org_Manage,Org_Delete", LogType = LogEnum.DELETE)]
-        public ResponseMessage<int> DeleteById(long id)
+        public ResponseMessage<int> DeleteById(string id)
         {
             return new ResponseMessage<int> { data =  _sysOrgService.DeleteById(id) };
         }
@@ -74,7 +74,7 @@ namespace DXYK.Admin.API.Controllers
         /// 异步删除单位信息表(sys_org)
         ///</summary>
         [HttpDelete]
-        public async Task<ResponseMessage<int>> DeleteByIdAsync(long id)
+        public async Task<ResponseMessage<int>> DeleteByIdAsync(string id)
         {
             return new ResponseMessage<int> { data = await _sysOrgService.DeleteByIdAsync(id) };
         }
@@ -114,7 +114,7 @@ namespace DXYK.Admin.API.Controllers
         /// 根据Id查询单位信息表(sys_org)
         ///</summary>
         [HttpGet]
-        public async Task<ResponseMessage<SysOrg>> GetByIdAsync(long id)
+        public async Task<ResponseMessage<SysOrg>> GetByIdAsync(string id)
         {
             var sysOrg =await _sysOrgService.GetByIdAsync(id);
             return new ResponseMessage<SysOrg>{ data = sysOrg};

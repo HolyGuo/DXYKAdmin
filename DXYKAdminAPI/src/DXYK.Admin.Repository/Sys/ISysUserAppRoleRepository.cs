@@ -16,8 +16,8 @@ namespace DXYK.Admin.Repository
     ///<summary>
     /// 用户应用角色授权表
     ///</summary>
-    public interface ISysUserAppRoleRepository : IRepository<SysUserAppRole, long>
-        , IRepositoryAsync<SysUserAppRole, long>
+    public interface ISysUserAppRoleRepository : IRepository<SysUserAppRole, string>
+        , IRepositoryAsync<SysUserAppRole, string>
     {
         ///<summary>
         /// 新增
@@ -35,22 +35,22 @@ namespace DXYK.Admin.Repository
         /// 根据Id查询数据
         ///</summary>
         [Statement(Id = "GetEntity")]
-        new SysUserAppRole GetById([Param("id")]long id);
+        new SysUserAppRole GetById([Param("id")]string id);
         ///<summary>
         /// 异步根据Id查询数据
         ///</summary>
         [Statement(Id = "GetEntity")]
-        new Task<SysUserAppRole> GetByIdAsync([Param("id")]long id);
+        new Task<SysUserAppRole> GetByIdAsync([Param("id")]string id);
         ///<summary>
         /// 删除数据
         ///</summary>
         [Statement(Id = "Delete")]
-        new int DeleteById([Param("id")]long id);
+        new int DeleteById([Param("id")]string id);
         ///<summary>
         /// 异步删除数据
         ///</summary>
         [Statement(Id = "Delete")]
-        new Task<int> DeleteByIdAsync([Param("id")]long id);
+        new Task<int> DeleteByIdAsync([Param("id")]string id);
         ///<summary>
         /// 根据条件查询总数
         ///</summary>

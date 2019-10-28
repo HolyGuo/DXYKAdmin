@@ -41,6 +41,7 @@ namespace DXYK.Admin.MVC
             services.AddMvc(option =>
             {
                 option.Filters.Add<AuthFilter>();
+                option.Filters.Add<GlobalExceptionFilter>();
             }).SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
             #region 缓存配置
             services.AddMemoryCache();

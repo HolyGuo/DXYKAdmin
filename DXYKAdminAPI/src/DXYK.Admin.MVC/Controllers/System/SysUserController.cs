@@ -53,7 +53,7 @@ namespace DXYK.Admin.MVC.Controllers.System
         /// 删除用户信息表(sys_user)
         ///</summary>
         [HttpDelete]
-        public ResponseMessage<int> DeleteById(long id)
+        public ResponseMessage<int> DeleteById(string id)
         {
             return new ResponseMessage<int> { data = _sysUserService.DeleteById(id) };
         }
@@ -64,14 +64,19 @@ namespace DXYK.Admin.MVC.Controllers.System
         [HttpPut]
         public ResponseMessage<int> Update([FromBody]SysUser sysUser)
         {
-            return new ResponseMessage<int> { data = _sysUserService.Update(sysUser) };
+            UserInfo user = GetCurrentUser.GetUserInfo(Request.HttpContext);
+            sysUser.updated_by = user.id;
+            sysUser.updated_time = DateTime.Now;
+            SysUser entity = _sysUserService.GetById(sysUser.id);
+            Utils.CommmonUtils.EntityToEntity(sysUser, entity, null);
+            return new ResponseMessage<int> { data = _sysUserService.Update(entity) };
         }
 
         ///<summary>
         /// 根据Id查询用户信息表(sys_user)
         ///</summary>
         [HttpGet]
-        public ResponseMessage<SysUser> GetById(long id)
+        public ResponseMessage<SysUser> GetById(string id)
         {
             var sysUser = _sysUserService.GetById(id);
             return new ResponseMessage<SysUser> { data = sysUser };
