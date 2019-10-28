@@ -1,0 +1,157 @@
+﻿@{
+    ViewData["Title"] = "用户管理";
+    Layout = "~/Views/Shared/_LayoutContent.cshtml";
+}
+<div class="layui-fluid">
+    <div class="layui-row layui-col-space15">
+        <div class="layui-col-md12">
+            <div class="layui-card">
+                <div class="layui-card-body">
+                    <div class="test-table-reload-btn" style="margin-bottom: 10px;">
+                        <div class="layui-inline">
+                            <input class="layui-input" id="keyWords" autocomplete="off" placeholder="请输入关键字查询">
+                        </div>
+                        <button class="layui-btn" data-type="reload"><i class="layui-icon layui-icon-search"></i>搜索</button>
+                        <button class="layui-btn" data-type="add"><i class="layui-icon layui-icon-add-1"></i>添加</button>
+                    </div>
+
+                    <table class="layui-hide" id="test-table-toolbar" lay-filter="test-table-toolbar"></table>
+                    <script type="text/html" id="is_enable_Tpl">
+                        {{#  if(d.is_enable === '启用'){ }}
+                        <span style="color:green;">已{{ d.is_enable }}</span>
+                        {{#  } else if(d.is_enable === '禁用') { }}
+                        <span style="color:red;">已{{ d.is_enable }}</span>
+                        {{#  } else { }}
+                        <span style="color:blue;">{{ d.is_enable }}</span>
+                        {{#  } }}
+                    </script>
+                    <script type="text/html" id="test-table-toolbar-barDemo">
+                        <a class="layui-btn layui-btn-xs" lay-event="edit">编辑</a>
+                        <a class="layui-btn layui-btn-danger layui-btn-xs" lay-event="del">删除</a>
+                    </script>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div id="from_user" class="layui-card" style="display:none;">
+    <!-- <div class="layui-card-header">基本信息</div> -->
+    <div class="layui-card-body">
+        <div class="layui-form" lay-filter="component-form-element" id="layuiadmin-form-user">
+            <input type="hidden" name="id">
+            <div class="layui-row layui-col-space5 layui-form-item">
+                <div class="layui-col-xs6">
+                    <label class="layui-form-label">姓名：</label>
+                    <div class="layui-input-block">
+                        <input type="text" name="true_name" lay-verify="required" placeholder="请输入姓名" autocomplete="off" class="layui-input">
+                    </div>
+                </div>
+                <div class="layui-col-xs6">
+                    <label class="layui-form-label">性别：</label>
+                    <div class="layui-input-block">
+                        <input type="radio" name="sex" value="男" title="男">
+                        <input type="radio" name="sex" value="女" title="女">
+                    </div>
+                </div>
+            </div>
+            <div class="layui-row layui-col-space5 layui-form-item">
+                <div class="layui-col-xs6">
+                    <label class="layui-form-label">登录名：</label>
+                    <div class="layui-input-block">
+                        <input type="text" name="login_name" lay-verify="required" placeholder="请设置登录账号" autocomplete="off" class="layui-input">
+                    </div>
+                </div>
+                <div class="layui-col-xs6">
+                    <label class="layui-form-label">是否启用：</label>
+                    <div class="layui-input-block">
+                        <select name="is_enable" lay-verify="">
+                            <option value="启用">启用</option>
+                            <option value="未启用">未启用</option>
+                            <option value="禁用">禁用</option>
+                        </select>
+                    </div>
+                </div>
+            </div>
+            <div class="layui-row layui-col-space5 layui-form-item">
+                <div class="layui-col-xs6">
+                    <label class="layui-form-label">所属单位：</label>
+                    <div class="layui-input-block">
+                        <input type="text" name="dept_id" placeholder="请选择" autocomplete="off" class="layui-input">
+                    </div>
+                </div>
+                <div class="layui-col-xs6">
+                    <label class="layui-form-label">角色：</label>
+                    <div class="layui-input-block">
+                        <input type="text" name="role_id" placeholder="请选择" autocomplete="off" class="layui-input">
+                    </div>
+                </div>
+            </div>
+            <div class="layui-row layui-col-space5 layui-form-item">
+                <div class="layui-col-xs6">
+                    <label class="layui-form-label">联系电话：</label>
+                    <div class="layui-input-block">
+                        <input type="text" name="telephone" lay-verify="required" placeholder="请输入联系电话" autocomplete="off" class="layui-input">
+                    </div>
+                </div>
+                <div class="layui-col-xs6">
+                    <label class="layui-form-label">手机：</label>
+                    <div class="layui-input-block">
+                        <input type="text" name="mobile" lay-verify="phone" placeholder="请输入手机号码" autocomplete="off" class="layui-input">
+                    </div>
+                </div>
+            </div>
+            <div class="layui-row layui-col-space5 layui-form-item">
+                <div class="layui-col-xs6">
+                    <label class="layui-form-label">邮箱：</label>
+                    <div class="layui-input-block">
+                        <input type="text" name="email" lay-verify="email" placeholder="请输入邮箱地址" autocomplete="off" class="layui-input">
+                    </div>
+                </div>
+                <div class="layui-col-xs6">
+                    <label class="layui-form-label">备注：</label>
+                    <div class="layui-input-block">
+                        <input type="text" name="summary" placeholder="请选择" autocomplete="off" class="layui-input">
+                    </div>
+                </div>
+            </div>
+            微信绑定信息
+            <hr>
+            <div class="layui-row layui-col-space5 layui-form-item">
+                <div class="layui-col-xs6">
+                    <label class="layui-form-label">OpenId：</label>
+                    <div class="layui-input-block">
+                        <input type="text" name="wx_openid" placeholder="用户未绑定" autocomplete="off" class="layui-input" disabled>
+                    </div>
+                </div>
+                <div class="layui-col-xs6">
+                    <label class="layui-form-label">微信号：</label>
+                    <div class="layui-input-block">
+                        <input type="text" name="wx_id" placeholder="用户未绑定" autocomplete="off" class="layui-input" disabled>
+                    </div>
+                </div>
+            </div>
+            <div class="layui-row layui-col-space5 layui-form-item">
+                <div class="layui-col-xs6">
+                    <label class="layui-form-label">微信昵称：</label>
+                    <div class="layui-input-block">
+                        <input type="text" name="wx_name" placeholder="用户未绑定" autocomplete="off" class="layui-input" disabled>
+                    </div>
+                </div>
+
+            </div>
+
+            <div class="layui-form-item layui-hide">
+                <input type="button" lay-submit lay-filter="LAY-user-front-submit" id="LAY-user-front-submit" value="确认">
+            </div>
+        </div>
+    </div>
+</div>
+<script>
+    layui.config({
+        base: '/lib/layuiadmin/' //静态资源所在路径
+    }).extend({
+        index: 'lib/index', //主入口模块
+        user: 'system/user'
+    }).use(['index', 'user']);
+</script>

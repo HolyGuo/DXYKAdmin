@@ -24,22 +24,22 @@ namespace DXYK.Admin.Repository
         /// 根据Id查询数据
         ///</summary>
         [Statement(Id = "GetEntity")]
-        new SysAppRoleMap GetById([Param("id")]long id);
+        SysAppRoleMap GetById([Param("id")]string id);
         ///<summary>
         /// 异步根据Id查询数据
         ///</summary>
         [Statement(Id = "GetEntity")]
-        new Task<SysAppRoleMap> GetByIdAsync([Param("id")]long id);
+        Task<SysAppRoleMap> GetByIdAsync([Param("id")]string id);
         ///<summary>
         /// 删除数据
         ///</summary>
         [Statement(Id = "Delete")]
-        new int DeleteById([Param("id")]long id);
+        int DeleteById([Param("id")]string id);
         ///<summary>
         /// 异步删除数据
         ///</summary>
         [Statement(Id = "Delete")]
-        new Task<int> DeleteByIdAsync([Param("id")]long id);
+        Task<int> DeleteByIdAsync([Param("id")]string id);
         ///<summary>
         /// 根据条件查询总数
         ///</summary>
@@ -64,12 +64,12 @@ namespace DXYK.Admin.Repository
         /// 根据角色id查询
         ///</summary>
         [Statement(Id = "QueryDataByRole")]
-        List<SysAppRoleMap> QueryDataByRole([Param("role_id")]long role_id, [Param("type_code")]int type_code);
+        List<SysAppRoleMap> QueryDataByRole([Param("role_id")]string role_id, [Param("type_code")]int type_code);
         ///<summary>
         /// 根据roleid,mapid,type查询
         ///</summary>
         [Statement(Id = "GetByFilter")]
-        List<SysAppRoleMap> GetByFilter([Param("role_id")]long role_id, [Param("map_id")]long map_id, [Param("type_code")]int type_code);
+        List<SysAppRoleMap> GetByFilter([Param("role_id")]string role_id, [Param("map_id")]string map_id, [Param("type_code")]int type_code);
     }
 }
 

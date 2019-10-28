@@ -43,7 +43,7 @@ namespace DXYK.Admin.Entity
         ///<summary>
         /// 创建人
         ///</summary>
-        public virtual long? created_by { get; set; }
+        public virtual string created_by { get; set; }
         ///<summary>
         /// 创建时间
         ///</summary>
@@ -51,7 +51,7 @@ namespace DXYK.Admin.Entity
         ///<summary>
         /// 更新人
         ///</summary>
-        public virtual long? updated_by { get; set; }
+        public virtual string updated_by { get; set; }
         ///<summary>
         /// 更新时间
         ///</summary>
@@ -59,7 +59,7 @@ namespace DXYK.Admin.Entity
         ///<summary>
         /// 删除人
         ///</summary>
-        public virtual long? deleted_by { get; set; }
+        public virtual string deleted_by { get; set; }
         ///<summary>
         /// 删除时间
         ///</summary>

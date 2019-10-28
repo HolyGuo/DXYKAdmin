@@ -15,7 +15,7 @@ namespace DXYK.Admin.Entity
         ///<summary>
         /// 唯一标识
         ///</summary>
-        public virtual long id { get; set; }
+        public virtual string id { get; set; }
         ///<summary>
         /// 姓名
         ///</summary>
@@ -67,11 +67,11 @@ namespace DXYK.Admin.Entity
         ///<summary>
         /// 组织机构Id
         ///</summary>
-        public virtual long? org_id { get; set; }
+        public virtual string org_id { get; set; }
         ///<summary>
         /// 岗位id
         ///</summary>
-        public virtual long? job_id { get; set; }
+        public virtual string job_id { get; set; }
         ///<summary>
         /// 最近一次登录时间
         ///</summary>
@@ -115,7 +115,7 @@ namespace DXYK.Admin.Entity
         ///<summary>
         /// 创建人
         ///</summary>
-        public virtual long? created_by { get; set; }
+        public virtual string created_by { get; set; }
         ///<summary>
         /// 创建时间
         ///</summary>
@@ -123,7 +123,7 @@ namespace DXYK.Admin.Entity
         ///<summary>
         /// 更新人
         ///</summary>
-        public virtual long? updated_by { get; set; }
+        public virtual string updated_by { get; set; }
         ///<summary>
         /// 更新时间
         ///</summary>
@@ -131,7 +131,7 @@ namespace DXYK.Admin.Entity
         ///<summary>
         /// 删除人
         ///</summary>
-        public virtual long? deleted_by { get; set; }
+        public virtual string deleted_by { get; set; }
         ///<summary>
         /// 更新时间
         ///</summary>

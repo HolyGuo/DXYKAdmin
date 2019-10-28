@@ -12,11 +12,11 @@ namespace DXYK.Admin.Dto.Sys
         ///<summary>
         /// 唯一标识
         ///</summary>
-        public virtual long id { get; set; }
+        public virtual string id { get; set; }
         ///<summary>
         /// 角色id
         ///</summary>
-        public virtual long role_id { get; set; }
+        public virtual string role_id { get; set; }
         ///<summary>
         /// 类型编码
         ///</summary>
@@ -24,7 +24,7 @@ namespace DXYK.Admin.Dto.Sys
         ///<summary>
         /// 权限id
         ///</summary>
-        public virtual long map_id { get; set; }
+        public virtual string map_id { get; set; }
         ///<summary>
         /// 群组id
         ///</summary>
@@ -36,7 +36,7 @@ namespace DXYK.Admin.Dto.Sys
         /// <summary>
         /// 父级菜单id
         /// </summary>
-        public virtual long? menu_pid { get; set; }
+        public virtual string menu_pid { get; set; }
         /// <summary>
         /// 菜单图标
         /// </summary>
@@ -60,7 +60,7 @@ namespace DXYK.Admin.Dto.Sys
         /// <summary>
         /// 父级功能id
         /// </summary>
-        public virtual long? action_pid { get; set; }
+        public virtual string action_pid { get; set; }
         /// <summary>
         /// 功能名称
         /// </summary>

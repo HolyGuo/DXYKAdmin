@@ -63,7 +63,7 @@ namespace DXYK.Admin.API.Controllers
         /// 删除功能信息表(sys_app_action)
         ///</summary>
         [HttpDelete]
-        public ResponseMessage<int> DeleteById(long id)
+        public ResponseMessage<int> DeleteById(string id)
         {
             return new ResponseMessage<int> { data =  _sysAppActionService.DeleteById(id) };
         }
@@ -72,7 +72,7 @@ namespace DXYK.Admin.API.Controllers
         /// 异步删除功能信息表(sys_app_action)
         ///</summary>
         [HttpDelete]
-        public async Task<ResponseMessage<int>> DeleteByIdAsync(long id)
+        public async Task<ResponseMessage<int>> DeleteByIdAsync(string id)
         {
             return new ResponseMessage<int> { data = await _sysAppActionService.DeleteByIdAsync(id) };
         }
@@ -102,7 +102,7 @@ namespace DXYK.Admin.API.Controllers
         /// 根据Id查询功能信息表(sys_app_action)
         ///</summary>
         [HttpGet]
-        public ResponseMessage<SysAppAction> GetById(long id)
+        public ResponseMessage<SysAppAction> GetById(string id)
         {
             var sysAppAction = _sysAppActionService.GetById(id);
             return new ResponseMessage<SysAppAction> {  data = sysAppAction };
@@ -112,7 +112,7 @@ namespace DXYK.Admin.API.Controllers
         /// 根据Id查询功能信息表(sys_app_action)
         ///</summary>
         [HttpGet]
-        public async Task<ResponseMessage<SysAppAction>> GetByIdAsync(long id)
+        public async Task<ResponseMessage<SysAppAction>> GetByIdAsync(string id)
         {
             var sysAppAction =await _sysAppActionService.GetByIdAsync(id);
             return new ResponseMessage<SysAppAction>{ data = sysAppAction};

@@ -58,7 +58,7 @@ namespace DXYK.Admin.Service
         /// </summary>
         /// <param name="userId">用户id</param>
         /// <returns></returns>
-        public List<SysUserAppRole> QueryUerAppRole(long userId)
+        public List<SysUserAppRole> QueryUerAppRole(string userId)
         {
             return _authorizeRepository.QueryUerAppRole(userId);
         }
@@ -79,7 +79,7 @@ namespace DXYK.Admin.Service
         /// <param name="groupId">群组id</param>
         /// <param name="roleIds">角色id集合</param>
         /// <returns></returns>
-        public List<RoleMapDto> QueryRoleMap(string groupId, List<long> roleIds)
+        public List<RoleMapDto> QueryRoleMap(string groupId, List<string> roleIds)
         {
             return _authorizeRepository.QueryRoleMap(groupId, roleIds);
         }
@@ -90,7 +90,7 @@ namespace DXYK.Admin.Service
         /// <param name="groupId">群组id</param>
         /// <param name="roleIds">角色id集合</param>
         /// <returns></returns>
-        public async Task<List<RoleMapDto>> QueryRoleMapAsync(string groupId, List<long> roleIds)
+        public async Task<List<RoleMapDto>> QueryRoleMapAsync(string groupId, List<string> roleIds)
         {
             return await _authorizeRepository.QueryRoleMapAsync(groupId, roleIds);
         }
@@ -101,7 +101,7 @@ namespace DXYK.Admin.Service
         /// <param name="groupId"></param>
         /// <param name="userId"></param>
         /// <returns></returns>
-        public List<Permission> GetPermission(string groupId, long userId)
+        public List<Permission> GetPermission(string groupId, string userId)
         {
             List<Permission> result = null;
             try
@@ -113,7 +113,7 @@ namespace DXYK.Admin.Service
                     //获取已授权所有应用app
                     List<string> appIds = sysUserAppRoleList.Select(s => s.app_id).ToList().Distinct().ToList();
                     //获取已授权所有role
-                    List<long> roleIds = sysUserAppRoleList.Select(s => s.role_id).ToList();
+                    List<string> roleIds = sysUserAppRoleList.Select(s => s.role_id).ToList();
                     //查询role对应的权限
                     List<RoleMapDto> roleMapList = _authorizeRepository.QueryRoleMap(groupId, roleIds);
                     result = new List<Permission>();
@@ -121,14 +121,14 @@ namespace DXYK.Admin.Service
                     {
                         Permission p = new Permission();
                         p.AppId = appid;
-                        List<long> roles = sysUserAppRoleList.Where(s => s.app_id == appid).Select(s => s.role_id).ToList();
+                        List<string> roles = sysUserAppRoleList.Where(s => s.app_id == appid).Select(s => s.role_id).ToList();
                         //查询授权菜单
                         List<RoleMapDto> permenulst = roleMapList.Where(s => roles.Contains(s.role_id) && s.type_code == 1).ToList();
                         List<MenuTree> MenuTree = new List<MenuTree>();
                         //构建树结果
-                        foreach (RoleMapDto item in permenulst.Where(t => t.menu_pid == 0))
+                        foreach (RoleMapDto item in permenulst.Where(t => t.menu_pid == "0"))
                         {
-                            if(MenuTree.Where(t=>t.id == item.map_id).Count() == 0)
+                            if (MenuTree.Where(t => t.id == item.map_id).Count() == 0)
                             {
                                 MenuTree node = getNode(item, permenulst);
                                 MenuTree.Add(node);
@@ -187,9 +187,9 @@ namespace DXYK.Admin.Service
                 id = item.map_id,
                 name = item.menu_title,
                 path = item.menu_jump,
-                pid = (long)item.menu_pid,
+                pid = item.menu_pid,
                 meta = metaobj,
-                component = item.menu_pid == 0 ? "Layout" : string.Format("system/{0}/index", item.menu_jump)
+                component = item.menu_pid == "0" ? "Layout" : string.Format("system/{0}/index", item.menu_jump)
             };
             List<RoleMapDto> childs = col3.Where(t => t.menu_pid == item.map_id).ToList();
             if (childs.Count() > 0)

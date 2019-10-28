@@ -16,8 +16,8 @@ namespace DXYK.Admin.Repository
     ///<summary>
     /// 岗位信息表
     ///</summary>
-    public interface ISysJobRepository : IRepository<SysJob, long>
-        , IRepositoryAsync<SysJob, long>
+    public interface ISysJobRepository : IRepository<SysJob, string>
+        , IRepositoryAsync<SysJob, string>
     {
 
         ///<summary>
@@ -29,17 +29,17 @@ namespace DXYK.Admin.Repository
         /// 异步根据Id查询数据
         ///</summary>
         [Statement(Id = "GetEntity")]
-        new Task<SysJob> GetByIdAsync([Param("id")]long id);
+        new Task<SysJob> GetByIdAsync([Param("id")]string id);
         ///<summary>
         /// 删除数据
         ///</summary>
         [Statement(Id = "Delete")]
-        new int DeleteById([Param("id")]long id);
+        new int DeleteById([Param("id")]string id);
         ///<summary>
         /// 异步删除数据
         ///</summary>
         [Statement(Id = "Delete")]
-        new Task<int> DeleteByIdAsync([Param("id")]long id);
+        new Task<int> DeleteByIdAsync([Param("id")]string id);
         ///<summary>
         /// 根据条件查询总数
         ///</summary>

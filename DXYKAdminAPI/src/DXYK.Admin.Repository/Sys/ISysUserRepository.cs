@@ -16,9 +16,15 @@ namespace DXYK.Admin.Repository
     ///<summary>
     /// 用户信息表
     ///</summary>
-    public interface ISysUserRepository : IRepository<SysUser, long>
-        , IRepositoryAsync<SysUser, long>
+    public interface ISysUserRepository : IRepository<SysUser, string>
+        , IRepositoryAsync<SysUser, string>
     {
+        /// <summary>
+        /// 新增数据
+        /// </summary>
+        /// <returns></returns>
+        [Statement(Id = "Insert")]
+        new string Insert(SysUser sysUser);
 
         ///<summary>
         /// 根据Id查询数据

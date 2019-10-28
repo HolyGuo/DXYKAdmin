@@ -34,7 +34,7 @@ namespace DXYK.Admin.Repository
         /// <param name="userId">用户id</param>
         /// <returns></returns>
         [Statement(Id = "QueryUerAppRole")]
-        List<SysUserAppRole> QueryUerAppRole([Param("userId")]long userId);
+        List<SysUserAppRole> QueryUerAppRole([Param("userId")]string userId);
 
         /// <summary>
         /// 查询用户已授权的App 和Role
@@ -51,7 +51,7 @@ namespace DXYK.Admin.Repository
         /// <param name="roleIds">角色id</param>
         /// <returns></returns>
         [Statement(Id = "QueryRoleMap")]
-        List<RoleMapDto> QueryRoleMap(string groupId, List<long> roleIds);
+        List<RoleMapDto> QueryRoleMap(string groupId, List<string> roleIds);
 
         /// <summary>
         /// 查询角色对应的权限映射
@@ -60,7 +60,7 @@ namespace DXYK.Admin.Repository
         /// <param name="roleIds">角色id集合</param>
         /// <returns></returns>
         [Statement(Id = "QueryRoleMap")]
-        Task<List<RoleMapDto>> QueryRoleMapAsync(string groupId, List<long> roleIds);
+        Task<List<RoleMapDto>> QueryRoleMapAsync(string groupId, List<string> roleIds);
 
     }
 }

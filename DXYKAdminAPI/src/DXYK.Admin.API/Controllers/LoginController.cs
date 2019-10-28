@@ -31,11 +31,12 @@ namespace DXYK.Admin.API.Controllers
     [Route("api/[controller]/[action]")]
     public class LoginController : Controller
     {
+         /*
         /// <summary>
         /// 验证码在内存中默认保存Key  登录时使用
         /// </summary>
-        private readonly string _captchaCodeSessionNameFroLogin = "DXYKCaptchaCodeForLogin";
-        /*
+        //private readonly string _captchaCodeSessionNameFroLogin = "DXYKCaptchaCodeForLogin";
+        
         /// <summary>
         /// 验证码在内存中默认保存Key  注册用户时使用
         /// </summary>
@@ -73,20 +74,10 @@ namespace DXYK.Admin.API.Controllers
         {
             //var access_token = "";
             ResponseMessage<string> resp = new ResponseMessage<string>() { success = false, status = (int)ApiStatusEnum.Error };
-            
+
             return resp;
         }
 
-        ///<summary>
-        /// 异步 用户名、密码登录、 验证码登录
-        ///</summary>
-        //[HttpPost]
-        //public async Task<ResponseMessage<string>> LoginInAsync([FromBody]UserLoginDto reqLogin)
-        //{
-        //    //var access_token = "";
-        //    ResponseMessage<string> resp = new ResponseMessage<string>() { success = false, status = (int)ApiStatusEnum.Error };
-        //    return resp;
-        //}
 
         ///<summary>
         /// 用户名、密码登录
@@ -296,6 +287,8 @@ namespace DXYK.Admin.API.Controllers
                 return resp;
             }
         }
+
+        
 
         /// <summary>
         /// 验证码图片

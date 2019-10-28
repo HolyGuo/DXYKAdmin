@@ -222,7 +222,7 @@ namespace DXYK.Admin.API.Controllers
                 var menus = _sysAppRoleMapService.QueryDataByRole(item.id, 1);
                 foreach (var menuitem in menus)
                 {
-                    var menu = _sysAppMenuService.GetById((long)menuitem.map_id);
+                    var menu = _sysAppMenuService.GetById(menuitem.map_id);
                     object tmpobj = new
                     {
                         id = menu.id,
@@ -235,7 +235,7 @@ namespace DXYK.Admin.API.Controllers
                 var actions = _sysAppRoleMapService.QueryDataByRole(item.id, 2);
                 foreach (var actitem in actions)
                 {
-                    var menu = _sysAppActionService.GetById((long)actitem.map_id);
+                    var menu = _sysAppActionService.GetById(actitem.map_id);
                     object tmpobj = new
                     {
                         id = menu.id,

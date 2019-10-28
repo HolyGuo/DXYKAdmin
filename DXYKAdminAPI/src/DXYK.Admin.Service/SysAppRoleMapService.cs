@@ -130,7 +130,7 @@ namespace DXYK.Admin.Service
         /// <summary>
         /// 根据角色id查询
         /// </summary>
-        public List<SysAppRoleMap> QueryDataByRole(long roleid, int type)
+        public List<SysAppRoleMap> QueryDataByRole(string roleid, int type)
         {
             return SysAppRoleMapRepository.QueryDataByRole(roleid, type);
         }
@@ -138,7 +138,7 @@ namespace DXYK.Admin.Service
         /// <summary>
         /// 根据roleid,mapid,type查询
         /// </summary>
-        public List<SysAppRoleMap> GetByFilter(long roleid, long mapid, int type)
+        public List<SysAppRoleMap> GetByFilter(string roleid, string mapid, int type)
         {
             return SysAppRoleMapRepository.GetByFilter(roleid, mapid, type);
         }

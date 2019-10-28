@@ -37,11 +37,6 @@
              用户信息
             </summary>
         </member>
-        <member name="F:DXYK.Admin.API.Controllers.LoginController._captchaCodeSessionNameFroLogin">
-            <summary>
-            验证码在内存中默认保存Key  登录时使用
-            </summary>
-        </member>
         <member name="P:DXYK.Admin.API.Controllers.LoginController._authorizeService">
             <summary>
              用户信息UserService
@@ -118,12 +113,12 @@
              异步新增功能信息表(sys_app_action)
             </summary>
         </member>
-        <member name="M:DXYK.Admin.API.Controllers.SysAppActionController.DeleteById(System.Int64)">
+        <member name="M:DXYK.Admin.API.Controllers.SysAppActionController.DeleteById(System.String)">
             <summary>
              删除功能信息表(sys_app_action)
             </summary>
         </member>
-        <member name="M:DXYK.Admin.API.Controllers.SysAppActionController.DeleteByIdAsync(System.Int64)">
+        <member name="M:DXYK.Admin.API.Controllers.SysAppActionController.DeleteByIdAsync(System.String)">
             <summary>
              异步删除功能信息表(sys_app_action)
             </summary>
@@ -138,12 +133,12 @@
              异步更新功能信息表(sys_app_action)
             </summary>
         </member>
-        <member name="M:DXYK.Admin.API.Controllers.SysAppActionController.GetById(System.Int64)">
+        <member name="M:DXYK.Admin.API.Controllers.SysAppActionController.GetById(System.String)">
             <summary>
              根据Id查询功能信息表(sys_app_action)
             </summary>
         </member>
-        <member name="M:DXYK.Admin.API.Controllers.SysAppActionController.GetByIdAsync(System.Int64)">
+        <member name="M:DXYK.Admin.API.Controllers.SysAppActionController.GetByIdAsync(System.String)">
             <summary>
              根据Id查询功能信息表(sys_app_action)
             </summary>
@@ -303,12 +298,12 @@
              异步新增菜单信息表(sys_app_menu)
             </summary>
         </member>
-        <member name="M:DXYK.Admin.API.Controllers.SysAppMenuController.DeleteById(System.Int64)">
+        <member name="M:DXYK.Admin.API.Controllers.SysAppMenuController.DeleteById(System.String)">
             <summary>
              删除菜单信息表(sys_app_menu)
             </summary>
         </member>
-        <member name="M:DXYK.Admin.API.Controllers.SysAppMenuController.DeleteByIdAsync(System.Int64)">
+        <member name="M:DXYK.Admin.API.Controllers.SysAppMenuController.DeleteByIdAsync(System.String)">
             <summary>
              异步删除菜单信息表(sys_app_menu)
             </summary>
@@ -323,12 +318,12 @@
              异步更新菜单信息表(sys_app_menu)
             </summary>
         </member>
-        <member name="M:DXYK.Admin.API.Controllers.SysAppMenuController.GetById(System.Int64)">
+        <member name="M:DXYK.Admin.API.Controllers.SysAppMenuController.GetById(System.String)">
             <summary>
              根据Id查询菜单信息表(sys_app_menu)
             </summary>
         </member>
-        <member name="M:DXYK.Admin.API.Controllers.SysAppMenuController.GetByIdAsync(System.Int64)">
+        <member name="M:DXYK.Admin.API.Controllers.SysAppMenuController.GetByIdAsync(System.String)">
             <summary>
              根据Id查询菜单信息表(sys_app_menu)
             </summary>
@@ -583,6 +578,11 @@
              异步新增角色授权表(sys_app_role_map)
             </summary>
         </member>
+        <member name="T:DXYK.Admin.API.Controllers.SysAppRoleMapController.OwnQueryRequest">
+            <summary>
+            OwnQueryRequest
+            </summary>
+        </member>
         <member name="P:DXYK.Admin.API.Controllers.SysAppRoleMapController.OwnQueryRequest.roleid">
             <summary>
             查询关键字
@@ -596,6 +596,16 @@
         <member name="P:DXYK.Admin.API.Controllers.SysAppRoleMapController.OwnQueryRequest.objs">
             <summary>
             查询关键字
+            </summary>
+        </member>
+        <member name="T:DXYK.Admin.API.Controllers.SysAppRoleMapController.tmpdto">
+            <summary>
+            tmpdto
+            </summary>
+        </member>
+        <member name="P:DXYK.Admin.API.Controllers.SysAppRoleMapController.tmpdto.id">
+            <summary>
+            id
             </summary>
         </member>
         <member name="T:DXYK.Admin.API.Controllers.SysGroupController">
@@ -723,12 +733,12 @@
              异步新增岗位信息表(sys_job)
             </summary>
         </member>
-        <member name="M:DXYK.Admin.API.Controllers.SysJobController.DeleteById(System.Int64)">
+        <member name="M:DXYK.Admin.API.Controllers.SysJobController.DeleteById(System.String)">
             <summary>
              删除岗位信息表(sys_job)
             </summary>
         </member>
-        <member name="M:DXYK.Admin.API.Controllers.SysJobController.DeleteByIdAsync(System.Int64)">
+        <member name="M:DXYK.Admin.API.Controllers.SysJobController.DeleteByIdAsync(System.String)">
             <summary>
              异步删除岗位信息表(sys_job)
             </summary>
@@ -748,7 +758,7 @@
              根据Id查询岗位信息表(sys_job)
             </summary>
         </member>
-        <member name="M:DXYK.Admin.API.Controllers.SysJobController.GetByIdAsync(System.Int64)">
+        <member name="M:DXYK.Admin.API.Controllers.SysJobController.GetByIdAsync(System.String)">
             <summary>
              根据Id查询岗位信息表(sys_job)
             </summary>
@@ -928,7 +938,7 @@
              异步更新单位信息表(sys_org)
             </summary>
         </member>
-        <member name="M:DXYK.Admin.API.Controllers.SysOrgController.GetById(System.Int64)">
+        <member name="M:DXYK.Admin.API.Controllers.SysOrgController.GetById(System.String)">
             <summary>
              根据Id查询单位信息表(sys_org)
             </summary>
@@ -1245,6 +1255,11 @@
         <member name="T:DXYK.Admin.API.Filters.ApiAuthorize">
             <summary>
             Api鉴权
+            </summary>
+        </member>
+        <member name="P:DXYK.Admin.API.Filters.ApiAuthorize.Modules">
+            <summary>
+            模块别名，可配置更改
             </summary>
         </member>
         <member name="P:DXYK.Admin.API.Filters.ApiAuthorize.ActionCode">

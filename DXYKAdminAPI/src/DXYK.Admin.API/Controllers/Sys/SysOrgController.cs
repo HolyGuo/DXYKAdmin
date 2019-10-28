@@ -104,7 +104,7 @@ namespace DXYK.Admin.API.Controllers
         /// 根据Id查询单位信息表(sys_org)
         ///</summary>
         [HttpGet]
-        public ResponseMessage<SysOrg> GetById(long id)
+        public ResponseMessage<SysOrg> GetById(string id)
         {
             var sysOrg = _sysOrgService.GetById(id);
             return new ResponseMessage<SysOrg> {  data = sysOrg };

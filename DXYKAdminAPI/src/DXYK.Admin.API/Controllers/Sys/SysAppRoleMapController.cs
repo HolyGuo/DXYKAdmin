@@ -192,9 +192,9 @@ namespace DXYK.Admin.API.Controllers
             bool tf = true;
             foreach (var item in reqMsg.objs)
             {
-                var roleid = long.Parse(reqMsg.roleid);
-                var mapid = long.Parse(item.id);
-                var tmpdata = _sysAppRoleMapService.GetByFilter(roleid, mapid, reqMsg.type);
+                var roleid = reqMsg.roleid;
+                var mapid = item.id;
+                var tmpdata = _sysAppRoleMapService.GetByFilter(roleid, mapid, int.Parse(reqMsg.type));
                 if(tmpdata.Count == 0)
                 {
                     SysAppRoleMap enity = new SysAppRoleMap()
@@ -211,6 +211,9 @@ namespace DXYK.Admin.API.Controllers
             return new ResponseMessage<int> { data = tf ? 1 : 0 };
         }
 
+        /// <summary>
+        /// OwnQueryRequest
+        /// </summary>
         public class OwnQueryRequest
         {
             /// <summary>
@@ -220,7 +223,7 @@ namespace DXYK.Admin.API.Controllers
             /// <summary>
             /// 查询关键字
             /// </summary>
-            public int type { get; set; }
+            public string type { get; set; }
             /// <summary>
             /// 查询关键字
             /// </summary>
@@ -229,8 +232,14 @@ namespace DXYK.Admin.API.Controllers
 
         }
 
+        /// <summary>
+        /// tmpdto
+        /// </summary>
         public class tmpdto
         {
+            /// <summary>
+            /// id
+            /// </summary>
             public string id { get; set; }
         }
 

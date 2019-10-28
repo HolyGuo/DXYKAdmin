@@ -29,7 +29,9 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DXYK.Admin.Extensions", "sr
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DXYK.Admin.Common", "src\DXYK.Admin.Common\DXYK.Admin.Common.csproj", "{0979E9E0-289B-4F37-AB2A-1BFC96A5C9AC}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DXYK.Admin.Dto", "src\DXYK.Admin.Dto\DXYK.Admin.Dto.csproj", "{661922D0-CB3F-4AAF-8571-55B533A04062}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DXYK.Admin.Dto", "src\DXYK.Admin.Dto\DXYK.Admin.Dto.csproj", "{661922D0-CB3F-4AAF-8571-55B533A04062}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DXYK.Admin.MVC", "src\DXYK.Admin.MVC\DXYK.Admin.MVC.csproj", "{9EC09C0D-38DC-4612-B175-8B4B13A6AA55}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -65,12 +67,17 @@ Global
 		{661922D0-CB3F-4AAF-8571-55B533A04062}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{661922D0-CB3F-4AAF-8571-55B533A04062}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{661922D0-CB3F-4AAF-8571-55B533A04062}.Release|Any CPU.Build.0 = Release|Any CPU
+		{9EC09C0D-38DC-4612-B175-8B4B13A6AA55}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{9EC09C0D-38DC-4612-B175-8B4B13A6AA55}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{9EC09C0D-38DC-4612-B175-8B4B13A6AA55}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{9EC09C0D-38DC-4612-B175-8B4B13A6AA55}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
 	EndGlobalSection
 	GlobalSection(NestedProjects) = preSolution
 		{CEA52B07-9E7F-4A4D-AF6D-4C43E7255D0E} = {20C12BB6-7202-46F4-9A92-3528FFC2B91B}
+		{9EC09C0D-38DC-4612-B175-8B4B13A6AA55} = {20C12BB6-7202-46F4-9A92-3528FFC2B91B}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {C1D73EF1-1FA6-4709-8A10-3B900EB98F6C}

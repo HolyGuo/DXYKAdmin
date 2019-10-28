@@ -81,7 +81,7 @@ namespace DXYK.Admin.Service
         /// <summary>
         /// 根据Id查询数据
         /// </summary>
-        public SysOrg GetById(long id)
+        public SysOrg GetById(string id)
         {
             return SysOrgRepository.GetById(id);
         }

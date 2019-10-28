@@ -6,10 +6,10 @@ namespace DXYK.Admin.Dto.Sys
 {
     public class MenuTree
     {
-        public long id;
+        public string id;
         public string name;
         public string sort;
-        public long pid;
+        public string pid;
         public string path;
         public string component;
         public string hidden;

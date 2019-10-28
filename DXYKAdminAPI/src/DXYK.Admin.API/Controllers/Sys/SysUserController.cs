@@ -72,9 +72,9 @@ namespace DXYK.Admin.API.Controllers
         /// 新增用户信息表(sys_user)
         ///</summary>
         [HttpPost, ApiAuthorize(ActionCode = "Admin,User_Manage,User_Add", LogType = LogEnum.ADD)]
-        public ResponseMessage<long> Insert([FromBody]SysUser sysUser)
+        public ResponseMessage<string> Insert([FromBody]SysUser sysUser)
         {
-            return new ResponseMessage<long> { data = _sysUserService.Insert(sysUser) }; 
+            return new ResponseMessage<string> { data = _sysUserService.Insert(sysUser) }; 
         }
 
         ///<summary>
@@ -239,12 +239,12 @@ namespace DXYK.Admin.API.Controllers
             });
             if(reqMsg.dept != null)
             {
-                long dept = long.Parse(reqMsg.dept);
+                string dept = reqMsg.dept;
                 list = list.Where(t => t.org_id == dept).ToList();
             }
             foreach (var item in list)
             {
-                var org = _sysOrgService.GetById((long)item.org_id);
+                var org = _sysOrgService.GetById(item.org_id);
                 Object deptobj = new
                 {
                     id = org.id,

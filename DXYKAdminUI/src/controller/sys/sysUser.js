@@ -193,5 +193,5 @@ layui.define(function (exports) {
 
   });//layui.use end
 
-  exports('sysUser', {})
+  // exports('sysUser', {})
 });//layui.define end

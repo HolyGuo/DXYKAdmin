@@ -65,7 +65,7 @@ namespace DXYK.Admin.API.Controllers
         /// 删除菜单信息表(sys_app_menu)
         ///</summary>
         [HttpDelete, ApiAuthorize(ActionCode = "Admin,Menu_Manage,Menu_Delete", LogType = LogEnum.DELETE)]
-        public ResponseMessage<int> DeleteById(long id)
+        public ResponseMessage<int> DeleteById(string id)
         {
             return new ResponseMessage<int> { data = _sysAppMenuService.DeleteById(id) };
         }
@@ -74,7 +74,7 @@ namespace DXYK.Admin.API.Controllers
         /// 异步删除菜单信息表(sys_app_menu)
         ///</summary>
         [HttpDelete]
-        public async Task<ResponseMessage<int>> DeleteByIdAsync(long id)
+        public async Task<ResponseMessage<int>> DeleteByIdAsync(string id)
         {
             return new ResponseMessage<int> { data = await _sysAppMenuService.DeleteByIdAsync(id) };
         }
@@ -104,7 +104,7 @@ namespace DXYK.Admin.API.Controllers
         /// 根据Id查询菜单信息表(sys_app_menu)
         ///</summary>
         [HttpGet]
-        public ResponseMessage<SysAppMenu> GetById(long id)
+        public ResponseMessage<SysAppMenu> GetById(string id)
         {
             var sysAppMenu = _sysAppMenuService.GetById(id);
             return new ResponseMessage<SysAppMenu> { data = sysAppMenu };
@@ -114,7 +114,7 @@ namespace DXYK.Admin.API.Controllers
         /// 根据Id查询菜单信息表(sys_app_menu)
         ///</summary>
         [HttpGet]
-        public async Task<ResponseMessage<SysAppMenu>> GetByIdAsync(long id)
+        public async Task<ResponseMessage<SysAppMenu>> GetByIdAsync(string id)
         {
             var sysAppMenu = await _sysAppMenuService.GetByIdAsync(id);
             return new ResponseMessage<SysAppMenu> { data = sysAppMenu };

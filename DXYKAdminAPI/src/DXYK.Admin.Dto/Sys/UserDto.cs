@@ -60,7 +60,7 @@ namespace DXYK.Admin.Dto.Sys
         ///<summary>
         /// 唯一标识
         ///</summary>
-        public virtual long id { get; set; }
+        public virtual string id { get; set; }
         ///<summary>
         /// 姓名
         ///</summary>
@@ -129,7 +129,7 @@ namespace DXYK.Admin.Dto.Sys
         /// <summary>
         /// 应用系统id
         /// </summary>
-        //public string appid { get; set; }
+        public string appid { get; set; }
 
     }
 

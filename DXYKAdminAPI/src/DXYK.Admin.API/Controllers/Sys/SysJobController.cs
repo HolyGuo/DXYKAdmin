@@ -75,7 +75,7 @@ namespace DXYK.Admin.API.Controllers
         /// 删除岗位信息表(sys_job)
         ///</summary>
         [HttpDelete, ApiAuthorize(ActionCode = "Admin,Job_Manage,Job_Delete", LogType = LogEnum.DELETE)]
-        public ResponseMessage<int> DeleteById(long id)
+        public ResponseMessage<int> DeleteById(string id)
         {
             return new ResponseMessage<int> { data = _sysJobService.DeleteById(id) };
         }
@@ -84,7 +84,7 @@ namespace DXYK.Admin.API.Controllers
         /// 异步删除岗位信息表(sys_job)
         ///</summary>
         [HttpDelete]
-        public async Task<ResponseMessage<int>> DeleteByIdAsync(long id)
+        public async Task<ResponseMessage<int>> DeleteByIdAsync(string id)
         {
             return new ResponseMessage<int> { data = await _sysJobService.DeleteByIdAsync(id) };
         }
@@ -124,7 +124,7 @@ namespace DXYK.Admin.API.Controllers
         /// 根据Id查询岗位信息表(sys_job)
         ///</summary>
         [HttpGet]
-        public async Task<ResponseMessage<SysJob>> GetByIdAsync(long id)
+        public async Task<ResponseMessage<SysJob>> GetByIdAsync(string id)
         {
             var sysJob = await _sysJobService.GetByIdAsync(id);
             return new ResponseMessage<SysJob> { data = sysJob };
@@ -206,7 +206,7 @@ namespace DXYK.Admin.API.Controllers
             var list = _sysJobService.QueryDataByNameAndTypeByPage(reqMsg.name, reqMsg.enabled, reqMsg.OrderBy, reqMsg.limit, reqMsg.offset);
             foreach (var item in list)
             {
-                var org = _sysOrgService.GetById(long.Parse(item.org_id));
+                var org = _sysOrgService.GetById(item.org_id);
                 Object deptobj = new
                 {
                     id = org.id,

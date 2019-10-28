@@ -24,7 +24,7 @@ namespace DXYK.Admin.Repository
         /// 根据Id查询数据
         ///</summary>
         [Statement(Id = "GetEntity")]
-        new SysGroup GetById([Param("id")]string id);
+        SysGroup GetById([Param("id")]string id);
         ///<summary>
         /// 异步根据Id查询数据
         ///</summary>

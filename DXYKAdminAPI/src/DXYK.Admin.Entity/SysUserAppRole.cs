@@ -15,11 +15,11 @@ namespace DXYK.Admin.Entity
         ///<summary>
         /// 唯一标识
         ///</summary>
-        public virtual long id { get; set; }
+        public virtual string id { get; set; }
         ///<summary>
         /// 用户id
         ///</summary>
-        public virtual long user_id { get; set; }
+        public virtual string user_id { get; set; }
         ///<summary>
         /// 应用id
         ///</summary>
@@ -27,7 +27,7 @@ namespace DXYK.Admin.Entity
         ///<summary>
         /// 角色id
         ///</summary>
-        public virtual long role_id { get; set; }
+        public virtual string role_id { get; set; }
         ///<summary>
         /// 用于全局数据划分
         ///</summary>

@@ -16,30 +16,30 @@ namespace DXYK.Admin.Repository
     ///<summary>
     /// 功能信息表
     ///</summary>
-    public interface ISysAppActionRepository : IRepository<SysAppAction, long>
-        , IRepositoryAsync<SysAppAction, long>
+    public interface ISysAppActionRepository : IRepository<SysAppAction, string>
+        , IRepositoryAsync<SysAppAction, string>
     {
 
         ///<summary>
         /// 根据Id查询数据
         ///</summary>
         [Statement(Id = "GetEntity")]
-        new SysAppAction GetById([Param("id")]long id);
+        new SysAppAction GetById([Param("id")]string id);
         ///<summary>
         /// 异步根据Id查询数据
         ///</summary>
         [Statement(Id = "GetEntity")]
-        new Task<SysAppAction> GetByIdAsync([Param("id")]long id);
+        new Task<SysAppAction> GetByIdAsync([Param("id")]string id);
         ///<summary>
         /// 删除数据
         ///</summary>
         [Statement(Id = "Delete")]
-        new int DeleteById([Param("id")]long id);
+        new int DeleteById([Param("id")]string id);
         ///<summary>
         /// 异步删除数据
         ///</summary>
         [Statement(Id = "Delete")]
-        new Task<int> DeleteByIdAsync([Param("id")]long id);
+        new Task<int> DeleteByIdAsync([Param("id")]string id);
         ///<summary>
         /// 根据条件查询总数
         ///</summary>

@@ -45,7 +45,8 @@
       @role_id,
       @type_code,
       @map_id
-      )
+      );
+      Select @id;
     </Statement>
 
     <!--删除-->

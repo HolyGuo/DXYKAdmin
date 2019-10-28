@@ -98,7 +98,8 @@ T.id,T.group_name,T.group_short_name,T.logo_pic,T.contact_user_name,T.contact_us
       @updated_time,
       @deleted_by,
       @deleted_time
-    )
+    );
+    Select @id;
 </Statement>
 
 <!--删除-->

@@ -33,7 +33,7 @@ namespace DXYK.Admin.Service
         ///<summary>
         ///新增
         ///</summary>
-        public long Insert(SysUser sysUser)
+        public string Insert(SysUser sysUser)
         {
             return SysUserRepository.Insert(sysUser);
         }

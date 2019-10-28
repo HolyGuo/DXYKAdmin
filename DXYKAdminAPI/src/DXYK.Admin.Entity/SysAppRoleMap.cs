@@ -19,15 +19,15 @@ namespace DXYK.Admin.Entity
         ///<summary>
         /// 角色id
         ///</summary>
-        public virtual long? role_id { get; set; }
+        public virtual string role_id { get; set; }
         ///<summary>
         /// 类型编码(1：菜单权限，2：功能权限)
         ///</summary>
-        public virtual int? type_code { get; set; }
+        public virtual string type_code { get; set; }
         ///<summary>
         /// 权限id
         ///</summary>
-        public virtual long? map_id { get; set; }
+        public virtual string map_id { get; set; }
         ///<summary>
         /// 群组id
         ///</summary>
