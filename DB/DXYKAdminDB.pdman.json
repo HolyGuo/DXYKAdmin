@@ -1760,10 +1760,52 @@
               "chnname": "邮件id"
             },
             {
-              "name": "user_id",
+              "name": "mail_title",
+              "type": "VARCHAR_500",
+              "remark": "",
+              "chnname": "邮件名称"
+            },
+            {
+              "name": "sender_id",
               "type": "id",
               "remark": "",
-              "chnname": "用户id"
+              "chnname": "发件人id"
+            },
+            {
+              "name": "sender_name",
+              "type": "VARCHAR_50",
+              "remark": "",
+              "chnname": "发件人名称"
+            },
+            {
+              "name": "receiver_id",
+              "type": "id",
+              "remark": "",
+              "chnname": "收件人id"
+            },
+            {
+              "name": "receiver_name",
+              "type": "VARCHAR_50",
+              "remark": "",
+              "chnname": "收件人名称"
+            },
+            {
+              "name": "attachment_ids",
+              "type": "VARCHAR_500",
+              "remark": "",
+              "chnname": "附件id"
+            },
+            {
+              "name": "send_time",
+              "type": "DateTime",
+              "remark": "",
+              "chnname": "发送时间"
+            },
+            {
+              "name": "read_time",
+              "type": "DateTime",
+              "remark": "",
+              "chnname": "阅读时间"
             }
           ],
           "indexs": [],
@@ -1829,7 +1871,7 @@
             },
             {
               "name": "obj_id",
-              "type": "id",
+              "type": "VARCHAR_50",
               "remark": "",
               "chnname": "业务数据id"
             },
