@@ -44,18 +44,18 @@ namespace DXYK.Admin.API.Controllers
         /// 新增用户应用角色授权表(sys_user_app_role)
         ///</summary>
         [HttpPost]
-        public ResponseMessage<long> Insert([FromBody]SysUserAppRole sysUserAppRole)
+        public ResponseMessage<string> Insert([FromBody]SysUserAppRole sysUserAppRole)
         {
-            return new ResponseMessage<long> { data = _sysUserAppRoleService.Insert(sysUserAppRole) };
+            return new ResponseMessage<string> { data = _sysUserAppRoleService.Insert(sysUserAppRole) };
         }
 
         ///<summary>
         /// 异步新增用户应用角色授权表(sys_user_app_role)
         ///</summary>
         [HttpPost]
-        public async Task<ResponseMessage<long>> InsertAsync([FromBody]SysUserAppRole sysUserAppRole)
+        public async Task<ResponseMessage<string>> InsertAsync([FromBody]SysUserAppRole sysUserAppRole)
         {
-            return new ResponseMessage<long> { data = await _sysUserAppRoleService.InsertAsync(sysUserAppRole) };
+            return new ResponseMessage<string> { data = await _sysUserAppRoleService.InsertAsync(sysUserAppRole) };
         }
 
         ///<summary>

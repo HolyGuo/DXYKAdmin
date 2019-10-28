@@ -35,3 +35,19 @@ export function validatEmail(str) {
   const reg = /^([a-zA-Z0-9_-])+@([a-zA-Z0-9_-])+(.[a-zA-Z0-9_-])+/
   return reg.test(str)
 }
+
+/* 是否是邮箱*/
+export function isEmail(str) {
+  const reg = /^[a-zA-Z0-9.!#$%&'*+\/=?^_`{|}~-]+@[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?(?:\.[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?)*$/;
+  return reg.test(str.trim());
+}
+
+// 判断空数组或空对象
+export function isEmpty(value) {
+  return (Array.isArray(value) && value.length === 0) || (Object.prototype.isPrototypeOf(value) && Object.keys(value).length === 0);
+}
+
+// 获取类型
+export function getType(val) {
+  return Object.prototype.toString.call(val).match(/\s{1}(\w+)/)[1];
+}

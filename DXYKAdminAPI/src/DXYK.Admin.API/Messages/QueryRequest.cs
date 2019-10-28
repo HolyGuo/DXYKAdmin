@@ -36,6 +36,11 @@ namespace DXYK.Admin.API.Messages
         public int page { get; set; } = 1;
 
         /// <summary>
+        /// ×´Ì¬
+        /// </summary>
+        public string status { get; set; }
+
+        /// <summary>
         /// ºöÂÔ
         /// </summary>
         public int offset { get { return (page - 1) * limit; } }

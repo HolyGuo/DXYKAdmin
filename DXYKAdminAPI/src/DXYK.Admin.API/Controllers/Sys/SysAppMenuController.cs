@@ -47,18 +47,18 @@ namespace DXYK.Admin.API.Controllers
         /// 新增菜单信息表(sys_app_menu)
         ///</summary>
         [HttpPost, ApiAuthorize(ActionCode = "Admin,Menu_Manage,Menu_Add", LogType = LogEnum.ADD)]
-        public ResponseMessage<long> Insert([FromBody]SysAppMenu sysAppMenu)
+        public ResponseMessage<string> Insert([FromBody]SysAppMenu sysAppMenu)
         {
-            return new ResponseMessage<long> { data = _sysAppMenuService.Insert(sysAppMenu) };
+            return new ResponseMessage<string> { data = _sysAppMenuService.Insert(sysAppMenu) };
         }
 
         ///<summary>
         /// 异步新增菜单信息表(sys_app_menu)
         ///</summary>
         [HttpPost]
-        public async Task<ResponseMessage<long>> InsertAsync([FromBody]SysAppMenu sysAppMenu)
+        public async Task<ResponseMessage<string>> InsertAsync([FromBody]SysAppMenu sysAppMenu)
         {
-            return new ResponseMessage<long> { data = await _sysAppMenuService.InsertAsync(sysAppMenu) };
+            return new ResponseMessage<string> { data = await _sysAppMenuService.InsertAsync(sysAppMenu) };
         }
 
         ///<summary>

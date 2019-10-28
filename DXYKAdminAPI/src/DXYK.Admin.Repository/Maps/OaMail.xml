@@ -1,0 +1,311 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!--
+//*******************************
+// Create By Holy Guo
+// Date 2019-10-20 01:08
+//*******************************-->
+
+<SmartSqlMap Scope="OaMail" xmlns="http://SmartSql.net/schemas/SmartSqlMap.xsd">
+
+  <Statements>
+
+    <Statement Id="AllCols">
+      T.id,T.title,T.publish_time,T.content,T.group_id,T.re_vision,T.created_by,T.created_time,T.updated_by,T.updated_time,T.deleted_by,T.deleted_time
+    </Statement>
+    <Statement Id="QueryParams">
+      <Where>
+        <IsNotEmpty Prepend="And" Property="id">
+          T.id = @id
+        </IsNotEmpty>
+        <IsNotEmpty Prepend="And" Property="title">
+          T.title = @title
+        </IsNotEmpty>
+        <IsNotEmpty Prepend="And" Property="publish_time">
+          T.publish_time = @publish_time
+        </IsNotEmpty>
+        <IsNotEmpty Prepend="And" Property="content">
+          T.content = @content
+        </IsNotEmpty>
+        <IsNotEmpty Prepend="And" Property="group_id">
+          T.group_id = @group_id
+        </IsNotEmpty>
+        <IsNotEmpty Prepend="And" Property="re_vision">
+          T.re_vision = @re_vision
+        </IsNotEmpty>
+        <IsNotEmpty Prepend="And" Property="created_by">
+          T.created_by = @created_by
+        </IsNotEmpty>
+        <IsNotEmpty Prepend="And" Property="created_time">
+          T.created_time = @created_time
+        </IsNotEmpty>
+        <IsNotEmpty Prepend="And" Property="updated_by">
+          T.updated_by = @updated_by
+        </IsNotEmpty>
+        <IsNotEmpty Prepend="And" Property="updated_time">
+          T.updated_time = @updated_time
+        </IsNotEmpty>
+        <IsNotEmpty Prepend="And" Property="deleted_by">
+          T.deleted_by = @deleted_by
+        </IsNotEmpty>
+        <IsNotEmpty Prepend="And" Property="deleted_time">
+          T.deleted_time = @deleted_time
+        </IsNotEmpty>
+      </Where>
+    </Statement>
+
+    <!--新增-->
+    <Statement Id="Insert">
+      <IdGenerator Name="SnowflakeId" Id="id"/>
+      INSERT INTO oa_mail
+      (
+      id,
+      title,
+      publish_time,
+      content,
+      group_id,
+      re_vision,
+      created_by,
+      created_time,
+      updated_by,
+      updated_time,
+      deleted_by,
+      deleted_time
+      )
+      VALUES
+      (
+      @id,
+      @title,
+      @publish_time,
+      @content,
+      @group_id,
+      @re_vision,
+      @created_by,
+      @created_time,
+      @updated_by,
+      @updated_time,
+      @deleted_by,
+      @deleted_time
+      )
+      Select @Id;
+    </Statement>
+
+    <!--删除-->
+    <Statement Id="Delete">
+      Delete From oa_mail
+      Where id=@id
+    </Statement>
+    <!--更新-->
+    <Statement Id="Update">
+      UPDATE oa_mail
+      <Set>
+        <IsProperty Prepend="," Property="title">
+          title = @title
+        </IsProperty>
+        <IsProperty Prepend="," Property="publish_time">
+          publish_time = @publish_time
+        </IsProperty>
+        <IsProperty Prepend="," Property="content">
+          content = @content
+        </IsProperty>
+        <IsProperty Prepend="," Property="group_id">
+          group_id = @group_id
+        </IsProperty>
+        <IsProperty Prepend="," Property="re_vision">
+          re_vision = @re_vision
+        </IsProperty>
+        <IsProperty Prepend="," Property="created_by">
+          created_by = @created_by
+        </IsProperty>
+        <IsProperty Prepend="," Property="created_time">
+          created_time = @created_time
+        </IsProperty>
+        <IsProperty Prepend="," Property="updated_by">
+          updated_by = @updated_by
+        </IsProperty>
+        <IsProperty Prepend="," Property="updated_time">
+          updated_time = @updated_time
+        </IsProperty>
+        <IsProperty Prepend="," Property="deleted_by">
+          deleted_by = @deleted_by
+        </IsProperty>
+        <IsProperty Prepend="," Property="deleted_time">
+          deleted_time = @deleted_time
+        </IsProperty>
+      </Set>
+      Where id=@id
+    </Statement>
+
+    <!--获取数据列-->
+    <Statement Id="Query" >
+      SELECT
+      <Include RefId="AllCols" />
+      From oa_mail T
+      <Include RefId="QueryParams" />
+      <Switch Prepend="Order By" Property="OrderBy">
+        <Default>
+          T.id Desc
+        </Default>
+      </Switch>
+      <IsNotEmpty Prepend="Limit" Property="limit">@limit</IsNotEmpty>
+    </Statement>
+
+
+    <!--获取分页数据-->
+    <Statement Id="QueryByPage" >
+      Select
+      <Include RefId="AllCols" />
+      From oa_mail As T
+      <Include RefId="QueryParams" />
+      <Switch Prepend="Order By" Property="OrderBy">
+        <Default>
+          T.id Desc
+        </Default>
+      </Switch>
+      Limit @limit Offset @offset
+    </Statement>
+
+
+
+
+    <!--获取记录数-->
+    <Statement Id="GetRecord">
+      Select Count(1) From oa_mail T
+      <Include RefId="QueryParams" />
+    </Statement>
+
+
+    <!--获取表映射实体-->
+    <Statement Id="GetEntity" >
+      Select
+      <Include RefId="AllCols" />
+      From oa_mail As T
+      <Where Min="1">
+        <IsNotEmpty Prepend="And" Property="id">
+          T.id= @id
+        </IsNotEmpty>
+        <IsNotEmpty Prepend="And" Property="title">
+          T.title= @title
+        </IsNotEmpty>
+        <IsNotEmpty Prepend="And" Property="publish_time">
+          T.publish_time= @publish_time
+        </IsNotEmpty>
+        <IsNotEmpty Prepend="And" Property="content">
+          T.content= @content
+        </IsNotEmpty>
+        <IsNotEmpty Prepend="And" Property="group_id">
+          T.group_id= @group_id
+        </IsNotEmpty>
+        <IsNotEmpty Prepend="And" Property="re_vision">
+          T.re_vision= @re_vision
+        </IsNotEmpty>
+        <IsNotEmpty Prepend="And" Property="created_by">
+          T.created_by= @created_by
+        </IsNotEmpty>
+        <IsNotEmpty Prepend="And" Property="created_time">
+          T.created_time= @created_time
+        </IsNotEmpty>
+        <IsNotEmpty Prepend="And" Property="updated_by">
+          T.updated_by= @updated_by
+        </IsNotEmpty>
+        <IsNotEmpty Prepend="And" Property="updated_time">
+          T.updated_time= @updated_time
+        </IsNotEmpty>
+        <IsNotEmpty Prepend="And" Property="deleted_by">
+          T.deleted_by= @deleted_by
+        </IsNotEmpty>
+        <IsNotEmpty Prepend="And" Property="deleted_time">
+          T.deleted_time= @deleted_time
+        </IsNotEmpty>
+      </Where>
+      Limit 1
+    </Statement>
+
+
+    <!--是否存在该记录-->
+    <Statement Id="IsExist">
+      Select Count(1) From oa_mail T
+      <Include RefId="QueryParams" />
+    </Statement>
+
+
+    <!--************************************自定义SQL查询************************************-->
+    <!---自定义  查询参数-->
+    <Statement Id="QueryDataParams">
+      <Where>
+        <IsNotEmpty Prepend="And" Property="id">
+          T.id = @id
+        </IsNotEmpty>
+        <IsNotEmpty Prepend="And" Property="title">
+          T.title = @title
+        </IsNotEmpty>
+        <IsNotEmpty Prepend="And" Property="publish_time">
+          T.publish_time = @publish_time
+        </IsNotEmpty>
+        <IsNotEmpty Prepend="And" Property="content">
+          T.content = @content
+        </IsNotEmpty>
+        <IsNotEmpty Prepend="And" Property="group_id">
+          T.group_id = @group_id
+        </IsNotEmpty>
+        <IsNotEmpty Prepend="And" Property="re_vision">
+          T.re_vision = @re_vision
+        </IsNotEmpty>
+        <IsNotEmpty Prepend="And" Property="created_by">
+          T.created_by = @created_by
+        </IsNotEmpty>
+        <IsNotEmpty Prepend="And" Property="created_time">
+          T.created_time = @created_time
+        </IsNotEmpty>
+        <IsNotEmpty Prepend="And" Property="updated_by">
+          T.updated_by = @updated_by
+        </IsNotEmpty>
+        <IsNotEmpty Prepend="And" Property="updated_time">
+          T.updated_time = @updated_time
+        </IsNotEmpty>
+        <IsNotEmpty Prepend="And" Property="deleted_by">
+          T.deleted_by = @deleted_by
+        </IsNotEmpty>
+        <IsNotEmpty Prepend="And" Property="deleted_time">
+          T.deleted_time = @deleted_time
+        </IsNotEmpty>
+      </Where>
+    </Statement>
+
+    <!--自定义查询  分页数据-->
+    <Statement Id="QueryDataByPage">
+      Select T.*
+      From oa_mail As T
+      <Include RefId="QueryDataParams" />
+      <Switch Prepend="Order By" Property="OrderBy">
+        <Default>
+          T.id Desc
+        </Default>
+      </Switch>
+      Limit @limit Offset @offset
+    </Statement>
+
+    <!--自定义查询  获取记录数-->
+    <Statement Id="GetDataRecord">
+      Select Count(1) From sys_user T
+      <Include RefId="QueryDataParams" />
+    </Statement>
+
+    <!--查找雪花id-->
+    <Statement Id="QueryId" >
+      Select id From oa_mail As T
+      <Where Min="1">
+        <IsNotEmpty Prepend="And" Property="title">
+          T.title= @title
+        </IsNotEmpty>
+        <IsNotEmpty Prepend="And" Property="publish_time">
+          T.publish_time= @publish_time
+        </IsNotEmpty>
+        <IsNotEmpty Prepend="And" Property="group_id">
+          T.group_id= @group_id
+        </IsNotEmpty>
+      </Where>
+      Limit 1 
+    </Statement>
+
+  </Statements>
+</SmartSqlMap>

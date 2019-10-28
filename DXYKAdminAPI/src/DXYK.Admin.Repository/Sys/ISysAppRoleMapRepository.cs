@@ -19,6 +19,17 @@ namespace DXYK.Admin.Repository
     public interface ISysAppRoleMapRepository : IRepository<SysAppRoleMap, long>
         , IRepositoryAsync<SysAppRoleMap, long>
     {
+        ///<summary>
+        /// 新增
+        ///</summary>
+        [Statement(Id = "Insert")]
+        string Insert(object param);
+
+        ///<summary>
+        /// 异步新增
+        ///</summary>
+        [Statement(Id = "Insert")]
+        new Task<string> InsertAsync(object param);
 
         ///<summary>
         /// 根据Id查询数据

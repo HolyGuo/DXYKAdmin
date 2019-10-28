@@ -19,6 +19,11 @@ import Layout from '../layout/Layout'
   }
 **/
 
+const originalPush = Router.prototype.push;
+Router.prototype.push = function push(location) {
+    return originalPush.call(this, location).catch(err => err);
+}
+
 export const constantRouterMap = [
   { path: '/login',
     meta: { title: '登录', noCache: true },

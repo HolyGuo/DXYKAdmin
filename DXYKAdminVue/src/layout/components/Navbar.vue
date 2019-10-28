@@ -15,21 +15,11 @@
           <i class="el-icon-caret-bottom"/>
         </div>
         <el-dropdown-menu slot="dropdown">
-          <a target="_blank" href="https://docs.auauz.net/">
-            <el-dropdown-item>
-              项目文档
-            </el-dropdown-item>
-          </a>
           <span style="display:block;" @click="show = true">
             <el-dropdown-item>
               布局设置
             </el-dropdown-item>
           </span>
-          <router-link to="/user/center">
-            <el-dropdown-item>
-              个人中心
-            </el-dropdown-item>
-          </router-link>
           <span style="display:block;" @click="open">
             <el-dropdown-item divided>
               退出登录

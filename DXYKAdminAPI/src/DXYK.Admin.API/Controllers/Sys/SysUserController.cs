@@ -81,9 +81,9 @@ namespace DXYK.Admin.API.Controllers
         /// 异步新增用户信息表(sys_user)
         ///</summary>
         [HttpPost]
-        public async Task<ResponseMessage<long>>InsertAsync([FromBody]SysUser sysUser)
+        public async Task<ResponseMessage<string>>InsertAsync([FromBody]SysUser sysUser)
         {
-            return new ResponseMessage<long> { data = await _sysUserService.InsertAsync(sysUser) };
+            return new ResponseMessage<string> { data = await _sysUserService.InsertAsync(sysUser) };
         }
 
         ///<summary>
@@ -283,6 +283,26 @@ namespace DXYK.Admin.API.Controllers
                 reslst.Add(obj);
             }
             return new ResponseMessage<object> { data = new { content = reslst, totalElements = 1 } };
+        }
+
+        ///<summary>
+        /// 根据Id查询用户信息表(sys_user)
+        ///</summary>
+        [HttpGet]
+        public ResponseMessage<object> QueryContacts()
+        {
+            List<object> reslst = new List<object>();
+            var userlst = _sysUserService.GetAll();
+            foreach (var item in userlst)
+            {
+                object obj = new
+                {
+                    show = item.nick_name + "<" + item.email + ">",
+                    id = item.id + "#" + item.nick_name
+                };
+                reslst.Add(obj);
+            }
+            return new ResponseMessage<object> { data = new { contacts = reslst }};
         }
 
         /// <summary>

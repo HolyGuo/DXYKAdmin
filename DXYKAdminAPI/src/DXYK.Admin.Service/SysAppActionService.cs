@@ -33,7 +33,7 @@ namespace DXYK.Admin.Service
         ///<summary>
         ///新增
         ///</summary>
-        public long Insert(SysAppAction sysAppAction)
+        public string Insert(SysAppAction sysAppAction)
         {
             return SysAppActionRepository.Insert(sysAppAction);
         }
@@ -41,7 +41,7 @@ namespace DXYK.Admin.Service
         ///<summary>
         ///异步新增
         ///</summary>
-        public  async Task<long> InsertAsync(SysAppAction sysAppAction)
+        public  async Task<string> InsertAsync(SysAppAction sysAppAction)
         {
             return await SysAppActionRepository.InsertAsync(sysAppAction);
         }

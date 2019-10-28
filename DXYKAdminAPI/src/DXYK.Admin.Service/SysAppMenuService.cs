@@ -33,7 +33,7 @@ namespace DXYK.Admin.Service
         ///<summary>
         ///新增
         ///</summary>
-        public long Insert(SysAppMenu sysAppMenu)
+        public string Insert(SysAppMenu sysAppMenu)
         {
             return SysAppMenuRepository.Insert(sysAppMenu);
         }
@@ -41,7 +41,7 @@ namespace DXYK.Admin.Service
         ///<summary>
         ///异步新增
         ///</summary>
-        public async Task<long> InsertAsync(SysAppMenu sysAppMenu)
+        public async Task<string> InsertAsync(SysAppMenu sysAppMenu)
         {
             return await SysAppMenuRepository.InsertAsync(sysAppMenu);
         }

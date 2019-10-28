@@ -47,18 +47,18 @@ namespace DXYK.Admin.API.Controllers
         /// 新增单位信息表(sys_org)
         ///</summary>
         [HttpPost, ApiAuthorize(ActionCode = "Admin,Org_Manage,Org_Add", LogType = LogEnum.ADD)]
-        public ResponseMessage<long> Insert([FromBody]SysOrg sysOrg)
+        public ResponseMessage<string> Insert([FromBody]SysOrg sysOrg)
         {
-            return new ResponseMessage<long> { data = _sysOrgService.Insert(sysOrg) }; 
+            return new ResponseMessage<string> { data = _sysOrgService.Insert(sysOrg) }; 
         }
 
         ///<summary>
         /// 异步新增单位信息表(sys_org)
         ///</summary>
         [HttpPost]
-        public async Task<ResponseMessage<long>>InsertAsync([FromBody]SysOrg sysOrg)
+        public async Task<ResponseMessage<string>>InsertAsync([FromBody]SysOrg sysOrg)
         {
-            return new ResponseMessage<long> { data = await _sysOrgService.InsertAsync(sysOrg) };
+            return new ResponseMessage<string> { data = await _sysOrgService.InsertAsync(sysOrg) };
         }
 
         ///<summary>
