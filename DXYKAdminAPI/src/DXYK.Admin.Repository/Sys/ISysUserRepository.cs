@@ -26,26 +26,33 @@ namespace DXYK.Admin.Repository
         [Statement(Id = "Insert")]
         new string Insert(SysUser sysUser);
 
+        /// <summary>
+        /// 新增数据
+        /// </summary>
+        /// <returns></returns>
+        [Statement(Id = "Insert")]
+        new Task<string> InsertAsync(SysUser sysUser);
+
         ///<summary>
         /// 根据Id查询数据
         ///</summary>
         [Statement(Id = "GetEntity")]
-        new SysUser GetById([Param("id")]long id);
+        SysUser GetById([Param("id")]long id);
         ///<summary>
         /// 异步根据Id查询数据
         ///</summary>
         [Statement(Id = "GetEntity")]
-        new Task<SysUser> GetByIdAsync([Param("id")]long id);
+        Task<SysUser> GetByIdAsync([Param("id")]long id);
         ///<summary>
         /// 删除数据
         ///</summary>
         [Statement(Id = "Delete")]
-        new int DeleteById([Param("id")]long id);
+        int DeleteById([Param("id")]long id);
         ///<summary>
         /// 异步删除数据
         ///</summary>
         [Statement(Id = "Delete")]
-        new Task<int> DeleteByIdAsync([Param("id")]long id);
+        Task<int> DeleteByIdAsync([Param("id")]long id);
         ///<summary>
         /// 根据条件查询总数
         ///</summary>

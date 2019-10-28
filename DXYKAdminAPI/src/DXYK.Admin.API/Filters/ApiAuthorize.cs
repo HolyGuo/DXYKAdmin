@@ -22,10 +22,6 @@ namespace DXYK.Admin.API.Filters
     public class ApiAuthorize : ActionFilterAttribute
     {
         #region 字段和属性
-        /// <summary>
-        /// 模块别名，可配置更改
-        /// </summary>
-        //public string Modules { get; set; }
 
         /// <summary>
         /// Action编码
@@ -173,7 +169,7 @@ namespace DXYK.Admin.API.Filters
             //    ContextReturn(context, "您没有操作权限，请联系系统管理员！");
             //    return;
             //}
-            base.OnActionExecuting(context);
+            //base.OnActionExecuting(context);
         }
 
         /// <summary>

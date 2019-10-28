@@ -155,7 +155,7 @@
           "fields": [
             {
               "name": "id",
-              "type": "BigInt",
+              "type": "VARCHAR_30",
               "remark": "",
               "chnname": "唯一标识",
               "pk": true,
@@ -243,7 +243,7 @@
             },
             {
               "name": "updated_by",
-              "type": "BigInt",
+              "type": "VARCHAR_30",
               "remark": "",
               "chnname": "更新人"
             },
@@ -255,7 +255,7 @@
             },
             {
               "name": "deleted_by",
-              "type": "BigInt",
+              "type": "VARCHAR_30",
               "remark": "",
               "chnname": "删除人"
             },
@@ -321,7 +321,7 @@
           "fields": [
             {
               "name": "id",
-              "type": "BigInt",
+              "type": "VARCHAR_30",
               "remark": "",
               "chnname": "唯一标识",
               "pk": true,
@@ -476,7 +476,7 @@
             },
             {
               "name": "created_by",
-              "type": "BigInt",
+              "type": "VARCHAR_30",
               "remark": "",
               "chnname": "创建人"
             },
@@ -488,7 +488,7 @@
             },
             {
               "name": "updated_by",
-              "type": "BigInt",
+              "type": "VARCHAR_30",
               "remark": "",
               "chnname": "更新人"
             },
@@ -500,7 +500,7 @@
             },
             {
               "name": "deleted_by",
-              "type": "BigInt",
+              "type": "VARCHAR_30",
               "remark": "",
               "chnname": "删除人"
             },
@@ -574,7 +574,7 @@
           "fields": [
             {
               "name": "id",
-              "type": "BigInt",
+              "type": "VARCHAR_30",
               "remark": "",
               "chnname": "唯一标识",
               "pk": true,
@@ -582,7 +582,7 @@
             },
             {
               "name": "user_id",
-              "type": "BigInt",
+              "type": "VARCHAR_30",
               "remark": "",
               "chnname": "用户id",
               "notNull": true
@@ -596,7 +596,7 @@
             },
             {
               "name": "role_id",
-              "type": "BigInt",
+              "type": "VARCHAR_30",
               "remark": "",
               "chnname": "角色id",
               "notNull": true
@@ -664,7 +664,7 @@
           "fields": [
             {
               "name": "id",
-              "type": "BigInt",
+              "type": "VARCHAR_30",
               "remark": "",
               "chnname": "唯一标识",
               "pk": true,
@@ -709,7 +709,7 @@
             },
             {
               "name": "created_by",
-              "type": "BigInt",
+              "type": "VARCHAR_30",
               "remark": "",
               "chnname": "创建人"
             },
@@ -721,7 +721,7 @@
             },
             {
               "name": "updated_by",
-              "type": "BigInt",
+              "type": "VARCHAR_30",
               "remark": "",
               "chnname": "更新人"
             },
@@ -733,7 +733,7 @@
             },
             {
               "name": "deleted_by",
-              "type": "BigInt",
+              "type": "VARCHAR_30",
               "remark": "",
               "chnname": "删除人"
             },
@@ -799,7 +799,7 @@
           "fields": [
             {
               "name": "id",
-              "type": "BigInt",
+              "type": "VARCHAR_30",
               "remark": "",
               "chnname": "唯一标识",
               "pk": true,
@@ -933,7 +933,7 @@
           "fields": [
             {
               "name": "id",
-              "type": "VARCHAR_50",
+              "type": "VARCHAR_30",
               "remark": "",
               "chnname": "唯一标识",
               "pk": true,
@@ -990,7 +990,7 @@
             },
             {
               "name": "created_by",
-              "type": "BigInt",
+              "type": "VARCHAR_30",
               "remark": "",
               "chnname": "创建人"
             },
@@ -1002,7 +1002,7 @@
             },
             {
               "name": "updated_by",
-              "type": "BigInt",
+              "type": "VARCHAR_30",
               "remark": "",
               "chnname": "更新人"
             },
@@ -1014,7 +1014,7 @@
             },
             {
               "name": "deleted_by",
-              "type": "BigInt",
+              "type": "VARCHAR_30",
               "remark": "",
               "chnname": "删除人"
             },
@@ -1080,7 +1080,7 @@
           "fields": [
             {
               "name": "id",
-              "type": "BigInt",
+              "type": "VARCHAR_30",
               "remark": "",
               "chnname": "唯一标识",
               "pk": true,
@@ -1156,7 +1156,7 @@
             },
             {
               "name": "created_by",
-              "type": "BigInt",
+              "type": "VARCHAR_30",
               "remark": "",
               "chnname": "创建人"
             },
@@ -1168,7 +1168,7 @@
             },
             {
               "name": "updated_by",
-              "type": "BigInt",
+              "type": "VARCHAR_30",
               "remark": "",
               "chnname": "更新人"
             },
@@ -1180,7 +1180,7 @@
             },
             {
               "name": "deleted_by",
-              "type": "BigInt",
+              "type": "VARCHAR_30",
               "remark": "",
               "chnname": "删除人"
             },
@@ -1246,7 +1246,7 @@
           "fields": [
             {
               "name": "id",
-              "type": "BigInt",
+              "type": "VARCHAR_30",
               "remark": "",
               "chnname": "唯一标识",
               "pk": true,
@@ -1309,7 +1309,7 @@
             },
             {
               "name": "created_by",
-              "type": "BigInt",
+              "type": "VARCHAR_30",
               "remark": "",
               "chnname": "创建人"
             },
@@ -1321,7 +1321,7 @@
             },
             {
               "name": "updated_by",
-              "type": "BigInt",
+              "type": "VARCHAR_30",
               "remark": "",
               "chnname": "更新人"
             },
@@ -1333,7 +1333,7 @@
             },
             {
               "name": "deleted_by",
-              "type": "BigInt",
+              "type": "VARCHAR_30",
               "remark": "",
               "chnname": "删除人"
             },
@@ -1399,7 +1399,7 @@
           "fields": [
             {
               "name": "id",
-              "type": "BigInt",
+              "type": "VARCHAR_30",
               "remark": "",
               "chnname": "唯一标识",
               "pk": true,
@@ -1443,7 +1443,7 @@
             },
             {
               "name": "created_by",
-              "type": "BigInt",
+              "type": "VARCHAR_30",
               "remark": "",
               "chnname": "创建人"
             },
@@ -1455,7 +1455,7 @@
             },
             {
               "name": "updated_by",
-              "type": "BigInt",
+              "type": "VARCHAR_30",
               "remark": "",
               "chnname": "更新人"
             },
@@ -1467,7 +1467,7 @@
             },
             {
               "name": "deleted_by",
-              "type": "BigInt",
+              "type": "VARCHAR_30",
               "remark": "",
               "chnname": "删除人"
             },
@@ -1533,7 +1533,7 @@
           "fields": [
             {
               "name": "id",
-              "type": "BigInt",
+              "type": "VARCHAR_30",
               "remark": "",
               "chnname": "唯一标识",
               "pk": true,
@@ -1541,7 +1541,7 @@
             },
             {
               "name": "role_id",
-              "type": "BigInt",
+              "type": "VARCHAR_30",
               "remark": "",
               "chnname": "角色id"
             },
@@ -1553,7 +1553,7 @@
             },
             {
               "name": "map_id",
-              "type": "BigInt",
+              "type": "VARCHAR_30",
               "remark": "",
               "chnname": "权限id"
             },
@@ -1760,52 +1760,10 @@
               "chnname": "邮件id"
             },
             {
-              "name": "mail_title",
-              "type": "VARCHAR_500",
-              "remark": "",
-              "chnname": "邮件标题"
-            },
-            {
-              "name": "receiver_id",
+              "name": "user_id",
               "type": "BigInt",
               "remark": "",
-              "chnname": "收件人id"
-            },
-            {
-              "name": "receiver_name",
-              "type": "VARCHAR_128",
-              "remark": "",
-              "chnname": "收件人名称"
-            },
-            {
-              "name": "sender_id",
-              "type": "BigInt",
-              "remark": "",
-              "chnname": "发件人id"
-            },
-            {
-              "name": "sender_name",
-              "type": "VARCHAR_128",
-              "remark": "",
-              "chnname": "发件人名称"
-            },
-            {
-              "name": "attachment_ids",
-              "type": "VARCHAR_500",
-              "remark": "",
-              "chnname": "附件ids"
-            },
-            {
-              "name": "send_time",
-              "type": "DateTime",
-              "remark": "",
-              "chnname": "发件时间"
-            },
-            {
-              "name": "read_time",
-              "type": "DateTime",
-              "remark": "",
-              "chnname": "阅读时间"
+              "chnname": "用户id"
             }
           ],
           "indexs": [],
@@ -2021,417 +1979,6 @@
           ],
           "chnname": "附件信息表",
           "remark": "附件信息表"
-        },
-        {
-          "title": "oa_process_instance",
-          "fields": [
-            {
-              "name": "id",
-              "type": "BigInt",
-              "remark": "",
-              "chnname": "唯一标识",
-              "pk": true,
-              "notNull": true
-            },
-            {
-              "name": "process_id",
-              "type": "BigInt",
-              "remark": "",
-              "chnname": "流程id"
-            },
-            {
-              "name": "status",
-              "type": "DefaultString",
-              "remark": "",
-              "chnname": "当前状态"
-            },
-            {
-              "name": "node_id",
-              "type": "DefaultString",
-              "remark": "",
-              "chnname": "当前节点"
-            },
-            {
-              "name": "auditor",
-              "type": "DefaultString",
-              "remark": "",
-              "chnname": "当前审批人"
-            },
-            {
-              "name": "creater",
-              "type": "DefaultString",
-              "remark": "",
-              "chnname": "发起人"
-            },
-            {
-              "name": "sort",
-              "type": "Integer",
-              "remark": "",
-              "chnname": "排序"
-            },
-            {
-              "name": "group_id",
-              "type": "BigInt",
-              "remark": "",
-              "chnname": "群组id"
-            },
-            {
-              "name": "re_vision",
-              "type": "Integer",
-              "remark": "",
-              "chnname": "乐观锁"
-            },
-            {
-              "name": "created_by",
-              "type": "BigInt",
-              "remark": "",
-              "chnname": "创建人"
-            },
-            {
-              "name": "created_time",
-              "type": "DateTime",
-              "remark": "",
-              "chnname": "创建时间"
-            },
-            {
-              "name": "updated_by",
-              "type": "BigInt",
-              "remark": "",
-              "chnname": "更新人"
-            },
-            {
-              "name": "updated_time",
-              "type": "DateTime",
-              "remark": "",
-              "chnname": "更新时间"
-            },
-            {
-              "name": "deleted_by",
-              "type": "BigInt",
-              "remark": "",
-              "chnname": "删除人"
-            },
-            {
-              "name": "deleted_time",
-              "type": "DateTime",
-              "remark": "",
-              "chnname": "删除时间"
-            }
-          ],
-          "indexs": [],
-          "headers": [
-            {
-              "fieldName": "chnname",
-              "relationNoShow": false
-            },
-            {
-              "fieldName": "name",
-              "relationNoShow": false
-            },
-            {
-              "fieldName": "type",
-              "relationNoShow": false
-            },
-            {
-              "fieldName": "dataType",
-              "relationNoShow": true
-            },
-            {
-              "fieldName": "remark",
-              "relationNoShow": true
-            },
-            {
-              "fieldName": "pk",
-              "relationNoShow": false
-            },
-            {
-              "fieldName": "notNull",
-              "relationNoShow": true
-            },
-            {
-              "fieldName": "autoIncrement",
-              "relationNoShow": true
-            },
-            {
-              "fieldName": "defaultValue",
-              "relationNoShow": true
-            },
-            {
-              "fieldName": "relationNoShow",
-              "relationNoShow": true
-            },
-            {
-              "fieldName": "uiHint",
-              "relationNoShow": true
-            }
-          ],
-          "chnname": "流程实例表"
-        },
-        {
-          "title": "oa_process_manage",
-          "fields": [
-            {
-              "name": "id",
-              "type": "BigInt",
-              "remark": "",
-              "chnname": "唯一标识",
-              "pk": true,
-              "notNull": true
-            },
-            {
-              "name": "process_name",
-              "type": "DefaultString",
-              "remark": "",
-              "chnname": "流程名称"
-            },
-            {
-              "name": "remark",
-              "type": "DefaultString",
-              "remark": "",
-              "chnname": "备注"
-            },
-            {
-              "name": "sort",
-              "type": "Integer",
-              "remark": "",
-              "chnname": "排序"
-            },
-            {
-              "name": "group_id",
-              "type": "BigInt",
-              "remark": "",
-              "chnname": "群组id"
-            },
-            {
-              "name": "re_vision",
-              "type": "Integer",
-              "remark": "",
-              "chnname": "乐观锁"
-            },
-            {
-              "name": "created_by",
-              "type": "BigInt",
-              "remark": "",
-              "chnname": "创建人"
-            },
-            {
-              "name": "created_time",
-              "type": "DateTime",
-              "remark": "",
-              "chnname": "创建时间"
-            },
-            {
-              "name": "updated_by",
-              "type": "BigInt",
-              "remark": "",
-              "chnname": "更新人"
-            },
-            {
-              "name": "updated_time",
-              "type": "DateTime",
-              "remark": "",
-              "chnname": "更新时间"
-            },
-            {
-              "name": "deleted_by",
-              "type": "BigInt",
-              "remark": "",
-              "chnname": "删除人"
-            },
-            {
-              "name": "deleted_time",
-              "type": "DateTime",
-              "remark": "",
-              "chnname": "删除时间"
-            }
-          ],
-          "indexs": [],
-          "headers": [
-            {
-              "fieldName": "chnname",
-              "relationNoShow": false
-            },
-            {
-              "fieldName": "name",
-              "relationNoShow": false
-            },
-            {
-              "fieldName": "type",
-              "relationNoShow": false
-            },
-            {
-              "fieldName": "dataType",
-              "relationNoShow": true
-            },
-            {
-              "fieldName": "remark",
-              "relationNoShow": true
-            },
-            {
-              "fieldName": "pk",
-              "relationNoShow": false
-            },
-            {
-              "fieldName": "notNull",
-              "relationNoShow": true
-            },
-            {
-              "fieldName": "autoIncrement",
-              "relationNoShow": true
-            },
-            {
-              "fieldName": "defaultValue",
-              "relationNoShow": true
-            },
-            {
-              "fieldName": "relationNoShow",
-              "relationNoShow": true
-            },
-            {
-              "fieldName": "uiHint",
-              "relationNoShow": true
-            }
-          ],
-          "chnname": "流程管理表"
-        },
-        {
-          "title": "oa_process_node",
-          "fields": [
-            {
-              "name": "id",
-              "type": "BigInt",
-              "remark": "",
-              "chnname": "唯一标识",
-              "pk": true,
-              "notNull": true
-            },
-            {
-              "name": "process_id",
-              "type": "DefaultString",
-              "remark": "",
-              "chnname": "流程id"
-            },
-            {
-              "name": "node_name",
-              "type": "DefaultString",
-              "remark": "",
-              "chnname": "节点名称"
-            },
-            {
-              "name": "rule",
-              "type": "DefaultString",
-              "remark": "",
-              "chnname": "审批规则"
-            },
-            {
-              "name": "auditor",
-              "type": "DefaultString",
-              "remark": "",
-              "chnname": "审批人"
-            },
-            {
-              "name": "sort",
-              "type": "Integer",
-              "remark": "",
-              "chnname": "排序"
-            },
-            {
-              "name": "group_id",
-              "type": "BigInt",
-              "remark": "",
-              "chnname": "群组id"
-            },
-            {
-              "name": "re_vision",
-              "type": "Integer",
-              "remark": "",
-              "chnname": "乐观锁"
-            },
-            {
-              "name": "created_by",
-              "type": "BigInt",
-              "remark": "",
-              "chnname": "创建人"
-            },
-            {
-              "name": "created_time",
-              "type": "DateTime",
-              "remark": "",
-              "chnname": "创建时间"
-            },
-            {
-              "name": "updated_by",
-              "type": "BigInt",
-              "remark": "",
-              "chnname": "更新人"
-            },
-            {
-              "name": "updated_time",
-              "type": "DateTime",
-              "remark": "",
-              "chnname": "更新时间"
-            },
-            {
-              "name": "deleted_by",
-              "type": "BigInt",
-              "remark": "",
-              "chnname": "删除人"
-            },
-            {
-              "name": "deleted_time",
-              "type": "DateTime",
-              "remark": "",
-              "chnname": "删除时间"
-            }
-          ],
-          "indexs": [],
-          "headers": [
-            {
-              "fieldName": "chnname",
-              "relationNoShow": false
-            },
-            {
-              "fieldName": "name",
-              "relationNoShow": false
-            },
-            {
-              "fieldName": "type",
-              "relationNoShow": false
-            },
-            {
-              "fieldName": "dataType",
-              "relationNoShow": true
-            },
-            {
-              "fieldName": "remark",
-              "relationNoShow": true
-            },
-            {
-              "fieldName": "pk",
-              "relationNoShow": false
-            },
-            {
-              "fieldName": "notNull",
-              "relationNoShow": true
-            },
-            {
-              "fieldName": "autoIncrement",
-              "relationNoShow": true
-            },
-            {
-              "fieldName": "defaultValue",
-              "relationNoShow": true
-            },
-            {
-              "fieldName": "relationNoShow",
-              "relationNoShow": true
-            },
-            {
-              "fieldName": "uiHint",
-              "relationNoShow": true
-            }
-          ],
-          "chnname": "流程节点表"
         }
       ],
       "graphCanvas": {
@@ -3394,7 +2941,7 @@
     "defaultFields": [
       {
         "name": "id",
-        "type": "BigInt",
+        "type": "VARCHAR_30",
         "remark": "",
         "chnname": "唯一标识",
         "pk": true,
@@ -3408,7 +2955,7 @@
       },
       {
         "name": "group_id",
-        "type": "BigInt",
+        "type": "VARCHAR_50",
         "remark": "",
         "chnname": "群组id"
       },
@@ -3420,7 +2967,7 @@
       },
       {
         "name": "created_by",
-        "type": "BigInt",
+        "type": "VARCHAR_30",
         "remark": "",
         "chnname": "创建人"
       },
@@ -3432,7 +2979,7 @@
       },
       {
         "name": "updated_by",
-        "type": "BigInt",
+        "type": "VARCHAR_30",
         "remark": "",
         "chnname": "更新人"
       },
@@ -3444,7 +2991,7 @@
       },
       {
         "name": "deleted_by",
-        "type": "BigInt",
+        "type": "VARCHAR_30",
         "remark": "",
         "chnname": "删除人"
       },
