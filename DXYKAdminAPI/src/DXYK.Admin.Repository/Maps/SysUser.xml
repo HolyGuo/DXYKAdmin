@@ -489,6 +489,11 @@
       Select Count(T.id) From sys_user AS T
       <Include RefId="QueryDataParams" />
     </Statement>
+    <!--查询所有-->
+    <Statement Id="GetAll">
+      Select * From sys_user 
+    </Statement>
+
 
   </Statements>
 </SmartSqlMap>

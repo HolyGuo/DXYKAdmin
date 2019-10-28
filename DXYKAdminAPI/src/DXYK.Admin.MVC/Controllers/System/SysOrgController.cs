@@ -36,9 +36,9 @@ namespace DXYK.Admin.MVC.Controllers.System
         /// 新增单位信息表(sys_org)
         ///</summary>
         [HttpPost]
-        public ResponseMessage<long> Insert([FromBody]SysOrg sysOrg)
+        public ResponseMessage<string> Insert([FromBody]SysOrg sysOrg)
         {
-            return new ResponseMessage<long> { data = _sysOrgService.Insert(sysOrg) };
+            return new ResponseMessage<string> { data = _sysOrgService.Insert(sysOrg) };
         }
 
         ///<summary>

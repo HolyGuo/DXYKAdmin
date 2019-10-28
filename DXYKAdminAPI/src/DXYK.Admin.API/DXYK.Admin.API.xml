@@ -1579,11 +1579,6 @@
             Api鉴权
             </summary>
         </member>
-        <member name="P:DXYK.Admin.API.Filters.ApiAuthorize.Modules">
-            <summary>
-            模块别名，可配置更改
-            </summary>
-        </member>
         <member name="P:DXYK.Admin.API.Filters.ApiAuthorize.ActionCode">
             <summary>
             Action编码

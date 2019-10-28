@@ -73,6 +73,11 @@ namespace DXYK.Admin.Repository
         ///</summary>
         [Statement(Id = "QueryDataByPage")]
         Task<List<object>> QueryDataByPageAsync(object param);
+        /// <summary>
+        /// 查询所有
+        /// </summary>
+        [Statement(Id = "GetAll")]
+        List<SysUser> GetAll();
     }
 }
 
