@@ -193,7 +193,7 @@ namespace DXYK.Admin.API.Controllers
         {
             List<object> reslst = new List<object>();
             List<SysOrg> col1 = _sysOrgService.GetAll();
-            var col2 = col1.Where(t => t.parent_id == 0);
+            var col2 = col1.Where(t => t.parent_id == "0");
 
             foreach (SysOrg item in col2)
             {
@@ -248,7 +248,7 @@ namespace DXYK.Admin.API.Controllers
             }
 
             //构建树结果
-            foreach (SysOrg item in col3.Where(t=>t.parent_id == 0))
+            foreach (SysOrg item in col3.Where(t=>t.parent_id == "0"))
             {
                 treedata node = getNode(item, col3);
                 
@@ -259,7 +259,7 @@ namespace DXYK.Admin.API.Controllers
 
         private void getTree(List<SysOrg> col1 , List<SysOrg> col2, SysOrg node)
         {
-            if(node.parent_id != 0 && col2.Where(t=>t.id == node.parent_id).Count() == 0)
+            if(node.parent_id != "0" && col2.Where(t=>t.id == node.parent_id).Count() == 0)
             {
                 SysOrg parent = col1.Where(t => t.id == node.parent_id).FirstOrDefault();
                 col2.Add(parent);
@@ -273,7 +273,7 @@ namespace DXYK.Admin.API.Controllers
                 id = item.id,
                 name = item.org_name,
                 enabled = item.dept_type,
-                pid = (long)item.parent_id,
+                pid = item.parent_id,
                 createTime = item.created_time.ToString(),
                 label = item.org_name
             };
@@ -293,10 +293,10 @@ namespace DXYK.Admin.API.Controllers
 
         private class treedata
         {
-            public long id;
+            public string id;
             public string name;
             public string enabled;
-            public long pid;
+            public string pid;
             public List<treedata> children;
             public string createTime;
             public string label;

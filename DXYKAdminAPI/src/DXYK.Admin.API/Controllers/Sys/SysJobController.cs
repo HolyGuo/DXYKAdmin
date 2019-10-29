@@ -213,7 +213,7 @@ namespace DXYK.Admin.API.Controllers
                     id = org.id,
                     name = org.org_name,
                     enabled = org.dept_type,
-                    pid = (long)org.parent_id,
+                    pid = org.parent_id,
                     createTime = org.created_time.ToString(),
                     label = org.org_name
                 };
