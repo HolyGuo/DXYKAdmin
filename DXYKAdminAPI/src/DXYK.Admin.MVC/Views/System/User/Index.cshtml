@@ -1,10 +1,18 @@
 ﻿@{
     ViewData["Title"] = "用户管理";
     Layout = "~/Views/Shared/_LayoutContent.cshtml";
+    <link rel="stylesheet" href="~/lib/zTree/css/metroStyle/metroStyle.css" media="all" asp-append-version="true">
+    @*<script src="~/lib/zTree/jquery-1.4.4.min.js" media="all" asp-append-version="true"></script>*@
+    <script src="~/lib/zTree/jquery.ztree.core.min.js" media="all" asp-append-version="true"></script>
 }
 <div class="layui-fluid">
     <div class="layui-row layui-col-space15">
-        <div class="layui-col-md12">
+        <div class="layui-col-md3">
+            <div id="orgTree">
+
+            </div>
+        </div>
+        <div class="layui-col-md9">
             <div class="layui-card">
                 <div class="layui-card-body">
                     <div class="test-table-reload-btn" style="margin-bottom: 10px;">
@@ -147,11 +155,12 @@
         </div>
     </div>
 </div>
-<script>
+
+@*<script>
     layui.config({
         base: '/lib/layuiadmin/' //静态资源所在路径
     }).extend({
         index: 'lib/index', //主入口模块
         user: 'system/user'
     }).use(['index', 'user']);
-</script>
+</script>*@

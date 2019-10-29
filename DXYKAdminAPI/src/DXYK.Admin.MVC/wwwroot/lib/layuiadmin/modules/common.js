@@ -52,11 +52,12 @@ layui.define(function (exports) {
             //}
             if (setter.request.tokenName) {
                 //自动给参数传入默认 token
+                if (data == null) {
+                    data = {};
+                }
                 data[setter.request.tokenName] = setter.request.tokenName in data
                     ? data[setter.request.tokenName]
                     : (layui.data(setter.tableName)[setter.request.tokenName] || '');
-                //options.data[request.tokenName] = layui.data(setter.tableName)[request.tokenName];
-
                 //自动给 Request Headers 传入 token
                 _headers[setter.request.tokenName] = setter.request.tokenName in _headers
                     ? _headers[setter.request.tokenName]

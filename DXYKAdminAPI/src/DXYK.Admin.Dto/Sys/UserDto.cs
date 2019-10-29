@@ -100,7 +100,7 @@ namespace DXYK.Admin.Dto.Sys
         ///<summary>
         /// 部门Id
         ///</summary>
-        public virtual long? org_id { get; set; }
+        public virtual string org_id { get; set; }
 
         ///<summary>
         /// 最近一次登录时间

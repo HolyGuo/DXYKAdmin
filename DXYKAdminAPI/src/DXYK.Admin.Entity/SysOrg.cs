@@ -15,7 +15,7 @@ namespace DXYK.Admin.Entity
         ///<summary>
         /// 唯一标识
         ///</summary>
-        public virtual long id { get; set; }
+        public virtual string id { get; set; }
         ///<summary>
         /// 结构名称
         ///</summary>
@@ -23,11 +23,11 @@ namespace DXYK.Admin.Entity
         ///<summary>
         /// 上级id
         ///</summary>
-        public virtual long parent_id { get; set; }
+        public virtual string parent_id { get; set; }
         ///<summary>
         /// 对应sys_user表中的id
         ///</summary>
-        public virtual long? leader_id { get; set; }
+        public virtual string leader_id { get; set; }
         ///<summary>
         /// 单位类型
         ///</summary>

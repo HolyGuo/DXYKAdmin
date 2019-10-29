@@ -395,5 +395,14 @@
       </Where>
     </Statement>
 
+    <!--查询当前群组的所有信息-->
+    <Statement Id="QueryData" >
+      SELECT
+      <Include RefId="AllCols" />
+      FROM sys_org T
+      WHERE T.group_id = @group_id
+      ORDER BY parent_id ASC
+    </Statement>
+
   </Statements>
 </SmartSqlMap>

@@ -74,6 +74,10 @@ namespace DXYK.Admin.Extensions.JWT
         /// <returns></returns>
         public static TokenModel SerializeJWT(string jwtStr)
         {
+            if (string.IsNullOrWhiteSpace(jwtStr))
+            {
+                return null;
+            }
             var jwtHandler = new JwtSecurityTokenHandler();
             JwtSecurityToken jwtToken = jwtHandler.ReadJwtToken(jwtStr);
 

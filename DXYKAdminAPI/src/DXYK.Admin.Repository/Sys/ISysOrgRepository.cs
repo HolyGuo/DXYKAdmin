@@ -81,6 +81,15 @@ namespace DXYK.Admin.Repository
         ///</summary>
         [Statement(Id = "QueryDataByNameAndType")]
         List<SysOrg> QueryDataByNameAndType([Param("org_name")]string org_name, [Param("dept_type")]string dept_type);
+
+        /// <summary>
+        /// 查询当前群组的所有信息
+        /// </summary>
+        /// <returns></returns>
+        [Statement(Id = "QueryData")]
+        List<SysOrg> QueryData(string group_id);
+
+
     }
 }
 

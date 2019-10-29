@@ -12,8 +12,8 @@ using DXYK.Admin.Repository;
 namespace DXYK.Admin.Service
 {
     ///<summary>
-        /// 单位信息表
-        ///</summary>
+    /// 单位信息表
+    ///</summary>
     public class SysOrgService
     {
 
@@ -25,7 +25,7 @@ namespace DXYK.Admin.Service
         ///<summary>
         ///SysOrgService 构造函数
         ///</summary>
-        public SysOrgService (ISysOrgRepository sysOrgRepository)
+        public SysOrgService(ISysOrgRepository sysOrgRepository)
         {
             SysOrgRepository = sysOrgRepository;
         }
@@ -41,7 +41,7 @@ namespace DXYK.Admin.Service
         ///<summary>
         ///异步新增
         ///</summary>
-        public  async Task<string> InsertAsync(SysOrg sysOrg)
+        public async Task<string> InsertAsync(SysOrg sysOrg)
         {
             return await SysOrgRepository.InsertAsync(sysOrg);
         }
@@ -57,7 +57,7 @@ namespace DXYK.Admin.Service
         ///<summary>
         ///异步删除
         ///</summary>
-        public  async Task<int> DeleteByIdAsync(string id)
+        public async Task<int> DeleteByIdAsync(string id)
         {
             return await SysOrgRepository.DeleteByIdAsync(id);
         }
@@ -141,6 +141,40 @@ namespace DXYK.Admin.Service
         public List<SysOrg> QueryDataByNameAndType(string org_name, string dept_type)
         {
             return SysOrgRepository.QueryDataByNameAndType(org_name, dept_type);
+        }
+
+        /// <summary>
+        /// 查询当前单位及下级单位
+        /// </summary>
+        /// <param name="id">当前单位id</param>
+        /// <param name="group_id">群组id</param>
+        /// <returns></returns>
+        public List<SysOrg> QueryDataByAuthorize(string id, string group_id)
+        {
+            List<SysOrg> resList = null;
+            List<SysOrg> list = SysOrgRepository.QueryData(group_id);
+            if (list != null && list.Count > 0)
+            {
+                resList = new List<SysOrg>();
+                //当前单位为根节点
+                SysOrg rootOrg = list.Where(s => s.id == id).FirstOrDefault();
+                resList.Add(rootOrg);
+                GetChildOrg(resList, list, id);
+            }
+            return resList;
+        }
+
+        private void GetChildOrg(List<SysOrg> resList, List<SysOrg> orgList, string org_id)
+        {
+            List<SysOrg> childList = orgList.Where(s => s.parent_id == org_id).ToList();
+            if (childList != null && childList.Count > 0)
+            {
+                resList.AddRange(childList);
+                foreach (SysOrg item in childList)
+                {
+                    GetChildOrg(resList, orgList, item.id);
+                }
+            }
         }
 
 

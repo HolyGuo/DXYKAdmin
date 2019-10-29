@@ -58,7 +58,7 @@ layui.define(function (exports) {
                             //监听提交
                             form.on('submit(LAY-user-front-submit)', function (data) {
                                 var field = data.field; //获取提交的字段
-                                com.ajax("修改", '../api/SysUser/Update', 'put', true, field, function (res, layerIndex) {
+                                com.ajax("修改", '../api/SysUser/Update', 'put', true, field, function (res) {
                                     if (res.success === true) {
                                         active.reload();//重载表格
                                         layer.close(index); //执行关闭 
@@ -83,7 +83,7 @@ layui.define(function (exports) {
             },//edit end
             delete: function (id, name) {
                 layer.confirm('你确定要删除用户：' + name, function (index) {
-                    com.ajax('删除', '../api/SysUser/DeleteById?id=' + id, 'delete', true, { id: id }, function (res, layerIndex) {
+                    com.ajax('删除', '../api/SysUser/DeleteById?id=' + id, 'delete', true, { id: id }, function (res) {
                         if (res.success === true && res.data > 0) {
                             layer.msg('删除成功！', {
                                 icon: 1,
@@ -179,6 +179,37 @@ layui.define(function (exports) {
             queryParam.order = obj.type; //排序方式
             active.reload(obj);
         });
+
+        var orgZtree = function GetOrg() {
+            com.ajax('查询组织机构', '../api/SysOrg/QueryDataByAuthorize', 'get', true, null, function (res) {
+                if (!res.success || !res.data) {
+                    console.log("组织机构加载失败");
+                    return;
+                }
+                //将zNodes显示到zTree
+                var setting = {
+                    data: {
+                        simpleData: { enable: true }
+                    },
+                    check: {
+                        enable: false
+                    },
+                    view: {
+                        dblClickExpand: true,
+                        showLine: true,
+                        selectedMulti: false
+                    },
+                    callback: {
+                        onClick: function (event, treeId, treeNode) {
+
+                        }
+                    }
+                };
+                $.fn.zTree.init($("#orgTree"), setting, res.data);
+            });//ajax end
+
+
+        }();
 
     });//layui.use end
 
