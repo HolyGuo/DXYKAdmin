@@ -6,7 +6,8 @@ layui.define(function (exports) {
             form = layui.form,
             com = layui.common.Utils,
             table = layui.table,
-            formTool = layui.formtool;
+            formTool = layui.formtool,
+            setter = layui.setter;
 
         var queryParam = { keyWords: "", field: "id", order: "desc" };
         var $ = layui.$, active = {
@@ -29,18 +30,13 @@ layui.define(function (exports) {
                     //监听提交
                     form.on('submit(LAY-user-front-submit)', function (data) {
                         var field = data.field; //获取提交的字段
-                        com.ajax('../api/SysUser/Insert', 'post', true, field, function (res) {
+                        com.ajax('添加', '../api/SysUser/Insert', 'post', true, field, function (res) {
                             if (res.success === true) {
-                                layer.msg('保存成功！', {
-                                    icon: 1,
-                                    time: 2000 //2秒关闭（如果不配置，默认是3秒）
-                                }, function () {
-                                    active.reload();//重载表格
-                                    layer.close(index); //执行关闭 
-                                });
+                                active.reload();//重载表格
+                                layer.close(index); //执行关闭 
                             } else {
                                 layer.msg('保存失败！', {
-                                    icon: 2,
+                                    icon: 5,
                                     time: 2000 //2秒关闭（如果不配置，默认是3秒）
                                 });
                             }
@@ -52,7 +48,7 @@ layui.define(function (exports) {
             },//add end
             edit: function (id) {
                 //查询当前条数据
-                com.ajax('../api/SysUser/GetById', 'get', true, { id: id }, function (res) {
+                com.ajax(null, '../api/SysUser/GetById', 'get', true, { id: id }, function (res) {
                     if (res.success === true) {
                         com.layerOpen("LAY-popup-user-add", "from_user", "添加用户", true, 680, 560, function (layero, index) {
                             form.render(null, 'from_user');
@@ -62,18 +58,13 @@ layui.define(function (exports) {
                             //监听提交
                             form.on('submit(LAY-user-front-submit)', function (data) {
                                 var field = data.field; //获取提交的字段
-                                com.ajax('../api/SysUser/Update', 'put', true, field, function (res) {
+                                com.ajax("修改", '../api/SysUser/Update', 'put', true, field, function (res, layerIndex) {
                                     if (res.success === true) {
-                                        layer.msg('保存成功！', {
-                                            icon: 1,
-                                            time: 2000 //2秒关闭（如果不配置，默认是3秒）
-                                        }, function () {
-                                            active.reload();//重载表格
-                                            layer.close(index); //执行关闭 
-                                        });
+                                        active.reload();//重载表格
+                                        layer.close(index); //执行关闭 
                                     } else {
                                         layer.msg('保存失败！', {
-                                            icon: 2,
+                                            icon: 5,
                                             time: 2000 //2秒关闭（如果不配置，默认是3秒）
                                         });
                                     }
@@ -90,9 +81,9 @@ layui.define(function (exports) {
                     }
                 });//ajax end
             },//edit end
-            delete: function (id) {
-                layer.confirm('你确定要删除用户：' + data.true_name, function (index) {
-                    com.ajax(layui.setter.apiUri + '/api/SysUser/DeleteById?id=' + id, 'delete', true, null, function (res) {
+            delete: function (id, name) {
+                layer.confirm('你确定要删除用户：' + name, function (index) {
+                    com.ajax('删除', '../api/SysUser/DeleteById?id=' + id, 'delete', true, { id: id }, function (res, layerIndex) {
                         if (res.success === true && res.data > 0) {
                             layer.msg('删除成功！', {
                                 icon: 1,
@@ -102,7 +93,7 @@ layui.define(function (exports) {
                             });
                         } else {
                             layer.msg('删除失败！', {
-                                icon: 2,
+                                icon: 5,
                                 time: 2000 //2秒关闭（如果不配置，默认是3秒）
                             });
                         }
@@ -138,29 +129,28 @@ layui.define(function (exports) {
                 field: 'id'
                 , type: 'desc'
             },
+            headers: {
+                Authorization: (layui.data(setter.tableName)[setter.request.tokenName])
+            },
             where: queryParam,
             cols: [[
-                // { field: 'id', title: 'ID', width: 80, fixed: 'left', hide: true },
+
                 { type: 'numbers' },
                 //{ field: 'id', title: 'ID', width: 80, fixed: 'left' },
+                { field: 'id', title: 'ID', width: 80, fixed: 'left', hide: true },
                 { field: 'true_name', title: '姓名', width: 120, sort: true },
-                // { field: 'nick_name', title: '昵称', width: 120, sort: true },
+                { field: 'nick_name', title: '昵称', width: 120, sort: true },
                 { field: 'login_name', title: '登录名', width: 150, sort: true },
                 { field: 'is_enable', title: '是否启用', width: 150, sort: true, templet: '#is_enable_Tpl' },
                 { field: 'sex', title: '性别', width: 80, sort: true },
-                //{ field: 'head_pic', title: '头像', width: 120, sort: true }, 
                 { field: 'telephone', title: '电话', width: 120, sort: true },
                 { field: 'mobile', title: '手机', width: 120, sort: true },
                 { field: 'email', title: '邮箱', width: 200, sort: true },
-                // { field: 'role_id', title: '角色id', width: 120, sort: true, hide: true },
-                // { field: 'dept_id', title: '部门id', width: 120, sort: true, hide: true },
-                { field: 'org_name', title: '部门', width: 120, sort: true },
                 { field: 'wx_id', title: '微信号', width: 120, sort: true },
                 { field: 'wx_name', title: '微信昵称', width: 120, sort: true },
                 { field: 'qq_id', title: 'QQ号', width: 120, sort: true },
                 { field: 'qq_name', title: 'QQ昵称', width: 120, sort: true },
                 { field: 'summary', title: '备注', width: 120, sort: true },
-                // { field: 'sort', title: '排序', width: 120, sort: true },
                 { fixed: 'right', title: '操作', toolbar: '#test-table-toolbar-barDemo', width: 115, align: 'center' }
             ]],
             page: true,
@@ -170,9 +160,9 @@ layui.define(function (exports) {
 
         //监听行工具事件
         table.on('tool(test-table-toolbar)', function (obj) {
-            var id = obj.data.id + "";
+            var id = obj.data.id;
             if (obj.event === 'del') {
-                active.delete(id);
+                active.delete(id, obj.data.true_name);
             } else if (obj.event === 'edit') {
                 active.edit(id);
             } else {

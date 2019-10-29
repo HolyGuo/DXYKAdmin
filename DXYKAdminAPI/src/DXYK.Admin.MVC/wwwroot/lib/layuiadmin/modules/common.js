@@ -42,7 +42,7 @@ layui.define(function (exports) {
 
     Utils = {
         v: "V1.0",
-        ajax: function (url, method = 'post', async, data, callFun) {
+        ajax: function (actionMsg, url, method = 'post', async, data, callFun) {
             var _headers = {};
             //var access_token = setter.request.tokenName;
             //if (access_token !== null) {
@@ -64,7 +64,8 @@ layui.define(function (exports) {
                 //options.headers[request.tokenName] = layui.data(setter.tableName)[request.tokenName];
             }
             //_headers = JSON.stringify(_headers);
-            data = ((method === 'get') || (method === 'delete')) ? data : JSON.stringify(data);
+            //data = ((method === 'get') || (method === 'delete')) ? data : JSON.stringify(data);
+            data = method === 'get' ? data : JSON.stringify(data);
             // var tData = null;
             // if (method === 'get') {
             //   tData = data;
@@ -72,6 +73,7 @@ layui.define(function (exports) {
             //   tData = JSON.stringify(data);
             // }
             // data = method === 'get' ? data : JSON.stringify(data);
+            var layerIndex = null;
             $.ajax({
                 url: url,
                 type: method,
@@ -80,14 +82,40 @@ layui.define(function (exports) {
                 contentType: 'application/json',
                 headers: _headers,
                 async: async,
+                beforeSend: function () {
+                    layerIndex = layer.open({ type: 3 });
+                },
                 success: function (res) {
-                    callFun(res);
+                    callFun(res, layerIndex);
+                },
+                complete: function (data) {
+                    //layer.close(layerIndex);
+                    if (actionMsg != null) {
+                        layer.msg(actionMsg + '成功！', {
+                            icon: 1,
+                            time: 2000 //2秒关闭（如果不配置，默认是3秒）,
+                        }, function () {
+                            layer.close(layerIndex);
+                        });
+                    } else {
+                        layer.close(layerIndex);
+                    }
                 },
                 error: function (xhr, type, errorThrown) {
                     if (type === 'timeout') {
                         console.log(url + '连接超时，请稍后重试！');
                     } else if (type === 'error') {
                         console.log(url + '连接异常，请稍后重试！');
+                    }
+                    if (actionMsg != null) {
+                        layer.msg(actionMsg + '失败！', {
+                            icon: 5,
+                            time: 2000 //2秒关闭（如果不配置，默认是3秒）,
+                        }, function () {
+                            layer.close(layerIndex);
+                        });
+                    } else {
+                        layer.close(layerIndex);
                     }
                 }
             });

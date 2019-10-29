@@ -26,6 +26,10 @@ namespace DXYK.Admin.MVC.Messages
     public class QueryByPageRequest : QueryRequest
     {
         /// <summary>
+        /// 群组id
+        /// </summary>
+        public string groupId { get; set; }
+        /// <summary>
         /// 查询关键字
         /// </summary>
         public string keyWords { get; set; }

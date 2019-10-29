@@ -46,6 +46,7 @@ namespace DXYK.Admin.MVC.Controllers.System
             UserInfo user = GetCurrentUser.GetUserInfo(Request.HttpContext);
             sysUser.created_by = user.id;
             sysUser.created_time = DateTime.Now;
+            sysUser.group_id = user.group_id;//数据新增时确定group_id
             return new ResponseMessage<string> { data = _sysUserService.Insert(sysUser) };
         }
 
@@ -88,6 +89,8 @@ namespace DXYK.Admin.MVC.Controllers.System
         [HttpPost]
         public ResponseMessageWrap<object> QueryDataByPage([FromBody]QueryByPageRequest reqMsg)
         {
+            UserInfo user = GetCurrentUser.GetUserInfo(Request.HttpContext);
+            reqMsg.groupId = user.group_id;
             var total = _sysUserService.QueryDataRecord(reqMsg);
             var list = _sysUserService.QueryDataByPage(reqMsg);
             return new ResponseMessageWrap<object> { count = total, data = list };

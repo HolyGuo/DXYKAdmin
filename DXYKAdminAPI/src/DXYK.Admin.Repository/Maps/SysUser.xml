@@ -430,6 +430,12 @@
     <!---自定义  查询参数-->
     <Statement Id="QueryDataParams">
       <Where>
+        <IsNotEmpty Prepend="AND" Property="groupId">
+          T.group_id = @groupId 
+        </IsNotEmpty>
+        <IsNotEmpty Prepend="" Property="keyWords">
+          AND ( T.true_name LIKE CONCAT('%',@keyWords,'%')
+        </IsNotEmpty>
         <IsNotEmpty Prepend="OR" Property="keyWords">
           T.true_name LIKE CONCAT('%',@keyWords,'%')
         </IsNotEmpty>
@@ -467,7 +473,7 @@
           T.qq_id LIKE CONCAT('%',@keyWords,'%')
         </IsNotEmpty>
         <IsNotEmpty Prepend="OR" Property="keyWords">
-          T.qq_name LIKE CONCAT('%',@keyWords,'%')
+          T.qq_name LIKE CONCAT('%',@keyWords,'%')  )
         </IsNotEmpty>
       </Where>
     </Statement>
@@ -491,7 +497,7 @@
     </Statement>
     <!--查询所有-->
     <Statement Id="GetAll">
-      Select * From sys_user 
+      Select * From sys_user
     </Statement>
 
 
