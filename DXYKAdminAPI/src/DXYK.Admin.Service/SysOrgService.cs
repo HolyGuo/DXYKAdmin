@@ -8,6 +8,7 @@ using System.Threading.Tasks;
 using System.Collections.Generic;
 using DXYK.Admin.Entity;
 using DXYK.Admin.Repository;
+using DXYK.Admin.Dto.Cmomon;
 
 namespace DXYK.Admin.Service
 {
@@ -176,6 +177,46 @@ namespace DXYK.Admin.Service
                 }
             }
         }
+
+        public LayUITreeDto QueryDataByAuthorizeForLayUITree(string id, string group_id)
+        {
+            LayUITreeDto res = null;
+            List<SysOrg> list = SysOrgRepository.QueryData(group_id);
+            if (list != null && list.Count > 0)
+            {
+                res = new LayUITreeDto();
+                //当前单位为根节点
+                SysOrg rootOrg = list.Where(s => s.id == id).FirstOrDefault();
+                res.name = rootOrg.org_name;
+                //res.id = rootOrg.id;
+                //res.pId = rootOrg.parent_id;
+                //res.obj = rootOrg;
+                GetChildOrg(res, list, id);
+            }
+            return res;
+        }
+        private void GetChildOrg(LayUITreeDto res, List<SysOrg> orgList, string org_id)
+        {
+            List<SysOrg> childList = orgList.Where(s => s.parent_id == org_id).ToList();
+            if (childList != null && childList.Count > 0)
+            {
+                foreach (SysOrg item in childList)
+                {
+                    LayUITreeDto node = new LayUITreeDto();
+                    node.name = item.org_name;
+                    //node.id = item.id;
+                    //node.pId = item.parent_id;
+                    //node.obj = item;
+                    if (res.children == null)
+                    {
+                        res.children = new List<LayUITreeDto>();
+                    }
+                    res.children.Add(node);
+                    GetChildOrg(res, orgList, item.id);
+                }
+            }
+        }
+
 
 
 

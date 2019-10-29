@@ -1,22 +1,16 @@
-//layui.config({
-//    base: '/lib/layuiadmin/' //静态资源所在路径
-//}).extend({
-//    index: 'lib/index', //主入口模块
-//    ztree: 'lib/zTree/ztree'
-//}).
 layui.define(function (exports) {
-    layui.use(['table', 'form', 'common', 'formtool', 'jquery', 'tree'], function () {
-        var $ = layui.jquery,
+
+    layui.use(['admin', 'table', 'jquery', 'form', 'common', 'formtool'], function () {
+        var admin = layui.admin,
             view = layui.view,
             form = layui.form,
             com = layui.common.Utils,
             table = layui.table,
             formTool = layui.formtool,
-            tree = layui.tree,
             setter = layui.setter;
 
         var queryParam = { keyWords: "", field: "id", order: "desc" };
-        var active = {
+        var $ = layui.$, active = {
             reload: function (initSort) {
                 //执行重载
                 table.reload('test-table-toolbar', {
@@ -91,7 +85,12 @@ layui.define(function (exports) {
                 layer.confirm('你确定要删除用户：' + name, function (index) {
                     com.ajax('删除', '../api/SysUser/DeleteById?id=' + id, 'delete', true, { id: id }, function (res) {
                         if (res.success === true && res.data > 0) {
-                            active.reload();//重载表格
+                            layer.msg('删除成功！', {
+                                icon: 1,
+                                time: 2000 //2秒关闭（如果不配置，默认是3秒）
+                            }, function () {
+                                active.reload();//重载表格
+                            });
                         } else {
                             layer.msg('删除失败！', {
                                 icon: 5,
@@ -103,7 +102,7 @@ layui.define(function (exports) {
                 });
             }//delete end
 
-        };//active end
+        }//active end
 
         //搜索
         $('.test-table-reload-btn .layui-btn').on('click', function () {
@@ -113,7 +112,7 @@ layui.define(function (exports) {
         });
 
         $(".test-table-reload-btn .layui-input").bind('keydown', function (e) {
-            if (e.keyCode === 13) {
+            if (e.keyCode == 13) {
                 e.preventDefault();
                 $(".test-table-reload-btn .layui-btn")[0].click();
             }
@@ -180,38 +179,39 @@ layui.define(function (exports) {
             queryParam.order = obj.type; //排序方式
             active.reload(obj);
         });
-        com.ajax('查询组织结构', '../api/SysOrg/QueryDataByAuthorize', 'get', true, null, function (res) {
-            if (res.success === true && res.data.length > 0) {
-                var inst1 = layui.tree({
-                    elem: '#orgTree',  //绑定元素
-                    nodes: res.data
-                });
-            } else {
-                layer.msg('删除失败！', {
-                    icon: 5,
-                    time: 2000 //2秒关闭（如果不配置，默认是3秒）
-                });
-            }
-        });//ajax end
-        var orgTree = function () {
-            com.ajax('查询组织结构', '../api/SysOrg/QueryDataByAuthorize', 'get', true, null, function (res) {
-                if (res.success === true && res.data.length > 0) {
-                    var inst1 = layui.tree({
-                        elem: '#orgTree',  //绑定元素
-                        data: res.data
-                    });
-                } else {
-                    layer.msg('删除失败！', {
-                        icon: 5,
-                        time: 2000 //2秒关闭（如果不配置，默认是3秒）
-                    });
+
+        var orgZtree = function GetOrg() {
+            com.ajax('查询组织机构', '../api/SysOrg/QueryDataByAuthorize', 'get', true, null, function (res) {
+                if (!res.success || !res.data) {
+                    console.log("组织机构加载失败");
+                    return;
                 }
+                //将zNodes显示到zTree
+                var setting = {
+                    data: {
+                        simpleData: { enable: true }
+                    },
+                    check: {
+                        enable: false
+                    },
+                    view: {
+                        dblClickExpand: true,
+                        showLine: true,
+                        selectedMulti: false
+                    },
+                    callback: {
+                        onClick: function (event, treeId, treeNode) {
+
+                        }
+                    }
+                };
+                $.fn.zTree.init($("#orgTree"), setting, res.data);
             });//ajax end
 
-        }
 
+        }();
 
-        //exports('user', {});
-    });//layui.define end
+    });//layui.use end
+
     exports('user', {})
 });//layui.define end

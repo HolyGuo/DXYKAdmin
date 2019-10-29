@@ -23,4 +23,9 @@
     <ProjectReference Include="..\DXYK.Admin.Service\DXYK.Admin.Service.csproj" />
   </ItemGroup>
 
+
+  <ItemGroup>
+    <Folder Include="wwwroot\js\" />
+  </ItemGroup>
+
 </Project>

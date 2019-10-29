@@ -86,31 +86,26 @@ namespace DXYK.Admin.MVC.Controllers.System
         ///<summary>
         /// 根据分页查询单位信息表(sys_org)
         ///</summary>
+        //[HttpGet]
+        //public ResponseMessageWrap<LayUITreeDto> QueryDataByAuthorize()
+        //{
+        //    UserInfo user = GetCurrentUser.GetUserInfo(Request.HttpContext);
+        //    LayUITreeDto tree = _sysOrgService.QueryDataByAuthorizeForLayUITree(user.org_id, user.group_id);
+        //    return new ResponseMessageWrap<LayUITreeDto> { data = tree };
+        //}
+
+        ///<summary>
+        /// 根据分页查询单位信息表(sys_org)
+        ///</summary>
         [HttpGet]
-        public ResponseMessageWrap<List<ZTreeDto>> QueryDataByAuthorize()
+        public ResponseMessageWrap<List<LayUITreeDto>> QueryDataByAuthorize()
         {
             UserInfo user = GetCurrentUser.GetUserInfo(Request.HttpContext);
-            List<SysOrg> listOrg = _sysOrgService.QueryDataByAuthorize(user.org_id, user.group_id);
-            List<ZTreeDto> tree = null;
-            if (listOrg != null && listOrg.Count > 0)
-            {
-                tree = new List<ZTreeDto>();
-                foreach (SysOrg item in listOrg)
-                {
-                    ZTreeDto t = new ZTreeDto();
-                    t.id = item.id;
-                    t.name = item.org_name;
-                    //t.open = false;
-                    t.pId = item.parent_id;
-                    t.obj = item;
-                    t.objId = item.id;
-                    tree.Add(t);
-                }
-            }
-            return new ResponseMessageWrap<List<ZTreeDto>> { data = tree };
+            LayUITreeDto tree = _sysOrgService.QueryDataByAuthorizeForLayUITree(user.org_id, user.group_id);
+            List<LayUITreeDto> ss = new List<LayUITreeDto>();
+            ss.Add(tree);
+            return new ResponseMessageWrap<List<LayUITreeDto>> { data = ss };
         }
-
-
 
     }
 }
