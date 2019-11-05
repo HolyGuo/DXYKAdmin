@@ -54,6 +54,10 @@ namespace DXYK.Admin.Dto.Sys
         /// </summary>
         public virtual string menu_jump { get; set; }
         /// <summary>
+        /// 菜单排序
+        /// </summary>
+        public virtual string menu_sort { get; set; }
+        /// <summary>
         /// 功能编码
         /// </summary>
         public virtual string action_code { get; set; }
@@ -70,6 +74,10 @@ namespace DXYK.Admin.Dto.Sys
         /// 地址url
         ///</summary>
         public virtual string action_url { get; set; }
+        /// <summary>
+        /// 功能排序
+        /// </summary>
+        public virtual string action_sort { get; set; }
 
     }
 }

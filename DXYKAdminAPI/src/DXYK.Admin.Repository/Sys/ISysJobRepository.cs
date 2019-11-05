@@ -75,13 +75,15 @@ namespace DXYK.Admin.Repository
         /// 根据名称和状态获取数据列
         ///</summary>
         [Statement(Id = "QueryDataByNameAndTypeByPage")]
-        List<SysJob> QueryDataByNameAndTypeByPage([Param("job_name")]string job_name, [Param("is_enable")]string is_enable, [Param("OrderBy")]string OrderBy,
-            [Param("limit")]int limit, [Param("offset")]int offset);
+        List<SysJob> QueryDataByNameAndTypeByPage([Param("job_name")]string job_name,
+            [Param("is_enable")]string is_enable, [Param("org_id")]string org_id,
+            [Param("OrderBy")]string OrderBy, [Param("limit")]int limit, [Param("offset")]int offset);
         ///<summary>
         /// 根据名称和状态获取数据列
         ///</summary>
         [Statement(Id = "QueryDataByNameAndType")]
-        int QueryDataByNameAndType([Param("job_name")]string job_name, [Param("is_enable")]string is_enable);
+        int QueryDataByNameAndType([Param("job_name")]string job_name, [Param("is_enable")]string is_enable,
+            [Param("org_id")] string org_id);
     }
 }
 

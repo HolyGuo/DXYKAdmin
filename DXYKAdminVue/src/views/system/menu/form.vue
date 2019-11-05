@@ -14,41 +14,17 @@
           </el-input>
         </el-popover>
       </el-form-item>
-      <el-form-item label="菜单名称" prop="name">
-        <el-input v-model="form.name" placeholder="名称" style="width: 450px;"/>
-      </el-form-item>
-      <el-form-item label="内部菜单">
-        <el-radio-group v-model="form.iframe" size="mini">
-          <el-radio-button label="false">是</el-radio-button>
-          <el-radio-button label="true">否</el-radio-button>
-        </el-radio-group>
-      </el-form-item>
-      <el-form-item label="是否缓存">
-        <el-radio-group v-model="form.cache" size="mini">
-          <el-radio-button label="true">是</el-radio-button>
-          <el-radio-button label="false">否</el-radio-button>
-        </el-radio-group>
-      </el-form-item>
-      <el-form-item label="是否隐藏">
-        <el-radio-group v-model="form.hidden" size="mini">
-          <el-radio-button label="true">是</el-radio-button>
-          <el-radio-button label="false">否</el-radio-button>
-        </el-radio-group>
+      <el-form-item label="菜单名称" prop="title">
+        <el-input v-model="form.title" placeholder="名称" style="width: 450px;"/>
       </el-form-item>
       <el-form-item label="菜单排序" prop="sort">
         <el-input-number v-model.number="form.sort" :min="0" :max="999" controls-position="right" style="width: 177px;"/>
       </el-form-item>
-      <el-form-item label="链接地址" prop="path">
-        <el-input v-model="form.path" placeholder="链接地址" style="width: 177px;"/>
-      </el-form-item>
-      <el-form-item v-if="form.iframe === 'false'" label="组件路径">
-        <el-input v-model="form.component" placeholder="菜单路径"/>
-      </el-form-item>
-      <el-form-item v-if="form.iframe === 'false'" label="组件名称">
-        <el-input v-model="form.componentName" placeholder="匹配组件内Name字段"/>
+      <el-form-item label="链接地址" prop="jump">
+        <el-input v-model="form.jump" placeholder="链接地址" style="width: 177px;"/>
       </el-form-item>
       <el-form-item label="上级类目">
-        <treeselect v-model="form.pid" :options="menus" style="width: 450px;" placeholder="选择上级类目" />
+        <treeselect v-model="form.parent_id" :options="menus" style="width: 450px;" placeholder="选择上级类目" />
       </el-form-item>
     </el-form>
     <div slot="footer" class="dialog-footer">
@@ -74,15 +50,16 @@ export default {
   data() {
     return {
       loading: false, dialog: false, menus: [],
-      form: { name: '', sort: 999, path: '', component: '', componentName: '', iframe: 'false', roles: [], pid: 0, icon: '', cache: false, hidden: false },
+      form: { id: '', menu_code: '',app_id: '1',  title: '', parent_id: 0, icon: '', menu_type: '1',
+       jump: '', is_enable: '启用', sort: 999, group_id: '' },
       rules: {
-        name: [
+        title: [
           { required: true, message: '请输入名称', trigger: 'blur' }
         ],
         sort: [
           { required: true, message: '请输入序号', trigger: 'blur', type: 'number' }
         ],
-        path: [
+        jump: [
           { required: true, message: '请输入地址', trigger: 'blur' }
         ]
       }
@@ -137,16 +114,17 @@ export default {
     resetForm() {
       this.dialog = false
       this.$refs['form'].resetFields()
-      this.form = { name: '', sort: 999, path: '', component: '', componentName: '', iframe: 'false', roles: [], pid: 0, icon: '', cache: false, hidden: false }
+      this.form = { id: '', menu_code: '',app_id: '1',  title: '', parent_id: 0, icon: '', menu_type: '1',
+       jump: '', is_enable: '启用', sort: 999, group_id: '' }
     },
-    selected(name) {
-      this.form.icon = name
+    selected(title) {
+      this.form.icon = title
     },
     getMenus() {
       getMenusTree().then(res => {
         this.menus = []
         const menu = { id: 0, label: '顶级类目', children: [] }
-        menu.children = res
+        menu.children = res.data.content
         this.menus.push(menu)
       })
     }

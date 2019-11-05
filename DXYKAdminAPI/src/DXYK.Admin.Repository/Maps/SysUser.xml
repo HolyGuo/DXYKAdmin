@@ -10,7 +10,7 @@
   <Statements>
 
     <Statement Id="AllCols">
-      T.id,T.true_name,T.nick_name,T.login_name,T.login_pwd,T.is_enable,T.user_type,T.sex,T.head_pic,T.telephone,T.mobile,T.email,T.summary,T.org_id,T.last_login_time,T.wx_openid,T.wx_id,T.wx_name,T.qq_openid,T.qq_id,T.qq_name,T.sort,T.group_id,T.re_vision,T.created_by,T.created_time,T.updated_by,T.updated_time,T.deleted_by,T.deleted_time
+      T.id,T.true_name,T.nick_name,T.login_name,T.login_pwd,T.is_enable,T.user_type,T.sex,T.head_pic,T.telephone,T.mobile,T.email,T.summary,T.org_id,T.job_id,T.last_login_time,T.wx_openid,T.wx_id,T.wx_name,T.qq_openid,T.qq_id,T.qq_name,T.sort,T.group_id,T.re_vision,T.created_by,T.created_time,T.updated_by,T.updated_time,T.deleted_by,T.deleted_time
     </Statement>
     <Statement Id="QueryParams">
       <Where>
@@ -126,6 +126,7 @@
       email,
       summary,
       org_id,
+      job_id,
       last_login_time,
       wx_openid,
       wx_id,
@@ -159,6 +160,7 @@
       @email,
       @summary,
       @org_id,
+      @job_id,
       @last_login_time,
       @wx_openid,
       @wx_id,
@@ -226,6 +228,9 @@
         </IsProperty>
         <IsProperty Prepend="," Property="org_id">
           org_id = @org_id
+        </IsProperty>
+        <IsProperty Prepend="," Property="job_id">
+          job_id = @job_id
         </IsProperty>
         <IsProperty Prepend="," Property="last_login_time">
           last_login_time = @last_login_time
@@ -366,6 +371,9 @@
         <IsNotEmpty Prepend="And" Property="org_id">
           T.org_id= @org_id
         </IsNotEmpty>
+        <IsNotEmpty Prepend="And" Property="job_id">
+          T.job_id= @job_id
+        </IsNotEmpty>
         <IsNotEmpty Prepend="And" Property="last_login_time">
           T.last_login_time= @last_login_time
         </IsNotEmpty>
@@ -434,46 +442,7 @@
           T.group_id = @groupId 
         </IsNotEmpty>
         <IsNotEmpty Prepend="" Property="keyWords">
-          AND ( T.true_name LIKE CONCAT('%',@keyWords,'%')
-        </IsNotEmpty>
-        <IsNotEmpty Prepend="OR" Property="keyWords">
-          T.true_name LIKE CONCAT('%',@keyWords,'%')
-        </IsNotEmpty>
-        <IsNotEmpty Prepend="OR" Property="keyWords">
           T.nick_name LIKE CONCAT('%',@keyWords,'%')
-        </IsNotEmpty>
-        <IsNotEmpty Prepend="OR" Property="keyWords">
-          T.login_name LIKE CONCAT('%',@keyWords,'%')
-        </IsNotEmpty>
-        <IsNotEmpty Prepend="OR" Property="keyWords">
-          T.is_enable LIKE CONCAT('%',@keyWords,'%')
-        </IsNotEmpty>
-        <IsNotEmpty Prepend="OR" Property="keyWords">
-          T.sex = @keyWords
-        </IsNotEmpty>
-        <IsNotEmpty Prepend="OR" Property="keyWords">
-          T.telephone LIKE CONCAT('%',@keyWords,'%')
-        </IsNotEmpty>
-        <IsNotEmpty Prepend="OR" Property="keyWords">
-          T.mobile LIKE CONCAT('%',@keyWords,'%')
-        </IsNotEmpty>
-        <IsNotEmpty Prepend="OR" Property="keyWords">
-          T.email LIKE CONCAT('%',@keyWords,'%')
-        </IsNotEmpty>
-        <IsNotEmpty Prepend="OR" Property="keyWords">
-          T.summary LIKE CONCAT('%',@keyWords,'%')
-        </IsNotEmpty>
-        <IsNotEmpty Prepend="OR" Property="keyWords">
-          T.wx_id LIKE CONCAT('%',@keyWords,'%')
-        </IsNotEmpty>
-        <IsNotEmpty Prepend="OR" Property="keyWords">
-          T.wx_name LIKE CONCAT('%',@keyWords,'%')
-        </IsNotEmpty>
-        <IsNotEmpty Prepend="OR" Property="keyWords">
-          T.qq_id LIKE CONCAT('%',@keyWords,'%')
-        </IsNotEmpty>
-        <IsNotEmpty Prepend="OR" Property="keyWords">
-          T.qq_name LIKE CONCAT('%',@keyWords,'%')  )
         </IsNotEmpty>
       </Where>
     </Statement>
@@ -481,7 +450,7 @@
     <!--自定义查询  分页数据-->
     <Statement Id="QueryDataByPage">
       Select T.id,T.true_name,T.nick_name,T.login_name,T.is_enable,T.user_type,T.sex,T.head_pic,T.telephone,T.mobile,T.email,
-      T.summary,T.org_id,T.last_login_time,T.wx_openid,T.wx_id,T.wx_name,T.qq_openid,T.qq_id,T.qq_name,T.sort,
+      T.summary,T.org_id,T.job_id,T.last_login_time,T.wx_openid,T.wx_id,T.wx_name,T.qq_openid,T.qq_id,T.qq_name,T.sort,
       T.group_id,T.re_vision,T.created_by,T.created_time,T.updated_by,T.updated_time,T.deleted_by,T.deleted_time
       From sys_user AS T LEFT JOIN sys_org AS O ON T.org_id=O.id
       <Include RefId="QueryDataParams" />

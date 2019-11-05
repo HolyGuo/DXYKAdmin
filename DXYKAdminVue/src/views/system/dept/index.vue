@@ -102,12 +102,13 @@ export default {
     checkPermission,
     beforeInit() {
       this.url = 'api/SysOrg/QueryDataByNameAndType'
-      this.params = { name: '', enabled: '' }
+      const order = 'asc'
+      this.params = { page: this.page + 1, limit: this.size, order: order }
       const query = this.query
       const value = query.value
       const enabled = query.enabled
-      if (value) { this.params['name'] = value }
-      if (enabled && enabled !== '' && enabled !== null) { this.params['enabled'] = enabled }
+      if (value) { this.params['keyWords'] = value }
+      if (enabled && enabled !== '' && enabled !== null) { this.params['status'] = enabled }
       return true
     },
     subDelete(id) {

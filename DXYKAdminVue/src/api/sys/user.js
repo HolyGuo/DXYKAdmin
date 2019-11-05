@@ -2,7 +2,7 @@ import request from '@/utils/request'
 
 export function add(data) {
   return request({
-    url: 'api/users',
+    url: 'api/SysUser/Insert',
     method: 'post',
     data
   })
@@ -17,14 +17,14 @@ export function downloadUser() {
 
 export function del(id) {
   return request({
-    url: 'api/users?id=' + id,
+    url: 'api/SysUser/DeleteById?id=' + id,
     method: 'delete'
   })
 }
 
 export function edit(data) {
   return request({
-    url: 'api/users',
+    url: 'api/SysUser/Update',
     method: 'put',
     data
   })

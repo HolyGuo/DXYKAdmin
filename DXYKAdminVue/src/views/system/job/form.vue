@@ -8,7 +8,7 @@
         <el-input-number v-model.number="form.sort" :min="0" :max="999" controls-position="right" style="width: 370px;"/>
       </el-form-item>
       <el-form-item v-if="form.pid !== 0" label="状态" prop="enabled">
-        <el-radio v-for="item in dicts" :key="item.id" v-model="form.is_enable" :label="item.value">{{ item.label }}</el-radio>
+        <el-radio v-for="item in dicts" :key="item.status" v-model="form.is_enable" :label="item.value">{{ item.label }}</el-radio>
       </el-form-item>
       <el-form-item label="所属部门">
         <treeselect v-model="deptId" :options="depts" style="width: 370px" placeholder="选择部门" />
@@ -139,7 +139,7 @@ export default {
       }
     },
     getDepts() {
-      getDepts({ enabled: true }).then(res => {
+      getDepts({ page: 1, limit: 100, order: 'asc', field: 'sort', status: 'true' }).then(res => {
         this.depts = res.data.content
       })
     }

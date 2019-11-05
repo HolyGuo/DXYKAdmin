@@ -1,14 +1,14 @@
 <template>
   <el-dialog :visible.sync="dialog" :close-on-click-modal="false" :before-close="cancel" :title="isAdd ? '新增用户' : '编辑用户'" append-to-body width="570px">
     <el-form ref="form" :inline="true" :model="form" :rules="rules" size="small" label-width="66px">
-      <el-form-item label="用户名" prop="username">
-        <el-input v-model="form.username"/>
+      <el-form-item label="用户名" prop="nick_name">
+        <el-input v-model="form.nick_name"/>
       </el-form-item>
-      <el-form-item label="状态" prop="enabled">
-        <el-radio v-for="item in dicts" :key="item.id" v-model="form.enabled" :label="item.value">{{ item.label }}</el-radio>
+      <el-form-item label="状态" prop="is_enabled">
+        <el-radio v-for="item in dicts" :key="item.id" v-model="form.is_enabled" :label="item.value">{{ item.label }}</el-radio>
       </el-form-item>
-      <el-form-item label="电话" prop="phone">
-        <el-input v-model.number="form.phone" />
+      <el-form-item label="电话" prop="telephone">
+        <el-input v-model.number="form.telephone" />
       </el-form-item>
       <el-form-item label="邮箱" prop="email">
         <el-input v-model="form.email" />
@@ -17,20 +17,20 @@
         <treeselect v-model="deptId" :options="depts" style="width: 178px" placeholder="选择部门" @select="selectFun" />
       </el-form-item>
       <el-form-item label="岗位">
-        <el-select v-model="jobId" style="width: 178px" placeholder="请先选择部门">
+        <treeselect v-model="jobId" :options="jobs" style="width: 178px" placeholder="请先选择部门" @select="selectFun" />
+        <!-- <el-select v-model="jobId" style="width: 178px" placeholder="请先选择部门">
           <el-option
             v-for="(item, index) in jobs"
-            :key="item.name + index"
-            :label="item.name"
+            :key="item.job_name"
+            :label="item.job_name"
             :value="item.id"/>
-        </el-select>
+        </el-select> -->
       </el-form-item>
       <el-form-item style="margin-bottom: 0px;" label="角色">
         <el-select v-model="roleIds" style="width: 450px;" multiple placeholder="请选择">
           <el-option
-            v-for="(item, index) in roles"
-            :disabled="level !== 1 && item.level <= level"
-            :key="item.name + index"
+            v-for="(item, index) in role"
+            :key="item.name"
             :label="item.name"
             :value="item.id"/>
         </el-select>
@@ -47,7 +47,7 @@
 
 import { add, edit } from '@/api/sys/user'
 import { getDepts } from '@/api/sys/dept'
-import { getAll, getLevel } from '@/api/sys/role'
+import { GetAllByName } from '@/api/sys/role'
 import { getAllJob } from '@/api/sys/job'
 import Treeselect from '@riophae/vue-treeselect'
 import '@riophae/vue-treeselect/dist/vue-treeselect.css'
@@ -74,8 +74,15 @@ export default {
       }
     }
     return {
-      dialog: false, loading: false, form: { username: '', email: '', enabled: 'false', roles: [], job: { id: '' }, dept: { id: '' }, phone: null },
-      roleIds: [], roles: [], depts: [], deptId: null, jobId: null, jobs: [], level: 3,
+      dialog: false, loading: false, 
+      form: { id: '', true_name: '', nick_name: '',
+        login_name: '', login_pwd: '123456', is_enable: '启用',
+        user_type: '', sex: '', head_pic: '', 
+        telephone: '', mobile: '', email: '', summary: '', 
+        org_id: '', job_id: '', last_login_time: '', 
+        sort: '', group_id: '', 
+        role: [], dept: { id: '' }, job: { id: '' }},
+      roleIds: [], role: [], depts: [], deptId: null, jobId: null, jobs: [],
       rules: {
         username: [
           { required: true, message: '请输入用户名', trigger: 'blur' },
@@ -120,11 +127,11 @@ export default {
             })
           } else {
             this.loading = true
-            this.form.roles = []
+            this.form.role = []
             const _this = this
             this.roleIds.forEach(function(data, index) {
               const role = { id: data }
-              _this.form.roles.push(role)
+              _this.form.role.push(role)
             })
             if (this.isAdd) {
               this.doAdd()
@@ -172,25 +179,31 @@ export default {
       this.deptId = null
       this.jobId = null
       this.roleIds = []
-      this.form = { username: '', email: '', enabled: 'false', roles: [], job: { id: '' }, dept: { id: '' }, phone: null }
+      this.form = { id: '', true_name: '', nick_name: '',
+        login_name: '', login_pwd: '123456', is_enable: '启用',
+        user_type: '', sex: '', head_pic: '', 
+        telephone: '', mobile: '', email: '', summary: '', 
+        org_id: '', job_id: '', last_login_time: '', 
+        sort: '', group_id: '', 
+        role: [], dept: { id: '' }, job: { id: '' }}
     },
     getRoles() {
-      getAll().then(res => {
-        this.roles = res
+      GetAllByName({ page: 1, limit: 100 }).then(res => {
+        this.role = res.data.content
       }).catch(err => {
         console.log(err.response.data.message)
       })
     },
     getJobs(id) {
       getAllJob(id).then(res => {
-        this.jobs = res.content
+        this.jobs = res.data.content
       }).catch(err => {
         console.log(err.response.data.message)
       })
     },
     getDepts() {
-      getDepts({ enabled: true }).then(res => {
-        this.depts = res.content
+      getDepts({ page: 1, limit: 100, order: 'asc', field: 'sort', status: 'true' }).then(res => {
+        this.depts = res.data.content
       })
     },
     isvalidPhone(str) {
@@ -199,13 +212,6 @@ export default {
     },
     selectFun(node, instanceId) {
       this.getJobs(node.id)
-    },
-    getRoleLevel() {
-      getLevel().then(res => {
-        this.level = res.level
-      }).catch(err => {
-        console.log(err.response.data.message)
-      })
     }
   }
 }

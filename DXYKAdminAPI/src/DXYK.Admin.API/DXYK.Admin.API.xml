@@ -715,49 +715,14 @@
              获取所有菜单信息表(sys_app_menu)
             </summary>
         </member>
-        <member name="M:DXYK.Admin.API.Controllers.SysAppMenuController.GetALLByName(System.String)">
-            <summary>
-             获取所有菜单信息表(sys_app_menu)
-            </summary>
-        </member>
         <member name="M:DXYK.Admin.API.Controllers.SysAppMenuController.GetTree">
             <summary>
              获取所有菜单信息表(sys_app_menu)
             </summary>
         </member>
-        <member name="F:DXYK.Admin.API.Controllers.SysAppMenuController.treedata.name">
-            <summary>
-            name
-            </summary>
-        </member>
-        <member name="F:DXYK.Admin.API.Controllers.SysAppMenuController.treedata.path">
-            <summary>
-            path
-            </summary>
-        </member>
-        <member name="F:DXYK.Admin.API.Controllers.SysAppMenuController.treedata.component">
-            <summary>
-            component
-            </summary>
-        </member>
-        <member name="F:DXYK.Admin.API.Controllers.SysAppMenuController.treedata.hidden">
-            <summary>
-            hidden
-            </summary>
-        </member>
-        <member name="F:DXYK.Admin.API.Controllers.SysAppMenuController.treedata.meta">
-            <summary>
-            meta
-            </summary>
-        </member>
-        <member name="F:DXYK.Admin.API.Controllers.SysAppMenuController.treedata.children">
+        <member name="F:DXYK.Admin.API.Controllers.SysAppMenuController.SysAppMenuTree.children">
             <summary>
             children
-            </summary>
-        </member>
-        <member name="T:DXYK.Admin.API.Controllers.SysAppMenuController.treedata1">
-            <summary>
-            treedata1
             </summary>
         </member>
         <member name="T:DXYK.Admin.API.Controllers.SysAppRoleController">
@@ -1180,9 +1145,19 @@
              异步根据分页查询岗位信息表(sys_job)
             </summary>
         </member>
-        <member name="M:DXYK.Admin.API.Controllers.SysJobController.QueryDataByNameAndTypeByPage(DXYK.Admin.API.Messages.QueryNameByPageRequest)">
+        <member name="M:DXYK.Admin.API.Controllers.SysJobController.QueryDataByNameAndTypeByPage(DXYK.Admin.API.Controllers.SysJobController.QueryByPageWithDeptRequest)">
             <summary>
              根据分页和名称状态查询岗位信息表(sys_job)
+            </summary>
+        </member>
+        <member name="T:DXYK.Admin.API.Controllers.SysJobController.QueryByPageWithDeptRequest">
+            <summary>
+            分页查询请求带查询参数
+            </summary>
+        </member>
+        <member name="P:DXYK.Admin.API.Controllers.SysJobController.QueryByPageWithDeptRequest.dept">
+            <summary>
+            部门
             </summary>
         </member>
         <member name="T:DXYK.Admin.API.Controllers.SysLogController">
@@ -1370,7 +1345,7 @@
              获取所有单位信息表(sys_org)
             </summary>
         </member>
-        <member name="M:DXYK.Admin.API.Controllers.SysOrgController.QueryDataByNameAndType(DXYK.Admin.API.Messages.NameQueryRequest)">
+        <member name="M:DXYK.Admin.API.Controllers.SysOrgController.QueryDataByNameAndType(DXYK.Admin.API.Messages.QueryByPageRequest)">
             <summary>
             根据名称和状态获取数据列
             </summary>
@@ -1575,7 +1550,7 @@
              异步根据分页查询用户信息表(sys_user)
             </summary>
         </member>
-        <member name="M:DXYK.Admin.API.Controllers.SysUserController.QueryDataByDept(DXYK.Admin.API.Controllers.SysUserController.QueryByFilterRequest)">
+        <member name="M:DXYK.Admin.API.Controllers.SysUserController.QueryDataByDept(DXYK.Admin.API.Controllers.SysUserController.QueryByPageWithDeptRequest)">
             <summary>
              根据部门、分页和名称状态查询岗位信息表(sys_job)
             </summary>
@@ -1585,19 +1560,44 @@
              根据Id查询用户信息表(sys_user)
             </summary>
         </member>
-        <member name="T:DXYK.Admin.API.Controllers.SysUserController.QueryByFilterRequest">
+        <member name="T:DXYK.Admin.API.Controllers.SysUserController.QueryByPageWithDeptRequest">
+            <summary>
+            分页查询请求带查询参数
+            </summary>
+        </member>
+        <member name="P:DXYK.Admin.API.Controllers.SysUserController.QueryByPageWithDeptRequest.app">
+            <summary>
+            应用
+            </summary>
+        </member>
+        <member name="P:DXYK.Admin.API.Controllers.SysUserController.QueryByPageWithDeptRequest.dept">
+            <summary>
+            部门
+            </summary>
+        </member>
+        <member name="T:DXYK.Admin.API.Controllers.SysUserController.UserInfoResult">
             <summary>
             分页查询名称状态请求
             </summary>
         </member>
-        <member name="P:DXYK.Admin.API.Controllers.SysUserController.QueryByFilterRequest.app">
+        <member name="P:DXYK.Admin.API.Controllers.SysUserController.UserInfoResult.user">
             <summary>
-            应用字段
+            用户
             </summary>
         </member>
-        <member name="P:DXYK.Admin.API.Controllers.SysUserController.QueryByFilterRequest.dept">
+        <member name="P:DXYK.Admin.API.Controllers.SysUserController.UserInfoResult.dept">
             <summary>
-            部门字段
+            部门
+            </summary>
+        </member>
+        <member name="P:DXYK.Admin.API.Controllers.SysUserController.UserInfoResult.job">
+            <summary>
+            岗位
+            </summary>
+        </member>
+        <member name="P:DXYK.Admin.API.Controllers.SysUserController.UserInfoResult.role">
+            <summary>
+            角色
             </summary>
         </member>
         <member name="T:DXYK.Admin.API.Exceptions.APIException">
@@ -1839,66 +1839,6 @@
         <member name="P:DXYK.Admin.API.Messages.QueryByPageWithParamRequest.endTime">
             <summary>
             结束时间
-            </summary>
-        </member>
-        <member name="T:DXYK.Admin.API.Messages.NameQueryRequest">
-            <summary>
-            查询名称状态参数
-            </summary>
-        </member>
-        <member name="P:DXYK.Admin.API.Messages.NameQueryRequest.name">
-            <summary>
-            开始时间
-            </summary>
-        </member>
-        <member name="P:DXYK.Admin.API.Messages.NameQueryRequest.enabled">
-            <summary>
-            结束时间
-            </summary>
-        </member>
-        <member name="T:DXYK.Admin.API.Messages.QueryNameByPageRequest">
-            <summary>
-            分页查询名称状态请求
-            </summary>
-        </member>
-        <member name="P:DXYK.Admin.API.Messages.QueryNameByPageRequest.page">
-            <summary>
-            页码
-            </summary>
-        </member>
-        <member name="P:DXYK.Admin.API.Messages.QueryNameByPageRequest.limit">
-            <summary>
-            单页行数
-            </summary>
-        </member>
-        <member name="P:DXYK.Admin.API.Messages.QueryNameByPageRequest.offset">
-            <summary>
-            忽略
-            </summary>
-        </member>
-        <member name="P:DXYK.Admin.API.Messages.QueryNameByPageRequest.field">
-            <summary>
-            排序字段
-            </summary>
-        </member>
-        <member name="P:DXYK.Admin.API.Messages.QueryNameByPageRequest.order">
-            <summary>
-            排序
-            </summary>
-        </member>
-        <member name="P:DXYK.Admin.API.Messages.QueryNameByPageRequest.OrderBy">
-            <summary>
-            拼接排序sortField + order (如： id Asc)
-            </summary>
-        </member>
-        <member name="T:DXYK.Admin.API.Messages.QueryByDeptRequest">
-            <summary>
-            分页查询名称状态请求
-            </summary>
-        </member>
-        <member name="P:DXYK.Admin.API.Messages.QueryByDeptRequest.dept">
-            <summary>
-            排序字段
             </summary>
         </member>
         <member name="T:DXYK.Admin.API.Messages.QueryResponse`1">

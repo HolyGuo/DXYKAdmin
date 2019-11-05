@@ -130,7 +130,7 @@ namespace DXYK.Admin.Service
         /// <summary>
         /// 根据角色id查询
         /// </summary>
-        public List<SysAppRoleMap> QueryDataByRole(string roleid, int type)
+        public List<SysAppRoleMap> QueryDataByRole(string roleid, string type)
         {
             return SysAppRoleMapRepository.QueryDataByRole(roleid, type);
         }

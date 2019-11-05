@@ -75,7 +75,7 @@ namespace DXYK.Admin.Repository
         /// 根据角色id查询
         ///</summary>
         [Statement(Id = "QueryDataByRole")]
-        List<SysAppRoleMap> QueryDataByRole([Param("role_id")]string role_id, [Param("type_code")]int type_code);
+        List<SysAppRoleMap> QueryDataByRole([Param("role_id")]string role_id, [Param("type_code")]string type_code);
         ///<summary>
         /// 根据roleid,mapid,type查询
         ///</summary>

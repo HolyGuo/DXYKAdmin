@@ -15,6 +15,7 @@ using DXYK.Admin.API.Filters;
 using DXYK.Admin.Common.EnumHelper;
 using DXYK.Admin.Dto.Sys;
 using DXYK.Admin.API.Utils;
+using System.Linq;
 
 namespace DXYK.Admin.API.Controllers
 {
@@ -200,12 +201,12 @@ namespace DXYK.Admin.API.Controllers
         /// 根据分页和名称状态查询岗位信息表(sys_job)
         ///</summary>
         [HttpPost]
-        public ResponseMessage<object> QueryDataByNameAndTypeByPage([FromBody]QueryNameByPageRequest reqMsg)
+        public ResponseMessage<object> QueryDataByNameAndTypeByPage([FromBody]QueryByPageWithDeptRequest reqMsg)
         {
             List<object> reslst = new List<object>();
-            var total = _sysJobService.QueryDataByNameAndType(reqMsg.name, reqMsg.enabled);
-            var list = _sysJobService.QueryDataByNameAndTypeByPage(reqMsg.name, reqMsg.enabled, reqMsg.OrderBy, reqMsg.limit, reqMsg.offset);
-            foreach (var item in list)
+            var total = _sysJobService.QueryDataByNameAndType(reqMsg.keyWords, reqMsg.status, reqMsg.dept);
+            var list = _sysJobService.QueryDataByNameAndTypeByPage(reqMsg.keyWords, reqMsg.status, reqMsg.dept, reqMsg.OrderBy, reqMsg.limit, reqMsg.offset);
+            foreach (var item in list.OrderBy(t=>t.sort))
             {
                 var org = _sysOrgService.GetById(item.org_id);
                 Object deptobj = new
@@ -221,8 +222,11 @@ namespace DXYK.Admin.API.Controllers
                 {
                     id = item.id,
                     sort = item.sort,
+                    label = item.job_name,
                     name = item.job_name,
-                    enabled = item.is_enable,
+                    pid = 0,
+                    job_name = item.job_name,
+                    is_enable = item.is_enable,
                     dept = deptobj,
                     deptSuperiorName = org.org_name,
                     createTime = item.created_time.ToString()
@@ -232,6 +236,16 @@ namespace DXYK.Admin.API.Controllers
             return new ResponseMessage<object> { data = new { content = reslst, totalElements = total } };
         }
 
+        /// <summary>
+        /// 分页查询请求带查询参数
+        /// </summary>
+        public class QueryByPageWithDeptRequest : QueryByPageRequest
+        {
+            /// <summary>
+            /// 部门
+            /// </summary>
+            public string dept { get; set; }
+        }
 
     }
 }

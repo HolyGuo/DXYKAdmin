@@ -232,11 +232,11 @@ namespace DXYK.Admin.API.Controllers
         /// 根据名称和状态获取数据列
         /// </summary>
         [HttpPost]
-        public ResponseMessage<object> QueryDataByNameAndType([FromBody]NameQueryRequest reqMsg)
+        public ResponseMessage<object> QueryDataByNameAndType([FromBody]QueryByPageRequest reqMsg)
         {
             List<treedata> reslst = new List<treedata>();
             List<SysOrg> col1 = _sysOrgService.GetAll();
-            List<SysOrg> col2 = _sysOrgService.QueryDataByNameAndType(reqMsg.name, reqMsg.enabled);
+            List<SysOrg> col2 = _sysOrgService.QueryDataByNameAndType(reqMsg.keyWords, reqMsg.status);
             SysOrg[] arr = new SysOrg[col2.Count()];
             List<SysOrg> col3 = new List<SysOrg>();
             col2.CopyTo(arr);
@@ -246,7 +246,6 @@ namespace DXYK.Admin.API.Controllers
                 //补全树
                 getTree(col1, col3, item);
             }
-
             //构建树结果
             foreach (SysOrg item in col3.Where(t=>t.parent_id == "0"))
             {

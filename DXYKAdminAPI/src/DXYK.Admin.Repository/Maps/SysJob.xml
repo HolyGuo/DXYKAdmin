@@ -315,6 +315,9 @@
         <IsNotEmpty Prepend="And" Property="is_enable">
           position(@is_enable in T.is_enable) != 0
         </IsNotEmpty>
+        <IsNotEmpty Prepend="And" Property="org_id">
+          org_id = @org_id
+        </IsNotEmpty>
       </Where>
       <Switch Prepend="Order By" Property="OrderBy">
         <Default>
@@ -334,6 +337,9 @@
         </IsNotEmpty>
         <IsNotEmpty Prepend="And" Property="is_enable">
           T.is_enable like Concat('%',@is_enable,'%')
+        </IsNotEmpty>
+        <IsNotEmpty Prepend="And" Property="org_id">
+          org_id = @org_id
         </IsNotEmpty>
       </Where>
     </Statement>

@@ -126,7 +126,7 @@ export default {
       }
     },
     getDepts() {
-      getDepts({ enabled: true }).then(res => {
+      getDepts({ page: 1, limit: 100, order: 'asc', field: 'sort', status: 'true' }).then(res => {
         this.depts = res.data.content
       })
     }

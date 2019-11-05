@@ -15,7 +15,7 @@ namespace DXYK.Admin.Entity
         ///<summary>
         /// 唯一标识
         ///</summary>
-        public virtual long id { get; set; }
+        public virtual string id { get; set; }
         ///<summary>
         /// 菜单编码
         ///</summary>
@@ -31,7 +31,7 @@ namespace DXYK.Admin.Entity
         ///<summary>
         /// 上级id
         ///</summary>
-        public virtual long parent_id { get; set; }
+        public virtual string parent_id { get; set; }
         ///<summary>
         /// 图标(Css-Class)
         ///</summary>

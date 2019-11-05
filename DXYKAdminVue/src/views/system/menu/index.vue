@@ -38,14 +38,7 @@
           <el-tag>{{ scope.row.sort }}</el-tag>
         </template>
       </el-table-column>
-      <el-table-column :show-overflow-tooltip="true" prop="path" label="链接地址"/>
-      <el-table-column :show-overflow-tooltip="true" prop="componentName" label="组件名称"/>
-      <el-table-column :show-overflow-tooltip="true" prop="component" label="组件路径" width="130px"/>
-      <el-table-column prop="createTime" label="创建日期" width="135px">
-        <template slot-scope="scope">
-          <span>{{ parseTime(scope.row.createTime) }}</span>
-        </template>
-      </el-table-column>
+      <el-table-column :show-overflow-tooltip="true" prop="jump" label="链接地址"/>
       <el-table-column v-if="checkPermission(['Admin','Menu_Manage','Menu_Delete','Menu_Update'])" label="操作" width="130px" align="center" fixed="right">
         <template slot-scope="scope">
           <el-button v-if="checkPermission(['Admin','Menu_Manage','Menu_Update'])" size="mini" type="primary" icon="el-icon-edit" @click="edit(scope.row)"/>
@@ -83,7 +76,7 @@ export default {
       columns: [
         {
           text: '名称',
-          value: 'name',
+          value: 'title',
           width: 140
         }
       ],
@@ -100,7 +93,7 @@ export default {
     parseTime,
     checkPermission,
     beforeInit() {
-      this.url = 'api/SysAppMenu/GetALLByName'
+      this.url = 'api/SysAppMenu/GetALL'
       const query = this.query
       const value = query.value
       this.params = {}
@@ -133,7 +126,9 @@ export default {
       this.isAdd = false
       const _this = this.$refs.form
       _this.getMenus()
-      _this.form = { id: data.id, component: data.component, componentName: data.componentName, name: data.name, sort: data.sort, pid: data.pid, path: data.path, iframe: data.iframe.toString(), roles: [], icon: data.icon, cache: data.cache, hidden: data.hidden }
+      _this.form = { id: data.id, menu_code: data.menu_code, app_id: data.app_id,  title: data.title,
+       parent_id: data.parent_id, icon: data.icon, menu_type: data.menu_type,
+       jump: data.jump, is_enable: data.is_enable, sort: data.sort, group_id: data.group_id }
       _this.dialog = true
     },
     changExpand() {

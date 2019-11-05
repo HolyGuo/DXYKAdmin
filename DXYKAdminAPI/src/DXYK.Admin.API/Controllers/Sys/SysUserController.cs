@@ -215,9 +215,9 @@ namespace DXYK.Admin.API.Controllers
         /// 根据部门、分页和名称状态查询岗位信息表(sys_job)
         ///</summary>
         [HttpPost]
-        public ResponseMessage<object> QueryDataByDept([FromBody]QueryByFilterRequest reqMsg)
+        public ResponseMessage<object> QueryDataByDept([FromBody]QueryByPageWithDeptRequest reqMsg)
         {
-            List<object> reslst = new List<object>();
+            List<UserInfoResult> reslst = new List<UserInfoResult>();
             var rolemaps = _sysUserAppRoleService.QueryDataByPage(new QueryByPageRequest()
             {
                 limit = 10000,
@@ -229,13 +229,15 @@ namespace DXYK.Admin.API.Controllers
             });
             var total = _sysUserService.QueryDataRecord(new QueryByPageRequest()
             {
-                limit = 10000,
-                page = 1
+                keyWords = reqMsg.keyWords,
+                limit = reqMsg.limit,
+                page = reqMsg.page
             });
             var list = _sysUserService.QueryDataByPage(new QueryByPageRequest()
             {
-                limit = 10000,
-                page = 1
+                keyWords = reqMsg.keyWords,
+                limit = reqMsg.limit,
+                page = reqMsg.page
             });
             if(reqMsg.dept != null)
             {
@@ -244,18 +246,34 @@ namespace DXYK.Admin.API.Controllers
             }
             foreach (var item in list)
             {
-                var org = _sysOrgService.GetById(item.org_id);
-                Object deptobj = new
+                var deptobj = new
                 {
-                    id = org.id,
-                    name = org.org_name
+                    id = "",
+                    name = ""
                 };
-                var job = _sysJobService.GetById(item.job_id.ToString());
-                Object jobobj = new
+                if (!string.IsNullOrEmpty(item.org_id))
                 {
-                    id = job.id,
-                    name = job.job_name
+                    var org = _sysOrgService.GetById(item.org_id);
+                    deptobj = new
+                    {
+                        id = org.id,
+                        name = org.org_name
+                    };
+                }
+                var jobobj = new
+                {
+                    id = "",
+                    name = ""
                 };
+                if (!string.IsNullOrEmpty(item.job_id))
+                {
+                    var job = _sysJobService.GetById(item.job_id);
+                    jobobj = new
+                    {
+                        id = job.id,
+                        name = job.job_name
+                    };
+                }
                 var approlemaps = rolemaps.Where(t => t.app_id == reqMsg.app && t.user_id == item.id).ToList();
                 List<object> roleobjs = new List<object>();
                 foreach (var rolemapitem in approlemaps)
@@ -268,21 +286,16 @@ namespace DXYK.Admin.API.Controllers
                     };
                     roleobjs.Add(roleobj);
                 }
-                Object obj = new
+                UserInfoResult resitem = new UserInfoResult
                 {
-                    id = item.id,
-                    username = item.nick_name,
-                    email = item.email,
-                    phone = item.telephone,
-                    enabled = item.is_enable,
-                    createTime = item.created_time.ToString(),
-                    roles = roleobjs,
+                    user = item,
+                    dept = deptobj,
                     job = jobobj,
-                    dept = deptobj
+                    role = roleobjs
                 };
-                reslst.Add(obj);
+                reslst.Add(resitem);
             }
-            return new ResponseMessage<object> { data = new { content = reslst, totalElements = 1 } };
+            return new ResponseMessage<object> { data = new { content = reslst, totalElements = total } };
         }
 
         ///<summary>
@@ -306,18 +319,42 @@ namespace DXYK.Admin.API.Controllers
         }
 
         /// <summary>
-        /// 分页查询名称状态请求
+        /// 分页查询请求带查询参数
         /// </summary>
-        public class QueryByFilterRequest : QueryNameByPageRequest
+        public class QueryByPageWithDeptRequest : QueryByPageRequest
         {
             /// <summary>
-            /// 应用字段
+            /// 应用
             /// </summary>
             public string app { get; set; }
             /// <summary>
-            /// 部门字段
+            /// 部门
             /// </summary>
             public string dept { get; set; }
+        }
+
+        /// <summary>
+        /// 分页查询名称状态请求
+        /// </summary>
+        public class UserInfoResult
+        {
+            /// <summary>
+            /// 用户
+            /// </summary>
+            public SysUser user { get; set; }
+            /// <summary>
+            /// 部门
+            /// </summary>
+            public object dept { get; set; }
+            /// <summary>
+            /// 岗位
+            /// </summary>
+            public object job { get; set; }
+            /// <summary>
+            /// 角色
+            /// </summary>
+            public object role { get; set; }
+
         }
     }
 }

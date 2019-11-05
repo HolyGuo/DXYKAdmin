@@ -23,7 +23,7 @@
     <eForm ref="form" :is-add="isAdd" :dicts="dicts"/>
     <!--表格渲染-->
     <el-table v-loading="loading" :data="data" size="small" style="width: 100%;">
-      <el-table-column prop="name" label="名称"/>
+      <el-table-column prop="job_name" label="名称"/>
       <el-table-column label="所属部门">
         <template slot-scope="scope">
           <div>{{ scope.row.deptSuperiorName ? scope.row.deptSuperiorName + ' / ' : '' }}{{ scope.row.dept.name }}</div>
@@ -36,7 +36,7 @@
       </el-table-column>
       <el-table-column label="状态" align="center">
         <template slot-scope="scope">
-          <span>{{ scope.row.enabled==='true'?'正常':'禁用' }}</span>
+          <span>{{ scope.row.is_enable==='true'?'正常':'禁用' }}</span>
         </template>
       </el-table-column>
       <el-table-column prop="createTime" label="创建日期">
@@ -98,7 +98,8 @@ export default {
       this.init()
       // 加载数据字典
       // this.getDict('job_status')
-      this.dicts = [{ 'id': 11, 'label': '正常', 'value': 'true', 'sort': '1' }, { 'id': 12, 'label': '停用', 'value': 'false', 'sort': '2' }]
+      this.dicts = [{ 'id': 11, 'label': '正常', 'value': 'true', 'sort': '1' },
+       { 'id': 12, 'label': '停用', 'value': 'false', 'sort': '2' }]
     })
   },
   methods: {
@@ -111,8 +112,8 @@ export default {
       const query = this.query
       const value = query.value
       const enabled = query.enabled
-      if (value) { this.params['name'] = value }
-      if (enabled && enabled !== '' && enabled !== null) { this.params['enabled'] = enabled }
+      if (value) { this.params['keyWords'] = value }
+      if (enabled && enabled !== '' && enabled !== null) { this.params['status'] = enabled }
       return true
     },
     subDelete(id) {
@@ -144,9 +145,9 @@ export default {
       _this.getDepts()
       _this.form = {
         id: data.id,
-        name: data.name,
+        job_name: data.job_name,
         sort: data.sort,
-        enabled: data.enabled.toString(),
+        is_enable: data.is_enable,
         createTime: data.createTime,
         dept: { id: data.dept.id }
       }

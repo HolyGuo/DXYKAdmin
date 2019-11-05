@@ -1,10 +1,11 @@
 import request from '@/utils/request'
 
 // 获取所有的Role
-export function getAll() {
+export function GetAllByName(data) {
   return request({
-    url: 'api/roles/all',
-    method: 'get'
+    url: 'api/SysAppRole/GetAllByName',
+    method: 'post',
+    data
   })
 }
 

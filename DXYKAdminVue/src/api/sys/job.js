@@ -1,15 +1,16 @@
 import request from '@/utils/request'
 
 export function getAllJob(deptId) {
-  const params = {
-    deptId,
-    page: 0,
-    size: 9999
+  const data = {
+    keyWords: '',
+    page: 1,
+    limit: 100,
+    dept: deptId
   }
   return request({
-    url: 'api/job',
-    method: 'get',
-    params
+    url: 'api/SysJob/QueryDataByNameAndTypeByPage',
+    method: 'post',
+    data
   })
 }
 

@@ -42,9 +42,9 @@
         </div>
         <!--表格渲染-->
         <el-table v-loading="loading" :data="data" size="small" style="width: 100%;">
-          <el-table-column prop="username" label="用户名"/>
-          <el-table-column prop="phone" label="电话"/>
-          <el-table-column :show-overflow-tooltip="true" prop="email" label="邮箱"/>
+          <el-table-column prop="user.nick_name" label="用户名"/>
+          <el-table-column prop="user.telephone" label="电话"/>
+          <el-table-column :show-overflow-tooltip="true" prop="user.email" label="邮箱"/>
           <el-table-column label="部门 / 岗位">
             <template slot-scope="scope">
               <div>{{ scope.row.dept.name }} / {{ scope.row.job.name }}</div>
@@ -53,13 +53,13 @@
           <el-table-column label="状态" align="center">
             <template slot-scope="scope">
               <div v-for="item in dicts" :key="item.id">
-                <el-tag v-if="scope.row.enabled.toString() === item.value" :type="scope.row.enabled ? '' : 'info'">{{ item.label }}</el-tag>
+                <el-tag v-if="scope.row.user.is_enabled === item.value" :type="scope.row.user.is_enabled ? '' : 'info'">{{ item.label }}</el-tag>
               </div>
             </template>
           </el-table-column>
-          <el-table-column :show-overflow-tooltip="true" prop="createTime" label="创建日期">
+          <el-table-column :show-overflow-tooltip="true" prop="user.createTime" label="创建日期">
             <template slot-scope="scope">
-              <span>{{ parseTime(scope.row.createTime) }}</span>
+              <span>{{ parseTime(scope.row.user.createTime) }}</span>
             </template>
           </el-table-column>
           <el-table-column v-if="checkPermission(['Admin','User_Manage','User_Delete','User_Update'])" label="操作" width="125" align="center" fixed="right">
@@ -115,8 +115,8 @@ export default {
       },
       downloadLoading: false,
       enabledTypeOptions: [
-        { key: 'true', display_name: '激活' },
-        { key: 'false', display_name: '锁定' }
+        { key: '启用', display_name: '启用' },
+        { key: '禁用', display_name: '禁用' }
       ]
     }
   },
@@ -126,7 +126,7 @@ export default {
       this.init()
       // 加载数据字典
       // this.getDict('user_status')
-      this.dicts = [{ 'id': 1, 'label': '激活', 'value': 'true', 'sort': '1' }, { 'id': 2, 'label': '锁定', 'value': 'false', 'sort': '2' }]
+      this.dicts = [{ 'id': 1, 'label': '启用', 'value': '启用', 'sort': '1' }, { 'id': 2, 'label': '禁用', 'value': '禁用', 'sort': '2' }]
     })
   },
   mounted: function() {
@@ -144,8 +144,8 @@ export default {
       const query = this.query
       const blurry = query.blurry
       const enabled = query.enabled
-      this.params = { page: this.page + 1, limit: this.size, order: order, dept: this.deptId, app: 'GXGHOA' }
-      if (blurry) { this.params['name'] = blurry }
+      this.params = { page: this.page + 1, limit: this.size, order: order, dept: this.deptId, app: 'GXGHOA'  }
+      if (blurry) { this.params['keyWords'] = blurry }
       if (enabled !== '' && enabled !== null) { this.params['enabled'] = enabled }
       return true
     },
@@ -168,8 +168,8 @@ export default {
       })
     },
     getDeptDatas() {
-      const params = { name: '', enabled: '' }
-      if (this.deptName) { params['name'] = this.deptName }
+      const params = { page: 1, limit: 100, order: 'asc', field: 'sort', status: 'true' }
+      if (this.deptName) { params['keyWords'] = this.deptName }
       getDepts(params).then(res => {
         this.depts = res.data.content
       })
@@ -186,7 +186,6 @@ export default {
       this.isAdd = true
       this.$refs.form.getDepts()
       this.$refs.form.getRoles()
-      this.$refs.form.getRoleLevel()
       this.$refs.form.dialog = true
     },
     // 导出
@@ -216,10 +215,18 @@ export default {
       const _this = this.$refs.form
       _this.getRoles()
       _this.getDepts()
-      _this.getRoleLevel()
       _this.roleIds = []
-      _this.form = { id: data.id, username: data.username, phone: data.phone, email: data.email, enabled: data.enabled.toString(), roles: [], dept: { id: data.dept.id }, job: { id: data.job.id }}
-      data.roles.forEach(function(data, index) {
+      const user = data.user
+      //用户信息
+      _this.form = { id: user.id, true_name: user.true_name, nick_name: user.nick_name,
+        login_name: user.login_name, login_pwd: user.login_pwd, is_enable: user.is_enable,
+        user_type: user.user_type, sex: user.sex, head_pic: user.head_pic, 
+        telephone: user.telephone, mobile: user.mobile, email: user.email, summary: user.summary, 
+        org_id: user.org_id, job_id: user.job_id, last_login_time: user.last_login_time, 
+        sort: user.sort, group_id: user.group_id, 
+        role: [], dept: { id: data.dept.id }, job: { id: data.job.id }}
+      //角色
+      data.role.forEach(function(data, index) {
         _this.roleIds.push(data.id)
       })
       _this.deptId = data.dept.id

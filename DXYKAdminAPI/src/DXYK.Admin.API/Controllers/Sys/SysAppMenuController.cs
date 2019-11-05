@@ -192,8 +192,8 @@ namespace DXYK.Admin.API.Controllers
         public ResponseMessage<object> GetALL(string name)
         {
             List<object> reslst = new List<object>();
-            List<SysAppMenu> col1 = _sysAppMenuService.GetAll("");
-            List<SysAppMenu> col2 = _sysAppMenuService.GetAll(name);
+            List<SysAppMenu> col1 = _sysAppMenuService.GetAll("").OrderBy(t => t.sort).ToList();
+            List<SysAppMenu> col2 = _sysAppMenuService.GetAll(name).OrderBy(t => t.sort).ToList();
             SysAppMenu[] arr = new SysAppMenu[col2.Count()];
             List<SysAppMenu> col3 = new List<SysAppMenu>();
             col2.CopyTo(arr);
@@ -203,45 +203,12 @@ namespace DXYK.Admin.API.Controllers
                 //补全树
                 getTree(col1, col3, item);
             }
-
             //构建树结果
-            foreach (SysAppMenu item in col3.Where(t => t.parent_id == 0))
+            foreach (SysAppMenu item in col3.Where(t => t.parent_id == "0"))
             {
-                treedata node = getNode(item, col3);
-
+                SysAppMenuTree node = getNode(item, col3);
                 reslst.Add(node);
             }
-
-            return new ResponseMessage<object> { data = new { content = reslst } };
-        }
-
-        ///<summary>
-        /// 获取所有菜单信息表(sys_app_menu)
-        ///</summary>
-        [HttpPost]
-        public ResponseMessage<object> GetALLByName(string name)
-        {
-            List<object> reslst = new List<object>();
-            List<SysAppMenu> col1 = _sysAppMenuService.GetAll("");
-            List<SysAppMenu> col2 = _sysAppMenuService.GetAll(name);
-            SysAppMenu[] arr = new SysAppMenu[col2.Count()];
-            List<SysAppMenu> col3 = new List<SysAppMenu>();
-            col2.CopyTo(arr);
-            col3 = arr.ToList();
-            foreach (var item in col2)
-            {
-                //补全树
-                getTree(col1, col3, item);
-            }
-
-            //构建树结果
-            foreach (SysAppMenu item in col3.Where(t => t.parent_id == 0))
-            {
-                treedata1 node = getNode1(item, col3);
-
-                reslst.Add(node);
-            }
-
             return new ResponseMessage<object> { data = new { content = reslst } };
         }
 
@@ -252,9 +219,9 @@ namespace DXYK.Admin.API.Controllers
         public ResponseMessage<object> GetTree()
         {
             List<object> reslst = new List<object>();
-            List<SysAppMenu> col1 = _sysAppMenuService.GetAll("");
+            List<SysAppMenu> col1 = _sysAppMenuService.GetAll("").OrderBy(t => t.sort).ToList();
             //构建树结果
-            foreach (SysAppMenu item in col1.Where(t => t.parent_id == 0))
+            foreach (SysAppMenu item in col1.Where(t => t.parent_id == "0"))
             {
                 treedata2 node = getNode2(item, col1);
 
@@ -266,7 +233,7 @@ namespace DXYK.Admin.API.Controllers
 
         private void getTree(List<SysAppMenu> col1, List<SysAppMenu> col2, SysAppMenu node)
         {
-            if (node.parent_id != 0 && col2.Where(t => t.id == node.parent_id).Count() == 0)
+            if (node.parent_id != "0" && col2.Where(t => t.id == node.parent_id).Count() == 0)
             {
                 SysAppMenu parent = col1.Where(t => t.id == node.parent_id).FirstOrDefault();
                 col2.Add(parent);
@@ -274,59 +241,29 @@ namespace DXYK.Admin.API.Controllers
             }
         }
 
-        private treedata getNode(SysAppMenu item, List<SysAppMenu> col3)
+        private SysAppMenuTree getNode(SysAppMenu item, List<SysAppMenu> col3)
         {
-            Object metaobj = new
-            {
-                title = item.title,
-                icon = item.icon,
-                noCache = true
-            };
-            treedata node = new treedata()
-            {
-                name = item.title,
-                path = item.jump,
-                component = item.parent_id == 0 ? "Layout" : string.Format("system/{0}/index", item.jump),
-                meta = metaobj,
-            };
-            List<SysAppMenu> childs = col3.Where(t => t.parent_id == item.id).ToList();
-            if (childs.Count() > 0)
-            {
-                List<treedata> children = new List<treedata>();
-                foreach (var childitem in childs)
-                {
-                    treedata childnode = getNode(childitem, col3);
-                    children.Add(childnode);
-                }
-                node.children = children;
-            }
-            return node;
-        }
-
-        private treedata1 getNode1(SysAppMenu item, List<SysAppMenu> col3)
-        {
-            treedata1 node = new treedata1()
+            SysAppMenuTree node = new SysAppMenuTree()
             {
                 id = item.id,
-                name = item.title,
-                sort = item.sort.ToString(),
-                path = item.jump,
-                component = item.parent_id == 0 ? "Layout" : string.Format("system/{0}/index", item.jump),
-                pid = (long)item.parent_id,
-                cache = "false",
-                hidden = "false",
-                componentName = item.jump,
+                menu_code = item.menu_code,
+                app_id = item.app_id,
+                title = item.title,
+                parent_id = item.parent_id,
                 icon = item.icon,
-                createTime = item.created_time.ToString(),
-                iframe = "false",
+                menu_type = item.menu_type,
+                jump = item.jump,
+                is_enable = item.is_enable,
+                sort = item.sort,
+                group_id = item.group_id
             };
             List<SysAppMenu> childs = col3.Where(t => t.parent_id == item.id).ToList();
             if (childs.Count() > 0)
             {
-                List<treedata1> children = new List<treedata1>();
+                List<SysAppMenuTree> children = new List<SysAppMenuTree>();
                 foreach (var childitem in childs)
                 {
-                    treedata1 childnode = getNode1(childitem, col3);
+                    SysAppMenuTree childnode = getNode(childitem, col3);
                     children.Add(childnode);
                 }
                 node.children = children;
@@ -340,7 +277,7 @@ namespace DXYK.Admin.API.Controllers
             {
                 id = item.id,
                 label = item.title,
-                pid = (long)item.parent_id
+                pid = item.parent_id
             };
             List<SysAppMenu> childs = col3.Where(t => t.parent_id == item.id).ToList();
             if (childs.Count() > 0)
@@ -356,58 +293,19 @@ namespace DXYK.Admin.API.Controllers
             return node;
         }
 
-        private class treedata
+        private class SysAppMenuTree : SysAppMenu
         {
-            /// <summary>
-            /// name
-            /// </summary>
-            public string name;
-            /// <summary>
-            /// path
-            /// </summary>
-            public string path;
-            /// <summary>
-            /// component
-            /// </summary>
-            public string component;
-            /// <summary>
-            /// hidden
-            /// </summary>
-            public string hidden;
-            /// <summary>
-            /// meta
-            /// </summary>
-            public object meta;
             /// <summary>
             /// children
             /// </summary>
-            public List<treedata> children;
-        }
-        /// <summary>
-        /// treedata1
-        /// </summary>
-        private class treedata1
-        {
-            public long id;
-            public string name;
-            public string sort;
-            public string path;
-            public string component;
-            public long pid;
-            public string cache;
-            public string hidden;
-            public string componentName;
-            public string icon;
-            public List<treedata1> children;
-            public string createTime;
-            public string iframe;
+            public List<SysAppMenuTree> children;
         }
 
         private class treedata2
         {
-            public long id;
+            public string id;
             public string label;
-            public long pid;
+            public string pid;
             public List<treedata2> children;
         }
 

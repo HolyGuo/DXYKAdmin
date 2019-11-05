@@ -123,7 +123,7 @@ namespace DXYK.Admin.Service
                         p.AppId = appid;
                         List<string> roles = sysUserAppRoleList.Where(s => s.app_id == appid).Select(s => s.role_id).ToList();
                         //查询授权菜单
-                        List<RoleMapDto> permenulst = roleMapList.Where(s => roles.Contains(s.role_id) && s.type_code == 1).ToList();
+                        List<RoleMapDto> permenulst = roleMapList.Where(s => roles.Contains(s.role_id) && s.type_code == 1).OrderBy(t=>t.menu_sort).ToList();
                         List<MenuTree> MenuTree = new List<MenuTree>();
                         //构建树结果
                         foreach (RoleMapDto item in permenulst.Where(t => t.menu_pid == "0"))
@@ -167,7 +167,7 @@ namespace DXYK.Admin.Service
                     }
                 }
             }
-            catch (System.Exception)
+            catch (System.Exception e)
             {
                 result = null;
             }

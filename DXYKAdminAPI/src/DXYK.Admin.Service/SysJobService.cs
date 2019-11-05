@@ -130,17 +130,17 @@ namespace DXYK.Admin.Service
         /// <summary>
         /// 根据名称和状态获取数据列
         /// </summary>
-        public List<SysJob> QueryDataByNameAndTypeByPage(string name, string enable, string OrderBy, int limit, int offset)
+        public List<SysJob> QueryDataByNameAndTypeByPage(string name, string enable, string dept, string OrderBy, int limit, int offset)
         {
-            return SysJobRepository.QueryDataByNameAndTypeByPage(name, enable, OrderBy, limit, offset);
+            return SysJobRepository.QueryDataByNameAndTypeByPage(name, enable, dept, OrderBy, limit, offset);
         }
 
         /// <summary>
         /// 根据名称和状态获取数据列总数
         /// </summary>
-        public int QueryDataByNameAndType(string name, string enable)
+        public int QueryDataByNameAndType(string name, string enable, string dept)
         {
-            return SysJobRepository.QueryDataByNameAndType(name, enable);
+            return SysJobRepository.QueryDataByNameAndType(name, enable, dept);
         }
 
 

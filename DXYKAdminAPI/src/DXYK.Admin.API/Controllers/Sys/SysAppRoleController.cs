@@ -219,7 +219,7 @@ namespace DXYK.Admin.API.Controllers
                 List<object> menuobj = new List<object>();
                 List<object> actobj = new List<object>();
                 //菜单权限
-                var menus = _sysAppRoleMapService.QueryDataByRole(item.id, 1);
+                var menus = _sysAppRoleMapService.QueryDataByRole(item.id, "1");
                 foreach (var menuitem in menus)
                 {
                     var menu = _sysAppMenuService.GetById(menuitem.map_id);
@@ -232,7 +232,7 @@ namespace DXYK.Admin.API.Controllers
                     menuobj.Add(tmpobj);
                 }
                 //功能权限
-                var actions = _sysAppRoleMapService.QueryDataByRole(item.id, 2);
+                var actions = _sysAppRoleMapService.QueryDataByRole(item.id, "2");
                 foreach (var actitem in actions)
                 {
                     var menu = _sysAppActionService.GetById(actitem.map_id);

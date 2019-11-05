@@ -32,7 +32,7 @@ export function del(id) {
 
 export function edit(data) {
   return request({
-    url: 'api/menus',
+    url: 'api/SysAppMenu/Update',
     method: 'put',
     data
   })
