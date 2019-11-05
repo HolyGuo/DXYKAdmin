@@ -20,17 +20,13 @@ namespace DXYK.Admin.Dto.Cmomon
         /// <summary>
         /// 显示文本
         /// </summary>
-        public string name;   //显示文本
+        public string title;   //显示文本
 
         public List<LayUITreeDto> children;
         /// <summary>
         /// 是否展开节点
         /// </summary>
-        public bool open;//是否展开节点
-        /// <summary>
-        /// 是否父节点
-        /// </summary>
-        public bool isParent;//是否父节点
+        public bool spread;//是否展开节点
         /// <summary>
         /// 图标路径
         /// </summary>

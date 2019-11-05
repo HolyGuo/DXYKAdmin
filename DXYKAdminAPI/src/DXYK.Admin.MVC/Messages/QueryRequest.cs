@@ -53,6 +53,10 @@ namespace DXYK.Admin.MVC.Messages
         /// 排序
         /// </summary>
         public string order { get; set; }
+        /// <summary>
+        /// 单位id
+        /// </summary>
+        public string org_id { get; set; }
 
         /// <summary>
         /// 拼接排序sortField + order (如： id Asc)

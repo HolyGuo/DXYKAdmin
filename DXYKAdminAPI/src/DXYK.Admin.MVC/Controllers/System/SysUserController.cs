@@ -96,5 +96,20 @@ namespace DXYK.Admin.MVC.Controllers.System
             return new ResponseMessageWrap<object> { count = total, data = list };
         }
 
+        ///<summary>
+        /// 根据单位id 分页查询用户信息表(sys_user)
+        ///</summary>
+        [HttpPost]
+        public ResponseMessageWrap<object> QueryPageDataByOrg([FromBody]QueryByPageRequest reqMsg)
+        {
+            UserInfo user = GetCurrentUser.GetUserInfo(Request.HttpContext);
+            reqMsg.groupId = user.group_id;
+            var total = _sysUserService.QueryDataRecord(reqMsg);
+            var list = _sysUserService.QueryDataByPage(reqMsg);
+            return new ResponseMessageWrap<object> { count = total, data = list };
+        }
+
+
+
     }
 }

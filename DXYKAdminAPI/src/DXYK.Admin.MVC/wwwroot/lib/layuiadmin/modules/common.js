@@ -5,7 +5,7 @@
 
 layui.define(function (exports) {
     var $ = layui.$
-        , layer = layui.layer
+        //, layer = layui.layer
         , laytpl = layui.laytpl
         , setter = layui.setter
         , view = layui.view

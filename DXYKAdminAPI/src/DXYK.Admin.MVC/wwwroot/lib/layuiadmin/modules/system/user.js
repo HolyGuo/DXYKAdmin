@@ -14,10 +14,10 @@ layui.define(function (exports) {
             formTool = layui.formtool,
             tree = layui.tree,
             setter = layui.setter;
+        var queryParam = { keyWords: "", field: "id", org_id: "", order: "desc" };
 
-        var queryParam = { keyWords: "", field: "id", order: "desc" };
         var active = {
-            reload: function (initSort) {
+            reloadTale: function (initSort) {
                 //执行重载
                 table.reload('test-table-toolbar', {
                     page: {
@@ -38,7 +38,7 @@ layui.define(function (exports) {
                         var field = data.field; //获取提交的字段
                         com.ajax('添加', '../api/SysUser/Insert', 'post', true, field, function (res) {
                             if (res.success === true) {
-                                active.reload();//重载表格
+                                active.reloadTale();//重载表格
                                 layer.close(index); //执行关闭 
                             } else {
                                 layer.msg('保存失败！', {
@@ -66,7 +66,7 @@ layui.define(function (exports) {
                                 var field = data.field; //获取提交的字段
                                 com.ajax("修改", '../api/SysUser/Update', 'put', true, field, function (res) {
                                     if (res.success === true) {
-                                        active.reload();//重载表格
+                                        active.reloadTale();//重载表格
                                         layer.close(index); //执行关闭 
                                     } else {
                                         layer.msg('保存失败！', {
@@ -91,7 +91,7 @@ layui.define(function (exports) {
                 layer.confirm('你确定要删除用户：' + name, function (index) {
                     com.ajax('删除', '../api/SysUser/DeleteById?id=' + id, 'delete', true, { id: id }, function (res) {
                         if (res.success === true && res.data > 0) {
-                            active.reload();//重载表格
+                            active.reloadTale();//重载表格
                         } else {
                             layer.msg('删除失败！', {
                                 icon: 5,
@@ -104,7 +104,48 @@ layui.define(function (exports) {
             }//delete end
 
         };//active end
+        var loadTable = function () {
+            table.render({
+                elem: '#test-table-toolbar',
+                url: '../api/SysUser/QueryDataByPage',
+                method: 'post',
+                contentType: 'application/json',
+                title: '用户数据表',
+                height: 'full-100',
+                initSort: {
+                    field: 'id'
+                    , type: 'desc'
+                },
+                headers: {
+                    Authorization: (layui.data(setter.tableName)[setter.request.tokenName])
+                },
+                where: queryParam,
+                cols: [[
 
+                    { type: 'numbers' },
+                    //{ field: 'id', title: 'ID', width: 80, fixed: 'left' },
+                    { field: 'id', title: 'ID', width: 80, fixed: 'left', hide: true },
+                    { field: 'true_name', title: '姓名', width: 120, sort: true },
+                    { field: 'nick_name', title: '昵称', width: 120, sort: true },
+                    { field: 'login_name', title: '登录名', width: 150, sort: true },
+                    { field: 'is_enable', title: '是否启用', width: 150, sort: true, templet: '#is_enable_Tpl' },
+                    { field: 'sex', title: '性别', width: 80, sort: true },
+                    { field: 'telephone', title: '电话', width: 120, sort: true },
+                    { field: 'mobile', title: '手机', width: 120, sort: true },
+                    { field: 'email', title: '邮箱', width: 200, sort: true },
+                    { field: 'wx_id', title: '微信号', width: 120, sort: true },
+                    { field: 'wx_name', title: '微信昵称', width: 120, sort: true },
+                    { field: 'qq_id', title: 'QQ号', width: 120, sort: true },
+                    { field: 'qq_name', title: 'QQ昵称', width: 120, sort: true },
+                    { field: 'summary', title: '备注', width: 120, sort: true },
+                    { fixed: 'right', title: '操作', toolbar: '#test-table-toolbar-barDemo', width: 115, align: 'center' }
+                ]],
+                page: true,
+                limits: [10, 15, 20, 30, 40, 50],
+                limit: 15
+            });
+        }
+        loadTable();
         //搜索
         $('.test-table-reload-btn .layui-btn').on('click', function () {
             queryParam.keyWords = $("#keyWords").val();
@@ -118,47 +159,6 @@ layui.define(function (exports) {
                 $(".test-table-reload-btn .layui-btn")[0].click();
             }
         });
-
-        table.render({
-            elem: '#test-table-toolbar',
-            url: '../api/SysUser/QueryDataByPage',
-            method: 'post',
-            contentType: 'application/json',
-            title: '用户数据表',
-            height: 'full-100',
-            initSort: {
-                field: 'id'
-                , type: 'desc'
-            },
-            headers: {
-                Authorization: (layui.data(setter.tableName)[setter.request.tokenName])
-            },
-            where: queryParam,
-            cols: [[
-
-                { type: 'numbers' },
-                //{ field: 'id', title: 'ID', width: 80, fixed: 'left' },
-                { field: 'id', title: 'ID', width: 80, fixed: 'left', hide: true },
-                { field: 'true_name', title: '姓名', width: 120, sort: true },
-                { field: 'nick_name', title: '昵称', width: 120, sort: true },
-                { field: 'login_name', title: '登录名', width: 150, sort: true },
-                { field: 'is_enable', title: '是否启用', width: 150, sort: true, templet: '#is_enable_Tpl' },
-                { field: 'sex', title: '性别', width: 80, sort: true },
-                { field: 'telephone', title: '电话', width: 120, sort: true },
-                { field: 'mobile', title: '手机', width: 120, sort: true },
-                { field: 'email', title: '邮箱', width: 200, sort: true },
-                { field: 'wx_id', title: '微信号', width: 120, sort: true },
-                { field: 'wx_name', title: '微信昵称', width: 120, sort: true },
-                { field: 'qq_id', title: 'QQ号', width: 120, sort: true },
-                { field: 'qq_name', title: 'QQ昵称', width: 120, sort: true },
-                { field: 'summary', title: '备注', width: 120, sort: true },
-                { fixed: 'right', title: '操作', toolbar: '#test-table-toolbar-barDemo', width: 115, align: 'center' }
-            ]],
-            page: true,
-            limits: [10, 15, 20, 30, 40, 50],
-            limit: 15
-        });
-
         //监听行工具事件
         table.on('tool(test-table-toolbar)', function (obj) {
             var id = obj.data.id;
@@ -180,11 +180,16 @@ layui.define(function (exports) {
             queryParam.order = obj.type; //排序方式
             active.reload(obj);
         });
-        com.ajax('查询组织结构', '../api/SysOrg/QueryDataByAuthorize', 'get', true, null, function (res) {
+        com.ajax(null, '../api/SysOrg/QueryDataByAuthorize', 'get', true, null, function (res) {
             if (res.success === true && res.data.length > 0) {
-                var inst1 = layui.tree({
+                var inst1 = tree.render({
                     elem: '#orgTree',  //绑定元素
-                    nodes: res.data
+                    data: res.data,
+                    id: 'id',
+                    accordion: true,
+                    click: function (node) {
+
+                    }
                 });
             } else {
                 layer.msg('删除失败！', {
@@ -193,25 +198,17 @@ layui.define(function (exports) {
                 });
             }
         });//ajax end
-        var orgTree = function () {
-            com.ajax('查询组织结构', '../api/SysOrg/QueryDataByAuthorize', 'get', true, null, function (res) {
-                if (res.success === true && res.data.length > 0) {
-                    var inst1 = layui.tree({
-                        elem: '#orgTree',  //绑定元素
-                        data: res.data
-                    });
-                } else {
-                    layer.msg('删除失败！', {
-                        icon: 5,
-                        time: 2000 //2秒关闭（如果不配置，默认是3秒）
-                    });
-                }
-            });//ajax end
 
+        resizeUI();
+        $(window).resize(function () {
+            resizeUI();
+        });
+        function resizeUI() {
+            $("#orgTree").height($("#div_table").height());
+            $("#orgTree").width($("#div_tree").width());
         }
-
-
         //exports('user', {});
     });//layui.define end
     exports('user', {})
+
 });//layui.define end
