@@ -452,7 +452,7 @@
       Select T.id,T.true_name,T.nick_name,T.login_name,T.is_enable,T.user_type,T.sex,T.head_pic,T.telephone,T.mobile,T.email,
       T.summary,T.org_id,T.job_id,T.last_login_time,T.wx_openid,T.wx_id,T.wx_name,T.qq_openid,T.qq_id,T.qq_name,T.sort,
       T.group_id,T.re_vision,T.created_by,T.created_time,T.updated_by,T.updated_time,T.deleted_by,T.deleted_time
-      From sys_user AS T LEFT JOIN sys_org AS O ON T.org_id=O.id
+      From sys_user AS T 
       <Include RefId="QueryDataParams" />
       <IsNotEmpty Prepend="Order By" Property="OrderBy">
       </IsNotEmpty>
@@ -464,6 +464,20 @@
       Select Count(T.id) From sys_user AS T
       <Include RefId="QueryDataParams" />
     </Statement>
+    <!--据单位id 分页查询单位信息表(sys_org)-->
+    <Statement Id="QueryPageDataByOrg">
+      Select T.id,T.true_name,T.nick_name,T.login_name,T.is_enable,T.user_type,T.sex,T.head_pic,T.telephone,T.mobile,T.email,
+      T.summary,T.org_id,T.last_login_time,T.wx_openid,T.wx_id,T.wx_name,T.qq_openid,T.qq_id,T.qq_name,T.sort,
+      T.group_id,T.re_vision,T.created_by,T.created_time,T.updated_by,T.updated_time,T.deleted_by,T.deleted_time
+      From sys_user AS T
+      
+    </Statement>
+    <Statement Id="QueryPageDataByOrgParams">
+      <Where>
+        
+      </Where>
+    </Statement>
+    
     <!--查询所有-->
     <Statement Id="GetAll">
       Select * From sys_user

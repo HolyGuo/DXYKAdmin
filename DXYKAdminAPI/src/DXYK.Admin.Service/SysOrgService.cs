@@ -187,10 +187,11 @@ namespace DXYK.Admin.Service
                 res = new LayUITreeDto();
                 //当前单位为根节点
                 SysOrg rootOrg = list.Where(s => s.id == id).FirstOrDefault();
-                res.name = rootOrg.org_name;
-                //res.id = rootOrg.id;
-                //res.pId = rootOrg.parent_id;
-                //res.obj = rootOrg;
+                res.title = rootOrg.org_name;
+                res.id = rootOrg.id;
+                res.spread = true;
+                res.pId = rootOrg.parent_id;
+                res.obj = rootOrg;
                 GetChildOrg(res, list, id);
             }
             return res;
@@ -203,10 +204,10 @@ namespace DXYK.Admin.Service
                 foreach (SysOrg item in childList)
                 {
                     LayUITreeDto node = new LayUITreeDto();
-                    node.name = item.org_name;
-                    //node.id = item.id;
-                    //node.pId = item.parent_id;
-                    //node.obj = item;
+                    node.title = item.org_name;
+                    node.id = item.id;
+                    node.pId = item.parent_id;
+                    node.obj = item;
                     if (res.children == null)
                     {
                         res.children = new List<LayUITreeDto>();
