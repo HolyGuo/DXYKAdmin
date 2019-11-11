@@ -9,7 +9,7 @@
   <Statements>
     <!--返回列-->
     <Statement Id="AllCols">
-      T.id,T.true_name,T.nick_name,T.login_name,T.login_pwd,T.sex,T.head_pic,T.org_id,T.last_login_time,T.group_id,T.created_time,T.updated_by,T.updated_time
+      T.id,T.true_name,T.nick_name,T.login_name,T.login_pwd,T.is_enable,T.user_type,T.sex,T.head_pic,T.telephone,T.mobile,T.email,T.summary,T.org_id,T.job_id,T.last_login_time,T.wx_openid,T.wx_id,T.wx_name,T.qq_openid,T.qq_id,T.qq_name,T.sort,T.group_id,T.re_vision,T.created_by,T.created_time,T.updated_by,T.updated_time,T.deleted_by,T.deleted_time
     </Statement>
     <!--登录验证-->
     <Statement Id="LoginIn">

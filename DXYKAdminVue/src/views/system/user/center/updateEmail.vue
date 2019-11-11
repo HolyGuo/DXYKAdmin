@@ -6,9 +6,6 @@
           <el-input v-model="form.email" auto-complete="on" style="width: 200px;"/>
           <el-button :loading="codeLoading" :disabled="isDisabled" size="small" @click="sendCode">{{ buttonName }}</el-button>
         </el-form-item>
-        <el-form-item label="验证码" prop="code">
-          <el-input v-model="form.code" style="width: 320px;"/>
-        </el-form-item>
         <el-form-item label="当前密码" prop="pass">
           <el-input v-model="form.pass" type="password" style="width: 320px;"/>
         </el-form-item>
@@ -39,14 +36,12 @@ export default {
         callback(new Error('新邮箱不能为空'))
       } else if (value === this.email) {
         callback(new Error('新邮箱不能与旧邮箱相同'))
-      } else if (validatEmail(value)) {
-        callback()
       } else {
-        callback(new Error('邮箱格式错误'))
+        callback()
       }
     }
     return {
-      loading: false, dialog: false, title: '修改邮箱', form: { pass: '', email: '', code: '' },
+      loading: false, dialog: false, title: '修改邮箱', form: { pass: '', email: '' },
       user: { email: '', password: '' }, codeLoading: false,
       codeData: { type: 'email', value: '' },
       buttonName: '获取验证码', isDisabled: false, time: 60,
@@ -56,9 +51,6 @@ export default {
         ],
         email: [
           { required: true, validator: validMail, trigger: 'blur' }
-        ],
-        code: [
-          { required: true, message: '验证码不能为空', trigger: 'blur' }
         ]
       }
     }
@@ -104,7 +96,7 @@ export default {
         if (valid) {
           this.loading = true
           this.user = { email: this.form.email, password: this.form.pass }
-          updateEmail(this.form.code, this.user).then(res => {
+          updateEmail(this.user).then(res => {
             this.loading = false
             this.resetForm()
             this.$notify({
@@ -129,7 +121,7 @@ export default {
       this.time = 60
       this.buttonName = '获取验证码'
       this.isDisabled = false
-      this.form = { pass: '', email: '', code: '' }
+      this.form = { pass: '', email: '' }
     }
   }
 }

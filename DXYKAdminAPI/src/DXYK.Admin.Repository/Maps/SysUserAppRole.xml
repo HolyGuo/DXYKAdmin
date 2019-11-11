@@ -192,5 +192,21 @@
       <Include RefId="QueryDataParams" />
     </Statement>
 
+    <!--清除关联-->
+    <Statement Id="ClearRelation">
+      Delete From sys_user_app_role T
+      <Where>
+      <IsNotEmpty Prepend="And" Property="user_id">
+        T.user_id = @user_id
+      </IsNotEmpty>
+      <IsNotEmpty Prepend="And" Property="app_id">
+        T.app_id = @app_id
+      </IsNotEmpty>
+      <IsNotEmpty Prepend="And" Property="group_id">
+        T.group_id = @group_id
+      </IsNotEmpty>
+      </Where>
+    </Statement>
+
   </Statements>
 </SmartSqlMap>

@@ -19,10 +19,13 @@
               </el-upload>
             </div>
             <ul class="user-info">
-              <li><svg-icon icon-class="user1" /> 用户名称 <div class="user-right">{{ user.username }}</div></li>
-              <li><svg-icon icon-class="phone" /> 手机号码 <div class="user-right">{{ user.phone }}</div></li>
+              <li><svg-icon icon-class="user1" /> 姓名 <div class="user-right">{{ user.true_name }}</div></li>
+              <li><svg-icon icon-class="user1" /> 昵称 <div class="user-right">{{ user.nick_name }}</div></li>
+              <li><svg-icon icon-class="user1" /> 用户名 <div class="user-right">{{ user.login_name }}</div></li>
+              <li><svg-icon icon-class="phone" /> 手机号码 <div class="user-right">{{ user.telephone }}</div></li>
               <li><svg-icon icon-class="email" /> 用户邮箱 <div class="user-right">{{ user.email }}</div></li>
-              <li><svg-icon icon-class="dept" /> 所属部门 <div class="user-right"> {{ user.dept }} / {{ user.job }}</div></li>
+              <li><svg-icon icon-class="dept" /> 所属部门 <div class="user-right"> {{ user.dept }} / {{ user.rolename }}</div></li>
+              <li><svg-icon icon-class="dept" /> 所属部门 <div class="user-right"> {{ user.dept }} / {{ user.jobname }}</div></li>
               <li><svg-icon icon-class="date" /> 创建日期 <div class="user-right">{{ parseTime(user.createTime) }}</div></li>
               <li>
                 <svg-icon icon-class="anq" /> 安全设置
@@ -71,8 +74,8 @@
         </el-card>
       </el-col>
     </el-row>
-    <updateEmail ref="email" :email="user.email"/>
-    <updatePass ref="pass"/>
+    <updateEmail ref="email" :id="user.id"/>
+    <updatePass ref="pass" :id="user.id"/>
   </div>
 </template>
 

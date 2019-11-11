@@ -110,7 +110,9 @@ namespace DXYK.Admin.API.Controllers
         [HttpPut, ApiAuthorize(ActionCode = "Admin,User_Manage,User_Update", LogType = LogEnum.UPDATE)]
         public ResponseMessage<int> Update([FromBody]SysUser sysUser)
         {
-            return new ResponseMessage<int> { data = _sysUserService.Update(sysUser) };
+            SysUser entity = _sysUserService.GetById(sysUser.id);
+            Utils.CommmonUtils.EntityToEntity(sysUser, entity, null);
+            return new ResponseMessage<int> { data = _sysUserService.Update(entity) };
         }
 
         ///<summary>
@@ -318,23 +320,27 @@ namespace DXYK.Admin.API.Controllers
             return new ResponseMessage<object> { data = new { contacts = reslst }};
         }
 
-        /// <summary>
-        /// 分页查询请求带查询参数
-        /// </summary>
-        public class QueryByPageWithDeptRequest : QueryByPageRequest
+        ///<summary>
+        /// 修改密码
+        ///</summary>
+        [HttpPost]
+        public ResponseMessage<object> updatePass([FromBody]UpdatePassRequest reqMsg)
         {
-            /// <summary>
-            /// 应用
-            /// </summary>
-            public string app { get; set; }
-            /// <summary>
-            /// 部门
-            /// </summary>
-            public string dept { get; set; }
+            var sysUser = _sysUserService.GetById(reqMsg.id);
+            if (reqMsg.oldPass != sysUser.login_pwd)
+            {
+                return new ResponseMessage<object> { data = new { result = "false", content = "旧密码错误" } };
+            }
+            else
+            {
+                sysUser.login_pwd = reqMsg.newPass;
+                _sysUserService.Update(sysUser);
+                return new ResponseMessage<object> { data = new { result = "true", content = "旧密码错误" } };
+            }
         }
 
         /// <summary>
-        /// 分页查询名称状态请求
+        /// 用户概要信息
         /// </summary>
         public class UserInfoResult
         {
@@ -354,8 +360,42 @@ namespace DXYK.Admin.API.Controllers
             /// 角色
             /// </summary>
             public object role { get; set; }
-
         }
+
+        /// <summary>
+        /// 分页查询请求带查询参数
+        /// </summary>
+        public class QueryByPageWithDeptRequest : QueryByPageRequest
+        {
+            /// <summary>
+            /// 应用
+            /// </summary>
+            public string app { get; set; }
+            /// <summary>
+            /// 部门
+            /// </summary>
+            public string dept { get; set; }
+        }
+
+        /// <summary>
+        /// 改密参数
+        /// </summary>
+        public class UpdatePassRequest
+        {
+            /// <summary>
+            /// id
+            /// </summary>
+            public string id { get; set; }
+            /// <summary>
+            /// 旧密码
+            /// </summary>
+            public string oldPass { get; set; }
+            /// <summary>
+            /// 新密码
+            /// </summary>
+            public string newPass { get; set; }
+        }
+
     }
 }
 

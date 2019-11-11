@@ -33,7 +33,7 @@
     <tree-table v-loading="loading" :expand-all="expand" :data="data" :columns="columns" size="small">
       <el-table-column label="状态" align="center">
         <template slot-scope="scope">
-          <span>{{ scope.row.enabled==='true'?'正常':'禁用' }}</span>
+          <el-tag>{{ scope.row.enabled }}</el-tag>
         </template>
       </el-table-column>
       <el-table-column prop="createTime" label="创建日期">
@@ -83,8 +83,8 @@ export default {
         }
       ],
       enabledTypeOptions: [
-        { key: 'true', display_name: '正常' },
-        { key: 'false', display_name: '禁用' }
+        { key: '启用', display_name: '启用' },
+        { key: '禁用', display_name: '禁用' }
       ],
       delLoading: false, expand: true
     }
@@ -94,7 +94,8 @@ export default {
       this.init()
       // 加载数据字典
       // this.getDict('dept_status')
-      this.dicts = [{ 'id': 11, 'label': '正常', 'value': 'true', 'sort': '1' }, { 'id': 12, 'label': '停用', 'value': 'false', 'sort': '2' }]
+      this.dicts = [{ 'id': 11, 'label': '启用', 'value': '启用', 'sort': '1' },
+       { 'id': 12, 'label': '禁用', 'value': '禁用', 'sort': '2' }]
     })
   },
   methods: {

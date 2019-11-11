@@ -181,6 +181,51 @@ namespace DXYK.Admin.API.Controllers
             var list = await _sysUserAppRoleService.QueryDataByPageAsync(reqMsg);
             return new ResponseMessageWrap<object> { count = total, data = list };
         }
+
+        ///<summary>
+        /// 修改关联表表(sys_user_app_role)
+        ///</summary>
+        [HttpPost]
+        public ResponseMessage<int> addRelation([FromBody]RelationRequest reqMsg)
+        {
+            _sysUserAppRoleService.ClearRelation(reqMsg.user_id, reqMsg.app_id, reqMsg.group_id);
+            foreach (var item in reqMsg.role_id)
+            {
+                var insertobj = new SysUserAppRole() {
+                    user_id = reqMsg.user_id,
+                    app_id = reqMsg.app_id,
+                    group_id = reqMsg.group_id,
+                    role_id = item
+                };
+                _sysUserAppRoleService.Insert(insertobj);
+            }
+            return new ResponseMessage<int> { data = 1 };
+        }
+
+        /// <summary>
+        /// 查询参数
+        /// </summary>
+        public class RelationRequest
+        {
+            /// <summary>
+            /// 用户
+            /// </summary>
+            public string user_id { get; set; }
+            /// <summary>
+            /// 应用
+            /// </summary>
+            public string app_id { get; set; }
+            /// <summary>
+            /// 角色
+            /// </summary>
+            public string[] role_id { get; set; }
+            /// <summary>
+            /// 群组
+            /// </summary>
+            public string group_id { get; set; }
+        }
+
+
     }
 }
 

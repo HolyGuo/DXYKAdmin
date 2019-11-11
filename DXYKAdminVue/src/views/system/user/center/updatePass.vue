@@ -24,6 +24,12 @@
 import store from '@/store'
 import { updatePass } from '@/api/sys/user'
 export default {
+  props: {
+    id: {
+      type: String,
+      required: true
+    }
+  },
   data() {
     const confirmPass = (rule, value, callback) => {
       if (value) {
@@ -37,7 +43,8 @@ export default {
       }
     }
     return {
-      loading: false, dialog: false, title: '修改密码', form: { oldPass: '', newPass: '', confirmPass: '' },
+      loading: false, dialog: false, title: '修改密码', form: { id: this.id, oldPass: '', newPass: '', confirmPass: '' },
+
       rules: {
         oldPass: [
           { required: true, message: '请输入旧密码', trigger: 'blur' }
@@ -61,17 +68,25 @@ export default {
         if (valid) {
           this.loading = true
           updatePass(this.form).then(res => {
-            this.resetForm()
-            this.$notify({
-              title: '密码修改成功，请重新登录',
-              type: 'success',
-              duration: 1500
-            })
-            setTimeout(() => {
-              store.dispatch('LogOut').then(() => {
-                location.reload() // 为了重新实例化vue-router对象 避免bug
+            if(res.data.result == 'true'){
+              this.resetForm()
+              this.$notify({
+                title: '密码修改成功，请重新登录',
+                type: 'success',
+                duration: 1500
               })
-            }, 1500)
+              setTimeout(() => {
+                store.dispatch('LogOut').then(() => {
+                  location.reload() // 为了重新实例化vue-router对象 避免bug
+                })
+              }, 1500)
+            }else{
+              this.$notify({
+                title: '密码修改失败，' + res.data.content,
+                type: 'error',
+                duration: 1500
+              })
+            }
           }).catch(err => {
             this.loading = false
             console.log(err.response.data.message)
@@ -84,7 +99,7 @@ export default {
     resetForm() {
       this.dialog = false
       this.$refs['form'].resetFields()
-      this.form = { oldPass: '', newPass: '', confirmPass: '' }
+      this.form = { id: this.id, oldPass: '', newPass: '', confirmPass: '' }
     }
   }
 }

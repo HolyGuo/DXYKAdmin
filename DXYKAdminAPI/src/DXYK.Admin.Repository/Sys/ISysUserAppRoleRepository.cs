@@ -71,6 +71,12 @@ namespace DXYK.Admin.Repository
         ///</summary>
         [Statement(Id = "QueryDataByPage")]
         Task<List<object>> QueryDataByPageAsync(object param);
+        ///<summary>
+        /// 清除关联
+        ///</summary>
+        [Statement(Id = "ClearRelation")]
+        int ClearRelation([Param("user_id")]string user_id, [Param("app_id")]string app_id,
+            [Param("group_id")]string group_id);
     }
 }
 

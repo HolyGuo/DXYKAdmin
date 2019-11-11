@@ -42,7 +42,9 @@
         </div>
         <!--表格渲染-->
         <el-table v-loading="loading" :data="data" size="small" style="width: 100%;">
-          <el-table-column prop="user.nick_name" label="用户名"/>
+          <el-table-column prop="user.true_name" label="姓名"/>
+          <el-table-column prop="user.nick_name" label="昵称"/>
+          <el-table-column prop="user.login_name" label="用户名"/>
           <el-table-column prop="user.telephone" label="电话"/>
           <el-table-column :show-overflow-tooltip="true" prop="user.email" label="邮箱"/>
           <el-table-column label="部门 / 岗位">
@@ -52,9 +54,7 @@
           </el-table-column>
           <el-table-column label="状态" align="center">
             <template slot-scope="scope">
-              <div v-for="item in dicts" :key="item.id">
-                <el-tag v-if="scope.row.user.is_enabled === item.value" :type="scope.row.user.is_enabled ? '' : 'info'">{{ item.label }}</el-tag>
-              </div>
+              <el-tag>{{ scope.row.user.is_enable }}</el-tag>
             </template>
           </el-table-column>
           <el-table-column :show-overflow-tooltip="true" prop="user.createTime" label="创建日期">
@@ -101,6 +101,7 @@ import { del, downloadUser } from '@/api/sys/user'
 import { getDepts } from '@/api/sys/dept'
 import { parseTime, downloadFile } from '@/utils/index'
 import eForm from './form'
+import Config from '@/config'
 export default {
   name: 'User',
   components: { eForm },
@@ -117,7 +118,8 @@ export default {
       enabledTypeOptions: [
         { key: '启用', display_name: '启用' },
         { key: '禁用', display_name: '禁用' }
-      ]
+      ],
+      appid: Config.appid
     }
   },
   created() {
@@ -126,7 +128,8 @@ export default {
       this.init()
       // 加载数据字典
       // this.getDict('user_status')
-      this.dicts = [{ 'id': 1, 'label': '启用', 'value': '启用', 'sort': '1' }, { 'id': 2, 'label': '禁用', 'value': '禁用', 'sort': '2' }]
+      this.dicts = [{ 'id': 1, 'label': '启用', 'value': '启用', 'sort': '1' },
+       { 'id': 2, 'label': '禁用', 'value': '禁用', 'sort': '2' }]
     })
   },
   mounted: function() {
@@ -183,6 +186,7 @@ export default {
       this.init()
     },
     add() {
+      _this.appid = this.appid
       this.isAdd = true
       this.$refs.form.getDepts()
       this.$refs.form.getRoles()
@@ -213,6 +217,7 @@ export default {
     edit(data) {
       this.isAdd = false
       const _this = this.$refs.form
+      this.$refs.appid = this.appid
       _this.getRoles()
       _this.getDepts()
       _this.roleIds = []

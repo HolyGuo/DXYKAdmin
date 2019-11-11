@@ -127,6 +127,14 @@ namespace DXYK.Admin.Service
             return await SysUserAppRoleRepository.QueryDataByPageAsync(param);
         }
 
+        ///<summary>
+        ///清除关联
+        ///</summary>
+        public int ClearRelation(string user_id, string app_id, string group_id)
+        {
+            return SysUserAppRoleRepository.ClearRelation(user_id, app_id, group_id);
+        }
+
 
 
     }

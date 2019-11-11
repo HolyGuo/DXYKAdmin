@@ -20,6 +20,11 @@
               布局设置
             </el-dropdown-item>
           </span>
+          <router-link to="/user/center">
+            <el-dropdown-item>
+              个人中心
+            </el-dropdown-item>
+          </router-link>
           <span style="display:block;" @click="open">
             <el-dropdown-item divided>
               退出登录

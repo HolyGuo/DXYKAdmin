@@ -1440,6 +1440,36 @@
              异步根据分页查询用户应用角色授权表(sys_user_app_role)
             </summary>
         </member>
+        <member name="M:DXYK.Admin.API.Controllers.SysUserAppRoleController.addRelation(DXYK.Admin.API.Controllers.SysUserAppRoleController.RelationRequest)">
+            <summary>
+             修改关联表表(sys_user_app_role)
+            </summary>
+        </member>
+        <member name="T:DXYK.Admin.API.Controllers.SysUserAppRoleController.RelationRequest">
+            <summary>
+            查询参数
+            </summary>
+        </member>
+        <member name="P:DXYK.Admin.API.Controllers.SysUserAppRoleController.RelationRequest.user_id">
+            <summary>
+            用户
+            </summary>
+        </member>
+        <member name="P:DXYK.Admin.API.Controllers.SysUserAppRoleController.RelationRequest.app_id">
+            <summary>
+            应用
+            </summary>
+        </member>
+        <member name="P:DXYK.Admin.API.Controllers.SysUserAppRoleController.RelationRequest.role_id">
+            <summary>
+            角色
+            </summary>
+        </member>
+        <member name="P:DXYK.Admin.API.Controllers.SysUserAppRoleController.RelationRequest.group_id">
+            <summary>
+            群组
+            </summary>
+        </member>
         <member name="T:DXYK.Admin.API.Controllers.SysUserController">
             <summary>
              用户信息表
@@ -1560,24 +1590,14 @@
              根据Id查询用户信息表(sys_user)
             </summary>
         </member>
-        <member name="T:DXYK.Admin.API.Controllers.SysUserController.QueryByPageWithDeptRequest">
+        <member name="M:DXYK.Admin.API.Controllers.SysUserController.updatePass(DXYK.Admin.API.Controllers.SysUserController.UpdatePassRequest)">
             <summary>
-            分页查询请求带查询参数
-            </summary>
-        </member>
-        <member name="P:DXYK.Admin.API.Controllers.SysUserController.QueryByPageWithDeptRequest.app">
-            <summary>
-            应用
-            </summary>
-        </member>
-        <member name="P:DXYK.Admin.API.Controllers.SysUserController.QueryByPageWithDeptRequest.dept">
-            <summary>
-            部门
+             修改密码
             </summary>
         </member>
         <member name="T:DXYK.Admin.API.Controllers.SysUserController.UserInfoResult">
             <summary>
-            分页查询名称状态请求
+            用户概要信息
             </summary>
         </member>
         <member name="P:DXYK.Admin.API.Controllers.SysUserController.UserInfoResult.user">
@@ -1598,6 +1618,41 @@
         <member name="P:DXYK.Admin.API.Controllers.SysUserController.UserInfoResult.role">
             <summary>
             角色
+            </summary>
+        </member>
+        <member name="T:DXYK.Admin.API.Controllers.SysUserController.QueryByPageWithDeptRequest">
+            <summary>
+            分页查询请求带查询参数
+            </summary>
+        </member>
+        <member name="P:DXYK.Admin.API.Controllers.SysUserController.QueryByPageWithDeptRequest.app">
+            <summary>
+            应用
+            </summary>
+        </member>
+        <member name="P:DXYK.Admin.API.Controllers.SysUserController.QueryByPageWithDeptRequest.dept">
+            <summary>
+            部门
+            </summary>
+        </member>
+        <member name="T:DXYK.Admin.API.Controllers.SysUserController.UpdatePassRequest">
+            <summary>
+            改密参数
+            </summary>
+        </member>
+        <member name="P:DXYK.Admin.API.Controllers.SysUserController.UpdatePassRequest.id">
+            <summary>
+            id
+            </summary>
+        </member>
+        <member name="P:DXYK.Admin.API.Controllers.SysUserController.UpdatePassRequest.oldPass">
+            <summary>
+            旧密码
+            </summary>
+        </member>
+        <member name="P:DXYK.Admin.API.Controllers.SysUserController.UpdatePassRequest.newPass">
+            <summary>
+            新密码
             </summary>
         </member>
         <member name="T:DXYK.Admin.API.Exceptions.APIException">

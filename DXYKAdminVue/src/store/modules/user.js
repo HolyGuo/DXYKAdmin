@@ -45,6 +45,7 @@ const user = {
           // 通过appid和token获取授权
           Authorize(res.data, Config.appid).then(res => {
             setUserInfo(res.data.Permission.Action, commit)
+            commit('SET_USER', res.data.User)
             // 加载路由
             const asyncRouter = filterAsyncRouter(res.data.Permission.MenuTree)
             asyncRouter.push({ path: '*', redirect: '/404', hidden: true })

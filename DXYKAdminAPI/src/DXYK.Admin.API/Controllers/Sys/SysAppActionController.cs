@@ -192,7 +192,7 @@ namespace DXYK.Admin.API.Controllers
             List<object> reslst = new List<object>();
             List<SysAppAction> col1 = _sysAppActionService.GetAll("");
             //构建树结果
-            foreach (SysAppAction item in col1.Where(t => t.parent_id == 0))
+            foreach (SysAppAction item in col1.Where(t => t.parent_id == "0"))
             {
                 treedata2 node = getNode2(item, col1);
 
@@ -208,7 +208,7 @@ namespace DXYK.Admin.API.Controllers
             {
                 id = item.id,
                 label = item.action_name,
-                pid = (long)item.parent_id
+                pid = item.parent_id
             };
             List<SysAppAction> childs = col3.Where(t => t.parent_id == item.id).ToList();
             if (childs.Count() > 0)
@@ -226,9 +226,9 @@ namespace DXYK.Admin.API.Controllers
 
         private class treedata2
         {
-            public long id;
+            public string id;
             public string label;
-            public long pid;
+            public string pid;
             public List<treedata2> children;
         }
 

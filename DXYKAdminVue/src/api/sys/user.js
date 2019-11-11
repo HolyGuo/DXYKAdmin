@@ -30,21 +30,25 @@ export function edit(data) {
   })
 }
 
-export function updatePass(user) {
-  const data = {
-    oldPass: user.oldPass,
-    newPass: user.newPass
-  }
+export function updatePass(data) {
   return request({
-    url: 'api/users/updatePass/',
+    url: 'api/SysUser/updatePass/',
     method: 'post',
     data
   })
 }
 
-export function updateEmail(code, data) {
+export function updateEmail(data) {
   return request({
-    url: 'api/users/updateEmail/' + code,
+    url: 'api/SysUser/updateEmail/',
+    method: 'post',
+    data
+  })
+}
+
+export function addRelation(data) {
+  return request({
+    url: 'api/SysUserAppRole/addRelation/',
     method: 'post',
     data
   })

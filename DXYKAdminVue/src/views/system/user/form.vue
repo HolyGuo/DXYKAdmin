@@ -1,11 +1,17 @@
 <template>
   <el-dialog :visible.sync="dialog" :close-on-click-modal="false" :before-close="cancel" :title="isAdd ? '新增用户' : '编辑用户'" append-to-body width="570px">
     <el-form ref="form" :inline="true" :model="form" :rules="rules" size="small" label-width="66px">
-      <el-form-item label="用户名" prop="nick_name">
+      <el-form-item label="姓名" prop="true_name">
+        <el-input v-model="form.true_name"/>
+      </el-form-item>
+      <el-form-item label="昵称" prop="nick_name">
         <el-input v-model="form.nick_name"/>
       </el-form-item>
-      <el-form-item label="状态" prop="is_enabled">
-        <el-radio v-for="item in dicts" :key="item.id" v-model="form.is_enabled" :label="item.value">{{ item.label }}</el-radio>
+      <el-form-item label="用户名" prop="login_name">
+        <el-input v-model="form.login_name"/>
+      </el-form-item>
+      <el-form-item label="状态" prop="is_enable">
+        <el-radio v-for="item in dicts" :key="item.id" v-model="form.is_enable" :label="item.value">{{ item.label }}</el-radio>
       </el-form-item>
       <el-form-item label="电话" prop="telephone">
         <el-input v-model.number="form.telephone" />
@@ -45,12 +51,13 @@
 
 <script>
 
-import { add, edit } from '@/api/sys/user'
+import { add, edit, addRelation } from '@/api/sys/user'
 import { getDepts } from '@/api/sys/dept'
 import { GetAllByName } from '@/api/sys/role'
 import { getAllJob } from '@/api/sys/job'
 import Treeselect from '@riophae/vue-treeselect'
 import '@riophae/vue-treeselect/dist/vue-treeselect.css'
+import Config from '@/config'
 export default {
   components: { Treeselect },
   props: {
@@ -80,9 +87,11 @@ export default {
         user_type: '', sex: '', head_pic: '', 
         telephone: '', mobile: '', email: '', summary: '', 
         org_id: '', job_id: '', last_login_time: '', 
-        sort: '', group_id: '', 
+        sort: '', group_id: 'GXBBWGKGLJ', 
         role: [], dept: { id: '' }, job: { id: '' }},
-      roleIds: [], role: [], depts: [], deptId: null, jobId: null, jobs: [],
+      roleIds: [], role: [], depts: [], deptId: null, jobId: null, jobs: [], 
+      subrole: {user_id: '', app_id: '', role_id: [], group_id: ''},
+      appid: Config.appid,
       rules: {
         username: [
           { required: true, message: '请输入用户名', trigger: 'blur' },
@@ -106,8 +115,8 @@ export default {
       this.resetForm()
     },
     doSubmit() {
-      this.form.dept.id = this.deptId
-      this.form.job.id = this.jobId
+      this.form.org_id = this.deptId
+      this.form.job_id = this.jobId
       this.$refs['form'].validate((valid) => {
         if (valid) {
           if (this.deptId === null || this.deptId === undefined) {
@@ -127,12 +136,7 @@ export default {
             })
           } else {
             this.loading = true
-            this.form.role = []
-            const _this = this
-            this.roleIds.forEach(function(data, index) {
-              const role = { id: data }
-              _this.form.role.push(role)
-            })
+            this.AddRelation()
             if (this.isAdd) {
               this.doAdd()
             } else this.doEdit()
@@ -173,6 +177,18 @@ export default {
         console.log(err.response.data.message)
       })
     },
+    AddRelation() {
+      const _this = this
+      this.subrole = {user_id: _this.form.id, app_id: _this.appid, role_id: [], group_id: _this.form.group_id}
+      this.roleIds.forEach(function(data, index) {
+        _this.subrole.role_id.push(data)
+      })
+      addRelation(this.subrole).then(res => {
+      }).catch(err => {
+        this.loading = false
+        console.log(err.response.data.message)
+      })
+    },
     resetForm() {
       this.dialog = false
       this.$refs['form'].resetFields()
@@ -184,7 +200,7 @@ export default {
         user_type: '', sex: '', head_pic: '', 
         telephone: '', mobile: '', email: '', summary: '', 
         org_id: '', job_id: '', last_login_time: '', 
-        sort: '', group_id: '', 
+        sort: '', group_id: 'GXBBWGKGLJ', 
         role: [], dept: { id: '' }, job: { id: '' }}
     },
     getRoles() {
@@ -202,7 +218,7 @@ export default {
       })
     },
     getDepts() {
-      getDepts({ page: 1, limit: 100, order: 'asc', field: 'sort', status: 'true' }).then(res => {
+      getDepts({ page: 1, limit: 100, order: 'asc', field: 'sort', status: '启用' }).then(res => {
         this.depts = res.data.content
       })
     },
