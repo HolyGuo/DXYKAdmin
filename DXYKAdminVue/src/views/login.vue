@@ -93,8 +93,7 @@ export default {
           username: this.loginForm.username,
           password: this.loginForm.password,
           rememberMe: this.loginForm.rememberMe,
-          code: this.loginForm.code,
-          uuid: this.loginForm.uuid
+          code: this.loginForm.code
         }
         if (user.password !== this.cookiePass) {
           user.password = encrypt(user.password)

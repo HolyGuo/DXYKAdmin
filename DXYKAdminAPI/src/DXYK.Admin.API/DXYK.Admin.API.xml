@@ -47,7 +47,12 @@
              用户信息IUserRepository
             </summary>
         </member>
-        <member name="M:DXYK.Admin.API.Controllers.LoginController.#ctor(DXYK.Admin.Service.AuthorizeService,DXYK.Admin.Repository.IAuthorizeRepository)">
+        <member name="P:DXYK.Admin.API.Controllers.LoginController._sysUserAppRoleService">
+            <summary>
+             用户应用角色授权表(sys_user_app_role) Service
+            </summary>
+        </member>
+        <member name="M:DXYK.Admin.API.Controllers.LoginController.#ctor(DXYK.Admin.Service.AuthorizeService,DXYK.Admin.Repository.IAuthorizeRepository,DXYK.Admin.Service.SysUserAppRoleService)">
             <summary>
              sys_userController
             </summary>

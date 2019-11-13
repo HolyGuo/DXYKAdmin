@@ -83,7 +83,10 @@ namespace DXYK.Admin.API.Controllers
         [HttpPut]
         public ResponseMessage<int> Update([FromBody]SysAppAction sysAppAction)
         {
-            return new ResponseMessage<int> { data = _sysAppActionService.Update(sysAppAction) };
+            SysAppAction entity = _sysAppActionService.GetById(sysAppAction.id);
+            Utils.CommmonUtils.EntityToEntity(sysAppAction, entity, null);
+            return new ResponseMessage<int> { data = _sysAppActionService.Update(entity) };
+            //return new ResponseMessage<int> { data = _sysAppActionService.Update(sysAppAction) };
         }
 
         ///<summary>

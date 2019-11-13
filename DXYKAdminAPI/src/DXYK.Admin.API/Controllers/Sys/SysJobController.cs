@@ -96,7 +96,10 @@ namespace DXYK.Admin.API.Controllers
         [HttpPut, ApiAuthorize(ActionCode = "Admin,Job_Manage,Job_Update", LogType = LogEnum.UPDATE)]
         public ResponseMessage<int> Update([FromBody]SysJob sysJob)
         {
-            return new ResponseMessage<int> { data = _sysJobService.Update(sysJob) };
+            SysJob entity = _sysJobService.GetById(sysJob.id);
+            Utils.CommmonUtils.EntityToEntity(sysJob, entity, null);
+            return new ResponseMessage<int> { data = _sysJobService.Update(entity) };
+            //return new ResponseMessage<int> { data = _sysJobService.Update(sysJob) };
         }
 
         ///<summary>

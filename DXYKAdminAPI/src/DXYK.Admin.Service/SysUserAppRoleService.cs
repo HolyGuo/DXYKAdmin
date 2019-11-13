@@ -135,7 +135,14 @@ namespace DXYK.Admin.Service
             return SysUserAppRoleRepository.ClearRelation(user_id, app_id, group_id);
         }
 
-
+        ///<summary>
+        ///根据用户ID查找角色名称
+        ///</summary>
+        public string GetByUserId(string user_id, string app_id, string group_id)
+        {
+            List<string> namelst = SysUserAppRoleRepository.GetByUserId(user_id, app_id, group_id);
+            return string.Join(",", namelst);
+        }
 
     }
 }

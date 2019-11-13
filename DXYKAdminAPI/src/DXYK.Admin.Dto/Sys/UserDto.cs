@@ -181,6 +181,10 @@ namespace DXYK.Admin.Dto.Sys
         ///</summary>
         public virtual DateTime? deleted_time { get; set; }
         ///<summary>
+        /// 组织机构名称
+        ///</summary>
+        public virtual string org_name { get; set; }
+        ///<summary>
         /// 岗位名称
         ///</summary>
         public virtual string job_name { get; set; }

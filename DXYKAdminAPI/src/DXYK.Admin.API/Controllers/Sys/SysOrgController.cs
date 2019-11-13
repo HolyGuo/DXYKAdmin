@@ -85,7 +85,10 @@ namespace DXYK.Admin.API.Controllers
         [HttpPut, ApiAuthorize(ActionCode = "Admin,Org_Manage,Org_Update", LogType = LogEnum.UPDATE)]
         public ResponseMessage<int> Update([FromBody]SysOrg sysOrg)
         {
-            return new ResponseMessage<int> { data = _sysOrgService.Update(sysOrg) };
+            SysOrg entity = _sysOrgService.GetById(sysOrg.id);
+            Utils.CommmonUtils.EntityToEntity(sysOrg, entity, null);
+            return new ResponseMessage<int> { data = _sysOrgService.Update(entity) };
+            //return new ResponseMessage<int> { data = _sysOrgService.Update(sysOrg) };
         }
 
         ///<summary>

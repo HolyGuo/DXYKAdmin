@@ -22,25 +22,24 @@ router.beforeEach((to, from, next) => {
       next({ path: '/user' })
       NProgress.done() // if current page is dashboard will not trigger	afterEach hook, so manually handle it
     } else {
-      // if (store.getters.roles.length === 0) { // 判断当前用户是否已拉取完user_info信息
-      //   store.dispatch('GetInfo').then(res => { // 拉取user_info
-      //     // 动态路由，拉取菜单
-      //     loadMenus(next, to)
-      //   }).catch((err) => {
-      //     console.log(err)
-      //     store.dispatch('LogOut').then(() => {
-      //       location.reload() // 为了重新实例化vue-router对象 避免bug
-      //     })
-      //   })
-      // // 登录时未拉取 菜单，在此处拉取
-      // } else if (store.getters.loadMenus) {
-      //   // 修改成false，防止死循环
-      //   store.dispatch('updateLoadMenus').then(res => {})
-      //   loadMenus(next, to)
-      // } else {
-      //   next()
-      // }
-      next()
+      if (store.getters.roles.length === 0) { // 判断当前用户是否已拉取完user_info信息
+        store.dispatch('GetInfo').then(res => { // 拉取user_info
+          // 动态路由，拉取菜单
+          next()
+        }).catch((err) => {
+          console.log(err)
+          store.dispatch('LogOut').then(() => {
+            location.reload() // 为了重新实例化vue-router对象 避免bug
+          })
+        })
+      // 登录时未拉取 菜单，在此处拉取
+      } else if (store.getters.loadMenus) {
+        // 修改成false，防止死循环
+        store.dispatch('updateLoadMenus').then(res => {})
+        next()
+      } else {
+        next()
+      }
     }
   } else {
     /* has no token*/

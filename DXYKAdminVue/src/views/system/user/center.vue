@@ -22,10 +22,11 @@
               <li><svg-icon icon-class="user1" /> 姓名 <div class="user-right">{{ user.true_name }}</div></li>
               <li><svg-icon icon-class="user1" /> 昵称 <div class="user-right">{{ user.nick_name }}</div></li>
               <li><svg-icon icon-class="user1" /> 用户名 <div class="user-right">{{ user.login_name }}</div></li>
+              <li><svg-icon icon-class="role" /> 角色 <div class="user-right">{{ user.role_name }}</div></li>
               <li><svg-icon icon-class="phone" /> 手机号码 <div class="user-right">{{ user.telephone }}</div></li>
               <li><svg-icon icon-class="email" /> 用户邮箱 <div class="user-right">{{ user.email }}</div></li>
-              <li><svg-icon icon-class="dept" /> 所属部门 <div class="user-right"> {{ user.dept }} / {{ user.rolename }}</div></li>
-              <li><svg-icon icon-class="dept" /> 所属部门 <div class="user-right"> {{ user.dept }} / {{ user.jobname }}</div></li>
+              <li><svg-icon icon-class="dept" /> 所属部门 <div class="user-right"> {{ user.org_name }}</div></li>
+              <li><svg-icon icon-class="Steve-Jobs" /> 所属岗位 <div class="user-right"> {{ user.job_name }}</div></li>
               <li><svg-icon icon-class="date" /> 创建日期 <div class="user-right">{{ parseTime(user.createTime) }}</div></li>
               <li>
                 <svg-icon icon-class="anq" /> 安全设置

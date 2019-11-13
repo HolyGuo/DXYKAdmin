@@ -171,7 +171,7 @@ export default {
       })
     },
     getDeptDatas() {
-      const params = { page: 1, limit: 100, order: 'asc', field: 'sort', status: 'true' }
+      const params = { page: 1, limit: 100, order: 'asc', field: 'sort', status: '启用' }
       if (this.deptName) { params['keyWords'] = this.deptName }
       getDepts(params).then(res => {
         this.depts = res.data.content

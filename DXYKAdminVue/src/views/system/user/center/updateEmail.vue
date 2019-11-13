@@ -4,7 +4,6 @@
       <el-form ref="form" :model="form" :rules="rules" size="small" label-width="88px">
         <el-form-item label="新邮箱" prop="email">
           <el-input v-model="form.email" auto-complete="on" style="width: 200px;"/>
-          <el-button :loading="codeLoading" :disabled="isDisabled" size="small" @click="sendCode">{{ buttonName }}</el-button>
         </el-form-item>
         <el-form-item label="当前密码" prop="pass">
           <el-input v-model="form.pass" type="password" style="width: 320px;"/>

@@ -35,11 +35,10 @@ const user = {
     Login({ commit }, userInfo) {
       const username = userInfo.username
       const password = decrypt(userInfo.password)
-      const code = userInfo.code
       // const uuid = userInfo.uuid
       const rememberMe = userInfo.rememberMe
       return new Promise((resolve, reject) => {
-        login(username, password, code).then(res => {
+        login(username, password, Config.appid).then(res => {
           setToken(res.data, rememberMe)
           commit('SET_TOKEN', res.data)
           // 通过appid和token获取授权
@@ -58,7 +57,6 @@ const user = {
           })
           // 第一次加载菜单时用到， 具体见 src 目录下的 permission.js
           commit('SET_LOAD_MENUS', true)
-          resolve()
         }).catch(error => {
           reject(error)
         })
@@ -67,12 +65,16 @@ const user = {
 
     // 获取用户信息
     GetInfo({ commit }) {
-      return new Promise((resolve, reject) => {
-        getInfo().then(res => {
-          setUserInfo(res, commit)
-          resolve(res)
-        }).catch(error => {
-          reject(error)
+      const token = getToken()
+      // 通过appid和token获取授权
+      Authorize(token, Config.appid).then(res => {
+        setUserInfo(res.data.Permission.Action, commit)
+        commit('SET_USER', res.data.User)
+        // 加载路由
+        const asyncRouter = filterAsyncRouter(res.data.Permission.MenuTree)
+        asyncRouter.push({ path: '*', redirect: '/404', hidden: true })
+        store.dispatch('GenerateRoutes', asyncRouter).then(() => { // 存储路由
+          router.addRoutes(asyncRouter) // 动态添加可访问路由表
         })
       })
     },
@@ -106,7 +108,6 @@ export const setUserInfo = (res, commit) => {
     });
     commit('SET_ROLES', roles)
   }
-  commit('SET_USER', res)
 }
 
 export default user

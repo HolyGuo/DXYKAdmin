@@ -208,5 +208,21 @@
       </Where>
     </Statement>
 
+    <!--清除关联-->
+    <Statement Id="GetByUserId">
+      SELECT A.role_code FROM sys_user_app_role T LEFT JOIN sys_app_role A on T.role_id = A."id"
+      <Where>
+        <IsNotEmpty Prepend="And" Property="user_id">
+          T.user_id = @user_id
+        </IsNotEmpty>
+        <IsNotEmpty Prepend="And" Property="app_id">
+          T.app_id = @app_id
+        </IsNotEmpty>
+        <IsNotEmpty Prepend="And" Property="group_id">
+          T.group_id = @group_id
+        </IsNotEmpty>
+      </Where>
+    </Statement>
+
   </Statements>
 </SmartSqlMap>

@@ -58,12 +58,18 @@ namespace DXYK.Admin.API.Controllers
         public IAuthorizeRepository _uthorizeRepository { get; }
 
         ///<summary>
+        /// 用户应用角色授权表(sys_user_app_role) Service
+        ///</summary>
+        public SysUserAppRoleService _sysUserAppRoleService { get; }
+
+        ///<summary>
         /// sys_userController
         ///</summary>
-        public LoginController(AuthorizeService authorizeService, IAuthorizeRepository authorizeRepository)
+        public LoginController(AuthorizeService authorizeService, IAuthorizeRepository authorizeRepository, SysUserAppRoleService sysUserAppRoleService)
         {
             _authorizeService = authorizeService;
             _uthorizeRepository = authorizeRepository;
+            _sysUserAppRoleService = sysUserAppRoleService;
         }
 
         ///<summary>
@@ -122,6 +128,9 @@ namespace DXYK.Admin.API.Controllers
                 }
                 //查询登录结果
                 UserInfo user = _authorizeService.LoginIn(reqLogin.loginname);
+                //增加角色名称
+                string rolename = _sysUserAppRoleService.GetByUserId(user.id, reqLogin.appid, user.group_id);
+                user.role_name = rolename;
                 if (user == null)//用户名错误
                 {
                     //增加登录次数

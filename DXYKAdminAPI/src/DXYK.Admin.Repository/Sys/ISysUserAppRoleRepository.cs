@@ -77,6 +77,12 @@ namespace DXYK.Admin.Repository
         [Statement(Id = "ClearRelation")]
         int ClearRelation([Param("user_id")]string user_id, [Param("app_id")]string app_id,
             [Param("group_id")]string group_id);
+        ///<summary>
+        /// 根据用户ID查找角色名称
+        ///</summary>
+        [Statement(Id = "GetByUserId")]
+        List<string> GetByUserId([Param("user_id")]string user_id, [Param("app_id")]string app_id,
+            [Param("group_id")]string group_id);
     }
 }
 

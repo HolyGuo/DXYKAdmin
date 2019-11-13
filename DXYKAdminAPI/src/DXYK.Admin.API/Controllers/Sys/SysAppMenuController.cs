@@ -85,7 +85,10 @@ namespace DXYK.Admin.API.Controllers
         [HttpPut, ApiAuthorize(ActionCode = "Admin,Menu_Manage,Menu_Update", LogType = LogEnum.UPDATE)]
         public ResponseMessage<int> Update([FromBody]SysAppMenu sysAppMenu)
         {
-            return new ResponseMessage<int> { data = _sysAppMenuService.Update(sysAppMenu) };
+            SysAppMenu entity = _sysAppMenuService.GetById(sysAppMenu.id);
+            Utils.CommmonUtils.EntityToEntity(sysAppMenu, entity, null);
+            return new ResponseMessage<int> { data = _sysAppMenuService.Update(entity) };
+            //return new ResponseMessage<int> { data = _sysAppMenuService.Update(sysAppMenu) };
         }
 
         ///<summary>
